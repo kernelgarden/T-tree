@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801051258) do
+ActiveRecord::Schema.define(version: 20160801063623) do
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -27,6 +33,16 @@ ActiveRecord::Schema.define(version: 20160801051258) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "ut_relationships", force: :cascade do |t|
+    t.integer  "member_id"
+    t.integer  "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id", "team_id"], name: "index_ut_relationships_on_member_id_and_team_id", unique: true
+    t.index ["member_id"], name: "index_ut_relationships_on_member_id"
+    t.index ["team_id"], name: "index_ut_relationships_on_team_id"
   end
 
 end
