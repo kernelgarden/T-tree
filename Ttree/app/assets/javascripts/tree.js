@@ -218,5 +218,13 @@ for (var i = 1; i < 100; i++) {
   tree.add(i + 1, i, tree.traverseDF);
 }
 
-  tree._root.children[0].removeSubBranch(tree._root.children[0].traverseDF);
-  console.log(tree._root.children[0]);
+//tree._root.children[0].removeSubBranch(tree._root.children[0].traverseDF);
+console.log(tree._root.children[0]);
+
+document.write("<script src='circular-json.js'></script>");
+
+var CircularJSON = window.CircularJSON;
+
+dat = CircularJSON.stringify(tree);
+test = CircularJSON.parse(dat);
+test2 = new Tree(test);
