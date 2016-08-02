@@ -10,7 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801054603) do
+ActiveRecord::Schema.define(version: 20160801185417) do
+
+  create_table "br_relationships", force: :cascade do |t|
+    t.integer  "highbranch_id"
+    t.integer  "lowbranch_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["highbranch_id", "lowbranch_id"], name: "index_br_relationships_on_highbranch_id_and_lowbranch_id", unique: true
+    t.index ["highbranch_id"], name: "index_br_relationships_on_highbranch_id"
+    t.index ["lowbranch_id"], name: "index_br_relationships_on_lowbranch_id"
+  end
+
+  create_table "branches", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "work_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["work_id", "created_at"], name: "index_branches_on_work_id_and_created_at"
+    t.index ["work_id"], name: "index_branches_on_work_id"
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "branch_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["branch_id", "created_at"], name: "index_pages_on_branch_id_and_created_at"
+    t.index ["branch_id"], name: "index_pages_on_branch_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -31,6 +66,26 @@ ActiveRecord::Schema.define(version: 20160801054603) do
     t.string   "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "ut_relationships", force: :cascade do |t|
+    t.integer  "member_id"
+    t.integer  "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id", "team_id"], name: "index_ut_relationships_on_member_id_and_team_id", unique: true
+    t.index ["member_id"], name: "index_ut_relationships_on_member_id"
+    t.index ["team_id"], name: "index_ut_relationships_on_team_id"
+  end
+
+  create_table "works", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id", "created_at"], name: "index_works_on_team_id_and_created_at"
+    t.index ["user_id", "created_at"], name: "index_works_on_user_id_and_created_at"
   end
 
 end
