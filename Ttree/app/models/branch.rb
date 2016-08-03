@@ -1,7 +1,7 @@
 class Branch < ApplicationRecord
   	belongs_to :work
   	#순서 최근 순으로 
-  	default_scope  { order(:created_at => :desc) }
+  	#default_scope  { order(:created_at => :desc) }
   	validates:name, presence:true, length:{maximum:50}
   	validates:work_id, presence:true
 
@@ -29,5 +29,10 @@ class Branch < ApplicationRecord
 	#현재 가지가 해당 가지를 하위가지로 가지고 있으면 true 반환
 	def connect?(other_branch)
 		lowbranches.include?(other_branch)
+	end
+	def self.json_tree(branches)
+	    branches.map do |branch, lowbranches|
+	      {:name => branches.name, :lowbranches => Branch.json_tree(lowbranches).compact}
+	    end
 	end
 end

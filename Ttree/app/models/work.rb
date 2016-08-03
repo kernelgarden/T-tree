@@ -4,7 +4,7 @@ class Work < ApplicationRecord
 	belongs_to :user, optional: true
 	belongs_to :team, optional: true
 	#순서 최근 순으로 
-	default_scope  { order(:created_at => :desc) }
+	#default_scope  { order(:created_at => :desc) }
 	validates:name, presence:true, length:{maximum:50}
 
 	has_many :branches, :dependent => :destroy

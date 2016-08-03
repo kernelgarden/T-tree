@@ -27,6 +27,8 @@ class User < ApplicationRecord
   def join?(team)
   	teams.include?(team)
 
+  end
+  
   def self.find_for_facebook_oauth(auth)
     if user = User.find_by_email(auth.info.email)  # search your db for a user with email coming from fb
       return user  #returns the user so you can sign him/her in
