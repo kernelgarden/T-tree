@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag    'application', header: 'all', 'data-turbolinks-track': 'reload' %>
+<ul id="header">
+  <li class="menu" id="menu_1"><%= link_to image_tag("home.png", alt:  "home",id:"home" ), root_path %></li>
+  <li class="menu" id="menu_2">
+    <div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn">My-Tree</button>
+    <div id="myDropdown" class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div></li>
+  <li class="menu" id="menu_3">c</li>
+  <li class="menu" id="menu_4">e</li>
+  <li class="menu" id="menu_5">f</li>
+  <li class="menu" id="menu_6">g</li>
+  <li class="menu" id="menu_7">h</li>
+</ul>
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
