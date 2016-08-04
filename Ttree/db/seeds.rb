@@ -14,15 +14,18 @@
 
  	# 해당하는 work의 branch 생성 
 
- 	99.times do |n|
- 		name="branch"+(n+1).to_s
- 		Work.first.branches.create(name: name)
+ 	Work.first.branches.create(name: "branch1")
+
+	9.times do |n|
+		currentbranch=Branch.find_by(id:(n+1))
+		name="branch"+(n+2).to_s
+ 		currentbranch.children.create(name: name, work_id:currentbranch.work_id)
 	end
 
-	98.times do |n|
-		currentbranch=Branch.find_by(id:(n+1))
-		nextbranch=Branch.find_by(id:(n+2))
- 		currentbranch.connect(nextbranch)
+	20.times do |n|
+ 		name="page"+(n+1).to_s
+ 		currentbranch=Branch.find_by(id:(n/2+1))
+ 		currentbranch.pages.create(name: name)
 	end
 
  	#Branch.first.connect(Branch.second)
@@ -30,16 +33,3 @@
 
  	#Branch.second.connect(Branch.fourth)
  	#Branch.second.connect(Branch.fifth)
-
-
- 	Branch.first.pages.create(name:"page1")
- 	Branch.first.pages.create(name:"page2")
-
- 	Branch.second.pages.create(name:"page3")
- 	Branch.second.pages.create(name:"page4")
-
- 	Branch.third.pages.create(name:"page5")
- 	Branch.third.pages.create(name:"page6")
-
- 	Branch.fourth.pages.create(name:"page7")
- 	Branch.fourth.pages.create(name:"page8")
