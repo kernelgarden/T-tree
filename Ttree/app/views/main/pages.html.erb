@@ -1,0 +1,55 @@
+<!--
+<div>
+	<div class="">
+		<div id="a" class="zoomTarget level0">
+			<div id="a1" class="zoomTarget level1">
+				<div id="a11" class="zoomTarget level2">a11</div>
+				<div id="a12" class="zoomTarget level2">a12</div>
+				<div id="a13" class="zoomTarget level2">a13</div>
+				<div id="a14" class="zoomTarget level2">a14</div>
+			</div>
+			<div id="a2" class="zoomTarget level1">a2</div>
+			<div id="a3" class="zoomTarget level1">a3</div>
+			<div id="a4" class="zoomTarget level1">a4</div>
+		</div>
+	</div>
+</div>
+-->
+<script>
+	$(document).ready(function(){
+		$.getJSON("/api/branch/1/pages", function(response) {
+			$.each(response, function (i,newsItem) {
+				$(".page_box ol li").eq(i).append(newsItem.name);
+			});
+		});
+		alert("hello, world");
+		$('#show15').focus(function() {
+			$('#show15').css("background-color","#7FC9FF");
+			$('#show10').css("background-color","#fff");
+			$('.pageli').width("66px")
+			$('.pageli').height("66px")
+		});
+			$('#show10').focus(function() {
+			$('#show15').css("background-color","#fff");
+			$('#show10').css("background-color","#7FC9FF");
+			$('.pageli').width("100px")
+			$('.pageli').height("100px")
+		});
+	});
+
+</script>
+<div>
+	<div>
+		<button id="show10">10개</button>
+		<button id="show15">15개</button>
+	</div>
+	<div class="page_box">
+		<ol id="sort">
+			
+			<% for i in 0..119 %>
+			<li class="pageli zoomTarget"><%=i+1%>. </li>
+			<% end %>
+			
+		</ol>
+	</div>
+</div>

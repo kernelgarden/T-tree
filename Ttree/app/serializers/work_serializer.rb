@@ -1,5 +1,3 @@
 class WorkSerializer < ActiveModel::Serializer
-  attributes :id, :name
-  belongs_to :user
-  has_many :branches
+  attributes :id, :name, :user_id, :branch_ids
 end

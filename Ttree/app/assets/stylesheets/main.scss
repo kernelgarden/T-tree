@@ -1,3 +1,65 @@
 // Place all the styles related to the Main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.container{
+
+}
+.level0, .level1, .level2 {
+	margin-left:10px;
+	margin-top:10px;
+	
+
+border:1px solid black;
+}
+
+.level2 {
+	width:80px;
+	height:80px;
+	
+
+float: left;
+	background: #aaa;
+}
+
+.level1 {
+	width:200px;
+	
+
+height:200px;
+	background: #ddd;
+	float: left;
+	font-size:30px;
+	
+
+font-family: Helvetica;
+}
+
+.level0 {
+	width:434px;
+	height:434px;
+	
+
+left:100px;
+	top:100px;
+	position:absolute;
+}
+
+/* pages */
+
+.page_box{
+	padding:30px;
+	ol{
+		position: relative;
+		.pageli{
+			display:inline-block;
+			width:100px;
+			height:100px;
+			margin-right: 5px;
+			margin-bottom: 5px;
+			margin-top:5px;
+			border-radius: 5px;
+			background-color:#FF7F7F
+		}
+	}
+	
+}
