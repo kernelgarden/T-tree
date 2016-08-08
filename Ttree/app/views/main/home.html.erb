@@ -1,2 +1,39 @@
-<h1>Main#home</h1>
-<p>Find me in app/views/main/home.html.erb</p>
+<script>
+$(document).ready(function(){
+  function toDegrees(angle){
+    return angle * (Math.PI / 180);
+  }
+  var width = window.innerWidth||document.body.clientWidth;
+  var height =window.innerHeight||document.body.clientHeigh;
+  var parent = $('div.parent');
+  parent.width(String(width*(1/9)));
+  parent.height(String(width*(1/9)));
+  var parentCircleHalfWidth = (parent.width()/2);
+  var parentTop = parent.offset({top:((height)+40)/2 - parentCircleHalfWidth});
+  var parentLeft = parent.offset({left:(width)/2 - parentCircleHalfWidth});
+  //Number of services
+  var noOfServices = 8;
+  //Add some padding from parent circle
+  var Hyp = parentCircleHalfWidth*2;
+  //360 degrees / the number of services
+  var angle = Math.round(360 / noOfServices);
+  for(var i = 1; i <= noOfServices; i++){
+    var currentAngle = i * angle;
+    //calculate the positioning of the child circle around the parent circle
+    var circlePosXOpp = (Math.sin(toDegrees(currentAngle)) * Hyp);
+    var circlePosYAdj = (Math.cos(toDegrees(currentAngle)) * Hyp);
+    //create a child element and assign "child" class with some properties such as positining
+    var currentChild = $('<div class="child"></div>').appendTo('div.parent');
+    currentChild.width(String(width*(1/18)));
+    currentChild.height(String(width*(1/18)));
+    var childCircleHalfWidth=(currentChild.width()/2);
+    currentChild.css({'top':(+childCircleHalfWidth)+'px'});
+    currentChild.css({'left':(+childCircleHalfWidth)+'px'});
+    currentChild.css({'transform' : 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'});
+
+
+  }
+});
+</script>
+<div id="parent" class="parent">
+</div>
