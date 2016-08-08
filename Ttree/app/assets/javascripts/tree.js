@@ -37,27 +37,22 @@ Branch.prototype.traverseDF = function(callback) {
     callback(currentNode);
   })(this);
 };
-
 /* 해당 노드 이하의 모든 자식들을 삭제함 */
 Branch.prototype.removeSubBranch = function(traversal) {
   var callback = function(branch) {
     branch.parent = null;
     branch.children = [];
   };
-
   traversal.call(this, callback);
 };
-
 /* queue에 data를 삽입함 */
 Queue.prototype.enqueue = function(data) {
   this.data.push(data);
 };
-
 /* queue에서 요소 하나를 pop 해옴 */
 Queue.prototype.dequeue = function() {
   return this.data.shift();
 };
-
 /*
   DF로 구현한 트리 순회
   callback을 등록하여 트리의 노드에 작업을 걸을 수 있음
@@ -67,22 +62,17 @@ Tree.prototype.traverseDF = function(callback) {
     for (var i = 0, length = currentNode.children.length; i < length; i++) {
       recurse(currentNode.children[i]);
     }
-
     callback(currentNode);
   })(this._root);
 };
-
 /*
   BF로 구현한 트리 순회
   callback을 등록하여 트리의 노드에 작업을 걸을 수 있음
 */
 Tree.prototype.traverseBF = function(callback) {
   var queue = new Queue();
-
   queue.enqueue(this._root);
-
   currentTree = queue.dequeue();
-
   while (currentTree) {
     for (var i = 0, length = currentTree.children.length; i < length; i++) {
       queue.enqueue(currentTree.children[i]);
