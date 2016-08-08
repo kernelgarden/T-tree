@@ -10,23 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801185417) do
-
-  create_table "br_relationships", force: :cascade do |t|
-    t.integer  "highbranch_id"
-    t.integer  "lowbranch_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["highbranch_id", "lowbranch_id"], name: "index_br_relationships_on_highbranch_id_and_lowbranch_id", unique: true
-    t.index ["highbranch_id"], name: "index_br_relationships_on_highbranch_id"
-    t.index ["lowbranch_id"], name: "index_br_relationships_on_lowbranch_id"
-  end
+ActiveRecord::Schema.define(version: 20160804121824) do
 
   create_table "branches", force: :cascade do |t|
     t.string   "name"
     t.integer  "work_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_branches_on_ancestry"
     t.index ["work_id", "created_at"], name: "index_branches_on_work_id_and_created_at"
     t.index ["work_id"], name: "index_branches_on_work_id"
   end
