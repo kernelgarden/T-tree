@@ -1,10 +1,14 @@
 <script>
-$(document).ready(function(){
+function renderCircle(){
   function toDegrees(angle){
     return angle * (Math.PI / 180);
   }
   var width = window.innerWidth||document.body.clientWidth;
   var height =window.innerHeight||document.body.clientHeigh;
+  if(height<500){
+    width=1366;
+    height=768;
+  }
   var parent = $('div.parent');
   parent.width(String(width*(1/9)));
   parent.height(String(width*(1/9)));
@@ -24,16 +28,85 @@ $(document).ready(function(){
     var circlePosYAdj = (Math.cos(toDegrees(currentAngle)) * Hyp);
     //create a child element and assign "child" class with some properties such as positining
     var currentChild = $('<div class="child"></div>').appendTo('div.parent');
+    currentChild.addClass('child'+i);
     currentChild.width(String(width*(1/18)));
     currentChild.height(String(width*(1/18)));
     var childCircleHalfWidth=(currentChild.width()/2);
-    currentChild.css({'top':(+childCircleHalfWidth)+'px'});
-    currentChild.css({'left':(+childCircleHalfWidth)+'px'});
-    currentChild.css({'transform' : 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'});
+    currentChild.css({'top':(+childCircleHalfWidth)+'px'})
+    currentChild.css({'left':(+childCircleHalfWidth)+'px'})
+    currentChild.css({'transform' : 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'})
+    $(function() {
+    var moveLeft = 20;
+    var moveDown = 10;
+    $('.child1').hover(function(e) {
+      $('div#pop-up').show()
+        .css('top', e.pageY + moveDown)
+        .css('left', e.pageX + moveLeft)
+        .appendTo('body');
+    }, function() {
+      $('div#pop-up').hide();
+    })
+    $('child1').mousemove(function(e) {
+      $("div#pop-up").css('top', e.pageY + moveDown).css('left', e.pageX + moveLeft);
+    })
+  })
+  }}
+
+  $(document).ready(function(){
+    var width = window.innerWidth||document.body.clientWidth;
+    var height =window.innerHeight||document.body.clientHeigh;
+    if(height<500){
+      width=1366;
+      height=768;
+    }
+    renderCircle();
+    $('.child').mouseenter(function(){
+      $(this).width(String(width*(1/13)));
+      $(this).height(String(width*(1/13)));
+      $(this).css({'top':(+(width*(1/52)))+'px'});
+      $(this).css({'left':(+(width*(1/52)))+'px'});
+    })
+    .mouseleave(function(){
+      $(this).width(String(width*(1/18)));
+      $(this).height(String(width*(1/18)));
+      $(this).css({'top':((width*(1/36)))+'px'});
+      $(this).css({'left':((width*(1/36)))+'px'});
+    })
+      })
+    $(window).resize(function(){
+      $('.parent').empty();
+      var width = window.innerWidth||document.body.clientWidth;
+      var height =window.innerHeight||document.body.clientHeigh;
+      if(height<500){
+        width=1366;
+        height=768;
+      }
+      renderCircle();
+      $('.child').mouseenter(function(){
+        $(this).width(String(width*(1/13)));
+        $(this).height(String(width*(1/13)));
+        $(this).css({'top':(+(width*(1/52)))+'px'});
+        $(this).css({'left':(+(width*(1/52)))+'px'});
+      })
+      .mouseleave(function(){
+        $(this).width(String(width*(1/18)));
+        $(this).height(String(width*(1/18)));
+        $(this).css({'top':((width*(1/36)))+'px'});
+        $(this).css({'left':((width*(1/36)))+'px'});
+      })
+    })
 
 
-  }
-});
-</script>
-<div id="parent" class="parent">
-</div>
+
+  </script>
+  <div id="wrapDiv">
+    <div id="parent" class="parent"></div>
+    <!-- HIDDEN / POP-UP DIV -->
+    <div id="pop-up">
+      <h3>Pop-up div Successfully Displayed</h3>
+      <p>
+        This div only appears when the trigger link is hovered over.
+        Otherwise it is hidden from view.
+      </p>
+    </div>
+  </div>

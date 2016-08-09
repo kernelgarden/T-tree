@@ -10,12 +10,31 @@ div.parent{
   top: 50%;
   left: 50%;
 }
+.parent:hover{
+  cursor: pointer;
+}
 div.child{
   width: 75px;
   height: 75px;
   background-color: orange;
   border-radius: 50%;
   position: absolute;
-  //left: 37px;
-  //top: 37px;
+}
+.child:hover{
+  cursor: pointer;
+}
+#wrapDiv{
+      width: 100%;
+      height: 100%;
+}
+/* HOVER STYLES */
+div#pop-up {
+  display: none;
+  position: absolute;
+  width: 280px;
+  padding: 10px;
+  background: #eeeeee;
+  color: #000000;
+  border: 1px solid #1a1a1a;
+  font-size: 90%;
 }
