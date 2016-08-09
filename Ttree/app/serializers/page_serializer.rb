@@ -1,4 +1,3 @@
 class PageSerializer < ActiveModel::Serializer
-  attributes :id, :name
-  belongs_to :branch
+  attributes :id, :name, :branch_id
 end
