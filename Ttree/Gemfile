@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'compass-rails'
+ gem 'compass'
 gem 'devise'
 gem 'rolify'
 gem 'authority'
