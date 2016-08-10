@@ -5,6 +5,7 @@ var parentWidth;				//중심 원 가로 길이
 var parentHeight;				//중심 원 세로 길이 
 var noOfServ;
 var noOfServices;
+var checkFirst=true;
 
 function renderCircle(){
 
@@ -91,20 +92,22 @@ function renderCircle(){
 
     //branch 누르면 
     $('.child').click(function(){
+    	$('.child').fadeIn(0)
+    	//$('.child').unbind("mouseenter");
     	$(this).css("z-index", 2)
     	//선택된 가지를 제외 하고 사라짐 
  		//$('.child').not(this).fadeOut('slow')
  		// parent 가지의 색깔을 투명하게 
  		$( '.parent, .child' ).not(this).animate({
           backgroundColor: "transparent",
-        }, 1000 )
+        }, 700 )
         $('.child').not(this).transition({ x:0+'px', y:0+'px', scale: 1, duration:0});
         // 선택된 가지를 중심으로 이동 
-        $(this).delay(700).transition({ x:0+'px',y:0+'px',duration: 1000});
+        $(this).delay(200).transition({ x:0+'px',y:0+'px',duration: 400});
         // 선택된 가지를 parent가지의 크기만큼 확대 
-       	$(this).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 1000});
+       	$(this).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 400});
        	// parent 가지의 색깔을 child 가지의 색깔로 변화시킴
-       	$( '.parent' ).delay(1200).animate({
+       	$( '.parent' ).delay(400).animate({
           backgroundColor: "#53c3d3",
         }, 'slow' )
         // 선택했던 child가지를 사라지게 함 
@@ -115,38 +118,62 @@ function renderCircle(){
         }, 3000 )*/
         //$(this).transition({ x:0+'px', y:0+'px', scale: 1, duration:0})
         //$('.child').fadeIn('slow')
-        
         var checkThis;
-        
+        var checkBranch;
+
         for(var i = 1; i <= noOfServ; i++){
         	if($(this).hasClass('child'+i)){
         		checkThis=i;
         	}
         }
-        
+
         for(var i = 0; i < noOfServ; i++){
 
-        	if(i==7){
-        		$('.child').eq(i).delay(1700).animate({
-		          backgroundColor: "#ECA812",
-		        } )
-        		$('.child').eq(i).delay(200).transition({ x:translateArr[0][checkThis-1]+'px', y:-translateArr[1][checkThis-1]+'px'});
-        		$('.child').eq(i).addClass('child'+checkThis)
+        	if($('.child').eq(i).hasClass('child8')){
+        		if(checkThis==8){
+        			$('.child').eq(i).css("z-index", 3)
+		        	$('.child').eq(i).delay(0).animate({
+				    	backgroundColor: "#53c3d3",
+				    } )
+				    $('.child').eq(i).removeClass('child'+checkThis)
+        		}else{
+	        		$('.child').eq(i).css("z-index", 2)
+	        		$('.child').eq(i).delay(300).animate({
+			          backgroundColor: "#ECA812",
+			        } )
+	        		$('.child').eq(i).delay(30).transition({ x:translateArr[0][checkThis-1]+'px', y:-translateArr[1][checkThis-1]+'px'});
+	        		$('.child').eq(i).addClass('child'+checkThis)
+	        		$('.child').eq(i).removeClass('child8')
+	        	}
         	}
-        	else if(i!=checkThis-1){
-        		$('.child').eq(i).delay(1700).animate({
-		          backgroundColor: "#ECA812",
-		        } )
-        		$('.child').eq(i).delay(100).transition({ x:translateArr[0][i]+'px', y:-translateArr[1][i]+'px'},'slow');
-        		
+        	else if(!($('.child').eq(i).hasClass('child'+checkThis))){
+        		$('.child').eq(i).css("z-index", 2)
+        		for(var j = 1; j <= noOfServ; j++){
+		        	if($('.child').eq(i).hasClass('child'+j)){
+		        		checkBranch=j;
+		        	}
+		        }
+        		$('.child').eq(i).delay(300).animate({
+			         backgroundColor: "#ECA812",
+				} )
+	        	$('.child').eq(i).delay(30).transition({ x:translateArr[0][checkBranch-1]+'px', y:-translateArr[1][checkBranch-1]+'px'});
         	}
         	else{
-        		$('.child').eq(i).delay(0).animate({
-		          backgroundColor: "#53c3d3",
-		        } )
-		       	$('.child').eq(i).removeClass('child'+checkThis)
+        		$('.child').eq(i).css("z-index", 3)
+	        	$('.child').eq(i).delay(0).animate({
+			    	backgroundColor: "#53c3d3",
+			    } )
+			    $('.child').eq(i).removeClass('child'+checkThis)	        		
         	}//else
         }//for
+        for(var i = 1; i <= noOfServ; i++){
+        	if($(this).hasClass('child8')){
+        		checkFirst=true;
+        	}else{
+        		checkFirst=false;	
+        	}	
+        }
+        if(checkFirst==false) $(this).addClass('child8')
     })//click
 }//renderCircle()
 
@@ -158,6 +185,7 @@ function renderCircle(){
       height=768;
     }
     renderCircle();
+
     $('.child').mouseenter(function(){
       $(this).width(String(width*(1/13)));
       $(this).height(String(width*(1/13)));
@@ -170,8 +198,11 @@ function renderCircle(){
       $(this).css({'top':((width*(1/36)))+'px'});
       $(this).css({'left':((width*(1/36)))+'px'});
     })
-
+    $(document).on("click",".child",function() {
+        if(checkFirst==false) $('.child8').fadeOut();
+    }); 
   })
+
   $(window).resize(function(){
     $('.parent').empty();
     var width = window.innerWidth||document.body.clientWidth;
