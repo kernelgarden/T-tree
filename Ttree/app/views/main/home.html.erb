@@ -88,7 +88,7 @@ function renderCircle(){
         $('.list').stop(true).fadeOut(300);
       })
     })
-    
+
     //branch 누르면 
     $('.child').click(function(){
     	$(this).css("z-index", 2)
@@ -144,7 +144,7 @@ function renderCircle(){
         		$('.child').eq(i).delay(0).animate({
 		          backgroundColor: "#53c3d3",
 		        } )
-		     a  $('.child').eq(i).removeClass('child'+checkThis)
+		       	$('.child').eq(i).removeClass('child'+checkThis)
         	}//else
         }//for
     })//click
