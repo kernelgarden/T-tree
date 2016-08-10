@@ -5,10 +5,13 @@ var parentWidth;				//중심 원 가로 길이
 var parentHeight;				//중심 원 세로 길이 
 var noOfServ;
 var noOfServices;
+
 function renderCircle(){
+
   function toDegrees(angle){
     return angle * (Math.PI / 180);
-  }
+  }//toDegrees()
+
   var width = window.innerWidth||document.body.clientWidth;
   var height =window.innerHeight||document.body.clientHeigh;
 
@@ -51,29 +54,41 @@ function renderCircle(){
     currentChild.width(String(width*(1/18)));
     currentChild.height(String(width*(1/18)));
     var childCircleHalfWidth=(currentChild.width()/2);
-    currentChild.css({'top':(+childCircleHalfWidth)+'px'})
-    currentChild.css({'left':(+childCircleHalfWidth)+'px'})
-    currentChild.css({'transform' : 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'})
-    }//for
-
+    currentChild.css({'top':(+childCircleHalfWidth)+'px'});
+    currentChild.css({'left':(+childCircleHalfWidth)+'px'});
+    currentChild.css({'transform' : 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'});
+  }
     $(function() {
       var width = window.innerWidth||document.body.clientWidth;
-      var moveLeft = width*(1/8);
-      var moveDown = width*(1/18);
-      $('.child').hover(function(e){
-        $('div#pop-up').show()
+      var height =window.innerHeight||document.body.clientHeigh;
+      $('.child4,.child5,.child6,.child7').hover(function(){
+        $('.list').fadeIn(800)
         .width(String(width*(1/8)))
-        .css('top', e.pageY )
-        .css('left', +moveLeft)
-        .appendTo('body');
+        .height(String(width*(1/6)))
+        .css('top', +height*(1/2)-width*(1/12))
+        .css('left', +width*(1/8))
+        $('.list li').transition({
+          rotateX: '360',
+          duration:1000
+        })
       }, function() {
-        $('div#pop-up').hide();
+        $('.list').stop(true).fadeOut(300);
       })
-      $('child').mousemove(function(e) {
-        $("div#pop-up").css('top', e.pageY + moveDown).css('left', e.pageX + moveLeft);
+      $('.child1,.child2,.child3,.child8').hover(function(){
+        $('.list').fadeIn(800)
+        .width(String(width*(1/8)))
+        .height(String(width*(1/6)))
+        .css('top', +height*(1/2)-width*(1/12))
+        .css('left', width-2*(width*(1/8)))
+        $('.list li').transition({
+          rotateX: '360',
+          duration:1000
+        })
+      }, function() {
+        $('.list').stop(true).fadeOut(300);
       })
-    }) //function
-
+    })
+    
     //branch 누르면 
     $('.child').click(function(){
     	$(this).css("z-index", 2)
@@ -129,12 +144,11 @@ function renderCircle(){
         		$('.child').eq(i).delay(0).animate({
 		          backgroundColor: "#53c3d3",
 		        } )
-		        $('.child').eq(i).removeClass('child'+checkThis)
+		     a  $('.child').eq(i).removeClass('child'+checkThis)
         	}//else
         }//for
     })//click
-
-  }
+}//renderCircle()
 
   $(document).ready(function(){
     var width = window.innerWidth||document.body.clientWidth;
@@ -156,7 +170,7 @@ function renderCircle(){
       $(this).css({'top':((width*(1/36)))+'px'});
       $(this).css({'left':((width*(1/36)))+'px'});
     })
-    
+
   })
   $(window).resize(function(){
     $('.parent').empty();
@@ -172,6 +186,7 @@ function renderCircle(){
       $(this).height(String(width*(1/13)));
       $(this).css({'top':(+(width*(1/52)))+'px'});
       $(this).css({'left':(+(width*(1/52)))+'px'});
+
     })
     .mouseleave(function(){
       $(this).width(String(width*(1/18)));
@@ -179,16 +194,20 @@ function renderCircle(){
       $(this).css({'top':((width*(1/36)))+'px'});
       $(this).css({'left':((width*(1/36)))+'px'});
     })
+
   })
   </script>
-  <div id="wrapDiv">
-    <div id="parent" class="parent"></div>
-    <!-- HIDDEN / POP-UP DIV -->
-    <div id="pop-up">
-      <h3>안에 뭐가 있을까?</h3>
-      <p>
-        This div only appears when the trigger link is hovered over.
-        Otherwise it is hidden from view.
-      </p>
-    </div>
-  </div>
+
+<div id="wrapDiv">
+	<div id="parent" class="parent"></div>
+	<ul class="list" id="list">
+		<li>One</li>
+		<li>Two</li>
+		<li>Three</li>
+		<li>Four</li>
+		<li>Five</li>
+		<li>Six</li>
+		<li>Seven</li>
+		<li>Eight</li>
+	</ul>
+</div>
