@@ -66,11 +66,12 @@ left:100px;
 div.parent{
   width: 150px;
   height: 150px;
-  background-color: #53c3d3;
+  background-color: #53c3d3; 
   border-radius: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
+  z-index:3;
 }
 .parent:hover{
   cursor: pointer;
@@ -81,7 +82,9 @@ div.child{
   background-color: orange;
   border-radius: 50%;
   position: absolute;
+  z-index:1;
 }
+
 .child:hover{
   cursor: pointer;
 }
