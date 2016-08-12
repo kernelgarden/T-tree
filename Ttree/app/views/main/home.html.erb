@@ -5,8 +5,9 @@ var parentHeight;				//중심 원 세로 길이
 var noOfServ;
 var noOfServices;
 var checkFirst=true;
-var movingChild=false;
-
+var movingChild=false;		
+var parentClickCnt=0;			//parent 가지 click 카운트 
+	
 function renderCircle(){
   	function toDegrees(angle){
     	return angle * (Math.PI / 180);
@@ -17,6 +18,8 @@ function renderCircle(){
 	    width=1366;
 	    height=768;
   	}//if
+
+  	//parent 위치 설정 
   	var parent = $('div.parent');
   	parentWidth=width*(1/9);
   	parentHeight=parentWidth;
@@ -25,6 +28,14 @@ function renderCircle(){
   	var parentCircleHalfWidth = (parent.width()/2);
   	var parentTop = parent.offset({top:((height)+40)/2 - parentCircleHalfWidth});
   	var parentLeft = parent.offset({left:(width)/2 - parentCircleHalfWidth});
+
+  	//childGroup 설정 
+  	var childGroup = $('div.childGroup');
+  	childGroup.width(String(parentWidth));
+  	childGroup.height(String(parentHeight));
+  	childGroup.offset({top:((height)+40)/2 - parentCircleHalfWidth});
+  	childGroup.offset({left:(width)/2 - parentCircleHalfWidth});
+
   	//Number of services
   	noOfServices = 8;
   	noOfServ=noOfServices;
@@ -42,7 +53,7 @@ function renderCircle(){
 	  	translateArr[0][i-1]=circlePosXOpp;
 	    translateArr[1][i-1]=circlePosYAdj;
 	    //create a child element and assign "child" class with some properties such as positining
-	    var currentChild = $('<div class="child"></div>').appendTo('div.parent');
+	    var currentChild = $('<div class="child"></div>').appendTo('div.childGroup');
 	    currentChild.addClass('child'+i);
 	    currentChild.width(String(width*(1/18)));
 	    currentChild.height(String(width*(1/18)));
@@ -87,6 +98,7 @@ function renderCircle(){
     	movingChild=true;
     	$('.child').fadeIn(0)
     	//$('.child').unbind("mouseenter");
+    	$('.parent').css("z-index", 5)
     	$(this).css("z-index", 2)
     	//선택된 가지를 제외 하고 사라짐
  		//$('.child').not(this).fadeOut('slow')
@@ -100,6 +112,7 @@ function renderCircle(){
         // 선택된 가지를 parent가지의 크기만큼 확대
        	$(this).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 400});
        	// parent 가지의 색깔을 child 가지의 색깔로 변화시킴
+       	
        	$( '.parent' ).delay(400).animate({
           backgroundColor: "#53c3d3",
         }, 'slow' )
@@ -166,6 +179,7 @@ function renderCircle(){
         if(checkFirst==false) $(this).addClass('child8')
         movingChild=false;
     })//click
+
 }//renderCircle()
 
   $(document).ready(function(){
@@ -176,6 +190,7 @@ function renderCircle(){
       height=768;
     }
     renderCircle();
+    
     $(document).on("mouseenter", ".child", function(){
     	if(movingChild==false){
     		$(this).width(String(width*(1/13)));
@@ -194,42 +209,85 @@ function renderCircle(){
     })
     $(document).on("click",".child",function() {
         if(checkFirst==false) $('.child8').fadeOut();
-        $('.parent').removeClass('zoomTarget')
-    	$('.parent').removeClass('selectedZoomTarget')
-    	$('.parent').removeClass('zoomNotClickable')
+
+        //$(this).zoomTo({targetsize:0.75, duration:600});
+    	//e.stopPropagation();
+        
     });
+    //parent 가지를 눌렀을 때 확대 조정 
+    $(document).on("click",".parent",function() {
+    	//1번 눌렀을 때 조금 확대(0.85배)
+    	if(parentClickCnt==0){
+    		parentClickCnt++;
+    		$(this).zoomTo({targetsize:0.8, duration:1000});
+    	}
+    	//2번 눌렀을 때 완전 확대(3배)
+    	else if(parentClickCnt==1){
+    		parentClickCnt++;
+    		$(this).zoomTo({targetsize:3, duration:1000});
+    	}
+    	//그 이상으로 눌렀을 때 다시 축소 
+    	else {
+    		parentClickCnt=0;
+    		$('body').zoomTo({targetsize:1, duration:600});
+    	}
+    	e.stopPropagation();
+
+    });
+    //바탕을 누르면 다시 축소 
+    $(document).click(function() {
+    	//확대 수 초기화 
+    	parentClickCnt=0;
+	  	$('body').zoomTo({targetsize:1, duration:600});
+  	});
+	
   })
+
   $(window).resize(function(){
     $('.parent').empty();
+    $('.childGroup').empty();
     var width = window.innerWidth||document.body.clientWidth;
     var height =window.innerHeight||document.body.clientHeigh;
     if(height<500){
-      width=1366;g
+      width=1366;
       height=768;
     }
     renderCircle();
     if(checkFirst==false){
     	$('.child8').fadeOut(0)
     }
-    $('.child').mouseenter(function(){
-      $(this).width(String(width*(1/13)));
-      $(this).height(String(width*(1/13)));
-      $(this).css({'top':(+(width*(1/52)))+'px'});
-      $(this).css({'left':(+(width*(1/52)))+'px'});
+    
+    $(document).on("mouseenter", ".child", function(){
+    	if(movingChild==false){
+    		$(this).width(String(width*(1/13)));
+		    $(this).height(String(width*(1/13)));
+		    $(this).css({'top':(+(width*(1/52)))+'px'});
+		    $(this).css({'left':(+(width*(1/52)))+'px'});
+    	}
     })
-    .mouseleave(function(){
-      $(this).width(String(width*(1/18)));
-      $(this).height(String(width*(1/18)));
-      $(this).css({'top':((width*(1/36)))+'px'});
-      $(this).css({'left':((width*(1/36)))+'px'});
+    $(document).on("mouseleave", ".child", function(){
+    	if(movingChild==false){
+    		$(this).width(String(width*(1/18)));
+		    $(this).height(String(width*(1/18)));
+		    $(this).css({'top':((width*(1/36)))+'px'});
+		    $(this).css({'left':((width*(1/36)))+'px'});
+    	}
     })
+    $(document).on("click",".child",function() {
+        if(checkFirst==false) $('.child8').fadeOut(0);
+
+        //$(this).zoomTo({targetsize:0.75, duration:600});
+    	//e.stopPropagation();
+        
+    });
   })
   </script>
     	
 <div id="wrapDiv">
 	<div id="parent" class="parent"></div>
+	<div class="childGroup"> </div>
 	<ul class="list" id="list">
-		<li>One</li>
+		<li>One</li> 
 		<li>Two</li>
 		<li>Three</li>
 		<li>Four</li>

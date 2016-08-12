@@ -54,10 +54,14 @@ div.parent{
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index:3;
+  z-index:4;
 }
 .parent:hover{
   cursor: pointer;
+}
+div.childGroup{
+
+  z-index:2;
 }
 div.child{
   width: 75px;
@@ -65,7 +69,7 @@ div.child{
   background-color: orange;
   border-radius: 50%;
   position: absolute;
-  z-index:1;
+  z-index:2;
 }
 
 .child:hover{
