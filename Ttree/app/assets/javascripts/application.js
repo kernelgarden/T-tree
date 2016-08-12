@@ -17,6 +17,3 @@
 //= require jquery.zoomooz.min
 
 /*main/pages*/
-
-
-

@@ -8,49 +8,49 @@ var checkFirst=true;
 var movingChild=false;
 
 function renderCircle(){
-  function toDegrees(angle){
-    return angle * (Math.PI / 180);
-  }//toDegrees()
-  var width = window.innerWidth||document.body.clientWidth;
-  var height =window.innerHeight||document.body.clientHeigh;
-  if(height<500){
-    width=1366;
-    height=768;
-  }
-  var parent = $('div.parent');
-  parentWidth=width*(1/9);
-  parentHeight=parentWidth;
-  parent.width(String(parentWidth));
-  parent.height(String(parentHeight));
-  var parentCircleHalfWidth = (parent.width()/2);
-  var parentTop = parent.offset({top:((height)+40)/2 - parentCircleHalfWidth});
-  var parentLeft = parent.offset({left:(width)/2 - parentCircleHalfWidth});
-  //Number of services
-  noOfServices = 8;
-  noOfServ=noOfServices;
-  translateArr[0]=new Array(noOfServices);
-  translateArr[1]=new Array(noOfServices);
-  //Add some padding from parent circle
-  var Hyp = parentCircleHalfWidth*2;
-  //360 degrees / the number of services
-  var angle = Math.round(360 / noOfServices);
-  for(var i = 1; i <= noOfServices; i++){
-    var currentAngle = i * angle;
-    //calculate the positioning of the child circle around the parent circle
-    var circlePosXOpp = (Math.sin(toDegrees(currentAngle)) * Hyp);
-    var circlePosYAdj = (Math.cos(toDegrees(currentAngle)) * Hyp);
-  	translateArr[0][i-1]=circlePosXOpp;
-    translateArr[1][i-1]=circlePosYAdj;
-    //create a child element and assign "child" class with some properties such as positining
-    var currentChild = $('<div class="child"></div>').appendTo('div.parent');
-    currentChild.addClass('child'+i);
-    currentChild.width(String(width*(1/18)));
-    currentChild.height(String(width*(1/18)));
-    var childCircleHalfWidth=(currentChild.width()/2);
-    currentChild.css({'top':(+childCircleHalfWidth)+'px'});
-    currentChild.css({'left':(+childCircleHalfWidth)+'px'});
-    currentChild.css({'transform' : 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'});
-  }
+  	function toDegrees(angle){
+    	return angle * (Math.PI / 180);
+  	}//toDegrees()
+  	var width = window.innerWidth||document.body.clientWidth;
+  	var height =window.innerHeight||document.body.clientHeigh;
+  	if(height<500){
+	    width=1366;
+	    height=768;
+  	}//if
+  	var parent = $('div.parent');
+  	parentWidth=width*(1/9);
+  	parentHeight=parentWidth;
+  	parent.width(String(parentWidth));
+  	parent.height(String(parentHeight));
+  	var parentCircleHalfWidth = (parent.width()/2);
+  	var parentTop = parent.offset({top:((height)+40)/2 - parentCircleHalfWidth});
+  	var parentLeft = parent.offset({left:(width)/2 - parentCircleHalfWidth});
+  	//Number of services
+  	noOfServices = 8;
+  	noOfServ=noOfServices;
+  	translateArr[0]=new Array(noOfServices);
+  	translateArr[1]=new Array(noOfServices);
+  	//Add some padding from parent circle
+  	var Hyp = parentCircleHalfWidth*2;
+  	//360 degrees / the number of services
+  	var angle = Math.round(360 / noOfServices);
+  	for(var i = 1; i <= noOfServices; i++){
+	    var currentAngle = i * angle;
+	    //calculate the positioning of the child circle around the parent circle
+	    var circlePosXOpp = (Math.sin(toDegrees(currentAngle)) * Hyp);
+	    var circlePosYAdj = (Math.cos(toDegrees(currentAngle)) * Hyp);
+	  	translateArr[0][i-1]=circlePosXOpp;
+	    translateArr[1][i-1]=circlePosYAdj;
+	    //create a child element and assign "child" class with some properties such as positining
+	    var currentChild = $('<div class="child"></div>').appendTo('div.parent');
+	    currentChild.addClass('child'+i);
+	    currentChild.width(String(width*(1/18)));
+	    currentChild.height(String(width*(1/18)));
+	    var childCircleHalfWidth=(currentChild.width()/2);
+	    currentChild.css({'top':(+childCircleHalfWidth)+'px'});
+	    currentChild.css({'left':(+childCircleHalfWidth)+'px'});
+	    currentChild.css({'transform' : 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'});
+  	}//for
     $(function() {
       var width = window.innerWidth||document.body.clientWidth;
       var height =window.innerHeight||document.body.clientHeigh;
@@ -80,7 +80,7 @@ function renderCircle(){
       }, function() {
         $('.list').stop(true).fadeOut(300);
       })
-    })
+    })//function
     //branch 누르면
     $('.child').click(function(){
     	//$('.parent').removeClass("zoomTarget selectedZoomTarget zoomNotClickable")
@@ -135,7 +135,7 @@ function renderCircle(){
 	        		$('.child').eq(i).addClass('child'+checkThis)
 	        		$('.child').eq(i).removeClass('child8')
 	        	}
-        	}
+        	}//if
         	else if(!($('.child').eq(i).hasClass('child'+checkThis))){
         		$('.child').eq(i).css("z-index", 2)
         		for(var j = 1; j <= noOfServ; j++){
@@ -167,6 +167,7 @@ function renderCircle(){
         movingChild=false;
     })//click
 }//renderCircle()
+
   $(document).ready(function(){
     var width = window.innerWidth||document.body.clientWidth;
     var height =window.innerHeight||document.body.clientHeigh;

@@ -1,14 +1,13 @@
 <script>
-    var widthFix = window.innerWidth||document.body.clientWidth;
-    var heightFix =window.innerHeight||document.body.clientHeigh;       
-    $(document).ready(function(){
-        $(document).on(function(){             
-              $('#contents').width(String(widthFix));   
-               $('#contents').height(String(heightFix));  
-        })      
-    }            
-</scipt>
-
+	var widthFix = window.innerWidth||document.body.clientWidth;
+	var heightFix =window.innerHeight||document.body.clientHeigh;
+	$(document).ready(function(){
+	     $(document).on(function(){
+	          $('#contents').width(String(widthFix));
+	          $('#contents').height(String(heightFix));
+	     })
+	})
+</script>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -26,13 +25,10 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/zoomooz/1.1.6/jquery.zoomooz.min.js"></script>
 	</head>
 	<body>
-		<%= render 'layouts/header' %>
-		
-		<div  id ="contents" >
-			<%= yield %>
-		</div>
-		
-		<%= render 'layouts/footer' %>
+	<%= render 'layouts/header' %>
+	<div  id ="contents" >
+	<%= yield %>
+	</div>
+	<%= render 'layouts/footer' %>
 	</body>
-
-</html>
+	</html>
