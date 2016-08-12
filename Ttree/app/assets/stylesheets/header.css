@@ -11,71 +11,127 @@
   float: left;
 }
 #menu_1{
-  width: 4%;
+  width: 7%;
 }
 #menu_2{
-  width: 8%;
+  width: 23%;
 }
 #menu_3{
-  width: 56%;
+  width: 40%;
+  background-color: red;
 }
 #menu_4{
-  width: 8%;
+  width: 10%;
 }
 #menu_5{
-  width: 8%;
+  width: 10%;
 }
 #menu_6{
-  width: 8%;
-}
-#menu_7{
-  width: 8%;
+  width: 10%;
 }
 #home{
   padding: 5px;
   height: 30px;
-
 }
-/* Dropdown Button */
-.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    height: 30px;
-    padding: 0px 10px 0px 10px;
-    font-size: 16px;
-    margin-top: 5px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+.search {
+  margin-top: 1.5px;
+  margin-left: 5px;
+  padding:10px;
+  display:block;
+  -webkit-border-radius:6px;
+  -moz-border-radius:6px;
+  border-radius:6px;
+  border:none;
+  color:#fff;
+  outline:none;
+  padding-right: 30px;
+  margin-right: 10px;
+  width:40%;
+  -webkit-transition:width .35s ease-in-out;
+  transition:width .35s ease-in-out;
 }
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
+.search:focus {
+  background:#fff;
+  border:1px solid #34495E;
+  color:#34495E;
+  font-weight:600;
+  background-image: url(/assets/search.png);
+  background-position: right;
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  width: 60%;
 }
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    display: inline-block;
-    float: left;
+.search::-webkit-input-placeholder {
+   color: #FFF;
 }
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    border-radius: 10px;
-    margin-top: 5px;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+.search:-moz-placeholder {
+   color: #FFF;
 }
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+.search::-moz-placeholder {
+   color: #FFF;
 }
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
+.search:-ms-input-placeholder {
+   color: #FFF;
+}
+.blue {background:#2980B9;}
+.blue:checked {background:#3498DB;}
+#menuDiv1{
+  background-color: #2980B9;
+  color: #FFF;
+  margin-left: 10px;
+  height: 35px;
+  width: 80%;
+  margin-top: 1.5px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#dropDown1{
+  height: 300px;
+  width: 200px;
+  position: absolute;
+  display: none;
+  top: 42px;
+  left: 3px;
+  background-color: #e27fd7;
+  border-radius: 8px;
+}
+#menuDiv6{
+  background-color: #2980B9;
+  color: #FFF;
+  margin-left: 10px;
+  height: 35px;
+  width: 80%;
+  margin-top: 1.5px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#dropDown6{
+  height: 220px;
+  width: 220px;
+  position: absolute;
+  display: none;
+  top: 42px;
+  right: 3px;
+  background-color: #e27fd7;
+  border-radius: 8px;
+}
+#userList{
+  border: 1px solid;
+  list-style: none;
+}
+.user_li{
+  height: 30px;
+  width: 100%;
+  text-align: left;
+}
+#user_li1,#user_li6{
+  height: 50px;
+  border-bottom: 1px solid gray;
+  text-align: center;
+}
+#user_li2,#user_li3,#user_li4,#user_li5{
+  padding-left: 7px;
+}
+#user_li6{
+  border-top: 1px solid gray;
+}

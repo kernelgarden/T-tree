@@ -1,8 +1,7 @@
 <script>
-
 var translateArr=new Array(2);	//translate 정보를 저장한 배열
-var parentWidth;				//중심 원 가로 길이 			
-var parentHeight;				//중심 원 세로 길이 
+var parentWidth;				//중심 원 가로 길이
+var parentHeight;				//중심 원 세로 길이
 var noOfServ;
 var noOfServices;
 
@@ -45,7 +44,7 @@ function renderCircle(){
     var circlePosXOpp = (Math.sin(toDegrees(currentAngle)) * Hyp);
     var circlePosYAdj = (Math.cos(toDegrees(currentAngle)) * Hyp);
 
-  	translateArr[0][i-1]=circlePosXOpp;
+    translateArr[0][i-1]=circlePosXOpp;
     translateArr[1][i-1]=circlePosYAdj;
 
     //create a child element and assign "child" class with some properties such as positining
@@ -58,156 +57,147 @@ function renderCircle(){
     currentChild.css({'left':(+childCircleHalfWidth)+'px'});
     currentChild.css({'transform' : 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'});
   }
-    $(function() {
-      var width = window.innerWidth||document.body.clientWidth;
-      var height =window.innerHeight||document.body.clientHeigh;
-      $('.child4,.child5,.child6,.child7').hover(function(){
-        $('.list').fadeIn(800)
-        .width(String(width*(1/8)))
-        .height(String(width*(1/6)))
-        .css('top', +height*(1/2)-width*(1/12))
-        .css('left', +width*(1/8))
-        $('.list li').transition({
-          rotateX: '360',
-          duration:1000
-        })
-      }, function() {
-        $('.list').stop(true).fadeOut(300);
+  $(function() {
+    var width = window.innerWidth||document.body.clientWidth;
+    var height =window.innerHeight||document.body.clientHeigh;
+    $('.child4,.child5,.child6,.child7').hover(function(){
+      $('.list').fadeIn(800)
+      .width(String(width*(1/8)))
+      .height(String(width*(1/6)))
+      .css('top', +height*(1/2)-width*(1/12))
+      .css('left', +width*(1/8))
+      $('.list li').transition({
+        rotateX: '360',
+        duration:1000
       })
-      $('.child1,.child2,.child3,.child8').hover(function(){
-        $('.list').fadeIn(800)
-        .width(String(width*(1/8)))
-        .height(String(width*(1/6)))
-        .css('top', +height*(1/2)-width*(1/12))
-        .css('left', width-2*(width*(1/8)))
-        $('.list li').transition({
-          rotateX: '360',
-          duration:1000
-        })
-      }, function() {
-        $('.list').stop(true).fadeOut(300);
-      })
+    }, function() {
+      $('.list').stop(true).fadeOut(300);
     })
+    $('.child1,.child2,.child3,.child8').hover(function(){
+      $('.list').fadeIn(800)
+      .width(String(width*(1/8)))
+      .height(String(width*(1/6)))
+      .css('top', +height*(1/2)-width*(1/12))
+      .css('left', width-2*(width*(1/8)))
+      $('.list li').transition({
+        rotateX: '360',
+        duration:1000
+      })
+    }, function() {
+      $('.list').stop(true).fadeOut(300);
+    })
+  })
 
-    //branch 누르면 
-    $('.child').click(function(){
-    	$(this).css("z-index", 2)
-    	//선택된 가지를 제외 하고 사라짐 
- 		//$('.child').not(this).fadeOut('slow')
- 		// parent 가지의 색깔을 투명하게 
- 		$( '.parent, .child' ).not(this).animate({
-          backgroundColor: "transparent",
-        }, 1000 )
-        $('.child').not(this).transition({ x:0+'px', y:0+'px', scale: 1, duration:0});
-        // 선택된 가지를 중심으로 이동 
-        $(this).delay(700).transition({ x:0+'px',y:0+'px',duration: 1000});
-        // 선택된 가지를 parent가지의 크기만큼 확대 
-       	$(this).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 1000});
-       	// parent 가지의 색깔을 child 가지의 색깔로 변화시킴
-       	$( '.parent' ).delay(1200).animate({
-          backgroundColor: "#53c3d3",
-        }, 'slow' )
-        // 선택했던 child가지를 사라지게 함 
-        //$(this).delay(300).fadeOut('fast')
-        // parent가지의 색깔을 원래 색깔로 되돌려줌 
-        /*$( '.parent' ).animate({
-          backgroundColor: "#53c3d3",
-        }, 3000 )*/
-        //$(this).transition({ x:0+'px', y:0+'px', scale: 1, duration:0})
-        //$('.child').fadeIn('slow')
-        
-        var checkThis;
-        
-        for(var i = 1; i <= noOfServ; i++){
-        	if($(this).hasClass('child'+i)){
-        		checkThis=i;
-        	}
-        }
-        
-        for(var i = 0; i < noOfServ; i++){
-
-        	if(i==7){
-        		$('.child').eq(i).delay(1700).animate({
-		          backgroundColor: "#ECA812",
-		        } )
-        		$('.child').eq(i).delay(200).transition({ x:translateArr[0][checkThis-1]+'px', y:-translateArr[1][checkThis-1]+'px'});
-        		$('.child').eq(i).addClass('child'+checkThis)
-        	}
-        	else if(i!=checkThis-1){
-        		$('.child').eq(i).delay(1700).animate({
-		          backgroundColor: "#ECA812",
-		        } )
-        		$('.child').eq(i).delay(100).transition({ x:translateArr[0][i]+'px', y:-translateArr[1][i]+'px'},'slow');
-        		
-        	}
-        	else{
-        		$('.child').eq(i).delay(0).animate({
-		          backgroundColor: "#53c3d3",
-		        } )
-		       	$('.child').eq(i).removeClass('child'+checkThis)
-        	}//else
-        }//for
-    })//click
+  //branch 누르면
+  $('.child').click(function(){
+    $(this).css("z-index", 2)
+    //선택된 가지를 제외 하고 사라짐
+    //$('.child').not(this).fadeOut('slow')
+    // parent 가지의 색깔을 투명하게
+    $( '.parent, .child' ).not(this).animate({
+      backgroundColor: "transparent",
+    }, 1000 )
+    $('.child').not(this).transition({ x:0+'px', y:0+'px', scale: 1, duration:0});
+    // 선택된 가지를 중심으로 이동
+    $(this).delay(700).transition({ x:0+'px',y:0+'px',duration: 1000});
+    // 선택된 가지를 parent가지의 크기만큼 확대
+    $(this).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 1000});
+    // parent 가지의 색깔을 child 가지의 색깔로 변화시킴
+    $( '.parent' ).delay(1200).animate({
+      backgroundColor: "#53c3d3",
+    }, 'slow' )
+    // 선택했던 child가지를 사라지게 함
+    //$(this).delay(300).fadeOut('fast')
+    // parent가지의 색깔을 원래 색깔로 되돌려줌
+    /*$( '.parent' ).animate({
+    backgroundColor: "#53c3d3",
+  }, 3000 )*/
+  //$(this).transition({ x:0+'px', y:0+'px', scale: 1, duration:0})
+  //$('.child').fadeIn('slow')
+  var checkThis;
+  for(var i = 1; i <= noOfServ; i++){
+    if($(this).hasClass('child'+i)){
+      checkThis=i;
+    }
+  }
+  for(var i = 0; i < noOfServ; i++){
+    if(i==7){
+      $('.child').eq(i).delay(1700).animate({
+        backgroundColor: "#ECA812",
+      })
+      $('.child').eq(i).delay(200).transition({ x:translateArr[0][checkThis-1]+'px', y:-translateArr[1][checkThis-1]+'px'});
+      $('.child').eq(i).addClass('child'+checkThis)
+    }
+    else if(i!=checkThis-1){
+      $('.child').eq(i).delay(1700).animate({
+        backgroundColor: "#ECA812",
+      })
+      $('.child').eq(i).delay(100).transition({ x:translateArr[0][i]+'px', y:-translateArr[1][i]+'px'},'slow');
+    }
+    else{
+      $('.child').eq(i).delay(0).animate({
+        backgroundColor: "#53c3d3",
+      })
+      $('.child').eq(i).removeClass('child'+checkThis)
+    }//else
+  }//for
+})//click
 }//renderCircle()
 
-  $(document).ready(function(){
-    var width = window.innerWidth||document.body.clientWidth;
-    var height =window.innerHeight||document.body.clientHeigh;
-    if(height<500){
-      width=1366;
-      height=768;
-    }
-    renderCircle();
-    $('.child').mouseenter(function(){
-      $(this).width(String(width*(1/13)));
-      $(this).height(String(width*(1/13)));
-      $(this).css({'top':(+(width*(1/52)))+'px'});
-      $(this).css({'left':(+(width*(1/52)))+'px'});
-    })
-    .mouseleave(function(){
-      $(this).width(String(width*(1/18)));
-      $(this).height(String(width*(1/18)));
-      $(this).css({'top':((width*(1/36)))+'px'});
-      $(this).css({'left':((width*(1/36)))+'px'});
-    })
+$(document).ready(function(){
+  var width = window.innerWidth||document.body.clientWidth;
+  var height =window.innerHeight||document.body.clientHeigh;
+  if(height<500){
+    width=1366;
+    height=768;
+  }
+  renderCircle();
+  $('.child').mouseenter(function(){
+    $(this).width(String(width*(1/13)));
+    $(this).height(String(width*(1/13)));
+    $(this).css({'top':(+(width*(1/52)))+'px'});
+    $(this).css({'left':(+(width*(1/52)))+'px'});
+  })
+  .mouseleave(function(){
+    $(this).width(String(width*(1/18)));
+    $(this).height(String(width*(1/18)));
+    $(this).css({'top':((width*(1/36)))+'px'});
+    $(this).css({'left':((width*(1/36)))+'px'});
+  })
+
+})
+$(window).resize(function(){
+  $('.parent').empty();
+  var width = window.innerWidth||document.body.clientWidth;
+  var height =window.innerHeight||document.body.clientHeigh;
+  if(height<500){
+    width=1366;
+    height=768;
+  }
+  renderCircle();
+  $('.child').mouseenter(function(){
+    $(this).width(String(width*(1/13)));
+    $(this).height(String(width*(1/13)));
+    $(this).css({'top':(+(width*(1/52)))+'px'});
+    $(this).css({'left':(+(width*(1/52)))+'px'});
 
   })
-  $(window).resize(function(){
-    $('.parent').empty();
-    var width = window.innerWidth||document.body.clientWidth;
-    var height =window.innerHeight||document.body.clientHeigh;
-    if(height<500){
-      width=1366;
-      height=768;
-    }
-    renderCircle();
-    $('.child').mouseenter(function(){
-      $(this).width(String(width*(1/13)));
-      $(this).height(String(width*(1/13)));
-      $(this).css({'top':(+(width*(1/52)))+'px'});
-      $(this).css({'left':(+(width*(1/52)))+'px'});
-
-    })
-    .mouseleave(function(){
-      $(this).width(String(width*(1/18)));
-      $(this).height(String(width*(1/18)));
-      $(this).css({'top':((width*(1/36)))+'px'});
-      $(this).css({'left':((width*(1/36)))+'px'});
-    })
-
+  .mouseleave(function(){
+    $(this).width(String(width*(1/18)));
+    $(this).height(String(width*(1/18)));
+    $(this).css({'top':((width*(1/36)))+'px'});
+    $(this).css({'left':((width*(1/36)))+'px'});
   })
-  </script>
-
-<div id="wrapDiv">
-	<div id="parent" class="parent"></div>
-	<ul class="list" id="list">
-		<li>One</li>
-		<li>Two</li>
-		<li>Three</li>
-		<li>Four</li>
-		<li>Five</li>
-		<li>Six</li>
-		<li>Seven</li>
-		<li>Eight</li>
-	</ul>
-</div>
+})
+</script>
+  <div id="parent" class="parent"></div>
+  <ul class="list" id="list">
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+    <li>Four</li>
+    <li>Five</li>
+    <li>Six</li>
+    <li>Seven</li>
+    <li>Eight</li>
+  </ul>
