@@ -1,30 +1,23 @@
 <script>
-
 var translateArr=new Array(2);	//translate 정보를 저장한 배열
-var parentWidth;				//중심 원 가로 길이 			
-var parentHeight;				//중심 원 세로 길이 
+var parentWidth;				//중심 원 가로 길이
+var parentHeight;				//중심 원 세로 길이
 var noOfServ;
 var noOfServices;
 var checkFirst=true;
-
 function renderCircle(){
-
   function toDegrees(angle){
     return angle * (Math.PI / 180);
   }//toDegrees()
-
   var width = window.innerWidth||document.body.clientWidth;
   var height =window.innerHeight||document.body.clientHeigh;
-
   if(height<500){
     width=1366;
     height=768;
   }
   var parent = $('div.parent');
-
   parentWidth=width*(1/9);
   parentHeight=parentWidth;
-
   parent.width(String(parentWidth));
   parent.height(String(parentHeight));
   var parentCircleHalfWidth = (parent.width()/2);
@@ -39,16 +32,13 @@ function renderCircle(){
   var Hyp = parentCircleHalfWidth*2;
   //360 degrees / the number of services
   var angle = Math.round(360 / noOfServices);
-
   for(var i = 1; i <= noOfServices; i++){
     var currentAngle = i * angle;
     //calculate the positioning of the child circle around the parent circle
     var circlePosXOpp = (Math.sin(toDegrees(currentAngle)) * Hyp);
     var circlePosYAdj = (Math.cos(toDegrees(currentAngle)) * Hyp);
-
   	translateArr[0][i-1]=circlePosXOpp;
     translateArr[1][i-1]=circlePosYAdj;
-
     //create a child element and assign "child" class with some properties such as positining
     var currentChild = $('<div class="child"></div>').appendTo('div.parent');
     currentChild.addClass('child'+i);
@@ -89,30 +79,29 @@ function renderCircle(){
         $('.list').stop(true).fadeOut(300);
       })
     })
-
-    //branch 누르면 
+    //branch 누르면
     $('.child').click(function(){
     	$('.child').fadeIn(0)
     	//$('.child').unbind("mouseenter");
     	$(this).css("z-index", 2)
-    	//선택된 가지를 제외 하고 사라짐 
+    	//선택된 가지를 제외 하고 사라짐
  		//$('.child').not(this).fadeOut('slow')
- 		// parent 가지의 색깔을 투명하게 
+ 		// parent 가지의 색깔을 투명하게
  		$( '.parent, .child' ).not(this).animate({
           backgroundColor: "transparent",
         }, 700 )
         $('.child').not(this).transition({ x:0+'px', y:0+'px', scale: 1, duration:0});
-        // 선택된 가지를 중심으로 이동 
+        // 선택된 가지를 중심으로 이동
         $(this).delay(200).transition({ x:0+'px',y:0+'px',duration: 400});
-        // 선택된 가지를 parent가지의 크기만큼 확대 
-       	$(this).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 400});
+        // 선택된 가지를 parent가지의 크기만큼 확대
+       	$(this).transition({ x:0+'px', y:0+'px', scale: 2.0 ,duration: 400});
        	// parent 가지의 색깔을 child 가지의 색깔로 변화시킴
        	$( '.parent' ).delay(400).animate({
           backgroundColor: "#53c3d3",
         }, 'slow' )
-        // 선택했던 child가지를 사라지게 함 
+        // 선택했던 child가지를 사라지게 함
         //$(this).delay(300).fadeOut('fast')
-        // parent가지의 색깔을 원래 색깔로 되돌려줌 
+        // parent가지의 색깔을 원래 색깔로 되돌려줌
         /*$( '.parent' ).animate({
           backgroundColor: "#53c3d3",
         }, 3000 )*/
@@ -120,15 +109,12 @@ function renderCircle(){
         //$('.child').fadeIn('slow')
         var checkThis;
         var checkBranch;
-
         for(var i = 1; i <= noOfServ; i++){
         	if($(this).hasClass('child'+i)){
         		checkThis=i;
         	}
         }
-
         for(var i = 0; i < noOfServ; i++){
-
         	if($('.child').eq(i).hasClass('child8')){
         		if(checkThis==8){
         			$('.child').eq(i).css("z-index", 3)
@@ -163,20 +149,19 @@ function renderCircle(){
 	        	$('.child').eq(i).delay(0).animate({
 			    	backgroundColor: "#53c3d3",
 			    } )
-			    $('.child').eq(i).removeClass('child'+checkThis)	        		
+			    $('.child').eq(i).removeClass('child'+checkThis)
         	}//else
         }//for
         for(var i = 1; i <= noOfServ; i++){
         	if($(this).hasClass('child8')){
         		checkFirst=true;
         	}else{
-        		checkFirst=false;	
-        	}	
+        		checkFirst=false;
+        	}
         }
         if(checkFirst==false) $(this).addClass('child8')
     })//click
 }//renderCircle()
-
   $(document).ready(function(){
     var width = window.innerWidth||document.body.clientWidth;
     var height =window.innerHeight||document.body.clientHeigh;
@@ -185,7 +170,6 @@ function renderCircle(){
       height=768;
     }
     renderCircle();
-
     $('.child').mouseenter(function(){
       $(this).width(String(width*(1/13)));
       $(this).height(String(width*(1/13)));
@@ -200,9 +184,8 @@ function renderCircle(){
     })
     $(document).on("click",".child",function() {
         if(checkFirst==false) $('.child8').fadeOut();
-    }); 
+    });
   })
-
   $(window).resize(function(){
     $('.parent').empty();
     var width = window.innerWidth||document.body.clientWidth;
@@ -212,12 +195,14 @@ function renderCircle(){
       height=768;
     }
     renderCircle();
+    if(checkFirst==false){
+    	$('.child8').fadeOut(0)
+    }
     $('.child').mouseenter(function(){
       $(this).width(String(width*(1/13)));
       $(this).height(String(width*(1/13)));
       $(this).css({'top':(+(width*(1/52)))+'px'});
       $(this).css({'left':(+(width*(1/52)))+'px'});
-
     })
     .mouseleave(function(){
       $(this).width(String(width*(1/18)));
@@ -225,7 +210,6 @@ function renderCircle(){
       $(this).css({'top':((width*(1/36)))+'px'});
       $(this).css({'left':((width*(1/36)))+'px'});
     })
-
   })
   </script>
 
