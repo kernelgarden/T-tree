@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  
+
   devise :database_authenticatable, :registerable,
 
   :recoverable, :rememberable, :trackable, :validatable
@@ -26,6 +26,7 @@ class User < ApplicationRecord
   #현재 사용자가 해당 팀에 가입되어있으면 true 반환
   def join?(team)
   	teams.include?(team)
+  end
 
   def self.find_for_facebook_oauth(auth)
     if user = User.find_by_email(auth.info.email)  # search your db for a user with email coming from fb
