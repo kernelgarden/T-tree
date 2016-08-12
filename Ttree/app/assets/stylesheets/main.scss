@@ -1,3 +1,101 @@
 // Place all the styles related to the Main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.container{
+}
+.level0, .level1, .level2 {
+	margin-left:10px;
+	margin-top:10px;
+border:1px solid black;
+}
+.level2 {
+	width:80px;
+	height:80px;
+float: left;
+	background: #aaa;
+}
+.level1 {
+	width:200px;
+height:200px;
+	background: #ddd;
+	float: left;
+	font-size:30px;
+font-family: Helvetica;
+}
+.level0 {
+	width:434px;
+	height:434px;
+left:100px;
+	top:100px;
+	position:absolute;
+}
+/* pages */
+.page_box{
+	padding:30px;
+	ol{
+		position: relative;
+		.pageli{
+			display:inline-block;
+			width:100px;
+			height:100px;
+			margin-right: 5px;
+			margin-bottom: 5px;
+			margin-top:5px;
+			border-radius: 5px;
+			background-color:#FF7F7F
+		}
+	}
+}
+div.parent{
+  width: 150px;
+  height: 150px;
+  background-color: #53c3d3; 
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index:3;
+}
+.parent:hover{
+  cursor: pointer;
+}
+div.child{
+  width: 75px;
+  height: 75px;
+  background-color: orange;
+  border-radius: 50%;
+  position: absolute;
+  z-index:1;
+}
+
+.child:hover{
+  cursor: pointer;
+}
+#wrapDiv{
+      width: 100%;
+      height: 100%;
+}
+.list {
+  display: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.list li {
+  padding: 0.5em;
+  margin-bottom: .125em;
+  list-style: none;
+  text-transform: uppercase;
+  height: auto;
+}
+.list li:nth-child(2n) {
+  background-color: lighten(#333333, 10%);
+
+}
+.list li:nth-child(2n+1) {
+  background-color: #333333;
+}
+#list {
+  position: absolute;
+  width: 15%;
+}

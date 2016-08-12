@@ -1,16 +1,9 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-
   devise :database_authenticatable, :registerable,
-
   :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
-
   has_many :ut_relationships, :foreign_key => "member_id", :dependent => :destroy
-
   has_many :teams, :through => :ut_relationships
-
   has_many :works, :dependent => :destroy, :foreign_key => "user_id"
 
   #팀 가입
