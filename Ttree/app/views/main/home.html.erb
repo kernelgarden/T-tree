@@ -1,12 +1,12 @@
-
 <script>
-
 var translateArr=new Array(2);	//translate 정보를 저장한 배열
 var parentWidth;				//중심 원 가로 길이
 var parentHeight;				//중심 원 세로 길이
 var noOfServ;
 var noOfServices;
 var checkFirst=true;
+var movingChild=false;
+
 function renderCircle(){
   function toDegrees(angle){
     return angle * (Math.PI / 180);
@@ -81,9 +81,10 @@ function renderCircle(){
         $('.list').stop(true).fadeOut(300);
       })
     })
-
     //branch 누르면
     $('.child').click(function(){
+    	//$('.parent').removeClass("zoomTarget selectedZoomTarget zoomNotClickable")
+    	movingChild=true;
     	$('.child').fadeIn(0)
     	//$('.child').unbind("mouseenter");
     	$(this).css("z-index", 2)
@@ -97,7 +98,7 @@ function renderCircle(){
         // 선택된 가지를 중심으로 이동
         $(this).delay(200).transition({ x:0+'px',y:0+'px',duration: 400});
         // 선택된 가지를 parent가지의 크기만큼 확대
-       	$(this).transition({ x:0+'px', y:0+'px', scale: 2.0 ,duration: 400});
+       	$(this).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 400});
        	// parent 가지의 색깔을 child 가지의 색깔로 변화시킴
        	$( '.parent' ).delay(400).animate({
           backgroundColor: "#53c3d3",
@@ -163,6 +164,7 @@ function renderCircle(){
         	}
         }
         if(checkFirst==false) $(this).addClass('child8')
+        movingChild=false;
     })//click
 }//renderCircle()
   $(document).ready(function(){
@@ -173,20 +175,27 @@ function renderCircle(){
       height=768;
     }
     renderCircle();
-    $('.child').mouseenter(function(){
-      $(this).width(String(width*(1/13)));
-      $(this).height(String(width*(1/13)));
-      $(this).css({'top':(+(width*(1/52)))+'px'});
-      $(this).css({'left':(+(width*(1/52)))+'px'});
+    $(document).on("mouseenter", ".child", function(){
+    	if(movingChild==false){
+    		$(this).width(String(width*(1/13)));
+		    $(this).height(String(width*(1/13)));
+		    $(this).css({'top':(+(width*(1/52)))+'px'});
+		    $(this).css({'left':(+(width*(1/52)))+'px'});
+    	}
     })
-    .mouseleave(function(){
-      $(this).width(String(width*(1/18)));
-      $(this).height(String(width*(1/18)));
-      $(this).css({'top':((width*(1/36)))+'px'});
-      $(this).css({'left':((width*(1/36)))+'px'});
+    $(document).on("mouseleave", ".child", function(){
+    	if(movingChild==false){
+    		$(this).width(String(width*(1/18)));
+		    $(this).height(String(width*(1/18)));
+		    $(this).css({'top':((width*(1/36)))+'px'});
+		    $(this).css({'left':((width*(1/36)))+'px'});
+    	}
     })
     $(document).on("click",".child",function() {
         if(checkFirst==false) $('.child8').fadeOut();
+        $('.parent').removeClass('zoomTarget')
+    	$('.parent').removeClass('selectedZoomTarget')
+    	$('.parent').removeClass('zoomNotClickable')
     });
   })
   $(window).resize(function(){
@@ -194,7 +203,7 @@ function renderCircle(){
     var width = window.innerWidth||document.body.clientWidth;
     var height =window.innerHeight||document.body.clientHeigh;
     if(height<500){
-      width=1366;
+      width=1366;g
       height=768;
     }
     renderCircle();
@@ -215,7 +224,7 @@ function renderCircle(){
     })
   })
   </script>
-
+    	
 <div id="wrapDiv">
 	<div id="parent" class="parent"></div>
 	<ul class="list" id="list">
