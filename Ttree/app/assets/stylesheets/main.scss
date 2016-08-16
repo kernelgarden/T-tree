@@ -72,6 +72,18 @@ div.child{
   z-index:2;
 }
 
+div.back{
+  width: 75px;
+  height: 75px;
+  background-color: #FF7F7F;
+  border-radius: 50%;
+  position: absolute;
+  z-index:2;
+}
+.back:hover{
+  cursor: pointer;
+}
+
 .child:hover{
   cursor: pointer;
 }

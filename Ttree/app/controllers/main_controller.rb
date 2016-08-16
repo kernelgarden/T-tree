@@ -6,4 +6,7 @@ class MainController < ApplicationController
 
   end
   
+  def branchPages
+
+  end
 end
