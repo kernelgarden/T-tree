@@ -49,6 +49,7 @@ function renderCircle(){
 	    var childCircleHalfWidth=(currentChild.width()/2);
 	    currentChild.css({'top':(+childCircleHalfWidth)+'px'});
 	    currentChild.css({'left':(+childCircleHalfWidth)+'px'});
+      //currentChild.css({'-webkit-transform': 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'});
 	    currentChild.css({'transform' : 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'});
   	}//for
     $(function() {
@@ -225,7 +226,7 @@ function renderCircle(){
     })
   })
   </script>
-    	
+
 <div id="wrapDiv">
 	<div id="parent" class="parent"></div>
 	<ul class="list" id="list">

@@ -6,7 +6,7 @@
 }
 .menu{
   display: inline-block;
-  background-color: #31B2CD;
+  background-color: #91C9E8;
   height: 40px;
   float: left;
 }
@@ -18,7 +18,6 @@
 }
 #menu_3{
   width: 40%;
-  background-color: red;
 }
 #menu_4{
   width: 10%;
@@ -42,7 +41,7 @@
   -moz-border-radius:6px;
   border-radius:6px;
   border:none;
-  color:#fff;
+  color:black;
   outline:none;
   padding-right: 30px;
   margin-right: 10px;
@@ -62,22 +61,22 @@
   width: 60%;
 }
 .search::-webkit-input-placeholder {
-   color: #FFF;
+   color: black;
 }
 .search:-moz-placeholder {
-   color: #FFF;
+   color: black;
 }
 .search::-moz-placeholder {
-   color: #FFF;
+    color: black;
 }
 .search:-ms-input-placeholder {
-   color: #FFF;
+    color: black;
 }
-.blue {background:#2980B9;}
+.blue {background:#E2E4E6;}
 .blue:checked {background:#3498DB;}
 #menuDiv1{
-  background-color: #2980B9;
-  color: #FFF;
+  background-color: #E2E4E6;
+  color: black;
   margin-left: 10px;
   height: 35px;
   width: 80%;
@@ -92,12 +91,13 @@
   display: none;
   top: 42px;
   left: 3px;
-  background-color: #e27fd7;
+  background-color: #E8F8FF;
   border-radius: 8px;
+  z-index: 2;
 }
 #menuDiv6{
-  background-color: #2980B9;
-  color: #FFF;
+  background-color: #E8F8FF;
+  color: black;
   margin-left: 10px;
   height: 35px;
   width: 80%;
@@ -112,11 +112,11 @@
   display: none;
   top: 42px;
   right: 3px;
-  background-color: #e27fd7;
+  background-color: #DCF3ED;
   border-radius: 8px;
+  z-index: 2;
 }
 #userList{
-  border: 1px solid;
   list-style: none;
 }
 .user_li{
@@ -124,14 +124,22 @@
   width: 100%;
   text-align: left;
 }
-#user_li1,#user_li6{
+#user_li1,#user_li7{
   height: 50px;
-  border-bottom: 1px solid gray;
   text-align: center;
 }
-#user_li2,#user_li3,#user_li4,#user_li5{
+#user_li1{
+    border-bottom: 1px solid gray;
+}
+#user_li2,#user_li3,#user_li4,#user_li5,#user_li6{
   padding-left: 7px;
 }
-#user_li6{
+#user_li7{
   border-top: 1px solid gray;
+}
+#userList a{
+  text-decoration: none;
+}
+.user_li:hover{
+  background-color: #91C9E8;
 }
