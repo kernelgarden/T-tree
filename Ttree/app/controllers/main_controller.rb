@@ -14,6 +14,8 @@ class MainController < ApplicationController
   end
   def branchPages
   end
+  def team
+  end
   private
   def logged_in_user
     unless user_signed_in?

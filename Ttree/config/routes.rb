@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'users/new'
   get 'users/profile'
   get 'main/login'
+  get 'main/team'
   get '/main/work', to:'main#work'
   resources :users
   get '/show/pages', to: 'main#pages'
