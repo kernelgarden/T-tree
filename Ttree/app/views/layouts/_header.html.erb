@@ -23,7 +23,10 @@
     <div id="menuDiv6"><%= current_user.name %></div>
   </li>
 </ul>
-<div id="dropDown1">안녕</div>
+<div id="dropDown1">
+  <li class="user_li" id="user_li2">Team Work</li>
+  <li class="user_li" id="user_li3">Personal Work</li>
+</div>
 <div id="dropDown5">
   <ul id="addList">
     <li class="add_li" id="add_li1">Create</li>
@@ -43,22 +46,7 @@
     <%=  link_to '<li class="user_li" id="user_li7">로그아웃</li>'.html_safe, destroy_user_session_path,
      method: :delete, data: {confirm: "로그아웃?" }%>
   </ul>
-  <div id="dropDown1">
-    <li class="user_li" id="user_li2">Team Work</li>
-    <li class="user_li" id="user_li3">Personal Work</li>
-  </div>
-  <div id="dropDown6">
-    <ul id="userList">
-      <li class="user_li" id="user_li1"><%= current_user.name %>(<%= current_user.email %>)</li>
-      <li class="user_li" id="user_li2">Profile</li>
-      <li class="user_li" id="user_li3">Works</li>
-      <li class="user_li" id="user_li4">Teams</li>
-      <%=  link_to '<li class="user_li" id="user_li5">All-pages</li>'.html_safe, (show_pages_path)%>
-      <li class="user_li" id="user_li6">Help</li>
-      <%=  link_to '<li class="user_li" id="user_li7">로그아웃</li>'.html_safe, destroy_user_session_path,
-      method: :delete, data: {confirm: "로그아웃?" }%>
-    </ul>
-  </div>
+</div>
   <script>
   $(document).ready(function(){
   var nCount1=0;

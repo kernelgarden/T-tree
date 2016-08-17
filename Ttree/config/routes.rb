@@ -4,10 +4,9 @@ Rails.application.routes.draw do
   get 'users/new'
   get 'users/profile'
   get 'main/login'
+  get '/main/work', to:'main#work'
   resources :users
-
   get '/show/pages', to: 'main#pages'
-
   #json
   get '/api/users', to: 'apis#users' 			#모든 user들의 정보
   get '/api/user_ids', to: 'apis#user_ids' 		#모든 user들의 id들
