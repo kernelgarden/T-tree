@@ -9,14 +9,13 @@ class MainController < ApplicationController
 
   def login
   end
-
   private
   def logged_in_user
     unless user_signed_in?
       redirect_to main_login_url
     end
   end
-  
+
   def branchPages
 
   end

@@ -1,1 +1,5 @@
- <%= image_tag(current_user.image, size: '300x300', style:'border-radius:3px;vertical-align:top;') if current_user.image %>
+<% if @users.present? %>
+  <%=@users.as_json(only:[:email,:name])%>
+<% else %>
+  <%= params[:search] %>에 대한 결과값이 없습니다 .</p>
+<% end %>
