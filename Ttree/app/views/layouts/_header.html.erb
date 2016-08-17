@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag    'application', header: 'all', 'data-turbolinks-track': 'reload' %>
+
 <ul id="header">
   <li class="menu" id="menu_1">
     <div id="menuDiv1">Works</div>
@@ -30,9 +30,9 @@
 </div>
 <div id="dropDown5">
   <ul id="addList">
-    <li class="add_li" id="add_li1">Create</li>
+    <li class="add_li_name" id="add_li1">Create</li>
     <li class="add_li" id="add_li2">Create Work...</li>
-    <li class="add_li" id="add_li3">Create Personal Team...</li>
+    <li class="add_li" id="add_li3">Create Team...</li>
     <li class="add_li" id="add_li4">Create Private Team...</li>
   </ul>
 </div>
@@ -83,6 +83,10 @@ $(document).ready(function(){
     if(nCount3==1){
       $('#dropDown5').hide();
       nCount3=0;
+      //항목들 다시 나타나게 함
+      $('.add_li').fadeIn();
+      //타이틀 다시 수정
+      $('#add_li1').empty().append("Create")
     }
   })
   $('#menuDiv6').click(function(){
@@ -101,5 +105,26 @@ $(document).ready(function(){
       nCount2=0;
     }
   })
-})
+
+  //#dropdown5
+  //Create Work
+  $('#add_li2').click(function(){
+    $('#add_li1').empty().append('<span id=\'left_icon\'><img src="/assets/arrow-left.png" height="15px" width="15px"></span>Create Work')
+    $('.add_li').fadeOut(0);
+    $('#addList').append('<li class=\"add_li\" id=\"add_li2\">Create Work...</li>')
+  })
+  //Create Team
+  $('#add_li3').click(function(){
+    $('#add_li1').empty().append('<span id=\'left_icon\'><img src="/assets/arrow-left.png" height="15px" width="15px"></span>Create Team')
+    $('.add_li').fadeOut();
+
+  })
+  //왼쪽 화살표를 누르면 이전 화면으로 이동 
+  $(document).on("click","#left_icon",function() {
+     $('.add_li').fadeIn()
+     $(this).fadeOut(0)
+     //타이틀 다시 수정
+      $('#add_li1').empty().append("Create")
+  });
+});
 </script>

@@ -115,7 +115,7 @@
   border-radius: 8px;
   cursor: pointer;
 }
-#dropDown5,#dropDown6{
+#dropDown6{
   height: 220px;
   width: 220px;
   position: absolute;
@@ -129,42 +129,78 @@
 #userList{
   list-style: none;
 }
-#addList{
-  list-style: none;
+
+#dropDown5{
+  height: 240px;
+  width: 220px;
+  position: absolute;
+  display: none;
+  top: 42px;
+  right: 3px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 2px 1px 10px #888888;
+  z-index: 2;
   margin-left:20px;
   margin-right:20px;
-}
+
+  #addList{
+    list-style: none;
+    padding-bottom:20px;
+    margin-left:0;
+    margin-right:0;
+    .add_li{
+      height: 25px;
+      width: 90%;
+      padding-top:15px;
+      padding-bottom:15px;
+      padding-right:5%;
+      padding-left:5%;
+      &:hover{
+        background-color: #ffcbc8;
+        cursor: pointer;
+      }
+    }/*add_li*/
+    .add_li_name{
+      height: 20px;
+      width: 90%;
+      padding-top:15px;
+      padding-bottom:15px;
+      padding-right:5%;
+      padding-left:5%;
+      text-align: center;
+      color:#868686;
+      #left_icon{
+        float:left;
+        margin-top:5px;
+        &:hover{
+          cursor: pointer;
+        }
+      }
+    }
+  }/*#addList*/
+}/*#dropDown5*/
+
 .user_li{
   height: 30px;
   width: 100%;
   text-align: left;
 
 }
-.add_li{
-  height: 25px;
-  width: 100%;
-  padding-top:15px;
-  padding-bottom:15px;
-}
-.add_li:hover{
-  background-color: #91C9E8;
-}
+
 #user_li1,#user_li7{
   height: 50px;
   text-align: center;
 }
-#add_li1{
-  height: 25px;
-  text-align: center;
-}
+
 #user_li1,#add_li1{
     border-bottom: 1px solid gray;
 }
 #user_li2,#user_li3,#user_li4,#user_li5,#user_li6{
-  padding-left: 7px;
+  padding-left: 0px;
 }
 #add_li2,#add_li3,#add_li4{
-  padding-left: 7px;
+  padding-left: 0px;
 }
 #user_li7{
   border-top: 1px solid gray;
