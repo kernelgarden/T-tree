@@ -4,7 +4,12 @@
     <div id="menuDiv1">Works</div>
   </li>
   <li class="menu" id="menu_2">
-    <div class="wrapDiv"><input class="search blue" type="text" placeholder="Search"/></div>
+    <div class="wrapDiv">
+      <form action="/users/profile" accept-charset="UTF-8" method="get">
+      <input name="utf8" type="hidden" value="✓">
+      <input type="text" name="search" class="search blue" value="" placeholder="Search">
+    </form>
+    </div>
   </li>
   <li class="menu" id="menu_3">
       <div class="wrapDiv"><%=link_to image_tag("home.png", alt:"home",id:"home" ),root_path %></div></li>
@@ -12,13 +17,21 @@
     <div class="wrapDiv"></div>
   </li>
   <li class="menu" id="menu_5">
-    <div class="wrapDiv"></div>
+    <div id="menuDiv5"><img src="/assets/add.png" id="plus"></div>
   </li>
   <li class="menu" id="menu_6">
     <div id="menuDiv6"><%= current_user.name %></div>
   </li>
 </ul>
 <div id="dropDown1">안녕</div>
+<div id="dropDown5">
+  <ul id="addList">
+    <li class="add_li" id="add_li1">Create</li>
+    <li class="add_li" id="add_li2">Create Work...</li>
+    <li class="add_li" id="add_li3">Create Personal Team...</li>
+    <li class="add_li" id="add_li4">Create Private Team...</li>
+    <ul>
+</div>
 <div id="dropDown6">
   <ul id="userList">
     <li class="user_li" id="user_li1"><%= current_user.name %>(<%= current_user.email %>)</li>
@@ -35,6 +48,7 @@
 $(document).ready(function(){
   var nCount1=0;
   var nCount2=0;
+  var nCount3=0;
   $('#menuDiv1').click(function(){
     if(nCount1==0){
       $('#dropDown1').show();
@@ -49,6 +63,22 @@ $(document).ready(function(){
     if(nCount1==1){
       $('#dropDown1').hide();
       nCount1=0;
+    }
+  })
+  $('#menuDiv5').click(function(){
+    if(nCount3==0){
+      $('#dropDown5').show();
+      nCount3=1;
+    }
+    else{
+      $('#dropDown5').hide();
+      nCount3=0;
+    }
+  })
+  $('div:not(#menuDiv5,#dropDown5)').click(function(){
+    if(nCount3==1){
+      $('#dropDown5').hide();
+      nCount3=0;
     }
   })
   $('#menuDiv6').click(function(){

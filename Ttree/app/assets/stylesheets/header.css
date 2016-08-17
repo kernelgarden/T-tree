@@ -3,12 +3,14 @@
   text-align: center;
   height: 40px;
   width: 100%;
+  border-style: none;
 }
 .menu{
   display: inline-block;
   background-color: #91C9E8;
   height: 40px;
   float: left;
+  border-style: none;
 }
 #menu_1{
   width: 7%;
@@ -95,6 +97,14 @@
   border-radius: 8px;
   z-index: 2;
 }
+#menuDiv5{
+  background-color: #E8F8FF;
+  float: right;
+  border-radius: 8px;
+  margin-top: 1.5px;
+  height: 35px;
+  width: 38px;
+}
 #menuDiv6{
   background-color: #E8F8FF;
   color: black;
@@ -105,7 +115,7 @@
   border-radius: 8px;
   cursor: pointer;
 }
-#dropDown6{
+#dropDown5,#dropDown6{
   height: 220px;
   width: 220px;
   position: absolute;
@@ -119,19 +129,29 @@
 #userList{
   list-style: none;
 }
+#addList{
+  list-style: none;
+}
 .user_li{
   height: 30px;
   width: 100%;
   text-align: left;
 }
-#user_li1,#user_li7{
+.add_li{
+  height: 50px;
+  width: 100%;
+}
+#user_li1,#user_li7,#add_li1{
   height: 50px;
   text-align: center;
 }
-#user_li1{
+#user_li1,#add_li1{
     border-bottom: 1px solid gray;
 }
 #user_li2,#user_li3,#user_li4,#user_li5,#user_li6{
+  padding-left: 7px;
+}
+#add_li2,#add_li3,#add_li4{
   padding-left: 7px;
 }
 #user_li7{
