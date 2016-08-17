@@ -4,6 +4,7 @@ var parentWidth;				//중심 원 가로 길이
 var parentHeight;				//중심 원 세로 길이
 var noOfServ;
 var noOfServices;
+var checkBefore;				//이전에 선택된 branch의 클래스 번호를 저장 
 var checkThis;					//현재 선택된 branch의 클래스 번호를 저장
 var checkFirst=true;			//루트인지를 저장 
 var checkSecond=false;			//두번째인지를 저장 
@@ -124,8 +125,10 @@ function renderCircle(){
 				//$(".child"+(i+1)).append(first);
 				var temp=(i+1) 
 				$.getJSON("/api/branch/"+temp, function(response) {
-					$(".child"+temp).empty().append(response.id);
-					$(".child"+temp).append(response.name);
+					if(response.parent_id==null){
+						$(".child"+temp).empty().append(response.id);
+						$(".child"+temp).append(response.name);
+					}
 				});
 			});
 		});
@@ -196,6 +199,7 @@ function renderCircle(){
         //$('.child').fadeIn('slow')
         
         var checkBranch;
+
         for(var i = 1; i <= noOfServ; i++){
         	if($(this).hasClass('child'+i)){
         		checkThis=i;
@@ -246,9 +250,10 @@ function renderCircle(){
         		checkFirst=false;
         	}
         }
+
         if(checkFirst==false) {
-        	if(checkSecond==true) checkSecond=false;	//이미 두번째를 지났으면 false 표시 
-        	else checkSecond=true;	//두번째임을 표시 
+        	if(checkSecond==true) checkSecond=3;	//이미 두번째를 지났으면 false 표시 
+        	else if(checkSecond==false) checkSecond=true;	//두번째임을 표시 
         	$(this).addClass('child8');
         	if(checkSecond==true) $('.back').delay(1550).fadeIn(300); //두번째일때 속도 조절
         	else $('.back').delay(1200).fadeIn(300); 
@@ -287,12 +292,7 @@ function renderCircle(){
     	$('.child').empty();
     	//child가지 중심으로 이동 
     	$('.child').delay(200).transition({ x:0+'px',y:0+'px',duration: 400, scale: 1.0});
-    	//두번째 childbranch이면 
-    	if(checkSecond==true){
-    		//루트로 변경 
-    		checkFirst=true;
-    		//child8 나타나게 함 
-    		$('.child8').fadeIn(0).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 30});
+    	$('.child8').fadeIn(0).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 30});
     		$('.child8').delay(0).animate({
 			    backgroundColor: "#ECA812",
 			}, 0 )
@@ -309,7 +309,7 @@ function renderCircle(){
 	          backgroundColor: "#ECA812",
 	        }, 50)
 
-			//child8과 이전 가지의 교환 
+	        //child8과 이전 가지의 교환 
 	        $('.child'+checkThis).addClass('child9')
 	        $('.child9').removeClass('child'+checkThis);
 	        $('.child8').addClass('child'+checkThis);
@@ -317,9 +317,18 @@ function renderCircle(){
 	        $('.child9').addClass('child8')
 	        $('.child8').removeClass('child9')
 
+    	//두번째 childbranch이면 
+    	if(checkSecond==true){
+    		
+    		checkSecond=false;
+    		
+
 	        for(var i = 1; i <=noOfServ; i++){
 	        	$('.child'+i).transition({ x:translateArr[0][i-1]+'px', y:-translateArr[1][i-1]+'px'});
 	        }//for
+
+	        //루트로 변경 
+    		checkFirst=true;
 
 	        /////////////////////////////Json/////////////////////////////
 	        setTimeout(function(){
@@ -335,8 +344,10 @@ function renderCircle(){
 							//$(".child"+(i+1)).append(first);
 							var temp=(i+1) 
 							$.getJSON("/api/branch/"+temp, function(response) {
-								$(".child"+temp).empty().append(response.id);
-								$(".child"+temp).append(response.name);
+								if(response.parent_id==null){
+									$(".child"+temp).empty().append(response.id);
+									$(".child"+temp).append(response.name);
+								}
 							});
 						});
 					});
@@ -346,7 +357,47 @@ function renderCircle(){
 
     	}
     	else{
+    		
+	        $('.child8').fadeOut(0)
 
+	        for(var i = 1; i <=noOfServ; i++){
+	        	$('.child'+i).transition({ x:translateArr[0][i-1]+'px', y:-translateArr[1][i-1]+'px'});
+	        }//for
+
+	        
+	        /////////////////////////////Json/////////////////////////////
+	        
+	        setTimeout(function(){
+	        	$.getJSON("/api/branch/"+checkThis, function(response) {
+					checkBefore=response.parent_id;
+				    $.getJSON("/api/branch/"+checkBefore, function(response) {
+						$(".parent").empty().append(response.id);
+						$(".parent").append(response.name);
+					});
+					$.getJSON("/api/branch/"+checkBefore, function(response) {
+						$.each(response.child_ids, function (i,first) {
+							//$(".child"+(i+1)).append(first);
+							var temp=first
+							
+							$.getJSON("/api/branch/"+temp, function(response) {
+								var index=(temp%7)
+								if(index==0) index=7;
+								$(".child"+index).empty().append(response.id);
+								$(".child"+index).append(response.name);
+							});
+						});
+					});
+					checkThis=checkBefore;
+					$.getJSON("/api/branch/"+checkBefore, function(response) {
+						checkBefore=response.parent_id;
+						if(checkBefore==null){
+							checkSecond=true
+						}
+					});
+				});
+			  }, 1900); 
+		  	//////////////////////////////////////////////////////////////
+			$(this).delay(2100).fadeIn()
     	}
     	//$('.child').eq(i).delay(30).transition({ x:translateArr[0][checkThis-1]
     });
@@ -390,6 +441,7 @@ function renderCircle(){
     	//e.stopPropagation();
         
     });
+    
     //루트가 아닐 때
     $(document).on("click", function(){
 
@@ -442,7 +494,7 @@ function renderCircle(){
     renderCircle();
 
     if(checkFirst==false){
-    	$('.child8').fadeOut(0)
+    	
     }
 
     $(document).on("mouseenter", ".child", function(){
@@ -468,6 +520,7 @@ function renderCircle(){
     	//e.stopPropagation();
         
     });
+    
     //parent 가지를 눌렀을 때 확대 조정 
     $(document).on("click",".parent",function() {
     	//1번 눌렀을 때 조금 확대(0.85배)
