@@ -67,7 +67,6 @@ function renderCircle(){
       //currentChild.css({'-webkit-transform': 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'});
 	    currentChild.css({'transform' : 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'});
   	}//for
-
   	///////////////////////////// back버튼 //////////////////////////////////
   	var backButton = $('<div class="back"></div>').appendTo('div.childGroup');
   	backButton.width(String(width*(1/18)));
@@ -79,7 +78,6 @@ function renderCircle(){
 	backButton.css({'transform' : 'translate('+backPosXOpp + 'px, ' + -backPosYAdj + 'px)'});
 	$('.back').fadeOut(0);
 	////////////////////////////////////////////////////////////////////////
-
   	//리스트
     $(function() {
       var width = window.innerWidth||document.body.clientWidth;
@@ -147,7 +145,6 @@ function renderCircle(){
 			$.each(response.child_ids, function (i,first) {
 				//$(".child"+(i+1)).append(first);
 				var temp=first
-
 				$.getJSON("/api/branch/"+temp, function(response) {
 					var index=(temp%7)
 					if(index==0) index=7;
@@ -166,7 +163,6 @@ function renderCircle(){
     	$(".parent").empty();
     	$(".child").empty();
     	///////////////////////////////////////////////////////
-
     	//$('.parent').removeClass("zoomTarget selectedZoomTarget zoomNotClickable")
     	movingChild=true;
     	$('.child').fadeIn(0)
@@ -185,7 +181,6 @@ function renderCircle(){
         // 선택된 가지를 parent가지의 크기만큼 확대
        	$(this).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 400});
        	// parent 가지의 색깔을 child 가지의 색깔로 변화시킴
-
        	$( '.parent' ).delay(400).animate({
           backgroundColor: "#53c3d3",
         }, 'slow' )
@@ -197,7 +192,6 @@ function renderCircle(){
         }, 3000 )*/
         //$(this).transition({ x:0+'px', y:0+'px', scale: 1, duration:0})
         //$('.child').fadeIn('slow')
-
         var checkBranch;
 
         for(var i = 1; i <= noOfServ; i++){
@@ -270,7 +264,6 @@ function renderCircle(){
 				$.each(response.child_ids, function (i,first) {
 					//$(".child"+(i+1)).append(first);
 					var temp=first
-
 					$.getJSON("/api/branch/"+temp, function(response) {
 						var index=(temp%7)
 						if(index==0) index=7;
@@ -280,11 +273,9 @@ function renderCircle(){
 				});
 			});
 		}, 1400);
-
   	///////////////////////////////////////////////////////////////////
   	///
     })//child-click
-
 	//back button 누르면
     $('.back').click(function(){
     	$(this).fadeOut(0)
@@ -304,11 +295,9 @@ function renderCircle(){
 	        $( '.parent').delay(600).animate({
 	          backgroundColor: "#53c3d3",
 	        }, 300)
-
 			$( '.child').not('.child8').delay(500).animate({
 	          backgroundColor: "#ECA812",
 	        }, 50)
-
 	        //child8과 이전 가지의 교환
 	        $('.child'+checkThis).addClass('child9')
 	        $('.child9').removeClass('child'+checkThis);
@@ -316,20 +305,14 @@ function renderCircle(){
 	        $('.child'+checkThis).removeClass('child8')
 	        $('.child9').addClass('child8')
 	        $('.child8').removeClass('child9')
-
     	//두번째 childbranch이면
     	if(checkSecond==true){
-
     		checkSecond=false;
-
-
 	        for(var i = 1; i <=noOfServ; i++){
 	        	$('.child'+i).transition({ x:translateArr[0][i-1]+'px', y:-translateArr[1][i-1]+'px'});
 	        }//for
-
 	        //루트로 변경
     		checkFirst=true;
-
 	        /////////////////////////////Json/////////////////////////////
 	        setTimeout(function(){
 			    if(checkFirst==true){
@@ -354,19 +337,13 @@ function renderCircle(){
 			  	}
 			  }, 1900);
 		  	//////////////////////////////////////////////////////////////
-
     	}
     	else{
-
 	        $('.child8').fadeOut(0)
-
 	        for(var i = 1; i <=noOfServ; i++){
 	        	$('.child'+i).transition({ x:translateArr[0][i-1]+'px', y:-translateArr[1][i-1]+'px'});
 	        }//for
-
-
 	        /////////////////////////////Json/////////////////////////////
-
 	        setTimeout(function(){
 	        	$.getJSON("/api/branch/"+checkThis, function(response) {
 					checkBefore=response.parent_id;
@@ -378,7 +355,6 @@ function renderCircle(){
 						$.each(response.child_ids, function (i,first) {
 							//$(".child"+(i+1)).append(first);
 							var temp=first
-
 							$.getJSON("/api/branch/"+temp, function(response) {
 								var index=(temp%7)
 								if(index==0) index=7;
@@ -413,7 +389,6 @@ function renderCircle(){
       height=768;
     }
     renderCircle();
-
     $(document).on("mouseenter", ".child", function(){
     	if(movingChild==false){
     		$(this).width(String(width*(1/13)));
@@ -439,9 +414,7 @@ function renderCircle(){
         }
         //$(this).zoomTo({targetsize:0.75, duration:600});
     	//e.stopPropagation();
-
     });
-
     //루트가 아닐 때
     $(document).on("click", function(){
 
@@ -479,7 +452,6 @@ function renderCircle(){
 	}
 	});
   })//document.ready
-
   $(window).resize(function(){
   	checkDocument=false
     $('.parent').empty();
@@ -490,13 +462,10 @@ function renderCircle(){
       width=1366;
       height=768;
     }
-
     renderCircle();
-
     if(checkFirst==false){
-
+    	$('.child8')
     }
-
     $(document).on("mouseenter", ".child", function(){
     	if(movingChild==false){
     		$(this).width(String(width*(1/13)));
@@ -515,12 +484,9 @@ function renderCircle(){
     })
     $(document).on("click",".child",function() {
         if(checkFirst==false) $('.child8').fadeOut(0);
-
         //$(this).zoomTo({targetsize:0.75, duration:600});
     	//e.stopPropagation();
-
     });
-
     //parent 가지를 눌렀을 때 확대 조정
     $(document).on("click",".parent",function() {
     	//1번 눌렀을 때 조금 확대(0.85배)
@@ -539,17 +505,14 @@ function renderCircle(){
     		$('body').zoomTo({targetsize:1, duration:600});
     	}
     	e.stopPropagation();
-
     });
   })
-
   </script>
-
 <div id="wrapDiv">
 	<div id="parent" class="parent"></div>
 	<div class="childGroup"> </div>
 	<ul class="list" id="list">
-		<li>One</li>
+		<li>One</li> 
 		<li>Two</li>
 		<li>Three</li>
 		<li>Four</li>

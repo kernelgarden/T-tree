@@ -6,13 +6,14 @@
   <li class="menu" id="menu_2">
     <div class="wrapDiv">
       <form action="/users/profile" accept-charset="UTF-8" method="get">
-      <input name="utf8" type="hidden" value="✓">
-      <input type="text" name="search" class="search blue" value="" placeholder="Search">
-    </form>
+        <input name="utf8" type="hidden" value="✓">
+        <input type="text" name="search" class="search blue" value="" placeholder="Search">
+      </form>
     </div>
   </li>
   <li class="menu" id="menu_3">
-      <div class="wrapDiv"><%=link_to image_tag("home.png", alt:"home",id:"home" ),root_path %></div></li>
+    <div class="wrapDiv"><%=link_to image_tag("home.png", alt:"home",id:"home" ),root_path %></div>
+  </li>
   <li class="menu" id="menu_4">
     <div class="wrapDiv"></div>
   </li>
@@ -33,7 +34,7 @@
     <li class="add_li" id="add_li2">Create Work...</li>
     <li class="add_li" id="add_li3">Create Personal Team...</li>
     <li class="add_li" id="add_li4">Create Private Team...</li>
-    <ul>
+  </ul>
 </div>
 <div id="dropDown6">
   <ul id="userList">
@@ -44,29 +45,29 @@
     <%=  link_to '<li class="user_li" id="user_li5">All-pages</li>'.html_safe, (show_pages_path)%>
     <li class="user_li" id="user_li6">Help</li>
     <%=  link_to '<li class="user_li" id="user_li7">로그아웃</li>'.html_safe, destroy_user_session_path,
-     method: :delete, data: {confirm: "로그아웃?" }%>
+    method: :delete, data: {confirm: "로그아웃?" }%>
   </ul>
 </div>
-  <script>
-  $(document).ready(function(){
+<script>
+$(document).ready(function(){
   var nCount1=0;
   var nCount2=0;
   var nCount3=0;
   $('#menuDiv1').click(function(){
-  if(nCount1==0){
-  $('#dropDown1').show();
-  nCount1=1;
-  }
-  else{
-  $('#dropDown1').hide();
-  nCount1=0;
-  }
+    if(nCount1==0){
+      $('#dropDown1').show();
+      nCount1=1;
+    }
+    else{
+      $('#dropDown1').hide();
+      nCount1=0;
+    }
   })
   $('div:not(#menuDiv1,#dropDown1)').click(function(){
-  if(nCount1==1){
-  $('#dropDown1').hide();
-  nCount1=0;
-  }
+    if(nCount1==1){
+      $('#dropDown1').hide();
+      nCount1=0;
+    }
   })
   $('#menuDiv5').click(function(){
     if(nCount3==0){
@@ -85,20 +86,20 @@
     }
   })
   $('#menuDiv6').click(function(){
-  if(nCount2==0){
-  $('#dropDown6').show();
-  nCount2=1;
-  }
-  else{
-  $('#dropDown6').hide();
-  nCount2=0;
-  }
+    if(nCount2==0){
+      $('#dropDown6').show();
+      nCount2=1;
+    }
+    else{
+      $('#dropDown6').hide();
+      nCount2=0;
+    }
   })
   $('div:not(#menuDiv6, #dropDown6)').click(function(){
-  if(nCount2==1){
-  $('#dropDown6').hide();
-  nCount2=0;
-  }
+    if(nCount2==1){
+      $('#dropDown6').hide();
+      nCount2=0;
+    }
   })
-  })
-  </script>
+})
+</script>
