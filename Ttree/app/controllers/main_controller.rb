@@ -1,7 +1,7 @@
 class MainController < ApplicationController
- 	before_action :logged_in_user, only: [:home]
+    before_action :logged_in_user, only: [:home]
 
-  def work
+  def home
   end
 
   def pages

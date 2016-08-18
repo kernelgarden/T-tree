@@ -170,6 +170,7 @@
       padding-left:5%;
       text-align: center;
       color:#868686;
+      border-bottom: 1px solid #868686;
       #left_icon{
         float:left;
         margin-top:5px;
@@ -193,7 +194,7 @@
   text-align: center;
 }
 
-#user_li1,#add_li1{
+#user_li1{
     border-bottom: 1px solid gray;
 }
 #user_li2,#user_li3,#user_li4,#user_li5,#user_li6{

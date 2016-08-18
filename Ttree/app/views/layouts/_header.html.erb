@@ -111,18 +111,36 @@ $(document).ready(function(){
   $('#add_li2').click(function(){
     $('#add_li1').empty().append('<span id=\'left_icon\'><img src="/assets/arrow-left.png" height="15px" width="15px"></span>Create Work')
     $('.add_li').fadeOut(0);
-    $('#addList').append('<li class=\"add_li\" id=\"add_li2\">Create Work...</li>')
+    $('#addList').append('<li class=\"add_form\" id=\"add_form1\">Title</li>')
+    $('#addList').append('<form  name=\"ReadingInfoSelectForm\" id=\"ReadingInfoSelectForm\" action=\"\" method=\"post\"><input type=\"text\" size=\"20\" name=\"workTitle\" value=\"title\"></form>')
+    $('#addList').append('<input type=\"button\" id=\"ReadingInfoSelectBtn\" name=\"ReadingInfoSelectBtn\" value=\"전송\">')
+  })
+  $(document).on("click","#ReadingInfoSelectBtn",function() {
+      var formData = $("#ReadingInfoSelectForm").serialize();
+      console.log(formData)
+      alert(formData)
+      $.ajax({
+            type : "POST",
+            url : "/api/post/work",
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+            cache : false,
+            data : formData,
+            success:function(data){ 
+            alert('success');
+            }
+      });
   })
   //Create Team
   $('#add_li3').click(function(){
-    $('#add_li1').empty().append('<span id=\'left_icon\'><img src="/assets/arrow-left.png" height="15px" width="15px"></span>Create Team')
-    $('.add_li').fadeOut();
+    //$('#add_li1').empty().append('<span id=\'left_icon\'><img src="/assets/arrow-left.png" height="15px" width="15px"></span>Create Team')
+    //$('.add_li').fadeOut();
 
   })
   //왼쪽 화살표를 누르면 이전 화면으로 이동 
   $(document).on("click","#left_icon",function() {
      $('.add_li').fadeIn()
      $(this).fadeOut(0)
+     $('.add_form').fadeOut(0)
      //타이틀 다시 수정
       $('#add_li1').empty().append("Create")
   });

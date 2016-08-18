@@ -1,4 +1,6 @@
 class ApisController < ApplicationController
+	skip_before_action :verify_authenticity_token
+
 	def users
 		@users=User.all
   		render :json => @users
@@ -65,5 +67,11 @@ class ApisController < ApplicationController
 		render :json => @page
 	end
 	
+
+	def getWork
+		@work=params[:episode]
+		Work.first.update_attributes(:name=>@work)
+		
+	end
 
 end
