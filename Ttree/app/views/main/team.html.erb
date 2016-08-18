@@ -1,0 +1,45 @@
+<%= stylesheet_link_tag    'application', team: 'all', 'data-turbolinks-track': 'reload' %>
+<div class="team_info">
+  <div class="team_wrapper">
+    <div class="team_name">
+      <h2>Team_name</h2>
+    </div>
+  </div>
+</div>
+<div class="wrapper">
+  <ul class="tabs clearfix" data-tabgroup="first-tab-group">
+    <li><a href="#tab1" class="tab_1 active">Works</a></li>
+    <li><a href="#tab2" class="tab_2">Members</a></li>
+  </ul>
+  <section id="first-tab-group" class="tabgroup">
+    <div id="tab1">
+      <div class="team_work_wrap">
+        <div class="team_work"><div class="team_work_name">work1</div></div>
+        <div class="team_work"><div class="team_work_name">work2</div></div>
+        <div class="team_work"><div class="team_work_name">work3 </div></div>
+        <div class="create_team_work">
+          <div class="create_team_work_content">Create Team Work</div>
+        </div>
+      </div>
+    </div>
+    <div id="tab2">
+      <h2>Team Members</h2>
+      <p>김시훈, 오지원, 류정원</p>
+    </div>
+  </section>
+</div>
+<script>
+$('.tabgroup > div').hide();
+$('.tabgroup > div:first-of-type').show();
+$('.tabs a').click(function(e){
+  e.preventDefault();
+  var $this = $(this),
+  tabgroup = '#'+$this.parents('.tabs').data('tabgroup'),
+  others = $this.closest('li').siblings().children('a'),
+  target = $this.attr('href');
+  others.removeClass('active');
+  $this.addClass('active');
+  $(tabgroup).children('div').hide();
+  $(target).show();
+})
+</script>
