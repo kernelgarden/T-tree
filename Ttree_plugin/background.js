@@ -31,6 +31,7 @@ function processTabs(windows) {
 
 		var numTabs = win.tabs.length;
 
+/*
 		// get all tabs in the current window
 		captureWindowTabs(win.id, function(dataArray) {
     	for(var i = 0; i < dataArray.length; ++i) {
@@ -44,6 +45,7 @@ function processTabs(windows) {
     	}
 			alert(dataArray.length);
 		});
+*/
 
 		for (var j = 0; j < numTabs; j++) {
 			var tab = win.tabs[j];
@@ -65,11 +67,12 @@ function processTabs(windows) {
 					alert('An error occurred: ' + chrome.extension.lastError.message);
 				}
 			});
-			//chrome.tabs.remove(tab.id);
+			chrome.tabs.remove(tab.id);
 		}
 	}
 }
 
+/*
 function captureWindowTabs(windowId, callbackWithDataUrlArray) {
   var dataUrlArray = [];
 
@@ -110,6 +113,7 @@ function captureWindowTabs(windowId, callbackWithDataUrlArray) {
     photoTab(0);
   });
 }
+*/
 
 
 

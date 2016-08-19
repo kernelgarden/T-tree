@@ -1,7 +1,3 @@
-function test() {
-	alert("test!!!!!!!");
-}
-
 function setTabInfo(tab_url, tab_title) {
 	var list = document.createElement("li");
 	var node = document.createTextNode(tab_url);
@@ -36,14 +32,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		for (var i = 0; i < tab_length; i++) {
 			tab_arr.push(i.toString());
 		}
-		console.log(tab_arr);
+		//console.log(tab_arr);
 		chrome.storage.local.get(tab_arr, function(items) {
-			console.log(items);
+			//console.log(items);
 			for (var j = 0; ; j++) {
 				tab = items[j];
 				if (!tab)
 					break;
-				console.log(tab);
+				//console.log(tab);
 				var list = document.createElement("li");
 				var node = document.createTextNode(tab.title + " >>> " + tab.url);
 				list.appendChild(node);
