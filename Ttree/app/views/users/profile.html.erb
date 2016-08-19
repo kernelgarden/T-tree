@@ -1,0 +1,5 @@
+<% if @users.present? %>
+  <%=@users.as_json(only:[:email,:name])%>
+<% else %>
+  <%= params[:search] %>에 대한 결과값이 없습니다 .</p>
+<% end %>

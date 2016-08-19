@@ -14,6 +14,8 @@
  *= require_self
  *= require_main
  */
+@import "header.scss";
+
 *{
   margin: 0px;
   padding: 0px;
@@ -21,4 +23,10 @@
 #contents{
 	height:100%;
 	width:100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.wrapDiv{
+  width: 100%;
+  height: 100%;
 }

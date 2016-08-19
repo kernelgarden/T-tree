@@ -1,55 +1,100 @@
+<style>
+#center{
+	margin: 0 auto;
+}
+.img{
+	width: 60px;
+	height: 60px;
+	border-radius: 8px;
+	margin-top: 5px;
+}
+#sort li{
+	text-align: center;
+}
+.page_url_div a{
+	text-align: center;
+	display:inline-block; /* important */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.page_url_div, .page_url{
+	-webkit-transition: 3.3s;
+	-moz-transition: 3.3s;
+	transition: 3.3s;
+	-webkit-transition-timing-function: linear;
+	-moz-transition-timing-function: linear;
+	transition-timing-function: linear;
+}
+.page_url_div{
+	overflow: hidden;
+}
+.page_url_div a:hover{
+	text-decoration: none;
+}
+.page_url{
+	margin-left: 0em;
+}
+.page_url_div:hover .page_url{
+	margin-left: -200px;
+}
+</style>
+
 <!--
 <div>
-	<div class="">
-		<div id="a" class="zoomTarget level0">
-			<div id="a1" class="zoomTarget level1">
-				<div id="a11" class="zoomTarget level2">a11</div>
-				<div id="a12" class="zoomTarget level2">a12</div>
-				<div id="a13" class="zoomTarget level2">a13</div>
-				<div id="a14" class="zoomTarget level2">a14</div>
-			</div>
-			<div id="a2" class="zoomTarget level1">a2</div>
-			<div id="a3" class="zoomTarget level1">a3</div>
-			<div id="a4" class="zoomTarget level1">a4</div>
-		</div>
-	</div>
+<div class="">
+<div id="a" class="zoomTarget level0">
+<div id="a1" class="zoomTarget level1">
+<div id="a11" class="zoomTarget level2">a11</div>
+<div id="a12" class="zoomTarget level2">a12</div>
+<div id="a13" class="zoomTarget level2">a13</div>
+<div id="a14" class="zoomTarget level2">a14</div>
+</div>
+<div id="a2" class="zoomTarget level1">a2</div>
+<div id="a3" class="zoomTarget level1">a3</div>
+<div id="a4" class="zoomTarget level1">a4</div>
+</div>
+</div>
 </div>
 -->
 <script>
-	$(document).ready(function(){
-		$.getJSON("/api/branch/1/pages", function(response) {
-			$.each(response, function (i,newsItem) {
-				$(".page_box ol li").eq(i).append(newsItem.name);
-			});
-		});
-		alert("hello, world");
-		$('#show15').focus(function() {
-			$('#show15').css("background-color","#7FC9FF");
-			$('#show10').css("background-color","#fff");
-			$('.pageli').width("66px")
-			$('.pageli').height("66px")
-		});
-			$('#show10').focus(function() {
-			$('#show15').css("background-color","#fff");
-			$('#show10').css("background-color","#7FC9FF");
-			$('.pageli').width("100px")
-			$('.pageli').height("100px")
-		});
+$(document).ready(function(){
+	//	$.getJSON("/api/branch/1/pages", function(response) {
+	//	$.each(response, function (i,newsItem) {
+	//	$(".page_box ol li").eq(i).append(newsItem.name);
+	//		});
+	//		});
+	$('#show15').focus(function() {
+		$('#show15').css("background-color","#7FC9FF");
+		$('#show10').css("background-color","#fff");
+		$('.pageli').width("66px")
+		$('.pageli').height("66px")
+		$(".img").width(40)
+		$(".img").height(40)
 	});
-
+	$('#show10').focus(function() {
+		$('#show15').css("background-color","#fff");
+		$('#show10').css("background-color","#7FC9FF");
+		$('.pageli').width("100px")
+		$('.pageli').height("100px")
+		$(".img").width(60)
+		$(".img").height(60)
+	});
+});
 </script>
-<div>
+<div id="center">
 	<div>
 		<button id="show10">10개</button>
 		<button id="show15">15개</button>
 	</div>
 	<div class="page_box">
 		<ol id="sort">
-			
 			<% for i in 0..119 %>
-			<li class="pageli zoomTarget"><%=i+1%>. </li>
+			<li class="pageli zoomTarget">
+				<img class="img" src="http://ryugarden.org/api/thumb?url=http://naver.com" />
+				<div class="page_url_div"><a class="page_url">http://naver.com</a></div>
+			</li>
 			<% end %>
-			
 		</ol>
 	</div>
 </div>

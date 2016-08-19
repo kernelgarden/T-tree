@@ -1,40 +1,130 @@
-<%= stylesheet_link_tag    'application', header: 'all', 'data-turbolinks-track': 'reload' %>
+
 <ul id="header">
-  <li class="menu" id="menu_1"><%= link_to image_tag("home.png", alt:  "home",id:"home" ), root_path %></li>
+  <li class="menu" id="menu_1">
+    <div id="menuDiv1">Works</div>
+  </li>
   <li class="menu" id="menu_2">
-    <!--<div class="dropdown">
-    <button onclick="myFunction()" class="dropbtn">My-Tree</button>
-    <div id="myDropdown" class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+    <div class="wrapDiv">
+      <form action="/users/profile" accept-charset="UTF-8" method="get">
+        <input name="utf8" type="hidden" value="✓">
+        <input type="text" name="search" class="search blue" value="" placeholder="Search">
+      </form>
     </div>
-  </div>--></li>
-  <li class="menu" id="menu_3">c</li>
-  <li class="menu" id="menu_4">e</li>
-  <li class="menu" id="menu_5">f</li>
-  <li class="menu" id="menu_6">g</li>
-  <li class="menu" id="menu_7">h</li>
+  </li>
+  <li class="menu" id="menu_3">
+    <div class="wrapDiv"><%=link_to image_tag("home.png", alt:"home",id:"home" ),root_path %></div>
+  </li>
+  <li class="menu" id="menu_4">
+    <div class="wrapDiv"></div>
+  </li>
+  <li class="menu" id="menu_5">
+    <div id="menuDiv5"><img src="/assets/add.png" id="plus"></div>
+  </li>
+  <li class="menu" id="menu_6">
+    <div id="menuDiv6"><%= current_user.name %></div>
+  </li>
 </ul>
-<!--
+<div id="dropDown1">
+  <li class="user_li" id="user_li2">Team Work</li>
+  <li class="user_li" id="user_li3">Personal Work</li>
+</div>
+<div id="dropDown5">
+  <ul id="addList">
+    <li class="add_li_name" id="add_li1">Create</li>
+    <li class="add_li" id="add_li2">Create Work...</li>
+    <li class="add_li" id="add_li3">Create Team...</li>
+    <li class="add_li" id="add_li4">Create Private Team...</li>
+  </ul>
+</div>
+<div id="dropDown6">
+  <ul id="userList">
+    <li class="user_li" id="user_li1"><%= current_user.name %>(<%= current_user.email %>)</li>
+    <li class="user_li" id="user_li2">Profile</li>
+    <li class="user_li" id="user_li3">Works</li>
+    <li class="user_li" id="user_li4">Teams</li>
+    <%=  link_to '<li class="user_li" id="user_li5">All-pages</li>'.html_safe, (show_pages_path)%>
+    <li class="user_li" id="user_li6">Help</li>
+    <%=  link_to '<li class="user_li" id="user_li7">로그아웃</li>'.html_safe, destroy_user_session_path,
+    method: :delete, data: {confirm: "로그아웃?" }%>
+  </ul>
+</div>
 <script>
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
+$(document).ready(function(){
+  var nCount1=0;
+  var nCount2=0;
+  var nCount3=0;
+  $('#menuDiv1').click(function(){
+    if(nCount1==0){
+      $('#dropDown1').show();
+      nCount1=1;
     }
-  }
-}
+    else{
+      $('#dropDown1').hide();
+      nCount1=0;
+    }
+  })
+  $('div:not(#menuDiv1,#dropDown1)').click(function(){
+    if(nCount1==1){
+      $('#dropDown1').hide();
+      nCount1=0;
+    }
+  })
+  $('#menuDiv5').click(function(){
+    if(nCount3==0){
+      $('#dropDown5').show();
+      nCount3=1;
+    }
+    else{
+      $('#dropDown5').hide();
+      nCount3=0;
+    }
+  })
+  $('div:not(#menuDiv5,#dropDown5)').click(function(){
+    if(nCount3==1){
+      $('#dropDown5').hide();
+      nCount3=0;
+      //항목들 다시 나타나게 함
+      $('.add_li').fadeIn();
+      //타이틀 다시 수정
+      $('#add_li1').empty().append("Create")
+    }
+  })
+  $('#menuDiv6').click(function(){
+    if(nCount2==0){
+      $('#dropDown6').show();
+      nCount2=1;
+    }
+    else{
+      $('#dropDown6').hide();
+      nCount2=0;
+    }
+  })
+  $('div:not(#menuDiv6, #dropDown6)').click(function(){
+    if(nCount2==1){
+      $('#dropDown6').hide();
+      nCount2=0;
+    }
+  })
+
+  //#dropdown5
+  //Create Work
+  $('#add_li2').click(function(){
+    $('#add_li1').empty().append('<span id=\'left_icon\'><img src="/assets/arrow-left.png" height="15px" width="15px"></span>Create Work')
+    $('.add_li').fadeOut(0);
+    $('#addList').append('<li class=\"add_li\" id=\"add_li2\">Create Work...</li>')
+  })
+  //Create Team
+  $('#add_li3').click(function(){
+    $('#add_li1').empty().append('<span id=\'left_icon\'><img src="/assets/arrow-left.png" height="15px" width="15px"></span>Create Team')
+    $('.add_li').fadeOut();
+
+  })
+  //왼쪽 화살표를 누르면 이전 화면으로 이동 
+  $(document).on("click","#left_icon",function() {
+     $('.add_li').fadeIn()
+     $(this).fadeOut(0)
+     //타이틀 다시 수정
+      $('#add_li1').empty().append("Create")
+  });
+});
 </script>
--->
