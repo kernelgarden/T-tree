@@ -94,6 +94,11 @@ $(document).ready(function(){
   $('div:not(#menuDiv1,#menuDiv5,#menuDiv6,#dropDown1, #dropDown5, #dropDown6)').click(function(){
     if(nCount1==1){
       $('#dropDown1').hide();
+      $('.minus_icon').empty().append("<img src='assets/plus.png' height='15px' width='15px'>")
+      $('.minus_icon').removeClass('minus_icon').addClass('plus_icon')
+      $("#PersonalWorks").empty();
+      $("#TeamWorks").empty();
+      $('#dropDown1').height(220)
       nCount1=0;
     }
   })
