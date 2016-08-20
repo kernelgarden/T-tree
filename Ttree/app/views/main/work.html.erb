@@ -16,8 +16,10 @@ function renderCircle(){
   	function toDegrees(angle){
     	return angle * (Math.PI / 180);
   	}//toDegrees()
-  	var width = window.innerWidth||document.body.clientWidth;
-  	var height =window.innerHeight||document.body.clientHeigh;
+  	var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
+  	var height =window.screen.availHeight||document.body.clientHeigh;
+  	var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
+  	var heightPosition =window.innerHeight||document.body.clientHeigh;
   	if(height<500){
 	    width=1366;
 	    height=768;
@@ -30,15 +32,15 @@ function renderCircle(){
   	parent.width(String(parentWidth));
   	parent.height(String(parentHeight));
   	var parentCircleHalfWidth = (parent.width()/2);
-  	var parentTop = parent.offset({top:((height)+40)/2 - parentCircleHalfWidth});
-  	var parentLeft = parent.offset({left:(width)/2 - parentCircleHalfWidth});
+  	var parentTop = parent.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth});
+  	var parentLeft = parent.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
 
   	//childGroup 설정
   	var childGroup = $('div.childGroup');
   	childGroup.width(String(parentWidth));
   	childGroup.height(String(parentHeight));
-  	childGroup.offset({top:((height)+40)/2 - parentCircleHalfWidth});
-  	childGroup.offset({left:(width)/2 - parentCircleHalfWidth});
+  	childGroup.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth});
+  	childGroup.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
 
   	//Number of services
   	noOfServices = 8;
@@ -65,8 +67,9 @@ function renderCircle(){
 	    currentChild.css({'top':(+childCircleHalfWidth)+'px'});
 	    currentChild.css({'left':(+childCircleHalfWidth)+'px'});
       //currentChild.css({'-webkit-transform': 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'});
-	    currentChild.css({'transform' : 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'});
+	    currentChild.css({'transform' : 'translate('+(circlePosXOpp) + 'px, ' + -circlePosYAdj + 'px)'});
   	}//for
+
   	///////////////////////////// back버튼 //////////////////////////////////
   	var backButton = $('<div class="back"></div>').appendTo('div.childGroup');
   	backButton.width(String(width*(1/18)));
@@ -389,6 +392,7 @@ function renderCircle(){
       height=768;
     }
     renderCircle();
+    /*
     $(document).on("mouseenter", ".child", function(){
     	if(movingChild==false){
     		$(this).width(String(width*(1/13)));
@@ -405,6 +409,7 @@ function renderCircle(){
 		    $(this).css({'left':((width*(1/36)))+'px'});
     	}
     })
+    */
     $(document).on("click",".child",function() {
     	$('.parent').empty();
     	$('.child').empty();
@@ -452,6 +457,7 @@ function renderCircle(){
 	}
 	});
   })//document.ready
+  /*
   $(window).resize(function(){
   	checkDocument=false
     $('.parent').empty();
@@ -506,7 +512,34 @@ function renderCircle(){
     	}
     	e.stopPropagation();
     });
-  })
+  })*/
+  //위치만 리사이즈 
+  $(window).resize(function(){
+  	var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
+  	var height =window.screen.availHeight||document.body.clientHeigh;
+  	var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
+  	var heightPosition =window.innerHeight||document.body.clientHeigh;
+  	if(height<500){
+	    width=1366;
+	    height=768;
+  	}//if
+	var parent = $('div.parent');
+  	parentWidth=width*(1/9);
+  	parentHeight=parentWidth;
+  	parent.width(String(parentWidth));
+  	parent.height(String(parentHeight));
+  	var parentCircleHalfWidth = (parent.width()/2);
+  	var parentTop = parent.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth});
+  	var parentLeft = parent.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
+
+  	//childGroup 설정
+  	var childGroup = $('div.childGroup');
+  	childGroup.width(String(parentWidth));
+  	childGroup.height(String(parentHeight));
+  	childGroup.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth});
+  	childGroup.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
+  });
+
   </script>
 <div id="wrapDiv">
 	<div id="parent" class="parent"></div>

@@ -1,3 +1,5 @@
+$addMainColor:#ffcbc8;
+
 #header{
   list-style: none;
   text-align: center;
@@ -104,6 +106,7 @@
   margin-top: 1.5px;
   height: 35px;
   width: 38px;
+  cursor: pointer;
 }
 #menuDiv6{
   background-color: #E8F8FF;
@@ -115,21 +118,9 @@
   border-radius: 8px;
   cursor: pointer;
 }
-#dropDown6{
-  height: 220px;
-  width: 220px;
-  position: absolute;
-  display: none;
-  top: 42px;
-  right: 3px;
-  background-color: #DCF3ED;
-  border-radius: 8px;
-  z-index: 2;
-}
-#userList{
-  list-style: none;
-}
 
+
+/*//////////////#dropDown5/////////////*/
 #dropDown5{
   height: 240px;
   width: 220px;
@@ -143,6 +134,7 @@
   z-index: 2;
   margin-left:20px;
   margin-right:20px;
+  font-family:'Raleway', sans-serif;
 
   #addList{
     list-style: none;
@@ -156,21 +148,24 @@
       padding-bottom:15px;
       padding-right:5%;
       padding-left:5%;
+      /*font-weight: bold;*/
       &:hover{
-        background-color: #ffcbc8;
+        background-color: $addMainColor;
         cursor: pointer;
       }
     }/*add_li*/
     .add_li_name{
       height: 20px;
-      width: 90%;
+      width: 80%;
       padding-top:15px;
       padding-bottom:15px;
       padding-right:5%;
       padding-left:5%;
+      margin-left:5%;
+      margin-right:5%;
       text-align: center;
       color:#868686;
-      border-bottom: 1px solid #868686;
+      border-bottom: 2px dotted #A8A8A8;
       #left_icon{
         float:left;
         margin-top:5px;
@@ -178,37 +173,144 @@
           cursor: pointer;
         }
       }
-    }
+    }/*.add_li_name*/
+    .add_form{
+      padding-right:5%;
+      padding-left:5%;
+    }/*.add_form*/
+    #add_form1{
+      margin-top:15px;
+    }/*#add_form1*/
+    #ReadingInfoSelectBtn{
+      margin-left:7%;
+      margin-top:2%;
+      margin-bottom:5%;
+      text-align:center;
+      border-radius: 4px;
+      font-size: 16px;
+      background-color: #FEB1AD;
+      border: none;
+      color: white;
+      padding: 7px 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      &:hover{
+        cursor: pointer;
+        background-color: #FDA29F;
+      }
+    }/*#ReadingInfoSelectBtn*/
+    .add_formContain{
+      padding-top:3%;
+      padding-bottom:5%;
+      padding-right:5%;
+      padding-left:5%;
+      input{
+        margin-left:2%;
+        margin-right:2%;
+        padding-bottom:2%;
+        padding-top:2%;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        width:96%;
+        background-color: #EFEFEF;
+
+        &:focus {
+          background-color: #FFFFFF;
+        }
+      }/*input*/
+      select{
+        margin-left:2%;
+        margin-right:2%;
+        padding-bottom:2%;
+        padding-top:2%;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        width:96%;
+        background-color: #EFEFEF;
+        &:focus {
+          background-color: #FFFFFF;
+        }
+      }/*select*/
+    }/*.add_formContain*/
   }/*#addList*/
 }/*#dropDown5*/
 
-.user_li{
-  height: 30px;
-  width: 100%;
-  text-align: left;
+/*//////////////#dropDown6/////////////*/
+#dropDown6{
+  height: 310px;
+  width: 220px;
+  position: absolute;
+  display: none;
+  top: 42px;
+  right: 3px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 2px 1px 10px #888888;
+  z-index: 2;
+  margin-left:20px;
+  margin-right:20px;
+  font-family:'Raleway', sans-serif;
+  a{
+    text-decoration: none;
+    color: inherit;
+  }/*a*/
+  #userList{
+    list-style: none;
+    padding-bottom:20px;
+    margin-left:0;
+    margin-right:0;
+    .user_li{
+      height: 20px;
+      width: 90%;
+      margin-top:5px;
+      margin-bottom:5px;
+      padding-top:5px;
+      padding-bottom:5px;
+      padding-right:5%;
+      padding-left:5%;
+      /*font-weight: bold;*/
+      &:hover{
+        background-color: $addMainColor;
+        cursor: pointer;
+      }/*.user_li:hover*/
+    }/*.user_li*/
+    .user_li_name{
+      height: 40px;
+      width: 84%;
+      padding-top:15px;
+      padding-bottom:15px;
+      padding-right:5%;
+      padding-left:5%;
+      margin-left:3%;
+      margin-right:3%;
+      text-align: center;
+      color:#868686;
+      border-bottom: 2px dotted #A8A8A8;
+    }/*.user_li_name*/
+    .user_li_logout{
+      border-top: 2px dotted #A8A8A8;
+      height: 40px;
+      width: 84%;
+      padding-top:15px;
+      padding-bottom:15px;
+      padding-right:5%;
+      padding-left:5%;
+      margin-left:3%;
+      margin-right:3%;
+      text-align: center;
+      color: #888888;
+       &:hover{
+        /*background-color: $addMainColor;*/
+        cursor: pointer;
+        color:#FF7775
+      }/*.user_li:hover*/
+    }
+  }/*#userList*/
+}/*#dropDown6*/
 
-}
 
-#user_li1,#user_li7{
-  height: 50px;
-  text-align: center;
-}
-
-#user_li1{
-    border-bottom: 1px solid gray;
-}
-#user_li2,#user_li3,#user_li4,#user_li5,#user_li6{
-  padding-left: 0px;
-}
-#add_li2,#add_li3,#add_li4{
-  padding-left: 0px;
-}
-#user_li7{
-  border-top: 1px solid gray;
-}
-#userList a{
-  text-decoration: none;
-}
-.user_li:hover{
-  background-color: #91C9E8;
-}
