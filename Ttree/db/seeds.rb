@@ -8,9 +8,6 @@
 	# user 생성 
 
  	User.create(email:"win1ter@naver.com", password:"ilovee")
- 	#Team.create(name:"Team1")
-
- 	User.first.join(Team.first)
 
  	# 해당하는 유저의 work 생성 
  	User.first.works.create(name:"work1")

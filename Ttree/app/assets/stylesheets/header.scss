@@ -112,11 +112,24 @@ $addMainColor:#ffcbc8;
 /*//////////////#dropDown1/////////////*/
 
 #dropDown1{
+   &::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+  }
+  &::-webkit-scrollbar{
+    width: 6px;
+    background-color: #F5F5F5;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: #999999;
+    border-radius:5px;
+  }
+  overflow:auto;
   height: 220px;
   width: 260px;
   position: absolute;
   display: none;
-  top: 42px;
+  top: 50px;
   left: 10px;
   background-color: #f8f8f8;
   border-radius: 8px;
@@ -130,10 +143,10 @@ $addMainColor:#ffcbc8;
     margin-left:0;
     margin-right:0;
     .work_li{
-      height: 15px;
+      height: 25px;
       width: 90%;
-      padding-top:10px;
-      padding-bottom:10px;
+      padding-top:5px;
+      padding-bottom:5px;
       padding-right:5%;
       padding-left:5%;
       color:#6B6B6B;
@@ -145,8 +158,8 @@ $addMainColor:#ffcbc8;
       }
       .right_icon{
         float:right;
-        padding:3%;
-        margin-bottom:0.5%;
+        padding:2%;
+        margin-bottom:4.5%;
         border-radius: 4px;
          &:hover{
           background-color: $addMainColor;
@@ -154,6 +167,50 @@ $addMainColor:#ffcbc8;
         }
       }
     }/*work_li*/
+
+    #TeamWorks{
+      background-color: #EFEFEF;
+      .team_li{
+        height: 25px;
+        width: 90%;
+        padding-top:5px;
+        padding-bottom:5px;
+        padding-right:5%;
+        padding-left:5%;
+        color:#6B6B6B;
+        /*font-weight: bold;*/
+        .left_icon{
+          float:left;
+          margin-top:0.5%;
+          margin-right:5%;
+        }
+        .team_right_icon{
+          float:right;
+          padding:2%;
+          margin-bottom:4.5%;
+          border-radius: 4px;
+           &:hover{
+            background-color: #FFEA8E;
+            cursor: pointer;
+          }
+        }
+      }/*team_li*/  
+    }/*TeamWorks*/
+    
+    .work_detail_li{
+      height: 15px;
+      width: 90%;
+      padding-top:10px;
+      padding-bottom:10px;
+      padding-right:5%;
+      padding-left:5%;
+      color:#6B6B6B;
+      background-color:#EFEFEF;
+      &:hover{
+        background-color: $addMainColor;
+        cursor: pointer;
+      }
+    }
     .work_searchContain{
       padding-top:5%;
       padding-bottom:5%;
@@ -188,7 +245,7 @@ $addMainColor:#ffcbc8;
   width: 220px;
   position: absolute;
   display: none;
-  top: 42px;
+  top: 50px;
   right: 10px;
   background-color: #f8f8f8;
   border-radius: 8px;
@@ -306,7 +363,7 @@ $addMainColor:#ffcbc8;
   width: 220px;
   position: absolute;
   display: none;
-  top: 42px;
+  top: 50px;
   right: 10px;
   background-color: #f8f8f8;
   border-radius: 8px;
