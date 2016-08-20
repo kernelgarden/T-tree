@@ -1,11 +1,14 @@
 $addMainColor:#ffcbc8;
 
 #header{
+  position: fixed;
+  top:0px;
   list-style: none;
   text-align: center;
   height: 40px;
   width: 100%;
   border-style: none;
+  z-index: 3;
 }
 .menu{
   display: inline-block;
@@ -124,6 +127,7 @@ $addMainColor:#ffcbc8;
     background-color: #999999;
     border-radius:5px;
   }
+  position:absolute;
   overflow:auto;
   height: 220px;
   width: 260px;
