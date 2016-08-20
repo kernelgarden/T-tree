@@ -27,8 +27,30 @@
   </li>
 </ul>
 <div id="dropDown1">
-  <li class="user_li" id="user_li2">Team Work</li>
-  <li class="user_li" id="user_li3">Personal Work</li>
+  <ul id="WorkList">
+    <form class="work_searchContain" name="work_searchForm" id="work_searchForm" action="" method="post"><input type="text" name="workSearchData" value="Find works by name.." ></form>
+    <li class="work_li" id="work_li1">
+      <span class='left_icon'><img src="assets/star.png" height="15px" width="15px"></span>
+      Starred Works
+      <span class='right_icon plus_icon'><img src="assets/plus.png" height="15px" width="15px"></span>
+    </li>
+    <li class="work_li" id="work_li2">
+      <span class='left_icon'><img src="assets/clock.png" height="15px" width="15px"></span>
+      Recent Works
+      <span class='right_icon plus_icon'><img src="assets/plus.png" height="15px" width="15px"></span>
+    </li>
+    <li class="work_li" id="work_li3">
+      <span class='left_icon'><img src="assets/personal.png" height="15px" width="15px"></span>
+      Personal Works
+      <span class='right_icon plus_icon'><img src="assets/plus.png" height="15px" width="15px"></span>
+    </li>
+    <li class="work_li" id="work_li4">
+      <span class='left_icon'><img src="assets/team2.png" height="15px" width="15px"></span>Team 
+      Works
+      <span class='right_icon plus_icon'><img src="assets/plus.png" height="15px" width="15px"></span>
+    </li>
+
+  </ul>
 </div>
 <div id="dropDown5">
   <ul id="addList">
@@ -108,8 +130,16 @@ $(document).ready(function(){
       nCount2=0;
     }
   })
-
-  //#dropdown5
+  /*************************************#dropdown1*************************************/
+  $(document).on("click",".plus_icon",function(){
+    $(this).empty().append("<img src='assets/minus.png' height='15px' width='15px'>")
+    $(this).removeClass('plus_icon').addClass('minus_icon')
+  })
+  $(document).on("click",".minus_icon",function(){
+    $(this).empty().append("<img src='assets/plus.png' height='15px' width='15px'>")
+    $(this).removeClass('minus_icon').addClass('plus_icon')
+  })
+  /*************************************#dropdown5*************************************/
   //Create Work
   $('#add_li2').click(function(){
     $('#add_li1').empty().append('<span id=\'left_icon\'><img src="/assets/arrow-left.png" height="15px" width="15px"></span>Create Work')

@@ -88,17 +88,7 @@ $addMainColor:#ffcbc8;
   border-radius: 8px;
   cursor: pointer;
 }
-#dropDown1{
-  height: 300px;
-  width: 200px;
-  position: absolute;
-  display: none;
-  top: 42px;
-  left: 3px;
-  background-color: #E8F8FF;
-  border-radius: 8px;
-  z-index: 2;
-}
+
 #menuDiv5{
   background-color: #E8F8FF;
   float: right;
@@ -119,6 +109,78 @@ $addMainColor:#ffcbc8;
   cursor: pointer;
 }
 
+/*//////////////#dropDown1/////////////*/
+
+#dropDown1{
+  height: 220px;
+  width: 260px;
+  position: absolute;
+  display: none;
+  top: 42px;
+  left: 10px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 2px 1px 10px #888888;
+  z-index: 2;
+  font-family:'Raleway', sans-serif;
+
+  #WorkList{
+    list-style: none;
+    padding-bottom:20px;
+    margin-left:0;
+    margin-right:0;
+    .work_li{
+      height: 15px;
+      width: 90%;
+      padding-top:10px;
+      padding-bottom:10px;
+      padding-right:5%;
+      padding-left:5%;
+      color:#6B6B6B;
+      /*font-weight: bold;*/
+      .left_icon{
+        float:left;
+        margin-top:0.5%;
+        margin-right:5%;
+      }
+      .right_icon{
+        float:right;
+        padding:3%;
+        margin-bottom:0.5%;
+        border-radius: 4px;
+         &:hover{
+          background-color: $addMainColor;
+          cursor: pointer;
+        }
+      }
+    }/*work_li*/
+    .work_searchContain{
+      padding-top:5%;
+      padding-bottom:5%;
+      padding-right:2%;
+      padding-left:2%;
+      input{
+        margin-left:2%;
+        margin-right:2%;
+        padding-right:5%;
+        padding-left:5%;
+        padding-bottom:3%;
+        padding-top:3%;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        width:96%;
+        background-color: #EFEFEF;
+        color:#7C7C7C;
+        font-size:15px;
+        &:focus {
+          background-color: #FFFFFF;
+        }
+      }/*input*/
+    }/*.work_searchContain*/
+  }/*#WorkList*/
+}
 
 /*//////////////#dropDown5/////////////*/
 #dropDown5{
@@ -127,13 +189,11 @@ $addMainColor:#ffcbc8;
   position: absolute;
   display: none;
   top: 42px;
-  right: 3px;
+  right: 10px;
   background-color: #f8f8f8;
   border-radius: 8px;
   box-shadow: 2px 1px 10px #888888;
   z-index: 2;
-  margin-left:20px;
-  margin-right:20px;
   font-family:'Raleway', sans-serif;
 
   #addList{
@@ -247,13 +307,11 @@ $addMainColor:#ffcbc8;
   position: absolute;
   display: none;
   top: 42px;
-  right: 3px;
+  right: 10px;
   background-color: #f8f8f8;
   border-radius: 8px;
   box-shadow: 2px 1px 10px #888888;
   z-index: 2;
-  margin-left:20px;
-  margin-right:20px;
   font-family:'Raleway', sans-serif;
   a{
     text-decoration: none;
