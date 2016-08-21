@@ -2,6 +2,7 @@
   window.userID = "<%= current_user.id%>";
   window.userName ="<%= current_user.name %>";
 <% end %>
+
 <ul id="header">
   <li class="menu" id="menu_1">
     <div id="menuDiv1">Works</div>
@@ -78,7 +79,9 @@
     method: :delete, data: {confirm: "로그아웃?" }%>
   </ul>
 </div>
+
 <script>
+
 var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
 var heightPosition =(window.innerHeight||document.body.clientHeigh)-60;
 var count=0;
@@ -109,6 +112,12 @@ var getPersonalWork=function(){ //persoanl work 가져오는 json
   Change=0;
   ///////////////////////////////////////JSON/////////////////////////////////////
   $.getJSON("/api/user/"+userID, function(response) {
+    if(response.work_ids.length==0){
+      alert("work를 추가해주세요!")
+      count=0;
+      $('.personal').empty(0).append("<img src='/assets/plus.png' height='15px' width='15px'>")
+      $('.personal').removeClass('minus_icon').addClass('plus_icon')
+    }
     for(var i=0; i<response.work_ids.length; i++){
       if($("#PersonalWorks").eq(i).empty(0))
         $("#PersonalWorks").append("<li class='work_detail_li' id='PersonalWorks_li"+i+"'></li>")
@@ -133,10 +142,37 @@ var getPersonalWork=function(){ //persoanl work 가져오는 json
   });
 }//getPersonalWork()
 
+var goBackDropdown5=function(){ //dropdown5에서 처음 모양으로 돌아가기 위해서 
+  $('.add_li').fadeIn()
+  $('.add_form').fadeOut(0)
+  //타이틀 다시 수정
+  $('#add_li1').empty().append("Create")
+  $('.add_form, #ReadingInfoSelectForm, #ReadingInfoSelectForm2, #ReadingInfoSelectBtn').remove(0)
+  countDropdown5=0;
+}//goBackDropdown5()
+
+var widthChangeReact=function(){  //width가 변함에 따라 네비게이션바 메뉴 내용 변경 
+  if(widthMax/2>widthPosition){
+    $("#menuDiv1").empty().append("W")
+  } 
+  else if(widthMax/2<=widthPosition){
+    $("#menuDiv1").empty().append("Works")
+  }  
+  if(widthMax*2/3>widthPosition){
+    $("#menuDiv6").empty().append("<span class='user'><img src='/assets/user.png' height='20px' width='15px'></span>")
+  }
+  else if(widthMax*2/3<=widthPosition){
+    $("#menuDiv6").empty().append(userName)
+  }
+}
+
 $(document).ready(function(){
   var nCount1=0;
   var nCount2=0;
   var nCount3=0;
+  
+  //width가 변함에 따라 네비게이션바 메뉴 내용 변경
+  widthChangeReact();
   
   $('#menuDiv1').click(function(){
     if(nCount1==0){
@@ -170,16 +206,13 @@ $(document).ready(function(){
       nCount3=0;
     }
   })
+  //dropDonw5를 없애기 위해 
   $('div:not(#menuDiv1,#menuDiv5,#dropDown1, #dropDown5)').click(function(){
     if(nCount3==1){
       $('#dropDown5').hide();
       nCount3=0;
-      //항목들 다시 나타나게 함
-      $('.add_li').fadeIn();
-      //타이틀 다시 수정
-      $('#add_li1').empty().append("Create")
-      $('.add_form, #ReadingInfoSelectForm, #ReadingInfoSelectForm2, #ReadingInfoSelectBtn').remove(0)
-      countDropdown5=0;
+      //dropdown5에서 처음 모양으로 돌아가기 위해서 
+      goBackDropdown5();
     }
   })
   $('#menuDiv6').click(function(){
@@ -316,6 +349,19 @@ $(document).ready(function(){
               }
         });
       }
+      //재조회
+      getInfo();
+      getWorkFromUser();
+      
+      $('#dropDown5').hide();
+      nCount3=0;
+      //dropdown5에서 처음 모양으로 돌아가기 위해서 
+      goBackDropdown5();
+      $('#dropDown5').hide();
+      nCount3=0;
+      //dropdown5에서 처음 모양으로 돌아가기 위해서 
+      goBackDropdown5();
+
       /*
       if($('.personal').hasClass('minus_icon')){
         Change=0;
@@ -333,13 +379,9 @@ $(document).ready(function(){
   })
   //왼쪽 화살표를 누르면 이전 화면으로 이동 
   $(document).on("click","#left_icon",function() {
-    $('.add_li').fadeIn()
+    //dropdown5에서 이전화살표를 눌렀을 때
+    goBackDropdown5();
     $(this).fadeOut(0)
-    $('.add_form').fadeOut(0)
-    //타이틀 다시 수정
-    $('#add_li1').empty().append("Create")
-    $('.add_form, #ReadingInfoSelectForm, #ReadingInfoSelectForm2, #ReadingInfoSelectBtn').remove(0)
-    countDropdown5=0;
   });
 });
 //스크롤 내릴 때 dropDown1도 같이 움직이기 

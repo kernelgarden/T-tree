@@ -1,69 +1,78 @@
+
 .member_work{
-  margin: 50 auto;
+  margin: 70 auto;
   width: 90%;
-}
-#personal_work_header{
-  height: 35px;
-  text-align: left;
-}
-.personal_work_content{
-  width: 250px;
-  height: 90px;
-  background-color: #0067A3;
-  border-radius: 5px;
-  display: inline-block;
-  margin: 5px;
-}
-.personal_work_name{
-  margin: 10px;
-   color: white;
-}
-#create_personal_work{
-  width: 250px;
-  height: 90px;
-  border-radius: 5px;
-  display: inline-block;
-  margin: 5px;
-  background-color: #E2E4E6;
-}
-#create_personal_work_content{
-  margin: 10px;
-}
-.personal_team{
-  margin-top: 40px;
-}
-.personal_team_header{
-height: 35px;
-text-align: left;
-}
-.personal_team_content{
-  width: 250px;
-  height: 90px;
-  background-color: #0067A3;
-  border-radius: 5px;
-  display: inline-block;
-  margin: 5px;
-}
-.personal_team_name{
-  margin: 10px;
-   color: white;
-}
-.create_personal_team{
-  width: 250px;
-  height: 90px;
-  border-radius: 5px;
-  display: inline-block;
-  margin: 5px;
-  background-color: #E2E4E6;
-}
-.create_personal_team_content{
-  margin: 10px;
-}
-.team_more{
-  width: 70px;
-  height: 30px;
-  border-radius: 5px;
-  margin-left: 20px;
-  background-color:#E2E4E6;
-  display: inline-block;
-}
+
+  .personal_work{
+    #personal_work_header{
+      height: 35px;
+      text-align: left;
+    }/*#personal_work_header*/
+    .personal_work_content{
+      width: 250px;
+      height: 90px;
+      border-radius: 5px;
+      display: inline-block;
+      margin: 5px;
+      .personal_work_name{
+        margin: 10px;
+         color: white;
+      }/*.personal_work_name*/
+      .add_work_name{
+        margin: 10px;
+         color: black;
+      }/*.personal_work_name*/
+    }/*.personal_work_content*/
+    .userWork{
+      background-color: #0067A3;
+    }
+    .addWork{
+      background-color: #E2E4E6;
+    }
+  }/*.personal_work*/
+
+  .personal_team{
+    margin-top: 40px;
+    .personal_team_header{
+      height: 35px;
+      text-align: left;
+      .team_more{
+        width: 70px;
+        height: 30px;
+        border-radius: 5px;
+        margin-left: 20px;
+        background-color:#E2E4E6;
+        display: inline-block;
+      }/*.personal_team_header*/
+    }/*.personal_team_header*/
+    .personal_team_content{
+      width: 250px;
+      height: 90px;
+      background-color: #0067A3;
+      border-radius: 5px;
+      display: inline-block;
+      margin: 5px;
+      .personal_team_name{
+        margin: 10px;
+         color: white;
+      }/*.personal_team_name*/
+    }/*.personal_team_content*/
+    .create_personal_team{
+      width: 250px;
+      height: 90px;
+      border-radius: 5px;
+      display: inline-block;
+      margin: 5px;
+      background-color: #E2E4E6;
+      .create_personal_team_content{
+        margin: 10px;
+      }/*.create_personal_team_content*/
+    }/*.create_personal_team*/
+  }/*.personal_team*/
+}/*.member_work*/
+
+
+
+
+
+

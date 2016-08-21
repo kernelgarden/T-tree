@@ -1,20 +1,19 @@
 <%= stylesheet_link_tag    'application', home: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_tag do %>
+  window.userID = "<%= current_user.id%>";
+  window.userName ="<%= current_user.name %>";
+
+  window.createWork ='<%=  link_to "<div class='+'create_personal_work'+'></div>".html_safe, main_work_path%>';
+  window.addWork ='<%=  link_to "<div class='+'personal_work_content'+'></div>".html_safe, main_work_path%>';
+<% end %>
 <div class="member_work">
-  <div id="personal_work">
+  <div class="personal_work">
     <div id="personal_work_header">
       <img src="/assets/person.png" style="float:left">
       <h3 style="float:left; margin-left:3px;">Personal Works</h3>
     </div>
-    <div style="text-align:left;">
-      <%=  link_to '<div class="personal_work_content">
-      <div class="personal_work_name">Welcome Work</div>
-      </div>'.html_safe, main_work_path%>
-      <%=  link_to '<div class="personal_work_content">
-      <div class="personal_work_name">Welcome Work</div>
-      </div>'.html_safe, main_work_path%>
-      <div id="create_personal_work">
-        <div id="create_personal_work_content">Create Personal Work</div>
-      </div>
+    <div class='personal_work_group'  style="text-align:left;">
+			
     </div>
   </div>
   <div class="personal_team">
@@ -36,3 +35,47 @@
     </div>
   </div>
 </div>
+
+<script>
+
+var getInfo=function(){		//work박스를 그려주는 함수 
+	$(".personal_work_group").hide();
+	///////////////////////////////////////JSON/////////////////////////////////////
+	$.getJSON("/api/user/"+userID, function(response) {
+		for(var i=0; i<response.work_ids.length+1; i++){
+			if($(".personal_work_group").eq(i).empty(0)){
+				if(i!=response.work_ids.length){
+					$(".personal_work_group").append(addWork).show('slow')
+					$(".personal_work_content").eq(i).addClass('userWork')
+				}else{
+					 $(".personal_work_group").append(addWork).show('slow')
+					 $(".personal_work_content").eq(i).addClass('addWork')
+				}
+			}//if
+    }//for
+	});
+	/////////////////////////////////////////////////////////////////////////////////
+}//getInfo()
+
+var getWorkFromUser=function(){	//user로부터 work를 가져오는 함수 
+	///////////////////////////////////////JSON/////////////////////////////////////
+	$.getJSON("/api/user/"+userID, function(response) {
+		$.each(response.work_ids, function (i,id) {
+			$.getJSON("/api/work/"+id, function(response) {
+				if($(".personal_work_content").eq(i).empty(0)){
+					$(".personal_work_content").eq(i).append('<div class="personal_work_name">'+response.name+'</div>')
+				}
+			});
+		});
+		var string="Create Personal Work"
+		$(".personal_work_content").eq(response.work_ids.length).append('<div class="add_work_name">'+string+'</div>')
+	});
+
+}//getWorkFromUser()
+
+$(document).ready(function(){
+	getInfo();
+	getWorkFromUser();
+})//$(document).ready
+
+</script>

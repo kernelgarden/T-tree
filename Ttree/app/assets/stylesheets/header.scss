@@ -37,6 +37,9 @@ $backgorundColor:#E2E4E6;
       border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
+      &:hover{
+        background-color: #016B92;
+      }
     }/*#menuDiv1*/  
   }/*#menu_1*/  
 
@@ -127,6 +130,9 @@ $backgorundColor:#E2E4E6;
       height: 25px;
       width: 30px;
       cursor: pointer;
+      &:hover{
+        background-color: #44A1B0;
+      }
     }/*#menuDiv5*/
   }/*#menu_5*/
     
@@ -147,6 +153,9 @@ $backgorundColor:#E2E4E6;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
+      &:hover{
+        background-color: #FFA705;
+      }
     }/*#menuDiv6*/
   }/*#menu_6*/
 }/*#header*/
@@ -348,7 +357,7 @@ $backgorundColor:#E2E4E6;
       text-align:center;
       border-radius: 4px;
       font-size: 16px;
-      background-color: #FEB1AD;
+      background-color: #5cb3c1;
       border: none;
       color: white;
       padding: 7px 25px;
@@ -357,7 +366,7 @@ $backgorundColor:#E2E4E6;
       display: inline-block;
       &:hover{
         cursor: pointer;
-        background-color: #FDA29F;
+        background-color: #44A1B0;
       }
     }/*#ReadingInfoSelectBtn*/
     .add_formContain{
