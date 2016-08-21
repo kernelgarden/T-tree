@@ -11,6 +11,7 @@ var checkSecond=false;			//두번째인지를 저장
 var movingChild=false;
 var parentClickCnt=0;			//parent 가지 click 카운트
 var childBranchArr=new Array(8)	//child 가지 저장 배열
+var fixedHeight=40;			//헤더를 고정하면서 내려가야하는 높이 
 
 function renderCircle(){
   	function toDegrees(angle){
@@ -24,7 +25,11 @@ function renderCircle(){
 	    width=1366;
 	    height=768;
   	}//if
-
+  	//alert(heightPosition)
+  	//최소 높이, 넢이를 제한 
+  	if(heightPosition<490)	heightPosition=490;
+  	//if(widthPosition<700)	widthPosition=700;
+  	
   	//parent 위치 설정
   	var parent = $('div.parent');
   	parentWidth=width*(1/9);
@@ -32,14 +37,14 @@ function renderCircle(){
   	parent.width(String(parentWidth));
   	parent.height(String(parentHeight));
   	var parentCircleHalfWidth = (parent.width()/2);
-  	var parentTop = parent.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth});
+  	var parentTop = parent.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth+fixedHeight});
   	var parentLeft = parent.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
 
   	//childGroup 설정
   	var childGroup = $('div.childGroup');
   	childGroup.width(String(parentWidth));
   	childGroup.height(String(parentHeight));
-  	childGroup.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth});
+  	childGroup.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth+fixedHeight});
   	childGroup.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
 
   	//Number of services
@@ -523,20 +528,25 @@ function renderCircle(){
 	    width=1366;
 	    height=768;
   	}//if
+  	
+  	//최소 높이를 제한 
+  	if(heightPosition<490)	heightPosition=490;
+  	//if(widthPosition<700)	widthPosition=700;
+
 	var parent = $('div.parent');
   	parentWidth=width*(1/9);
   	parentHeight=parentWidth;
   	parent.width(String(parentWidth));
   	parent.height(String(parentHeight));
   	var parentCircleHalfWidth = (parent.width()/2);
-  	var parentTop = parent.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth});
+  	var parentTop = parent.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth+fixedHeight});
   	var parentLeft = parent.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
 
   	//childGroup 설정
   	var childGroup = $('div.childGroup');
   	childGroup.width(String(parentWidth));
   	childGroup.height(String(parentHeight));
-  	childGroup.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth});
+  	childGroup.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth+fixedHeight});
   	childGroup.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
   });
 

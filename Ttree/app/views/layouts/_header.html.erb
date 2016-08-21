@@ -1,5 +1,6 @@
 <%= javascript_tag do %>
   window.userID = "<%= current_user.id%>";
+  window.userName ="<%= current_user.name %>";
 <% end %>
 <ul id="header">
   <li class="menu" id="menu_1">
@@ -86,6 +87,8 @@ var heightChange=0;   //높이 변화 체크
 var heightChange2=0;  //team 높이 변화 체크 
 var Change=0;         //원래 변화 체크 
 var Change2=0;        //team 높이 원래 변화 체크
+var widthMax =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
+var heightMax =window.screen.availHeight||document.body.clientHeigh;
 
 var setHeight=function(){ //높이 정해주는 함수 
   var height=0;
@@ -298,7 +301,7 @@ $(document).ready(function(){
         var inputData={"work":{"name":formData1, "user_id":userID, "team_id":formData2}}
       }
       
-      //var json=$.parseJSON(formData);
+      //gvar json=$.parseJSON(formData);
       //alert(json.id)
       countDropdown5++
       if(countDropdown5==1){
@@ -351,5 +354,18 @@ $(window).resize(function(){
   widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
   heightPosition =(window.innerHeight||document.body.clientHeigh)-60;
   setHeight();
+  if(widthMax/2>widthPosition){
+    $("#menuDiv1").empty().append("W")
+  } 
+  else if(widthMax/2<=widthPosition){
+    $("#menuDiv1").empty().append("Works")
+  }  
+  if(widthMax*2/3>widthPosition){
+    $("#menuDiv6").empty().append("<span class='user'><img src='/assets/user.png' height='20px' width='15px'></span>")
+  }
+  else if(widthMax*2/3<=widthPosition){
+    $("#menuDiv6").empty().append(userName)
+  }
+  
 });
 </script>
