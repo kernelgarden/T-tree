@@ -9,7 +9,7 @@
     <div class="wrapDiv">
       <form action="/users/profile" accept-charset="UTF-8" method="get">
         <input name="utf8" type="hidden" value="✓">
-        <input type="text" name="search" class="search blue" value="" placeholder="Search">
+        <input type="text" name="search" class="search blue" value="" placeholder="">
       </form>
     </div>
   </li>
@@ -20,12 +20,13 @@
     <div class="wrapDiv"></div>
   </li>
   <li class="menu" id="menu_5">
-    <div id="menuDiv5"><img src="/assets/add.png" id="plus"></div>
+    <div id="menuDiv5"><img src="/assets/plus2.png" id="plus" height="20px" width="20px"></div>
   </li>
   <li class="menu" id="menu_6">
     <div id="menuDiv6"><%= current_user.name %></div>
   </li>
-</ul>
+</ul> 
+
 <div id="dropDown1">
   <ul id="WorkList">
     <form class="work_searchContain" name="work_searchForm" id="work_searchForm" action="" method="post"><input type="text" name="workSearchData" value="Find works by name.." ></form>
@@ -341,6 +342,8 @@ $(document).ready(function(){
 //스크롤 내릴 때 dropDown1도 같이 움직이기 
 $(window).scroll(function(){
   $('#dropDown1').animate({top:($(window).scrollTop()+50)+"px"}, {queue:false, duration:10})
+  $('#dropDown5').animate({top:($(window).scrollTop()+50)+"px"}, {queue:false, duration:10})
+  $('#dropDown6').animate({top:($(window).scrollTop()+50)+"px"}, {queue:false, duration:10})
   //$('#header').css('top', $(window).scrollTop() + "px");
 })
 //resize될때마다 dropDown1의 길이도 변경해주기 
