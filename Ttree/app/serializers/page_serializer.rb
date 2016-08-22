@@ -1,3 +1,3 @@
 class PageSerializer < ActiveModel::Serializer
-  attributes :id, :name, :branch_id
+  attributes :id, :title, :branch_id
 end

@@ -23,9 +23,9 @@
 	end
 
 	20.times do |n|
- 		name="page"+(n+1).to_s
+ 		title="page"+(n+1).to_s
  		currentbranch=Branch.find_by(id:(n/2+1))
- 		currentbranch.pages.create(name: name)
+ 		currentbranch.pages.create(title: title)
 	end
 
  	#Branch.first.connect(Branch.second)

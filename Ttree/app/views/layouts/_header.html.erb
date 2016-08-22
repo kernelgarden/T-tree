@@ -1,3 +1,7 @@
+<%= javascript_tag do %>
+  window.userID = "<%= current_user.id%>";
+  window.userName ="<%= current_user.name %>";
+<% end %>
 
 <ul id="header">
   <li class="menu" id="menu_1">
@@ -7,7 +11,7 @@
     <div class="wrapDiv">
       <form action="/users/profile" accept-charset="UTF-8" method="get">
         <input name="utf8" type="hidden" value="✓">
-        <input type="text" name="search" class="search blue" value="" placeholder="Search">
+        <input type="text" name="search" class="search blue" value="" placeholder="">
       </form>
     </div>
   </li>
@@ -18,15 +22,42 @@
     <div class="wrapDiv"></div>
   </li>
   <li class="menu" id="menu_5">
-    <div id="menuDiv5"><img src="/assets/add.png" id="plus"></div>
+    <div id="menuDiv5"><img src="/assets/plus2.png" id="plus" height="20px" width="20px"></div>
   </li>
   <li class="menu" id="menu_6">
     <div id="menuDiv6"><%= current_user.name %></div>
   </li>
-</ul>
+</ul> 
+
 <div id="dropDown1">
-  <li class="user_li" id="user_li2">Team Work</li>
-  <li class="user_li" id="user_li3">Personal Work</li>
+  <ul id="WorkList">
+    <form class="work_searchContain" name="work_searchForm" id="work_searchForm" action="" method="post"><input type="text" name="workSearchData" value="Find works by name.." ></form>
+    <li class="work_li" id="work_li1">
+      <span class='left_icon'><img src="/assets/star.png" height="15px" width="15px"></span>
+      Starred Works
+      <span class='right_icon plus_icon starred'><img src="/assets/plus.png" height="15px" width="15px"></span>
+    </li>
+    <ul id="StarredWorks"></ul>
+    <li class="work_li" id="work_li2">
+      <span class='left_icon'><img src="/assets/clock.png" height="15px" width="15px"></span>
+      Recent Works
+      <span class='right_icon plus_icon recent'><img src="/assets/plus.png" height="15px" width="15px"></span>
+    </li>
+    <ul id="RecentWorks"></ul>
+    <li class="work_li" id="work_li3">
+      <span class='left_icon'><img src="/assets/personal.png" height="15px" width="15px"></span>
+      Personal Works
+      <span class='right_icon plus_icon personal'><img src="/assets/plus.png" height="15px" width="15px"></span>
+    </li>
+    <ul id="PersonalWorks"></ul>
+    <li class="work_li" id="work_li4">
+      <span class='left_icon'><img src="/assets/team2.png" height="15px" width="15px"></span>Team 
+      Works
+      <span class='right_icon plus_icon team'><img src="/assets/plus.png" height="15px" width="15px"></span>
+    </li>
+    <ul id="TeamWorks"></ul>
+
+  </ul>
 </div>
 <div id="dropDown5">
   <ul id="addList">
@@ -38,21 +69,111 @@
 </div>
 <div id="dropDown6">
   <ul id="userList">
-    <li class="user_li" id="user_li1"><%= current_user.name %>(<%= current_user.email %>)</li>
+    <li class="user_li_name" id="user_li1"><p><%= current_user.name %></p><p>(<%= current_user.email %>)</p></li>
     <li class="user_li" id="user_li2">Profile</li>
     <li class="user_li" id="user_li3">Works</li>
     <li class="user_li" id="user_li4">Teams</li>
     <%=  link_to '<li class="user_li" id="user_li5">All-pages</li>'.html_safe, (show_pages_path)%>
     <li class="user_li" id="user_li6">Help</li>
-    <%=  link_to '<li class="user_li" id="user_li7">로그아웃</li>'.html_safe, destroy_user_session_path,
+    <%=  link_to '<li class="user_li_logout" id="user_li7">로그아웃</li>'.html_safe, destroy_user_session_path,
     method: :delete, data: {confirm: "로그아웃?" }%>
   </ul>
 </div>
+
 <script>
+
+var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
+var heightPosition =(window.innerHeight||document.body.clientHeigh)-60;
+var count=0;
+var countDropdown5=0;
+var heightChange=0;   //높이 변화 체크 
+var heightChange2=0;  //team 높이 변화 체크 
+var Change=0;         //원래 변화 체크 
+var Change2=0;        //team 높이 원래 변화 체크
+var widthMax =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
+var heightMax =window.screen.availHeight||document.body.clientHeigh;
+
+var setHeight=function(){ //높이 정해주는 함수 
+  var height=0;
+  console.log(height)
+  if($('.personal').hasClass('minus_icon')){
+    height=+Change;
+  }
+  console.log(height)
+  if($('.team').hasClass('minus_icon')){
+      height=+Change2;
+  }
+  console.log(height)
+  if(height>heightPosition-220) $('#dropDown1').height(heightPosition)
+  else $('#dropDown1').height(220+height)
+}//setHeight()
+
+var getPersonalWork=function(){ //persoanl work 가져오는 json
+  Change=0;
+  ///////////////////////////////////////JSON/////////////////////////////////////
+  $.getJSON("/api/user/"+userID, function(response) {
+    if(response.work_ids.length==0){
+      alert("work를 추가해주세요!")
+      count=0;
+      $('.personal').empty(0).append("<img src='/assets/plus.png' height='15px' width='15px'>")
+      $('.personal').removeClass('minus_icon').addClass('plus_icon')
+    }
+    for(var i=0; i<response.work_ids.length; i++){
+      if($("#PersonalWorks").eq(i).empty(0))
+        $("#PersonalWorks").append("<li class='work_detail_li' id='PersonalWorks_li"+i+"'></li>")
+    }
+        
+    $.each(response.work_ids, function (i,id) {
+      $.getJSON("/api/work/"+id, function(response) {
+        if(response.team_id==null&&$(".work_detail_li").eq(i).empty(0)){
+          $(".work_detail_li").eq(i).append(response.name);
+          //일정 크기를 넘어가면 높이를 고정 
+          if(($('#dropDown1').height()+30)<=heightPosition){
+            var height=$('#dropDown1').height()+35;
+            heightChange=heightChange+35;
+          }
+          else var height=$('#dropDown1').height()
+          Change=Change+35;
+          $('#dropDown1').height(height)            
+        }
+        else Change=0;
+      });
+    });
+  });
+}//getPersonalWork()
+
+var goBackDropdown5=function(){ //dropdown5에서 처음 모양으로 돌아가기 위해서 
+  $('.add_li').fadeIn()
+  $('.add_form').fadeOut(0)
+  //타이틀 다시 수정
+  $('#add_li1').empty().append("Create")
+  $('.add_form, #ReadingInfoSelectForm, #ReadingInfoSelectForm2, #ReadingInfoSelectBtn').remove(0)
+  countDropdown5=0;
+}//goBackDropdown5()
+
+var widthChangeReact=function(){  //width가 변함에 따라 네비게이션바 메뉴 내용 변경 
+  if(widthMax/2>widthPosition){
+    $("#menuDiv1").empty().append("W")
+  } 
+  else if(widthMax/2<=widthPosition){
+    $("#menuDiv1").empty().append("Works")
+  }  
+  if(widthMax*2/3>widthPosition){
+    $("#menuDiv6").empty().append("<span class='user'><img src='/assets/user.png' height='20px' width='15px'></span>")
+  }
+  else if(widthMax*2/3<=widthPosition){
+    $("#menuDiv6").empty().append(userName)
+  }
+}
+
 $(document).ready(function(){
   var nCount1=0;
   var nCount2=0;
   var nCount3=0;
+  
+  //width가 변함에 따라 네비게이션바 메뉴 내용 변경
+  widthChangeReact();
+  
   $('#menuDiv1').click(function(){
     if(nCount1==0){
       $('#dropDown1').show();
@@ -63,9 +184,15 @@ $(document).ready(function(){
       nCount1=0;
     }
   })
-  $('div:not(#menuDiv1,#dropDown1)').click(function(){
+  $('div:not(#menuDiv1,#menuDiv5,#menuDiv6,#dropDown1, #dropDown5, #dropDown6)').click(function(){
     if(nCount1==1){
       $('#dropDown1').hide();
+      $('.minus_icon').empty(0).append("<img src='/assets/plus.png' height='15px' width='15px'>")
+      $('.minus_icon').removeClass('minus_icon').addClass('plus_icon')
+      $("#PersonalWorks").empty(0);
+      $("#TeamWorks").empty(0);
+      $('#dropDown1').height(220)
+      count=0;
       nCount1=0;
     }
   })
@@ -79,14 +206,13 @@ $(document).ready(function(){
       nCount3=0;
     }
   })
-  $('div:not(#menuDiv5,#dropDown5)').click(function(){
+  //dropDonw5를 없애기 위해 
+  $('div:not(#menuDiv1,#menuDiv5,#dropDown1, #dropDown5)').click(function(){
     if(nCount3==1){
       $('#dropDown5').hide();
       nCount3=0;
-      //항목들 다시 나타나게 함
-      $('.add_li').fadeIn();
-      //타이틀 다시 수정
-      $('#add_li1').empty().append("Create")
+      //dropdown5에서 처음 모양으로 돌아가기 위해서 
+      goBackDropdown5();
     }
   })
   $('#menuDiv6').click(function(){
@@ -99,32 +225,189 @@ $(document).ready(function(){
       nCount2=0;
     }
   })
-  $('div:not(#menuDiv6, #dropDown6)').click(function(){
+  $('div:not(#menuDiv1, #menuDiv6,#dropDown1, #dropDown6)').click(function(){
     if(nCount2==1){
       $('#dropDown6').hide();
       nCount2=0;
     }
+  }) 
+  
+  /*************************************#dropdown1*************************************/
+  $(document).on("click",".plus_icon",function(){
+    $(this).empty(0).append("<img src='/assets/minus.png' height='15px' width='15px'>")
+    $(this).removeClass('plus_icon').addClass('minus_icon')
+    
+    if($(this).hasClass('personal')){
+      Change=0;
+      count++;
+      ///////////////////////////////////////JSON/////////////////////////////////////
+      if(count==1) getPersonalWork();
+      ////////////////////////////////////////////////////////////////////////////////
+    }//personal
+    
+    if($(this).hasClass('team')){
+      Change2=0;
+      ///////////////////////////////////////JSON/////////////////////////////////////
+      $.getJSON("/api/user/"+userID, function(response) {
+        $.each(response.team_ids, function (i,id) {
+          $.getJSON("/api/team/"+id, function(response) {
+              $("#TeamWorks").append("<li class='team_li' id='team_li"+id+"'>"+response.name+"<span class='team_right_icon team_plus_icon'><img src='/assets/plus.png' height='15px' width='15px'></span></li>");
+              //일정 크기를 넘어가면 높이를 고정 
+              if(($('#dropDown1').height()+30)<=heightPosition){
+                var height=$('#dropDown1').height()+35;
+                heightChange2=heightChange2+35;
+              }
+              else var height=$('#dropDown1').height()
+              Change2=Change2+35;
+              $('#dropDown1').height(height)
+          });
+        });
+      });
+      ///////////////////////////////////////////////////////////////////////////////
+    }//team
+  })
+  $(document).on("click",".minus_icon",function(){
+    count=0;
+    $(this).empty(0).append("<img src='/assets/plus.png' height='15px' width='15px'>")
+    $(this).removeClass('minus_icon').addClass('plus_icon')
+    if($(this).hasClass('personal')){
+      $("#PersonalWorks").empty(0);
+    }
+
+    if($(this).hasClass('team')){
+      $("#TeamWorks").empty(0);
+    }
+    
+    setHeight();  //높이 정해주는 함수 
   })
 
-  //#dropdown5
+  /*************************************#dropdown5*************************************/
   //Create Work
   $('#add_li2').click(function(){
     $('#add_li1').empty().append('<span id=\'left_icon\'><img src="/assets/arrow-left.png" height="15px" width="15px"></span>Create Work')
     $('.add_li').fadeOut(0);
-    $('#addList').append('<li class=\"add_li\" id=\"add_li2\">Create Work...</li>')
+    //form1
+    $('#addList').append('<li class=\"add_form\" id=\"add_form1\">Title</li>')
+    $('#addList').append('<form class=\"add_formContain\" name=\"ReadingInfoSelectForm\" id=\"ReadingInfoSelectForm\" action=\"\" method=\"post\"><input type=\"text\" name=\"addFormData\" value=\"\"></form>')
+    //form2
+    $('#addList').append('<li class=\"add_form\" id=\"add_form2\">Team</li>')
+    $('#addList').append('<form class=\"add_formContain\" name=\"ReadingInfoSelectForm2\" id=\"ReadingInfoSelectForm2\" action=\"\" method=\"post\"><select id=\"selectTeam\" name=\"team\"><option value=\"null\">(none)</option></select></form>')
+    ///////////////////////////////////////JSON/////////////////////////////////////
+    $.getJSON("/api/user/"+userID, function(response) {
+        $.each(response.team_ids, function (i,id) {
+          $.getJSON("/api/team/"+id, function(response) {
+            $("#selectTeam").append("<option value=\""+id+"\">"+response.name+"</option>");
+          });
+        });
+    });
+    ///////////////////////////////////////////////////////////////////////////////
+    //submit button
+    $('#addList').append('<input type=\"button\" class=\"add_form\" id=\"ReadingInfoSelectBtn\" name=\"ReadingInfoSelectBtn\" value=\"Create\">')
+  })
+
+  //Create Work에서 Create 버튼 눌렀을 때
+  $(document).on("click","#ReadingInfoSelectBtn",function() {
+      jQuery.fn.mySerialize = function() {
+
+        var returning = '';
+
+        $('input, select, textarea', this).each(function() {
+            if (this.value !== "") // check this to avoid && in returning string
+                returning += '&' + this.value;
+        });
+
+        return returning.substring(1);
+
+      };
+      var formData1 = $("#ReadingInfoSelectForm").mySerialize();
+      var formData2 = $("#ReadingInfoSelectForm2").mySerialize();
+      
+      //alert(formData2)
+      //값이 하나라도 안들어오면 알림창을 표시하고 리턴하여 함수빠져나감 
+      if(formData1==''||formData2=='') {
+        alert("빈칸!")
+        return;
+      } 
+      if(formData2=="null"){
+        var inputData={"work":{"name":formData1, "user_id":userID}}
+      }else{
+        var inputData={"work":{"name":formData1, "user_id":userID, "team_id":formData2}}
+      }
+      
+      //gvar json=$.parseJSON(formData);
+      //alert(json.id)
+      countDropdown5++
+      if(countDropdown5==1){
+        $.ajax({
+              type : "POST",
+              url : "/api/post/work",
+              contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+              cache : false,
+              data :  inputData,
+              success:function(data){ 
+                //alert('success');
+              }
+        });
+      }
+      //재조회
+      getInfo();
+      getWorkFromUser();
+      
+      $('#dropDown5').hide();
+      nCount3=0;
+      //dropdown5에서 처음 모양으로 돌아가기 위해서 
+      goBackDropdown5();
+      $('#dropDown5').hide();
+      nCount3=0;
+      //dropdown5에서 처음 모양으로 돌아가기 위해서 
+      goBackDropdown5();
+
+      /*
+      if($('.personal').hasClass('minus_icon')){
+        Change=0;
+        $("#PersonalWorks").empty(0)
+        ///////////////////////////////////////JSON/////////////////////////////////////
+        //getPersonalWork();
+        ////////////////////////////////////////////////////////////////////////////////
+      }*/
   })
   //Create Team
   $('#add_li3').click(function(){
-    $('#add_li1').empty().append('<span id=\'left_icon\'><img src="/assets/arrow-left.png" height="15px" width="15px"></span>Create Team')
-    $('.add_li').fadeOut();
+    //$('#add_li1').empty().append('<span id=\'left_icon\'><img src="/assets/arrow-left.png" height="15px" width="15px"></span>Create Team')
+    //$('.add_li').fadeOut();
 
   })
   //왼쪽 화살표를 누르면 이전 화면으로 이동 
   $(document).on("click","#left_icon",function() {
-     $('.add_li').fadeIn()
-     $(this).fadeOut(0)
-     //타이틀 다시 수정
-      $('#add_li1').empty().append("Create")
+    //dropdown5에서 이전화살표를 눌렀을 때
+    goBackDropdown5();
+    $(this).fadeOut(0)
   });
+});
+//스크롤 내릴 때 dropDown1도 같이 움직이기 
+$(window).scroll(function(){
+  $('#dropDown1').animate({top:($(window).scrollTop()+50)+"px"}, {queue:false, duration:10})
+  $('#dropDown5').animate({top:($(window).scrollTop()+50)+"px"}, {queue:false, duration:10})
+  $('#dropDown6').animate({top:($(window).scrollTop()+50)+"px"}, {queue:false, duration:10})
+  //$('#header').css('top', $(window).scrollTop() + "px");
+})
+//resize될때마다 dropDown1의 길이도 변경해주기 
+$(window).resize(function(){
+  widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
+  heightPosition =(window.innerHeight||document.body.clientHeigh)-60;
+  setHeight();
+  if(widthMax/2>widthPosition){
+    $("#menuDiv1").empty().append("W")
+  } 
+  else if(widthMax/2<=widthPosition){
+    $("#menuDiv1").empty().append("Works")
+  }  
+  if(widthMax*2/3>widthPosition){
+    $("#menuDiv6").empty().append("<span class='user'><img src='/assets/user.png' height='20px' width='15px'></span>")
+  }
+  else if(widthMax*2/3<=widthPosition){
+    $("#menuDiv6").empty().append(userName)
+  }
+  
 });
 </script>

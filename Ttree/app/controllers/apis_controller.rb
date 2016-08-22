@@ -1,4 +1,7 @@
 class ApisController < ApplicationController
+	skip_before_action :verify_authenticity_token
+	before_action :getWork, :only => [:getWork1]
+
 	def users
 		@users=User.all
   		render :json => @users
@@ -14,6 +17,7 @@ class ApisController < ApplicationController
   		render :json => @user
 	end
 
+
 	def works
 		@user=User.find(params[:id])
   		render :json => @user.works
@@ -22,6 +26,27 @@ class ApisController < ApplicationController
 	def work_ids
 		@user=User.find(params[:id])
   		render :json => @user.work_ids
+	end
+
+	def team
+		@team=Team.find(params[:id])
+  		render :json => @team
+	end
+
+
+	def teamworks
+		@team=Team.find(params[:id])
+  		render :json => @team.works
+	end
+
+	def teamwork_ids
+		@team=Team.find(params[:id])
+  		render :json => @team.work_ids
+	end
+
+	def member_ids
+		@team=Team.find(params[:id])
+  		render :json => @team.user_ids
 	end
 
 	def work
@@ -64,5 +89,32 @@ class ApisController < ApplicationController
 		@page=Page.find(params[:id])
 		render :json => @page
 	end
+	
+	def unclassifiedpage
+		@unclassifiedpage=Unclassifiedpage.find(params[:id])
+		render :json => @unclassifiedpage
+	end
 
+	def getWork
+		#@work=(params[:work])
+		Work.create(work_params)
+  		#render :json => @work
+
+	end
+
+	def getPages
+
+		@json= JSON.parse(request.raw_post)
+		@user= User.find_by_email(@json["user_email"])
+		@json["pages"].each do |page|
+			Unclassifiedpage.create(:user_id=>@user.id, :title=>page["title"], :url=>page["url"])
+		end
+
+	end
+
+	private
+
+	def work_params
+		params.require(:work).permit(:name, :user_id, :team_id, :branch_ids)
+	end
 end
