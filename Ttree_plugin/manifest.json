@@ -6,7 +6,7 @@
   "homepage_url": "http://ttree.com",
   "background": {
     "scripts": [
-      "background.js"
+      "background.js", "jquery-3.1.0.min.js"
     ],
     "persistent": false
   },
@@ -17,6 +17,15 @@
     "tabs",
     "activeTab",
     "storage",
-    "<all_urls>"
-  ]
+    "<all_urls>",
+    "identity",
+    "identity.email"
+  ],
+  "oauth2": {
+    "client_id": "808954855116-8pjkdi2b798ohjup71v1ckdfqr92j23i.apps.googleusercontent.com",
+    "scopes": [
+            "https://www.googleapis.com/auth/plus.login",
+            "https://www.googleapis.com/auth/userinfo.email"
+        ]
+  }
 }

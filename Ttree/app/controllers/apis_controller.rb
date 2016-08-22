@@ -17,12 +17,12 @@ class ApisController < ApplicationController
 	def works
 		@user=User.find(params[:id])
   		render :json => @user.works
-	end 
+	end
 
 	def work_ids
 		@user=User.find(params[:id])
   		render :json => @user.work_ids
-	end 
+	end
 
 	def work
 		@work=Work.find(params[:id])
@@ -32,12 +32,12 @@ class ApisController < ApplicationController
 	def branches
 		@work=Work.find(params[:id])
   		render :json => @work.branches
-	end 
+	end
 
 	def branche_ids
 		@work=Work.find(params[:id])
   		render :json => @work.branch_ids
-	end 
+	end
 
 	def branch
 		@branch=Branch.find(params[:id])
@@ -53,17 +53,16 @@ class ApisController < ApplicationController
 	def pages
 		@branch=Branch.find(params[:id])
   		render :json => @branch.pages
-	end 
+	end
 
 	def page_ids
 		@branch=Branch.find(params[:id])
   		render :json => @branch.page_ids
-	end 
+	end
 
 	def page
 		@page=Page.find(params[:id])
 		render :json => @page
 	end
-	
 
 end

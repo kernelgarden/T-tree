@@ -23,5 +23,7 @@ Rails.application.routes.draw do
   get '/api/branch/:id/page_ids', to: 'apis#page_ids' #해당 branch의 page id들
   get '/api/page/:id', to: 'apis#page'			#해당 page의 정보
 
+  post '/api/new/', to: 'apis#getNewData'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
