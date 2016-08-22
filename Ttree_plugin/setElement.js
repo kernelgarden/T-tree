@@ -25,6 +25,27 @@ function click(e) {
 var tab_length = 0;
 
 document.addEventListener('DOMContentLoaded', function() {
+	window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '280839942296040',
+      xfbml      : true,
+      version    : 'v2.7'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+	FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+		alert("test");
+	});
+
 	chrome.storage.local.get("tab_length", function(items) {
 		tab_length = items.tab_length;
 		var tab_arr = [];

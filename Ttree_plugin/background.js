@@ -20,6 +20,10 @@ function start(tab) {
 	  x.open('GET', 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=' + token);
 	  x.onload = function() {
 			//alert(x.response);
+			if (token != undefined) {
+				chrome.windows.getCurrent(getWindows).then(function(col) {
+				});
+			}
 		};
 	  x.send();
 	});
@@ -28,8 +32,6 @@ function start(tab) {
 		targetId = tab.id;
 	});
 	*/
-	chrome.windows.getCurrent(getWindows).then(function(col) {
-	});
 }
 
 function getWindows(window) {
@@ -56,7 +58,7 @@ function processTabs(windows) {
 
 	chrome.identity.getProfileUserInfo( callbackClosure( function(userInfo) {
 		//alert(JSON.stringify(userInfo.email));
-		userProfile.email = JSON.stringify(userInfo.email);
+		userProfile.email = userInfo.email;
 		asyncFlag = true;
 	}));
 
@@ -67,7 +69,7 @@ function processTabs(windows) {
 			jsonObj.pages = pages;
 			jsonObj["user_email"] = userProfile.email;
 
-			//alert("email: " + jsonObj["user_email"]);
+			alert("email: " + jsonObj["user_email"]);
 
 			for (var i = 0; i < numWindows; i++) {
 				var win = windows[i];
@@ -102,10 +104,10 @@ function processTabs(windows) {
 						}
 					});
 					*/
-					chrome.tabs.remove(tab.id);
+					//chrome.tabs.remove(tab.id);
 				}
 			}
-			//alert(JSON.stringify(jsonObj));
+			alert(JSON.stringify(jsonObj));
 			$.ajax({
 		            type : "POST",
 		            url : "http://52.78.83.129:3000/api/page/new",
