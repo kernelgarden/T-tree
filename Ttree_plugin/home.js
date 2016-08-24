@@ -145,6 +145,7 @@ var facebook = (function() {
                 'https://graph.facebook.com/me?'+access_token+'&fields=name,email',
                 interactive,
                 onUserInfoFetched);
+    //alert(access_token);
     //alert("test");
   }
 
@@ -153,7 +154,9 @@ var facebook = (function() {
       var user_info = JSON.parse(response);
       console.log("Got the following user info: " + response);
       console.log(user_info.name);
-      chrome.identity.getProfileUserInfo(function(userInfo){ console.log(userInfo); });
+      console.log(user_info);
+      //alert(user_info);
+      //chrome.identity.getProfileUserInfo(function(userInfo){ console.log(userInfo); });
     } else {
     }
   }
@@ -175,7 +178,7 @@ var facebook = (function() {
         var x = new XMLHttpRequest();
         x.open('GET', 'https://graph.facebook.com/me?'+access_token+'&fields=name,email');
         x.onload = function() {
-             //alert(x.response);
+             alert(x.response);
              console.log("login user");
         };
         x.send();
@@ -194,8 +197,9 @@ var facebook = (function() {
         interactiveSignIn();
       })
       */
-      $("#facebook").on("click", function() {
+      $("#facebook").on("click", function(event) {
         //alert("fuck");
+        event.preventDefault();
         interactiveSignIn();
         //alert("end");
       })
