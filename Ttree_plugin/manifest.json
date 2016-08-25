@@ -21,7 +21,8 @@
     "identity",
     "identity.email",
     "https://www.facebook.com/",
-    "https://graph.facebook.com/"
+    "https://graph.facebook.com/",
+    "contextMenus"
   ],
   "oauth2": {
     "client_id": "808954855116-8pjkdi2b798ohjup71v1ckdfqr92j23i.apps.googleusercontent.com",

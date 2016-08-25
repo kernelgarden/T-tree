@@ -3,6 +3,9 @@ var main  = (function() {
   google.onload;
 });
 
+var tabStorageLoginInfo = {};
+tabStorageLoginInfo["LoginInfo"] = {};
+
 var facebook = (function() {
 
   var access_token;
@@ -145,15 +148,33 @@ var facebook = (function() {
                 'https://graph.facebook.com/me?'+access_token+'&fields=name,email',
                 interactive,
                 onUserInfoFetched);
+    //alert(access_token);
     //alert("test");
   }
 
   function onUserInfoFetched(error, status, response) {
     if (!error && status == 200) {
       var user_info = JSON.parse(response);
-      console.log("Got the following user info: " + response);
-      console.log(user_info.name);
-      chrome.identity.getProfileUserInfo(function(userInfo){ console.log(userInfo); });
+      //console.log("Got the following user info: " + response);
+      //console.log(user_info.name);
+      //console.log(user_info);
+      tabStorageLoginInfo["LoginInfo"]["provider"] = "facebook";
+      tabStorageLoginInfo["LoginInfo"]["access_token"] = access_token;
+      tabStorageLoginInfo["LoginInfo"]["user_email"] = user_info.email;
+      tabStorageLoginInfo["LoginInfo"]["user_id"] = user_info.id;
+      tabStorageLoginInfo["LoginInfo"]["user_name"] = user_info.name;
+      //console.log(tabStorageLoginInfo);
+      chrome.storage.local.set(tabStorageLoginInfo, function() {
+        if (chrome.extension.lastError) {
+            //alert('An error occurred: ' + chrome.extension.lastError.message);
+        }
+        chrome.tabs.getCurrent(function(tab) {
+          chrome.tabs.remove(tab.id);
+        });
+        //alert("save!!!");
+      });
+      //alert(user_info);
+      //chrome.identity.getProfileUserInfo(function(userInfo){ console.log(userInfo); });
     } else {
     }
   }
@@ -162,7 +183,7 @@ var facebook = (function() {
     //alert("fuck");
     tokenFetcher.getToken(true, function(error, access_token) {
       if (error) {
-        alert("error");
+        //alert("error");
       } else {
         /*
         alert("test2");
@@ -175,7 +196,7 @@ var facebook = (function() {
         var x = new XMLHttpRequest();
         x.open('GET', 'https://graph.facebook.com/me?'+access_token+'&fields=name,email');
         x.onload = function() {
-             //alert(x.response);
+             alert(x.response);
              console.log("login user");
         };
         x.send();
@@ -194,8 +215,9 @@ var facebook = (function() {
         interactiveSignIn();
       })
       */
-      $("#facebook").on("click", function() {
+      $("#facebook").on("click", function(event) {
         //alert("fuck");
+        event.preventDefault();
         interactiveSignIn();
         //alert("end");
       })
@@ -211,11 +233,56 @@ var facebook = (function() {
   };
 })();
 
-var google = (function() {
+function googleSignIn() {
+  chrome.identity.getAuthToken({
+	  interactive: true
+	}, function(token) {
+	  if (chrome.runtime.lastError) {
+	    //alert(chrome.runtime.lastError.message);
+	    return;
+	  }
 
-});
+    tabStorageLoginInfo["LoginInfo"]["provider"] = "google";
+    tabStorageLoginInfo["LoginInfo"]["access_token"] = token;
+
+	  var x = new XMLHttpRequest();
+	  x.open('GET', 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=' + token);
+	  x.onload = function() {
+			//alert(x.response);
+      console.log(x.response);
+      var data = JSON.parse(x.response);
+      tabStorageLoginInfo["LoginInfo"]["user_email"] = data.email;
+      tabStorageLoginInfo["LoginInfo"]["user_id"] = data.id;
+      tabStorageLoginInfo["LoginInfo"]["user_name"] = data.name;
+      console.log(tabStorageLoginInfo);
+      chrome.storage.local.set(tabStorageLoginInfo, function() {
+        if (chrome.extension.lastError) {
+            //alert('An error occurred: ' + chrome.extension.lastError.message);
+        }
+        //alert("save!!!");
+        chrome.tabs.getCurrent(function(tab) {
+          chrome.tabs.remove(tab.id);
+        });
+      });
+		};
+	  x.send();
+	});
+}
+
+var google = (function() {
+  return {
+    onload: function() {
+      $("#google").on("click", function(event) {
+        event.preventDefault();
+        googleSignIn();
+      })
+    }
+  };
+})();
+
 $(document).ready(function(){
   facebook.onload();
+  google.onload();
 })
 
 //window.onload = facebook.onload;

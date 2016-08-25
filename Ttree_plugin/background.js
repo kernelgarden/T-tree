@@ -6,9 +6,29 @@ var counter = 0;
 var count;
 var email;
 
+function isEmpty(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+
+    return true && JSON.stringify(obj) === JSON.stringify({});
+}
+
 function start(tab) {
 	counter = 0;
 
+	chrome.storage.local.get("LoginInfo", function(item) {
+		if (!isEmpty(item)) {
+			chrome.windows.getCurrent(getWindows).then(function(col) {
+			});
+		} else {
+			chrome.tabs.create({url: appUrl}, function(tab) {
+				targetId = tab.id;
+			});
+		}
+	});
+/*
 	chrome.identity.getAuthToken({
 	  interactive: true
 	}, function(token) {
@@ -16,6 +36,7 @@ function start(tab) {
 	    alert(chrome.runtime.lastError.message);
 	    return;
 	  }
+
 	  var x = new XMLHttpRequest();
 	  x.open('GET', 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=' + token);
 	  x.onload = function() {
@@ -27,6 +48,7 @@ function start(tab) {
 		};
 	  x.send();
 	});
+*/
 	/*
 	chrome.tabs.create({url: appUrl}, function(tab) {
 		targetId = tab.id;
@@ -51,16 +73,31 @@ function processTabs(windows) {
 	var asyncFlag = false;
 
 	function callbackClosure(callback) {
+		return function(item) {
+			return callback(item);
+		}
+		/*
 		return function(userInfo) {
 			return callback(userInfo);
 		}
+		*/
 	}
 
+	chrome.storage.local.get("LoginInfo", callbackClosure(function(item) {
+		//alert(JSON.stringify(item));
+		userProfile.email = item["LoginInfo"]["user_email"];
+		userProfile.id = item["LoginInfo"]["user_id"];
+		userProfile.provider = item["LoginInfo"]["provider"];
+		asyncFlag = true;
+	}));
+
+/*
 	chrome.identity.getProfileUserInfo( callbackClosure( function(userInfo) {
 		//alert(JSON.stringify(userInfo.email));
 		userProfile.email = userInfo.email;
 		asyncFlag = true;
 	}));
+*/
 
 	function wait(){
 	  if (!asyncFlag){
@@ -68,8 +105,9 @@ function processTabs(windows) {
 	  } else {
 			jsonObj.pages = pages;
 			jsonObj["user_email"] = userProfile.email;
+			jsonObj["provider"] = userProfile.provider;
 
-			alert("email: " + jsonObj["user_email"]);
+			//alert("email: " + jsonObj["user_email"]);
 
 			for (var i = 0; i < numWindows; i++) {
 				var win = windows[i];
@@ -104,10 +142,10 @@ function processTabs(windows) {
 						}
 					});
 					*/
-					//chrome.tabs.remove(tab.id);
+					chrome.tabs.remove(tab.id);
 				}
 			}
-			alert(JSON.stringify(jsonObj));
+			//alert(JSON.stringify(jsonObj));
 			$.ajax({
 		            type : "POST",
 		            url : "http://52.78.83.129:3000/api/page/new",
@@ -130,3 +168,17 @@ function processTabs(windows) {
 
 // listen for our browerAction to be clicked
 chrome.browserAction.onClicked.addListener(start);
+
+function onClickHandler(info, tab) {
+	chrome.storage.local.remove("LoginInfo");
+}
+
+chrome.contextMenus.onClicked.addListener(onClickHandler);
+
+chrome.runtime.onInstalled.addListener(function() {
+	chrome.contextMenus.create({"title": "Tab Storage", "contexts": ["browser_action"],
+															"id": "root"});
+
+	chrome.contextMenus.create({"title": "Logout", "contexts": ["browser_action"],
+															"parentId": "root", "id": "logout"});
+})
