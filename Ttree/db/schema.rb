@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160819053539) do
   end
 
   create_table "pages", force: :cascade do |t|
-    t.string   "title"
+    t.string   "name"
     t.integer  "branch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -5,7 +5,12 @@ class User < ApplicationRecord
   has_many :ut_relationships, :foreign_key => "member_id", :dependent => :destroy
   has_many :teams, :through => :ut_relationships
   has_many :works, :dependent => :destroy, :foreign_key => "user_id"
-
+  def self.current
+    Thread.current[:user]
+  end
+  def self.current=(user)
+    Thread.current[:user] = user
+  end
   #팀 가입
   def join(team)
   	ut_relationships.create(team_id: team.id)
@@ -34,9 +39,6 @@ class User < ApplicationRecord
       return user
     end
   end
-
-
-
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
     user = User.where(:email => data["email"]).first
@@ -58,8 +60,5 @@ class User < ApplicationRecord
         user.email=data["email"]if user.email.blank?
       end
     end
-  end
-  def self.search(search)
-    where("email LIKE ? or name LIKE?", "%#{search}%", "%#{search}%")
   end
 end

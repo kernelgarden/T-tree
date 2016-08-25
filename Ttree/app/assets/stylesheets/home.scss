@@ -1,8 +1,6 @@
-
 .member_work{
   margin: 70 auto;
   width: 90%;
-
   .personal_work{
     #personal_work_header{
       height: 35px;
@@ -14,13 +12,15 @@
       border-radius: 5px;
       display: inline-block;
       margin: 5px;
+      overflow:hidden;
+      vertical-align: bottom;
       .personal_work_name{
         margin: 10px;
-         color: white;
+        color: white;
       }/*.personal_work_name*/
       .add_work_name{
         margin: 10px;
-         color: black;
+        color: black;
       }/*.personal_work_name*/
     }/*.personal_work_content*/
     .userWork{
@@ -30,7 +30,6 @@
       background-color: #E2E4E6;
     }
   }/*.personal_work*/
-
   .personal_team{
     margin-top: 40px;
     .personal_team_header{
@@ -52,9 +51,11 @@
       border-radius: 5px;
       display: inline-block;
       margin: 5px;
+      overflow:hidden;
+      vertical-align: bottom;
       .personal_team_name{
         margin: 10px;
-         color: white;
+        color: white;
       }/*.personal_team_name*/
     }/*.personal_team_content*/
     .create_personal_team{
@@ -70,9 +71,3 @@
     }/*.create_personal_team*/
   }/*.personal_team*/
 }/*.member_work*/
-
-
-
-
-
-
