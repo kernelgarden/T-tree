@@ -1,4 +1,5 @@
 class MainController < ApplicationController
+		skip_before_action :verify_authenticity_token
     before_action :logged_in_user, only: [:home]
 
   def home
@@ -8,7 +9,9 @@ class MainController < ApplicationController
   end
 
   def work
+  	@work_id=params[:id]
   end
+
 
   def login
   end

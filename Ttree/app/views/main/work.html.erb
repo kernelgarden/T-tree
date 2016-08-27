@@ -12,7 +12,7 @@ var movingChild=false;
 var parentClickCnt=0;			//parent 가지 click 카운트
 var childBranchArr=new Array(8)	//child 가지 저장 배열
 var fixedHeight=40;			//헤더를 고정하면서 내려가야하는 높이 
-
+var currentWorkId;
 function renderCircle(){
   	function toDegrees(angle){
     	return angle * (Math.PI / 180);
@@ -119,14 +119,16 @@ function renderCircle(){
     })//리스트 function
 
     /////////////////////////////Json/////////////////////////////
+
     if(checkFirst==true){
     	$(".parent").empty();
     	$(".child").empty();
-	    $.getJSON("/api/work/1", function(response) {
-			$(".parent").empty().append(response.id);
-			$(".parent").append(response.name);
-		});
-	  	$.getJSON("/api/work/1/branche_ids", function(response) {
+
+	    $.getJSON("/api/work/"+currentWorkId, function(response) {
+				$(".parent").empty().append(response.id);
+				$(".parent").append(response.name);
+			});
+	  	$.getJSON("/api/work/"+currentWorkId+"/branche_ids", function(response) {
 			$.each(response, function (i,first) {
 				//$(".child"+(i+1)).append(first);
 				var temp=(i+1)
@@ -326,11 +328,11 @@ function renderCircle(){
 			    if(checkFirst==true){
 			    	$(".parent").empty();
 			    	$(".child").empty();
-				    $.getJSON("/api/work/1", function(response) {
+				    $.getJSON("/api/work/"+currentWorkId, function(response) {
 						$(".parent").empty().append(response.id);
 						$(".parent").append(response.name);
 					});
-				  	$.getJSON("/api/work/1/branche_ids", function(response) {
+				  	$.getJSON("/api/work/"+currentWorkId+"/branche_ids", function(response) {
 						$.each(response, function (i,first) {
 							//$(".child"+(i+1)).append(first);
 							var temp=(i+1)
@@ -389,6 +391,7 @@ function renderCircle(){
 }//renderCircle()
 
   $(document).ready(function(){
+  	currentWorkId= '<%= @work_id %>';
   	checkDocument=true;
     var width = window.innerWidth||document.body.clientWidth;
     var height =window.innerHeight||document.body.clientHeigh;
