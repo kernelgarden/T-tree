@@ -6,6 +6,7 @@ var noOfServ;
 var noOfServices;
 var checkBefore;				//이전에 선택된 branch의 클래스 번호를 저장
 var checkThis;					//현재 선택된 branch의 클래스 번호를 저장
+var checkId;						//현재 선택된 branch의 id번호를 저장 
 var checkFirst=true;			//루트인지를 저장
 var checkSecond=false;			//두번째인지를 저장
 var movingChild=false;
@@ -132,10 +133,11 @@ function renderCircle(){
 			$.each(response, function (i,first) {
 				//$(".child"+(i+1)).append(first);
 				var temp=(i+1)
-				$.getJSON("/api/branch/"+temp, function(response) {
+				$.getJSON("/api/branch/"+first, function(response) {
 					if(response.parent_id==null){
 						$(".child"+temp).empty().append(response.id);
 						$(".child"+temp).append(response.name);
+						$(".child"+temp).attr("data-id",first)
 					}
 				});
 			});
@@ -207,6 +209,7 @@ function renderCircle(){
         for(var i = 1; i <= noOfServ; i++){
         	if($(this).hasClass('child'+i)){
         		checkThis=i;
+        		checkId=$(this).data("id");
         	}
         }
         for(var i = 0; i < noOfServ; i++){
@@ -266,11 +269,11 @@ function renderCircle(){
 
     ////////////////////////////////Json///////////////////////////////
 		setTimeout(function(){
-		 	$.getJSON("/api/branch/"+checkThis, function(response) {
+		 	$.getJSON("/api/branch/"+checkId, function(response) {
 				$(".parent").empty().append(response.id);
 				$(".parent").append(response.name);
 			});
-			$.getJSON("/api/branch/"+checkThis, function(response) {
+			$.getJSON("/api/branch/"+checkId, function(response) {
 				$.each(response.child_ids, function (i,first) {
 					//$(".child"+(i+1)).append(first);
 					var temp=first
@@ -279,6 +282,7 @@ function renderCircle(){
 						if(index==0) index=7;
 						$(".child"+index).empty().append(response.id);
 						$(".child"+index).append(response.name);
+						$(".child"+index).attr("data-id",first)
 					});
 				});
 			});
@@ -336,7 +340,7 @@ function renderCircle(){
 						$.each(response, function (i,first) {
 							//$(".child"+(i+1)).append(first);
 							var temp=(i+1)
-							$.getJSON("/api/branch/"+temp, function(response) {
+							$.getJSON("/api/branch/"+first, function(response) {
 								if(response.parent_id==null){
 									$(".child"+temp).empty().append(response.id);
 									$(".child"+temp).append(response.name);
@@ -355,7 +359,7 @@ function renderCircle(){
 	        }//for
 	        /////////////////////////////Json/////////////////////////////
 	        setTimeout(function(){
-	        	$.getJSON("/api/branch/"+checkThis, function(response) {
+	        	$.getJSON("/api/branch/"+checkId, function(response) {
 					checkBefore=response.parent_id;
 				    $.getJSON("/api/branch/"+checkBefore, function(response) {
 						$(".parent").empty().append(response.id);
