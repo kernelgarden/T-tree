@@ -1,5 +1,12 @@
 <div class='pages'>
-
+	<ol id="page">
+		<% for i in 0..30 %>
+		<li class="pageli zoomTarget">
+			<img class="img" src="http://ryugarden.org/api/thumb?url=http://naver.com" />
+			<div class="page_url_div"><a class="page_url">http://naver.com</a></div>
+		</li>
+		<% end %>
+	</ol>
 </div>
 
 <script>
@@ -422,6 +429,26 @@ function renderCircle(){
 				  $('.child').fadeOut();
 				  $('.back').fadeOut();
 				  $(this).delay(300).transition({ x:-(widthPosition*1.8/5)+'px',y:0+'px',duration: 900, scale: 1.0});
+
+				  /*
+				  /////////////////////////////Json/////////////////////////////
+	        setTimeout(function(){
+				  	$.getJSON("/api/branch/"+checkId+"/pages", function(response) {
+							$.each(response, function (i,first) {
+								//$(".child"+(i+1)).append(first);
+								var temp=(i+1)
+								$.getJSON("/api/branch/"+first, function(response) {
+									if(response.parent_id==null){
+										$(".child"+temp).empty().append(response.id);
+										$(".child"+temp).append(response.name);
+										$(".child"+temp).attr("data-id",first)
+									}
+								});
+							});
+				  	}
+			  	}, 1900);
+		  		//////////////////////////////////////////////////////////////
+		  	*/
 		    }//if
 		    else if(parentClickCnt==1){
 		    	parentClickCnt=0;
