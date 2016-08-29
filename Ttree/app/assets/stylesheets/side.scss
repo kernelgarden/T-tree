@@ -1,10 +1,10 @@
 #side_bar{
 	position: absolute;
-	width:10%;
-	height:100%;
-	right:1%;
+	width:15%;
+	height:80%;
+	left:83%;
 	background-color:red;
-	z-index:200;
+	z-index:88;
 	#page_alert{
 		position: relative;
 		border-radius: 50%;
@@ -13,6 +13,7 @@
 		left:25%;
 		top:8%;
 		background-color:blue;
-		z-index:201;
+		z-index:89;
+		
 	}
 }

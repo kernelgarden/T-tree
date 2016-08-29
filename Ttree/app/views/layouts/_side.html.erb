@@ -1,5 +1,43 @@
 <div id='side_bar'>
 	<div id='page_alert'>
-
+		
 	</div>
 </div>
+
+<script>
+
+	$(document).ready(function(){
+		var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
+  	var height =window.screen.availHeight||document.body.clientHeigh;
+  	var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
+  	var heightPosition =window.innerHeight||document.body.clientHeigh;
+  	if(height<500){
+	    width=1366;
+	    height=768;
+  	}//if
+
+  	$('#side_bar').width(width*15/100)
+  	$('#side_bar').height(height*2/3)
+  	$('#side_bar').offset({left:width*83/100});
+		//사이드바 원 높이를 가로와 맞게 
+		$('#page_alert').height($('#page_alert').width())
+	});
+
+
+	$(window).resize(function(){
+  	var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
+  	var height =window.screen.availHeight||document.body.clientHeigh;
+  	var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
+  	var heightPosition =window.innerHeight||document.body.clientHeigh;
+  	if(height<500){
+	    width=1366;
+	    height=768;
+  	}//if
+
+  	$('#side_bar').width(width*15/100)
+  	$('#side_bar').height(height*2/3)
+  	$('#side_bar').offset({left:width*83/100});
+  	//$('#side_bar').css({'transform' : 'translate('+ + 'px, ' + 0 + 'px)'});
+  	$('#page_alert').height($('#page_alert').width())
+  });
+</script>
