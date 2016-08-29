@@ -104,17 +104,15 @@ var getteamInfo=function(){
   /////////////////////////////////////////////////////////////////////////////////
 
 $(document).ready(function(){
-<<<<<<< HEAD
 
   getInfo();
   getWorkFromUser();
+  getteamInfo();
   $(document).on("click",".userWork",function(){
 		var sId = $(this).data("id")
 		window.location='/main/work/'+ sId;
 	})
-  getInfo();
-  getWorkFromUser();
-  getteamInfo();
+
   var nCount4 =0;
   $('#create_team').click(function(e){
     e.stopPropagation();
