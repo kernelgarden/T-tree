@@ -40,8 +40,8 @@ $backgorundColor:#E2E4E6;
       &:hover{
         background-color: #016B92;
       }
-    }/*#menuDiv1*/  
-  }/*#menu_1*/  
+    }/*#menuDiv1*/
+  }/*#menu_1*/
 
   #menu_2{
     width: 20%;
@@ -77,9 +77,9 @@ $backgorundColor:#E2E4E6;
         width: 95%;
 
         background-image:hover{
-          cursor: pointer; 
+          cursor: pointer;
         }
-      }/*.search:focus*/ 
+      }/*.search:focus*/
       &::-webkit-input-placeholder {
        color: black;
       }
@@ -92,7 +92,7 @@ $backgorundColor:#E2E4E6;
       &:-ms-input-placeholder {
           color: black;
       }
-    }/*.search*/ 
+    }/*.search*/
     .blue {
       background:#5cb3c1;
       background-image: url(/assets/search2.png);
@@ -101,7 +101,7 @@ $backgorundColor:#E2E4E6;
       background-position:95% 50%
     }
     .blue:checked {background:#3498DB;}
-  }/*#menu_2*/  
+  }/*#menu_2*/
 
   #menu_3{
     width: 41%;
@@ -109,13 +109,13 @@ $backgorundColor:#E2E4E6;
     #home{
       padding: 5px;
       height: 30px;
-    }/*#home*/ 
-  }/*#menu_3*/  
+    }/*#home*/
+  }/*#menu_3*/
 
   #menu_4{
     width: 7%;
     background-color: $backgorundColor;
-  }/*#menu_4*/  
+  }/*#menu_4*/
 
   #menu_5{
     width: 10%;
@@ -135,26 +135,27 @@ $backgorundColor:#E2E4E6;
       }
     }/*#menuDiv5*/
   }/*#menu_5*/
-    
+
   #menu_6{
     width: 11%;
     background-color: $backgorundColor;
     padding-right: 1%;
     #menuDiv6{
       text-shadow: 2px 2px #8C8C8C;
-      background-color: #EFB300;
+      background-color: #016B92;
       color: white;
       height: 23px;
       width: 85%;
       margin-left: 10px;
       margin-top: 5px;
       margin-bottom: 5px;
-      padding-top:7px;
+      padding-top:3.5px;
+      padding-bottom: 3.5px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
       &:hover{
-        background-color: #FFA705;
+        background-color: #016B92;
       }
     }/*#menuDiv6*/
   }/*#menu_6*/
@@ -246,9 +247,9 @@ $backgorundColor:#E2E4E6;
             cursor: pointer;
           }
         }
-      }/*team_li*/  
+      }/*team_li*/
     }/*TeamWorks*/
-    
+
     .work_detail_li{
       height: 15px;
       width: 90%;
@@ -258,6 +259,7 @@ $backgorundColor:#E2E4E6;
       padding-left:5%;
       color:#6B6B6B;
       background-color:#EFEFEF;
+      overflow: hidden;
       &:hover{
         background-color: $addMainColor;
         cursor: pointer;
@@ -464,7 +466,6 @@ $backgorundColor:#E2E4E6;
       height: 40px;
       width: 84%;
       padding-top:15px;
-      padding-bottom:15px;
       padding-right:5%;
       padding-left:5%;
       margin-left:3%;
@@ -479,5 +480,3 @@ $backgorundColor:#E2E4E6;
     }
   }/*#userList*/
 }/*#dropDown6*/
-
-

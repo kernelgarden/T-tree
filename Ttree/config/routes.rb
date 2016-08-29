@@ -34,6 +34,6 @@ Rails.application.routes.draw do
 
   post '/api/post/work', to: 'apis#getWork'			#해당 work의 정보
   get '/api/post/work', to: 'apis#getWork1'			#해당 work의 정보
-
+  post '/api/post/team', to: 'apis#getTeam'
   post '/api/page/new', to: 'apis#getPages'
 end
