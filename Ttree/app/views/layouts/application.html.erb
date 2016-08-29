@@ -1,3 +1,4 @@
+
 <script>
 	var widthFix = window.innerWidth||document.body.clientWidth;
 	var heightFix =window.innerHeight||document.body.clientHeigh;
@@ -31,6 +32,7 @@
 	<body>
 		<% if user_signed_in? %>
 	<%= render 'layouts/header' %>
+	<%= render 'layouts/side' %>
 	<% end%>
 	<div  id ="contents" >
 	<%= yield %>
