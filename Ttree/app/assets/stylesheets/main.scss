@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .container{
 }
+
 .level0, .level1, .level2 {
 	margin-left:10px;
 	margin-top:10px;
@@ -11,7 +12,7 @@ border:1px solid black;
 .level2 {
 	width:80px;
 	height:80px;
-float: left;
+	float: left;
 	background: #aaa;
 }
 .level1 {
@@ -54,7 +55,8 @@ div.parent{
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index:4;
+  z-index:10;
+  box-shadow: 2px 1px 6px #888888;
 }
 .parent:hover{
   cursor: pointer;
@@ -66,12 +68,17 @@ div.childGroup{
 div.child{
   width: 75px;
   height: 75px;
-  background-color: orange;
+  background-color: #f3ba00;
   border-radius: 50%;
   position: absolute;
-  z-index:2;
+	box-shadow: 2px 1px 6px #888888;
 }
-
+.child8{
+	z-index:2;
+}
+.child1, .child2, .child3, .child4, .child5, .child6, .child7{
+	z-index:3;
+}
 div.back{
   width: 75px;
   height: 75px;
@@ -79,6 +86,7 @@ div.back{
   border-radius: 50%;
   position: absolute;
   z-index:2;
+  box-shadow: 2px 1px 6px #888888;
 }
 .back:hover{
   cursor: pointer;
@@ -139,21 +147,23 @@ div.back{
 	box-shadow: 2px 1px 6px #A3A3A3;
 	font-family:'Raleway', sans-serif;
   font-size:97%;
-	#page{
-		margin-top: 2.5%;
-		margin-left: 2.5%;
+  z-index: 50;
+	.page{
+		margin-top: 1.8%;
+		margin-left: 1.8%;
 		display: block;
     list-style-type: decimal;
     position: relative;
     text-align: left;
 		.pageli{
-			width:14.5%;
+			width:17.7%;
 			height:20%;
-			margin-left: 0.5%;
-			margin-right: 0.5%;
+			margin-left: 1%;
+			margin-right: 1%;
 			margin-top: 0.5%;
 			margin-bottom: 0.5%;
 			background-color:#a8cfc3;
+			text-align: center;
 			display: inline-block;
 			border-radius: 8px;
 			box-shadow: 2px 1px 4px #A3A3A3;

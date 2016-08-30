@@ -1,13 +1,14 @@
 .member_work{
   margin: 70 auto;
   width: 90%;
+  z-index:10;
   .personal_work{
     #personal_work_header{
       height: 35px;
       text-align: left;
     }/*#personal_work_header*/
     .personal_work_content{
-      width: 250px;
+      width: 20%;
       height: 90px;
       border-radius: 5px;
       display: inline-block;
