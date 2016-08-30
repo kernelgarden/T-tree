@@ -100,6 +100,22 @@ var getteamInfo=function(){
       }//if
     })//for
   };
+  /*var getTeamFromUser=function(){	//user로부터 work를 가져오는 함수
+  	///////////////////////////////////////JSON/////////////////////////////////////
+  	$.getJSON("/api/user/"+userID, function(response) {
+  		$.each(response.team_ids, function (i,id) {
+  			$.getJSON("/api/team/"+id, function(response) {
+  				if($(".personal_work_content").eq(i).empty(0)){
+  					$(".personal_work_content").eq(i).append('<div class="personal_work_name">'+response.name+'</div>')
+  					$(".personal_work_content").eq(i).addClass(''+id)
+  					$(".personal_work_content").eq(i).attr("data-id",id)
+  				}
+  			});
+  		});
+  		var string="Create Personal Work"
+  		$(".personal_work_content").eq(response.work_ids.length).append('<div class="add_work_name">'+string+'</div>')
+  	});
+  }*/
   /////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function(){
   getInfo();
@@ -136,7 +152,7 @@ $(document).ready(function(){
   //      nCount4=0;
   //  }
   //  })
-  var countdown5=0;
+  var countForm=0;
   $(document).on("click",".team_button", function(e){
     e.preventDefault();
     jQuery.fn.mySerialize = function(){
@@ -160,8 +176,8 @@ $(document).ready(function(){
     }
     //gvar json=$.parseJSON(formData);
     //alert(json.id)
-    countdown5++
-    if(countdown5==1){
+    countForm++
+    if(countForm==1){
       $.ajax({
         type:"POST",
         url:"/api/post/team",
