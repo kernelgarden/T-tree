@@ -105,6 +105,9 @@ $(document).ready(function(){
   getInfo();
   getWorkFromUser();
   getteamInfo();
+  $(document).on("click", '.team_more' , function(){
+    window.location='/main/team/';
+  })
   $(document).on("click",".userWork",function(){
 		var sId = $(this).data("id")
 		window.location='/main/work/'+ sId;

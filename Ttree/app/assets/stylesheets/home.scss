@@ -15,6 +15,9 @@
       margin: 5px;
       overflow:hidden;
       vertical-align: bottom;
+      &:hover{
+        cursor: pointer;
+      }
       .personal_work_name{
         margin: 10px;
         color: white;
@@ -50,6 +53,10 @@
         margin-left: 20px;
         background-color:#E2E4E6;
         display: inline-block;
+        &:hover{
+          cursor: pointer;
+          box-shadow: 2px 1px 4px #A3A3A3;
+        }
       }/*.personal_team_header*/
     }/*.personal_team_header*/
     .personal_team_content{
