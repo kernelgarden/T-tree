@@ -6,6 +6,8 @@
 	</div>
   
 </div>
+<div id='unPageBox'>
+</div>
 
 <script>
 
@@ -13,6 +15,7 @@ var width =window.screen.availWidth||window.innerWidth||document.body.clientWidt
 var height =window.screen.availHeight||document.body.clientHeigh;
 var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
 var heightPosition =window.innerHeight||document.body.clientHeigh;
+var pagesClickCnt=0;
 
 var setSize=function(){ //사이즈 세팅해주는 함수 
   $('#side_bar').width(width*15/100)
@@ -33,6 +36,32 @@ var checkPageAlerNum=function(){  //branch에 포함되지 않은 페이지들�
     });
   }, 1900);
 }
+var pagesInform=function(){
+  alert(3)
+  var unPages = $('<div class="unPages"></div>').appendTo('#unPageBox');
+  var unPage=$('<ol class="unPage"></ol>').appendTo('.unPages');
+  //$('.unPages').hide();
+}
+
+var showPages=function(){  //페이지 화면 띄워즈는 함수 
+  $(document).on("click","#page_alert",function() {
+    alert(1)
+    alert(pagesClickCnt)
+    var unPages = $('<div class="unPages"></div>').appendTo('#unPageBox');
+    var unPage=$('<ol class="unPage"></ol>').appendTo('.unPages');
+    if(pagesClickCnt==0){
+      pagesClickCnt++;
+      $('.unPages').transition({ x:+(widthPosition*1.4/5)+'px',y:0+'px',duration: 0, scale: 1.0});
+      $('.unPages').width(width*2.1/5)
+      $('.unPages').height(height*7/10)
+      $('.unPages').css({top:height*1.5/10})
+      $('.unPages').show(300);
+    }
+  })
+  $('div:not(#page_alert)').click(function(){
+    pagesClickCnt==0
+  })
+}
 
 $(document).ready(function(){
 	var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
@@ -48,6 +77,7 @@ $(document).ready(function(){
   setSize();
   //branch에 포함되지 않은 페이지들의 개수를 체크해 할당 
   checkPageAlerNum();
+  showPages();
 });
 
 

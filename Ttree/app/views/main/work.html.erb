@@ -448,10 +448,12 @@ function renderCircle(){
 
     //parent가지를 눌렀을 때 
     $('.parent').click(function(){
-    	$( '.child8' ).css({
-	          backgroundColor: "transparent",
-	          boxShadow: '0 0 30px rgba(255, 255, 255, 1.0)'
-	        }, 0 )
+    	if(checkFirst==false){
+	    	$( '.child8' ).css({
+		          backgroundColor: "transparent",
+		          boxShadow: '0 0 30px rgba(255, 255, 255, 1.0)'
+		        }, 0 )
+	    }
     	if(checkFirst==false){
     		if(parentClickCnt==0){
 		    	parentClickCnt++;
