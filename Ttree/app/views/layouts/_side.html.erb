@@ -1,43 +1,68 @@
 <div id='side_bar'>
 	<div id='page_alert'>
-		
+		<div id='page_alert_num'>
+    
+    </div>
 	</div>
+  
 </div>
 
 <script>
 
-	$(document).ready(function(){
-		var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
-  	var height =window.screen.availHeight||document.body.clientHeigh;
-  	var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
-  	var heightPosition =window.innerHeight||document.body.clientHeigh;
-  	if(height<500){
-	    width=1366;
-	    height=768;
-  	}//if
+var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
+var height =window.screen.availHeight||document.body.clientHeigh;
+var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
+var heightPosition =window.innerHeight||document.body.clientHeigh;
 
-  	$('#side_bar').width(width*15/100)
-  	$('#side_bar').height(height*2/3)
-  	$('#side_bar').offset({left:width*83/100});
-		//사이드바 원 높이를 가로와 맞게 
-		$('#page_alert').height($('#page_alert').width())
-	});
+var setSize=function(){ //사이즈 세팅해주는 함수 
+  $('#side_bar').width(width*15/100)
+  $('#side_bar').height(height*2/3)
+  $('#side_bar').offset({right:width*4/100});
+
+  //사이드바 원 높이를 가로와 맞게 
+  $('#page_alert').height($('#page_alert').width())
+  $('#page_alert_num').height($('#page_alert_num').width()*4/5)
+}
+
+var checkPageAlerNum=function(){  //branch에 포함되지 않은 페이지들의 개수를 체크해 할당 
+  $.getJSON("/api/user/"+userID, function(response) {
+    //alert(response.unclassifiedpage_ids.length)
+    $('#page_alert_num').empty().append(response.unclassifiedpage_ids.length)
+    $.each(response.unclassifiedpage_ids, function (i,first) {
+      
+    });
+  }, 1900);
+}
+
+$(document).ready(function(){
+	var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
+  var height =window.screen.availHeight||document.body.clientHeigh;
+  var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
+  var heightPosition =window.innerHeight||document.body.clientHeigh;
+  if(height<500){
+	   width=1366;
+	   height=768;
+  }//if
+  
+  //사이즈 세팅 
+  setSize();
+  //branch에 포함되지 않은 페이지들의 개수를 체크해 할당 
+  checkPageAlerNum();
+});
 
 
-	$(window).resize(function(){
-  	var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
-  	var height =window.screen.availHeight||document.body.clientHeigh;
-  	var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
-  	var heightPosition =window.innerHeight||document.body.clientHeigh;
-  	if(height<500){
-	    width=1366;
-	    height=768;
-  	}//if
+$(window).resize(function(){
+	width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
+	height =window.screen.availHeight||document.body.clientHeigh;
+ 	widthPosition =window.innerWㄴidth||window.innerWidth||document.body.clientWidth;
+ 	heightPosition =window.innerHeight||document.body.clientHeigh;
+ 	if(height<500){
+    width=1366;
+    height=768;
+ 	}//if
+  
+  //사이즈 세팅 
+  setSize();
 
-  	$('#side_bar').width(width*15/100)
-  	$('#side_bar').height(height*2/3)
-  	$('#side_bar').offset({left:width*83/100});
-  	//$('#side_bar').css({'transform' : 'translate('+ + 'px, ' + 0 + 'px)'});
-  	$('#page_alert').height($('#page_alert').width())
-  });
+});
 </script>

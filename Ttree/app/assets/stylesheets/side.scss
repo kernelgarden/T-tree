@@ -1,19 +1,40 @@
 #side_bar{
-	position: absolute;
+	position: fixed;
 	width:15%;
 	height:80%;
 	left:83%;
-	background-color:red;
 	z-index:88;
+
 	#page_alert{
 		position: relative;
 		border-radius: 50%;
 		width:50%;
 		height:10%;
 		left:25%;
-		top:8%;
-		background-color:blue;
+		top:15%;
+		background-color:#eb9980;
+		box-shadow: 2px 1px 10px #888888;
 		z-index:89;
-		
+		&:hover{
+			background-color:#EEAD9A;
+			cursor: pointer;
+		}
+	}
+	#page_alert_num{
+		text-align: center;
+		font-size:150%;
+		font-weight: bold;
+		color:white;
+		position: relative;
+		border-radius: 50%;
+		padding-top:5%;
+		padding-bottom:5%;
+		width:50%;
+		height:7%;
+		left:58%;
+		top:-8%;
+		background-color:#7F7F7F;
+		box-shadow: 2px 1px 10px #888888;
+		z-index:90;
 	}
 }

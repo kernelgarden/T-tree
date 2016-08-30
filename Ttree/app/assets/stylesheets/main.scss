@@ -55,7 +55,8 @@ div.parent{
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index:4;
+  z-index:10;
+  box-shadow: 2px 1px 6px #888888;
 }
 .parent:hover{
   cursor: pointer;
@@ -67,12 +68,17 @@ div.childGroup{
 div.child{
   width: 75px;
   height: 75px;
-  background-color: orange;
+  background-color: #f3ba00;
   border-radius: 50%;
   position: absolute;
-  z-index:2;
+	box-shadow: 2px 1px 6px #888888;
 }
-
+.child8{
+	z-index:2;
+}
+.child1, .child2, .child3, .child4, .child5, .child6, .child7{
+	z-index:3;
+}
 div.back{
   width: 75px;
   height: 75px;
@@ -80,6 +86,7 @@ div.back{
   border-radius: 50%;
   position: absolute;
   z-index:2;
+  box-shadow: 2px 1px 6px #888888;
 }
 .back:hover{
   cursor: pointer;

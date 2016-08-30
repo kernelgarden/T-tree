@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :ut_relationships, :foreign_key => "member_id", :dependent => :destroy
   has_many :teams, :through => :ut_relationships
   has_many :works, :dependent => :destroy, :foreign_key => "user_id"
+  has_many :unclassifiedpages, :dependent => :destroy
+
   def self.current
     Thread.current[:user]
   end
