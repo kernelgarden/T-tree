@@ -79,7 +79,6 @@ var getWorkFromUser=function(){	//user로부터 work를 가져오는 함수
 		$(".personal_work_content").eq(response.work_ids.length).append('<div class="add_work_name">'+string+'</div>')
 	});
 }//getWorkFromUser()
-
 //############################################################################//
 var getteamInfo=function(){
   $(".personal_team").hide();
@@ -102,12 +101,14 @@ var getteamInfo=function(){
     })//for
   };
   /////////////////////////////////////////////////////////////////////////////////
-
 $(document).ready(function(){
-<<<<<<< HEAD
   getInfo();
   getWorkFromUser();
   getteamInfo();
+  $(document).on("click",".userWork",function(){
+		var sId = $(this).data("id")
+		window.location='/main/work/'+ sId;
+	})
   var nCount4 =0;
   $('#create_team').click(function(e){
     e.stopPropagation();
