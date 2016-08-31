@@ -1,3 +1,11 @@
+<%= javascript_tag do %>
+  window.userID = "<%= current_user.id%>";
+  window.userName ="<%= current_user.name %>";
+  window.workLength ="<%= current_user.work_ids.length %>";
+  window.createWork ='<%=  link_to "<div class='+'create_personal_work'+'></div>".html_safe%>';
+  window.addWork ='<%=  link_to "<div class='+'personal_work_content'+'></div>".html_safe%>';
+<% end %>
+
 <div id='side_bar'>
 	<div id='page_alert'>
 		<div id='page_alert_num'>
@@ -19,6 +27,10 @@ var pagesClickCnt=0;
 var flag=100;
 
 var setSize=function(){ //사이즈 세팅해주는 함수
+  var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
+  var height =window.screen.availHeight||document.body.clientHeigh;
+  var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
+  var heightPosition =window.innerHeight||document.body.clientHeigh;
   $('#side_bar').width(width*15/100)
   $('#side_bar').height(height*2/3)
   $('#side_bar').offset({right:width*4/100});
@@ -71,8 +83,8 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
       if($('#unPageBox').empty()){
         var unPages = $('<div class="unPages"></div>').appendTo('#unPageBox');
         var unPage=$('<ol class="unPage"></ol>').appendTo('.unPages');
-        $('.unPages').transition({ x:+(widthPosition*1.4/5)+'px',y:0+'px',duration: 0, scale: 1.0});
-        $('.unPages').width(width*2.75/5)
+        $('.unPages').transition({ x:+(widthPosition*2.5/5)+'px',y:0+'px',duration: 0, scale: 1.0});
+        $('.unPages').width(width*1.69/5)
         $('.unPages').height(height*7/10)
         $('.unPages').css({top:height*1.5/10})
         $('.unPages').hide();
@@ -96,6 +108,38 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
       if($('.unPages').data("id")==0){
         $('.unPages').show();
         $('.unPages').attr("data-id",1)
+
+        /////////////////////////////Json/////////////////////////////
+          setTimeout(function(){
+            $.getJSON("/api/user/"+userID, function(response) {
+
+              for(var i=0; i<response.unclassifiedpage_ids.length; i++){
+                //한번만 박스 그려주도록
+                if($('.pageli').eq(i).hasClass('pageli'+i)) break;
+
+                else $('<li class="pageli pageli'+i+'"></li>').appendTo('.unPage');
+
+              }//for
+
+            }, 0);
+
+
+            $.getJSON("/api/user/"+userID+"/unclassifiedpages", function(response) {
+              $.each(response, function (i,first) {
+                var temp=(i+1)
+
+                  $('.pageli').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url='+first.url+'" />');
+                  $('.pageli').eq(i).append('<div class="page_url_div"><a class="page_url">'+first.title+'</a></div>');
+                  $('.pageli').eq(i).attr("data-url",first.url )
+
+              });
+            }, 1900);
+
+          //////////////////////////////////////////////////////////////
+
+
+        });//setTimeout
+
       }else{
         $('.unPages').hide();
         $('.unPages').attr("data-id",0)
@@ -139,5 +183,6 @@ $(window).resize(function(){
   //사이즈 세팅
   setSize();
   checkPageAlerNum();
+  showPages();
 });
 </script>

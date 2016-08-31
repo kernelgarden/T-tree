@@ -45,6 +45,7 @@ function renderCircle(){
   	}//if
   	//넓이 고정
   	$('#wrapDiv').width(width)
+
   	widthPosition=width
   	//최소 높이, 넢이를 제한
   	//if(heightPosition<490)	heightPosition=490;
@@ -460,7 +461,7 @@ function renderCircle(){
 		   		$('.pages').transition({ x:+(widthPosition*1.4/5)+'px',y:0+'px',duration: 0, scale: 1.0});
 		    	$('.pages').width(width*2.1/5+parentWidth)
 		    	$('.pages').height(height*7/10)
-		    	$('.pages').css({top:height*1.5/10})
+		    	$('.pages').css({top:height*1/10})
 		    	$('.pages').delay(700).fadeIn(300);
 				  $('.child').fadeOut();
 				  $('.back').fadeOut();
