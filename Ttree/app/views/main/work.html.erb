@@ -546,7 +546,7 @@ function pagesInform(){
     }
     renderCircle();
     pagesInform();
-    
+
     /*
     $(document).on("mouseenter", ".child", function(){
     	if(movingChild==false){
@@ -671,7 +671,8 @@ function pagesInform(){
         accept: '#page_alert',
         drop: function(event, ui) {
             // awesome code that works and handles successful drops...
-          ui.helper.data('dropped', true);
+          $(this).class
+          ui.helper.data('droppedAt', $(this).attr('class').match(/\d/)[0]);
         }
       })
     });

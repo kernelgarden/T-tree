@@ -31,10 +31,16 @@ var setSize=function(){ //사이즈 세팅해주는 함수
 $('#page_alert').draggable({
 	revert: false,
 	start: function(event, ui) {
-		ui.helper.data('dropped', false);
+		ui.helper.data('droppedAt', -1); // 원에 드랍시 0 > 의 상수 기타 <= 0
+		ui.helper.data('draggablePos', $(this).position());
 	},
 	stop: function(event, ui) {
-      alert('stop: dropped=' + ui.helper.data('dropped'));
+      alert(ui.helper.data('droppedAt'));
+			if (ui.helper.data('droppedAt') != -1)
+				$(this).css({
+					left: ui.helper.data('draggablePos').left,
+					top: ui.helper.data('draggablePos').top
+				});
       // Check value of ui.helper.data('dropped') and handle accordingly...
   }
 });
@@ -82,9 +88,9 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
           $('.unPages').attr("data-id",0)
           flag=$('.unPages').data("id");
         }
-        //$('.unPages').show();  
+        //$('.unPages').show();
       }
-      
+
       console.log($('.unPages').data("id"))
 
       if($('.unPages').data("id")==0){
@@ -94,10 +100,10 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
         $('.unPages').hide();
         $('.unPages').attr("data-id",0)
       }
-      
+
   })
   $('div:not(#page_alert)').click(function(){
-    
+
   })
 }
 
