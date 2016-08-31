@@ -95,6 +95,11 @@ class ApisController < ApplicationController
 		render :json => @unclassifiedpage
 	end
 
+	def unclassifiedpages
+		@user=User.find(params[:id])
+  		render :json => @user.unclassifiedpages
+	end
+
 	def getWork
 		#@work=(params[:work])
 		Work.create(work_params)
@@ -113,20 +118,6 @@ class ApisController < ApplicationController
 			Unclassifiedpage.create(:user_id=>@user.id, :title=>page["title"], :url=>page["url"])
 		end
 
-	end
-
-	def search
-		if params[:search].nil?
-			response = []
-		else
-			@users = User.search params[:search]
-			@works = Work.search params[:search]
-			@branches = Branch.search params[:search]
-			@pages = Page.search params[:search]
-			response = { :users => @users, :works => @works,
-									:branches => @branches, :pages => @pages }
-		end
-		render :json => response
 	end
 
 	private
