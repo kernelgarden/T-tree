@@ -1,10 +1,10 @@
 <div id='side_bar'>
 	<div id='page_alert'>
 		<div id='page_alert_num'>
-    
+
     </div>
 	</div>
-  
+
 </div>
 <div id='unPageBox'>
 </div>
@@ -17,22 +17,33 @@ var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWid
 var heightPosition =window.innerHeight||document.body.clientHeigh;
 var pagesClickCnt=0;
 
-var setSize=function(){ //사이즈 세팅해주는 함수 
+var setSize=function(){ //사이즈 세팅해주는 함수
   $('#side_bar').width(width*15/100)
   $('#side_bar').height(height*2/3)
   $('#side_bar').offset({right:width*4/100});
 
-  //사이드바 원 높이를 가로와 맞게 
+  //사이드바 원 높이를 가로와 맞게
   $('#page_alert').height($('#page_alert').width())
   $('#page_alert_num').height($('#page_alert_num').width()*4/5)
 }
 
-var checkPageAlerNum=function(){  //branch에 포함되지 않은 페이지들의 개수를 체크해 할당 
+$('#page_alert').draggable({
+	revert: false,
+	start: function(event, ui) {
+		ui.helper.data('dropped', false);
+	},
+	stop: function(event, ui) {
+      alert('stop: dropped=' + ui.helper.data('dropped'));
+      // Check value of ui.helper.data('dropped') and handle accordingly...
+  }
+});
+
+var checkPageAlerNum=function(){  //branch에 포함되지 않은 페이지들의 개수를 체크해 할당
   $.getJSON("/api/user/"+userID, function(response) {
     //alert(response.unclassifiedpage_ids.length)
     $('#page_alert_num').empty().append(response.unclassifiedpage_ids.length)
     $.each(response.unclassifiedpage_ids, function (i,first) {
-      
+
     });
   }, 1900);
 }
@@ -43,7 +54,7 @@ var pagesInform=function(){
   //$('.unPages').hide();
 }
 
-var showPages=function(){  //페이지 화면 띄워즈는 함수 
+var showPages=function(){  //페이지 화면 띄워즈는 함수
   $(document).on("click","#page_alert",function() {
     alert(1)
     alert(pagesClickCnt)
@@ -72,10 +83,10 @@ $(document).ready(function(){
 	   width=1366;
 	   height=768;
   }//if
-  
-  //사이즈 세팅 
+
+  //사이즈 세팅
   setSize();
-  //branch에 포함되지 않은 페이지들의 개수를 체크해 할당 
+  //branch에 포함되지 않은 페이지들의 개수를 체크해 할당
   checkPageAlerNum();
   showPages();
 });
@@ -90,8 +101,8 @@ $(window).resize(function(){
     width=1366;
     height=768;
  	}//if
-  
-  //사이즈 세팅 
+
+  //사이즈 세팅
   setSize();
 
 });

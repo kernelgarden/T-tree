@@ -21,14 +21,14 @@ var checkBefore;				//이전에 선택된 branch의 클래스 번호를 저장
 var checkBefore2;
 var checkBefore3;
 var checkThis;					//현재 선택된 branch의 클래스 번호를 저장
-var checkId;						//현재 선택된 branch의 id번호를 저장 
+var checkId;						//현재 선택된 branch의 id번호를 저장
 var checkFirst=true;			//루트인지를 저장
 var checkSecond=false;			//두번째인지를 저장
 var movingChild=false;
 var parentClickCnt=0;			//parent 가지 click 카운트
-var pageliClickCnt=0;			//pageli click 카운트 
+var pageliClickCnt=0;			//pageli click 카운트
 var childBranchArr=new Array(8)	//child 가지 저장 배열
-var fixedHeight=40;			//헤더를 고정하면서 내려가야하는 높이 
+var fixedHeight=40;			//헤더를 고정하면서 내려가야하는 높이
 var backButtonFlag=0;
 var currentWorkId;
 function renderCircle(){
@@ -43,10 +43,10 @@ function renderCircle(){
 	    width=1366;
 	    height=768;
   	}//if
-  	//넓이 고정 
+  	//넓이 고정
   	$('#wrapDiv').width(width)
   	widthPosition=width
-  	//최소 높이, 넢이를 제한 
+  	//최소 높이, 넢이를 제한
   	//if(heightPosition<490)	heightPosition=490;
 
 
@@ -204,7 +204,7 @@ function renderCircle(){
     	//선택된 가지를 제외 하고 사라짐
  		//$('.child').not(this).fadeOut('slow')
  		// parent 가지의 색깔을 투명하게
- 	
+
  		$( '.parent, .child' ).not(this).animate({
           backgroundColor: "transparent",
           boxShadow: '0 0 30px rgba(255, 255, 255, 1.0)'
@@ -315,7 +315,7 @@ function renderCircle(){
 			});
 		}, 1400);
   	///////////////////////////////////////////////////////////////////
-  	//전 parent값 저장하는 과정 
+  	//전 parent값 저장하는 과정
   	checkBefore3=checkBefore2;
   	checkBefore2=checkId;
     })//child-click
@@ -350,7 +350,7 @@ function renderCircle(){
 	        $('.child'+checkThis).addClass('child9')
 	        $('.child9').removeClass('child'+checkThis);
 	        $('.child8').addClass('child'+checkThis);
-	        
+
 	        $('.child'+checkThis).removeClass('child8')
 
 	        $('.child9').addClass('child8')
@@ -360,7 +360,7 @@ function renderCircle(){
 	        	$('.child8').css("z-index", 3)
 	        	$('.child').not('.child8').css("z-index", 2)
 	        }
-	         
+
     	//두번째 childbranch이면
     	if(checkSecond==true){
     		checkSecond=false;
@@ -440,13 +440,13 @@ function renderCircle(){
 			  }, 1900);
 		  	//////////////////////////////////////////////////////////////
 			$(this).delay(2100).fadeIn()
-		
+
     	}
     	//$('.child').eq(i).delay(30).transition({ x:translateArr[0][checkThis-1]
     	//$('.child8').css("z-index", 2)
     });
 
-    //parent가지를 눌렀을 때 
+    //parent가지를 눌렀을 때
     $('.parent').click(function(){
     	if(checkFirst==false){
 	    	$( '.child8' ).css({
@@ -466,15 +466,15 @@ function renderCircle(){
 				  $('.back').fadeOut();
 				  $(this).delay(300).transition({ x:-(widthPosition*1.8/5)+'px',y:0+'px',duration: 900, scale: 1.0});
 
-				  
+
 				  /////////////////////////////Json/////////////////////////////
 	        setTimeout(function(){
 	        	if(backButtonFlag==0){
 	        	$.getJSON("/api/branch/"+checkId+"/pages", function(response) {
 							for(var i=0; i<response.length; i++){
-								//한번만 박스 그려주도록 
+								//한번만 박스 그려주도록
 								if($('.pageli').eq(i).hasClass('pageli'+i)) break;
-								
+
 								else $('<li class="pageli pageli'+i+'"></li>').appendTo('.page');
 
 							}//for
@@ -493,9 +493,9 @@ function renderCircle(){
 				  	//back버튼을 누른후에는 전전값을 대입해줘야함=>checkBefore3
 				  	$.getJSON("/api/branch/"+checkBefore3+"/pages", function(response) {
 							for(var i=0; i<response.length; i++){
-								//한번만 박스 그려주도록 
+								//한번만 박스 그려주도록
 								if($('.pageli').eq(i).hasClass('pageli'+i)) break;
-								
+
 								else $('<li class="pageli pageli'+i+'"></li>').appendTo('.page');
 
 							}//for
@@ -521,7 +521,7 @@ function renderCircle(){
 			   	$('.back').delay(900).fadeIn();
 				  $('.child').delay(900).fadeIn();
 				  $('.page').empty();
-			  }//else if	  
+			  }//else if
     	}//if$('.parent').click(function(){})
     })//
     $(document).on("click",".pageli",function() {
@@ -582,9 +582,9 @@ function pagesInform(){
     });
     */
     //루트가 아닐 때
-    
+
     $(document).on("click", function(){
-    	
+
     	/*
     	if(checkFirst==false){
 		    //parent 가지를 눌렀을 때 확대 조정
@@ -600,8 +600,8 @@ function pagesInform(){
 					    $('.child').fadeOut();
 					   	$('.back').fadeOut();
 					   	$(this).transition({ x:-(parentWidth*3)+'px',y:0+'px',duration: 1000, scale: 1.0});
-					    //$(this).	
-				    	
+					    //$(this).
+
 			    	}
 			    	//2번 눌렀을 때 완전 확대(3배)
 			    	else if(parentClickCnt==1){
@@ -610,14 +610,14 @@ function pagesInform(){
 			    		//$(this).zoomTo({targetsize:3, duration:900});
 			    		//$('body').animate({ 'zoom': 3 }, 900);
 			    	}
-			    	
+
 			    	//그 이상으로 눌렀을 때 다시 축소
 			    	else {
 			    		parentClickCnt=0;
 			    		$('body').zoomTo({targetsize:1, duration:600});
 			    		//$('body').animate({ 'zoom': 1 }, 600);
 			    	}
-			    	
+
 			    	//e.stopPropagation();
 		    	}
 		    });
@@ -641,16 +641,16 @@ function pagesInform(){
 			  else if(pageliClickCnt==1){
 			  	pageliClickCnt=0;
 			  }//else-if
-			  
+
 			  //그 이상으로 눌렀을 때 다시 축소
 			  else {
 			    pageliClickCnt=0;
 			    $('body').zoomTo({targetsize:1, duration:500});
 			    //$('body')
 			  }
-			  //$(this).zoomTo({targetsize:0.8, duration:400});  	
+			  //$(this).zoomTo({targetsize:0.8, duration:400});
 			  e.stopPropagation();
-		    pageliClickCnt=0;	
+		    pageliClickCnt=0;
 		    */
 		  	//alert($(this).data("url"));
 		  	//window.open("http://"+$(this).data("url"),'_blank');
@@ -665,9 +665,18 @@ function pagesInform(){
 		  });
 
 		});//document.click
-	
+
+    $('.child').each(function(idx) {
+      $(this).droppable({
+        accept: '#page_alert',
+        drop: function(event, ui) {
+            // awesome code that works and handles successful drops...
+          ui.helper.data('dropped', true);
+        }
+      })
+    });
   })//document.ready
-  	
+
  	/*
   $(window).resize(function(){
   	checkDocument=false
@@ -724,7 +733,7 @@ function pagesInform(){
     	e.stopPropagation();
     });
   })*/
-  //위치만 리사이즈 
+  //위치만 리사이즈
   $(window).resize(function(){
   	var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
   	var height =window.screen.availHeight||document.body.clientHeigh;
@@ -736,11 +745,11 @@ function pagesInform(){
   	}//if
   	$('.pages').width(width*2.1/5+parentWidth)
 		$('.pages').height(height*7.5/10)
-  	//넓이 고정 
+  	//넓이 고정
   	$('#wrapDiv').width(width)
   	widthPosition=width
 
-  	//최소 높이를 제한 
+  	//최소 높이를 제한
   	if(heightPosition<490)	heightPosition=490;
 
   	if(parentClickCnt==1){
@@ -748,8 +757,8 @@ function pagesInform(){
 		  $('.back').fadeOut();
 
 		  $(this).delay(300).transition({ x:-(widthPosition*1.8/5)+'px',y:0+'px',duration: 900, scale: 1.0})
-	   //$(this).	
-			    	
+	   //$(this).
+
    	}//if
   	else{
 			var parent = $('div.parent');
@@ -770,12 +779,22 @@ function pagesInform(){
   	}
   });
 
+  // 드랍 이벤트 핸들러를 child에 적용
+    $('.child').each(function(idx) {
+      $(this).droppable({
+        accept: '#page_alert',
+        drop: function(event, ui) {
+            // awesome code that works and handles successful drops...
+          ui.helper.data('dropped', true);
+        }
+      })
+    });
   </script>
 <div id="wrapDiv">
 	<div id="parent" class="parent"></div>
 	<div class="childGroup"> </div>
 	<ul class="list" id="list">
-		<li>One</li> 
+		<li>One</li>
 		<li>Two</li>
 		<li>Three</li>
 		<li>Four</li>
