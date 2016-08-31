@@ -8,7 +8,7 @@
     "48": "mini(48).png",
     "128": "mini(128).png"
   },
-  "homepage_url": "http://ttree.com",
+  "homepage_url": "http://tab-storage.com",
   "background": {
     "scripts": [
       "background.js", "jquery-3.1.0.min.js"
@@ -16,7 +16,7 @@
     "persistent": false
   },
   "browser_action": {
-    "default_title": "T-tree"
+    "default_title": "Tab Storage"
   },
   "permissions": [
     "tabs",
