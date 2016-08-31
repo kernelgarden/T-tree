@@ -116,6 +116,7 @@ function processTabs(windows) {
 
 				for (var j = 0; j < numTabs; j++) {
 					var tab = win.tabs[j];
+          /*
 					var dataObj = {}
 
 					count = counter.toString();
@@ -123,7 +124,11 @@ function processTabs(windows) {
 					dataObj[count]["url"] = tab.url;
 					dataObj[count]["title"] = tab.title;
 					counter++;
+          */
 
+          if (tab.url.includes("tab-storage.com")) {
+            continue;
+          }
 					var pageData = {
 						"url": tab.url,
 						"title": tab.title
@@ -142,13 +147,16 @@ function processTabs(windows) {
 						}
 					});
 					*/
-					chrome.tabs.remove(tab.id);
+          //if (!tab.url.includes("tab-storage.com")) {
+					  chrome.tabs.remove(tab.id);
+          //}
 				}
 			}
 			//alert(JSON.stringify(jsonObj));
 			$.ajax({
 		            type : "POST",
-		            url : "http://52.78.83.129:3000/api/page/new",
+		            //url : "http://tab-storage.com/api/page/new",
+                url : "http://develop.tab-storage.com/api/page/new",
 		            contentType: "application/json; charset=UTF-8",
 		            cache : false,
 								crossDomain:true,
@@ -182,3 +190,18 @@ chrome.runtime.onInstalled.addListener(function() {
 	chrome.contextMenus.create({"title": "Logout", "contexts": ["browser_action"],
 															"parentId": "root", "id": "logout"});
 })
+
+chrome.runtime.onStartup.addListener(function() {
+  chrome.tabs.create({url: "http://develop.tab-storage.com/"}, function(tab) {
+    targetId = tab.id;
+  });
+})
+
+chrome.commands.onCommand.addListener(function(command) {
+  if (command === "open_tab_storage")
+    chrome.tabs.create({url: "http://develop.tab-storage.com/"}, function(tab) {
+      targetId = tab.id;
+    });
+  else if (command === "store_all_tab")
+    chrome.tabs.getCurrent(start);
+});

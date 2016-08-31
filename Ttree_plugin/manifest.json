@@ -1,8 +1,13 @@
 {
-  "name": "T-tree",
-  "version": "0.0.1",
+  "name": "Tab Storage",
+  "version": "0.0.2",
   "manifest_version": 2,
   "description": "manage your tab",
+  "icons": {
+    "16": "mini(16).png",
+    "48": "mini(48).png",
+    "128": "mini(128).png"
+  },
   "homepage_url": "http://ttree.com",
   "background": {
     "scripts": [
@@ -30,5 +35,21 @@
             "https://www.googleapis.com/auth/plus.login",
             "https://www.googleapis.com/auth/userinfo.email"
         ]
+  },
+  "commands": {
+          "open_tab_storage": {
+            "suggested_key": {
+              "default": "Alt+T",
+              "mac": "Alt+T"
+            },
+            "description": "open tab storage"
+          },
+          "store_all_tab": {
+            "suggested_key": {
+              "default": "Alt+Q",
+              "mac": "Alt+Q"
+            },
+            "description": "close all tabs"
+          }
   }
 }
