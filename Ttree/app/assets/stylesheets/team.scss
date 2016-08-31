@@ -15,6 +15,7 @@
     display: inline-block;
     width:8%;
     list-style: none;
+      overflow: hidden;
     a{
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
@@ -87,5 +88,5 @@
 .create_team_work_content{
   float: left;
   margin: 10px;
-   color: white;
+   color: black;
 }

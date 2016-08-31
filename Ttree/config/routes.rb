@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   devise_for :users, :controllers =>{:omniauth_callbacks =>"users/omniauth_callbacks" }
   root 'main#home'
   get 'users/new'
-  get 'users/profile', to: 'apis#search'
+  get 'users/profile'
   get 'main/login'
-  get 'main/team'
+  get 'main/team/:id', to: 'main#team'
 
   resources :users
 

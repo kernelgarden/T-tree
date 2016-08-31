@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  #include Searchable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
@@ -65,4 +64,3 @@ class User < ApplicationRecord
     end
   end
 end
-#User.import force: true
