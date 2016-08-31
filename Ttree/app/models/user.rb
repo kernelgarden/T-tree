@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :ut_relationships, :foreign_key => "member_id", :dependent => :destroy
   has_many :teams, :through => :ut_relationships
   has_many :works, :dependent => :destroy, :foreign_key => "user_id"
+  has_many :unclassifiedpages, :dependent => :destroy
+
   def self.current
     Thread.current[:user]
   end
@@ -44,8 +46,8 @@ class User < ApplicationRecord
     data = access_token.info
     user = User.where(:email => data["email"]).first
     unless user
-      user = User.create(provider:auth.provider,
-      uid:auth.uid,
+      user = User.create(provider:"google",
+      uid:access_token.uid,
       name: data["name"],
       email: data["email"],
       password: Devise.friendly_token[0,20]

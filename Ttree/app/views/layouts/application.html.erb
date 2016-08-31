@@ -1,3 +1,4 @@
+
 <script>
 	var widthFix = window.innerWidth||document.body.clientWidth;
 	var heightFix =window.innerHeight||document.body.clientHeigh;
@@ -11,8 +12,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Ttree</title>
+		<title>Tab-Storage</title>
 		<%= csrf_meta_tags %>
+		<%= favicon_link_tag 'favicon.png' %>
 		<%= javascript_include_tag 'application','jquery', 'data-turbolinks-track' => true  %>
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 		<!--main/pages -->
@@ -23,14 +25,16 @@
 		<script src="http://ricostacruz.com/jquery.transit/jquery.transit.min.js"></script>
 		<script src="http://code.jquery.com/color/jquery.color-2.1.0.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/zoomooz/1.1.6/jquery.zoomooz.min.js"></script>
+		<script src="//cdn.jsdelivr.net/jquery.shadow-animation/1/mainfile"></script>
 		<!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
   		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   		<link href="https://fonts.googleapis.com/css?family=Nunito|Raleway|Titillium+Web" rel="stylesheet">
 	</head>
-	<body>
+	<body>j
 		<% if user_signed_in? %>
 	<%= render 'layouts/header' %>
+	<%= render 'layouts/side' %>
 	<% end%>
 	<div  id ="contents" >
 	<%= yield %>

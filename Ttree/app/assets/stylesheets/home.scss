@@ -1,19 +1,23 @@
 .member_work{
   margin: 70 auto;
   width: 90%;
+  z-index:10;
   .personal_work{
     #personal_work_header{
       height: 35px;
       text-align: left;
     }/*#personal_work_header*/
     .personal_work_content{
-      width: 250px;
+      width: 20%;
       height: 90px;
       border-radius: 5px;
       display: inline-block;
       margin: 5px;
       overflow:hidden;
       vertical-align: bottom;
+      &:hover{
+        cursor: pointer;
+      }
       .personal_work_name{
         margin: 10px;
         color: white;
@@ -24,14 +28,21 @@
       }/*.personal_work_name*/
     }/*.personal_work_content*/
     .userWork{
-      background-color: #0067A3;
+      background-color: #5cb3c1;
+      box-shadow: 2px 1px 4px #A3A3A3;
+      text-shadow: 2px 2px #8C8C8C;
+      &:hover{
+        background-color: #AED9DF;
+      }
     }
     .addWork{
       background-color: #E2E4E6;
+      box-shadow: 2px 1px 4px #A3A3A3;
     }
   }/*.personal_work*/
   .personal_team{
     margin-top: 40px;
+    text-align: left;
     .personal_team_header{
       height: 35px;
       text-align: left;
@@ -42,12 +53,16 @@
         margin-left: 20px;
         background-color:#E2E4E6;
         display: inline-block;
+        &:hover{
+          cursor: pointer;
+          box-shadow: 2px 1px 4px #A3A3A3;
+        }
       }/*.personal_team_header*/
     }/*.personal_team_header*/
     .personal_team_content{
       width: 250px;
       height: 90px;
-      background-color: #0067A3;
+      background-color: #5cb3c1;
       border-radius: 5px;
       display: inline-block;
       margin: 5px;
@@ -65,9 +80,77 @@
       display: inline-block;
       margin: 5px;
       background-color: #E2E4E6;
+      box-shadow: 2px 1px 4px #A3A3A3;
+      cursor: pointer;
       .create_personal_team_content{
         margin: 10px;
       }/*.create_personal_team_content*/
     }/*.create_personal_team*/
   }/*.personal_team*/
 }/*.member_work*/
+.create_team{
+  width: 100px;
+  height: 25px;
+  background-color: orange;
+  margin: 40px 5px 5px 5px;
+  text-align: left;
+  padding-top: 5px;
+  border-radius: 5px;
+  box-shadow: 2px 1px 10px #888888;
+}
+  .create_team:hover{
+    background-color: red;
+    cursor: pointer;
+  }
+  .create_team_form{
+    font-size: 20px;
+    box-shadow: 2px 1px 10px #888888;
+    width: 300px;
+    height: 150px;
+    background-color: #F8F8F8;
+    position: absolute;
+    display: none;
+    border-radius: 5px;
+    top:0;
+    bottom: 0;
+    z-index: 2;
+  }
+  #team_name{
+    height: 40px;
+    padding-top: 10px;
+  }
+  .team_input{
+      margin-left:2%;
+      margin-right:2%;
+      padding-bottom:2%;
+      padding-top:2%;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      width:90%;
+      background-color: #EFEFEF;
+      &:focus {
+        background-color: #FFFFFF;
+      }
+    }
+    .team_button{
+      margin-top: 25px;
+      text-align:center;
+      border-radius: 4px;
+      font-size: 16px;
+      background-color: #5cb3c1;
+      border: none;
+      color: white;
+      padding: 7px 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      &:hover{
+        cursor: pointer;
+        background-color: #44A1B0;
+      }
+    }
+    .wrap_team_content{
+      text-align: left;
+    }

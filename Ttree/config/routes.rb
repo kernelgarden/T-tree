@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/sign_in', to: 'main#login'
   devise_for :users, :controllers =>{:omniauth_callbacks =>"users/omniauth_callbacks" }
   root 'main#home'
   get 'users/new'
@@ -8,7 +9,8 @@ Rails.application.routes.draw do
 
   resources :users
 
-  get '/main/work', to: 'main#work'
+  get '/main/work/:id', to: 'main#work'
+
   get '/show/pages', to: 'main#pages'
 
   #json
@@ -34,6 +36,7 @@ Rails.application.routes.draw do
 
   post '/api/post/work', to: 'apis#getWork'			#해당 work의 정보
   get '/api/post/work', to: 'apis#getWork1'			#해당 work의 정보
-
+  post '/api/post/team', to: 'apis#getTeam'
   post '/api/page/new', to: 'apis#getPages'
+  # For details on the DSL available within this file, see http://guides.ruonrails.org/routing.html
 end

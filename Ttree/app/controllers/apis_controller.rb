@@ -99,7 +99,10 @@ class ApisController < ApplicationController
 		#@work=(params[:work])
 		Work.create(work_params)
   		#render :json => @work
-
+	end
+	def getTeam
+		@team=Team.create(team_params)
+		User.current.join(@team)
 	end
 
 	def getPages
@@ -127,8 +130,10 @@ class ApisController < ApplicationController
 	end
 
 	private
-
 	def work_params
 		params.require(:work).permit(:name, :user_id, :team_id, :branch_ids)
+	end
+	def team_params
+		params.require(:team).permit(:name)
 	end
 end
