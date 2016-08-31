@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers =>{:omniauth_callbacks =>"users/omniauth_callbacks" }
   root 'main#home'
   get 'users/new'
-  get 'users/profile'
+  get 'users/profile', to: 'apis#search'
   get 'main/login'
   get 'main/team'
 

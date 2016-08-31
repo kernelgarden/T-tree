@@ -92,7 +92,8 @@ var getteamInfo=function(){
           $(".personal_team_header"+i).append("<img src='/assets/team.png' style='float:left ;'>").show('slow')
           $(".personal_team_header"+i).append("<div class='team_more team_more"+i+"'>").show('slow')
           $(".team_more"+i).append("<img src='/assets/more.png' style='width:15px; height:15px; margin-top:7px; margin-left:7px;'>More").show('slow')
-          $(".wrap_team_content"+i).append("<div class=create_personal_team></div>").show('slow')
+          $(".wrap_team_content"+i).append("<div class='create_personal_team create_personal_team"+i+"'></div>").show('slow')
+          $(".create_personal_team"+i).append('<div class="create_personal_team_content">Create Personal Team Work</div>')
         }
           //$(".wrap_team_content").append("<div class=personal_team_content></div>").show('slow')
         //  $(".personal_work_content").eq(i).addClass('addWork')
@@ -100,27 +101,23 @@ var getteamInfo=function(){
       }//if
     })//for
   };
-  /*var getTeamFromUser=function(){	//user로부터 work를 가져오는 함수
+  var getTeamFromUser=function(){	//user로부터 work를 가져오는 함수
   	///////////////////////////////////////JSON/////////////////////////////////////
   	$.getJSON("/api/user/"+userID, function(response) {
   		$.each(response.team_ids, function (i,id) {
   			$.getJSON("/api/team/"+id, function(response) {
-  				if($(".personal_work_content").eq(i).empty(0)){
-  					$(".personal_work_content").eq(i).append('<div class="personal_work_name">'+response.name+'</div>')
-  					$(".personal_work_content").eq(i).addClass(''+id)
-  					$(".personal_work_content").eq(i).attr("data-id",id)
-  				}
+  					$(".personal_team_header").eq(i).append('<h3 style=" float:left; margin-left:5px;">'+response.name+'</h3>')
+  					$(".personal_team_name").eq(i).addClass(''+id)
   			});
   		});
-  		var string="Create Personal Work"
-  		$(".personal_work_content").eq(response.work_ids.length).append('<div class="add_work_name">'+string+'</div>')
   	});
-  }*/
+  }
   /////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function(){
   getInfo();
   getWorkFromUser();
   getteamInfo();
+  getTeamFromUser();
   $(document).on("click", '.team_more' , function(){
     window.location='/main/team/';
   })

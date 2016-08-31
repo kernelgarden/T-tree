@@ -1,4 +1,5 @@
 class Branch < ApplicationRecord
+  #include Searchable
   has_ancestry
   belongs_to :work
   validates:name, presence:true, length:{maximum:50}

@@ -115,6 +115,20 @@ class ApisController < ApplicationController
 
 	end
 
+	def search
+		if params[:search].nil?
+			response = []
+		else
+			@users = User.search params[:search]
+			@works = Work.search params[:search]
+			@branches = Branch.search params[:search]
+			@pages = Page.search params[:search]
+			response = { :users => @users, :works => @works,
+									:branches => @branches, :pages => @pages }
+		end
+		render :json => response
+	end
+
 	private
 	def work_params
 		params.require(:work).permit(:name, :user_id, :team_id, :branch_ids)
