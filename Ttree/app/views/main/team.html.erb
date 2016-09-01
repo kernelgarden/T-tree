@@ -35,6 +35,7 @@ var getTeamWork=function(){
       }
     }
     $(".team_work_wrap").append('<div class="create_team_work create_team_work'+i+'"></div>').show('slow');
+    $(".create_team_work").append('<div class="create_team_work_content">Create Team Work</div>').show('slow');
   })
 }//function
 var getWorkFromTeam=function(){
@@ -44,7 +45,6 @@ var getWorkFromTeam=function(){
         $(".team_work"+i).append('<div class="team_work_name team_work_name'+i+'">'+response.name+'</div>').show('slow');
       })
     })
-    $(".create_team_work").append('<div class="create_team_work_content">Create Team Work</div>').show('slow');
   })
 }
 $('.tabgroup > div').hide();

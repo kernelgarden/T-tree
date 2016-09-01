@@ -2,9 +2,6 @@
 <%= javascript_tag do %>
 window.userID = "<%= current_user.id%>";
 window.userName ="<%= current_user.name %>";
-window.workLength ="<%= current_user.work_ids.length %>";
-window.createWork ='<%=  link_to "<div class='+'create_personal_work'+'></div>".html_safe%>';
-window.addWork ='<%=  link_to "<div class='+'personal_work_content'+'></div>".html_safe%>';
 <% end %>
 <div class="member_work">
   <div class="personal_work">
@@ -29,39 +26,22 @@ window.addWork ='<%=  link_to "<div class='+'personal_work_content'+'></div>".ht
 var tId;
 var getInfo=function(){		//work박스를 그려주는 함수
   $(".personal_work_group").hide();
-  ///////////////////////////////////////JSON/////////////////////////////////////
   $.getJSON("/api/user/"+userID, function(response) {
-    for(var i=0; i<response.work_ids.length+1; i++){
-      if($(".personal_work_group").eq(i).empty(0)){
-        if(i!=response.work_ids.length){
-          $(".personal_work_group").append("<div class=personal_work_content></div>").show('slow')
-          $(".personal_work_content").eq(i).addClass('userWork')
-        }else{
-          $(".personal_work_group").append("<div class=personal_work_content></div>").show('slow')
-          $(".personal_work_content").eq(i).addClass('addWork')
-        }
-      }//if
-    }//for
-  });
-  /////////////////////////////////////////////////////////////////////////////////
-}//getInfo()
-var getWorkFromUser=function(){	//user로부터 work를 가져오는 함수
-  ///////////////////////////////////////JSON/////////////////////////////////////
-  $.getJSON("/api/user/"+userID, function(response) {
-    $.each(response.work_ids, function (i,id) {
-      $.getJSON("/api/work/"+id, function(response) {
-        if($(".personal_work_content").eq(i).empty(0)){
-          $(".personal_work_content").eq(i).append('<div class="personal_work_name">'+response.name+'</div>')
-          $(".personal_work_content").eq(i).addClass(''+id)
-          $(".personal_work_content").eq(i).attr("data-id",id)
-        }
+    if($(".personal_work_group").empty(0)){
+      $.each(response.work_ids, function (i,id) {
+        $(".personal_work_group").append("<div class='userWork personal_work_content personal_work_content"+i+"''></div>").show('slow')
+        $.getJSON("/api/work/"+id, function(response){
+          if($(".personal_work_content").eq(i).empty(0)){
+            $(".personal_work_content"+i).append('<div class="personal_work_name">'+response.name+'</div>')
+            $(".personal_work_content").eq(i).attr("data-id",id)
+          }
+        })
       });
-    });
-    var string="Create Personal Work"
-    $(".personal_work_content").eq(response.work_ids.length).append('<div class="add_work_name">'+string+'</div>')
+    }
   });
-}//getWorkFromUser()
-//############################################################################//
+  $(".personal_work_group").append('<div class="addWork personal_work_content"></div>').show('slow')
+  $(".addWork").append('<div class="add_work_name">Create Personal Work</div>')
+}
 var getteamInfo=function(){
   $(".personal_team").hide();
   $.getJSON("/api/user/"+userID, function(response) {
@@ -76,9 +56,9 @@ var getteamInfo=function(){
           $(".team_more"+i).append("<img src='/assets/more.png' style='width:15px; height:15px; margin-top:7px; margin-left:7px;'>More").show('slow')
         }
       }
-    }//if
-  })//for
-};
+    }
+  })
+}
 var getTeamFromUser=function(){
   ///////////////////////////////////////JSON/////////////////////////////////////
   $.getJSON("/api/user/"+userID, function(response) {
@@ -93,11 +73,10 @@ var getTeamFromUser=function(){
             $(".personal_team_content"+response.team_id+"_"+j).append('<div class="personal_team_name">'+response.name+'</div>').show('slow')
           })
         })
-        //})
-        $(".wrap_team_content"+i).append("<div class='create_personal_team create_personal_team"+i+"'></div>").show('slow')
-        $(".create_personal_team"+i).append('<div class="create_personal_team_content">Create Team Work</div>')
-        $(".create_personal_team"+i).attr("data-team_id",id)
       })
+      $(".wrap_team_content"+i).append("<div class='create_personal_team create_personal_team"+i+"'></div>").show('slow')
+      $(".create_personal_team"+i).append('<div class="create_personal_team_content">Create Team Work</div>')
+      $(".create_personal_team"+i).attr("data-team_id",id)
     })
   })
 }
@@ -107,7 +86,6 @@ $(document).ready(function(){
     async:false
   });
   getInfo();
-  getWorkFromUser();
   getteamInfo();
   getTeamFromUser();
   $(document).on("click", '.team_more' , function(){
@@ -166,7 +144,7 @@ $(document).ready(function(){
     }
     //gvar json=$.parseJSON(formData);
     //alert(json.id)
-    countForm++
+    countForm++;
     if(countForm==1){
       $.ajax({
         type:"POST",
@@ -175,7 +153,8 @@ $(document).ready(function(){
         cache:false,
         data: inputData,
         success:function(data){
-        }
+          alert("팀이 생성되었습니다");
+        },
       })
     }
   })
