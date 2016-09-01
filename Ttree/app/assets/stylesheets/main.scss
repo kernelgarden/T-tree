@@ -56,7 +56,6 @@ div.parent{
   top: 50%;
   left: 50%;
   z-index:10;
-  box-shadow: 2px 1px 6px #888888;
 }
 .parent:hover{
   cursor: pointer;
@@ -71,7 +70,6 @@ div.child{
   background-color: #ECA812;
   border-radius: 50%;
   position: absolute;
-	box-shadow: 2px 1px 6px #888888;
 }
 .child8{
 	z-index:2;

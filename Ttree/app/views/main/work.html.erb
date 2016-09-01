@@ -207,8 +207,7 @@ function renderCircle(){
  		// parent 가지의 색깔을 투명하게
 
  		$( '.parent, .child' ).not(this).animate({
-          backgroundColor: "transparent",
-          boxShadow: '0 0 30px rgba(255, 255, 255, 1.0)'
+          backgroundColor: "transparent"
         }, 700 )
         $('.child').not(this).transition({ x:0+'px', y:0+'px', scale: 1, duration:0});
         // 선택된 가지를 중심으로 이동
@@ -217,8 +216,7 @@ function renderCircle(){
        	$(this).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 400});
        	// parent 가지의 색깔을 child 가지의 색깔로 변화시킴
        	$( '.parent' ).delay(400).animate({
-          backgroundColor: "#53c3d3",
-          boxShadow: '2px 1px 6px #888888'
+          backgroundColor: "#53c3d3"
         }, 'slow' )
         // 선택했던 child가지를 사라지게 함
         //$(this).delay(300).fadeOut('fast')
@@ -241,15 +239,13 @@ function renderCircle(){
         		if(checkThis==8){
         			$('.child').eq(i).css("z-index", 3)
 		        	$('.child').eq(i).delay(0).animate({
-				    	backgroundColor: "#53c3d3",
-				    	boxShadow: '2px 1px 6px #888888'
+				    	backgroundColor: "#53c3d3"
 				    } )
 				    $('.child').eq(i).removeClass('child'+checkThis)
         		}else{
 	        		$('.child').eq(i).css("z-index", 2)
 	        		$('.child').eq(i).delay(300).animate({
-			          backgroundColor: "#f3ba00",
-			          boxShadow: '2px 1px 6px #888888'
+			          backgroundColor: "#f3ba00"
 			        } )
 	        		$('.child').eq(i).delay(30).transition({ x:translateArr[0][checkThis-1]+'px', y:-translateArr[1][checkThis-1]+'px'});
 	        		$('.child').eq(i).addClass('child'+checkThis)
@@ -265,15 +261,13 @@ function renderCircle(){
 		        }
         		$('.child').eq(i).delay(300).animate({
 			         backgroundColor: "#f3ba00",
-			         boxShadow: '2px 1px 6px #888888'
 				} )
 	        	$('.child').eq(i).delay(30).transition({ x:translateArr[0][checkBranch-1]+'px', y:-translateArr[1][checkBranch-1]+'px'});
         	}
         	else{
         		$('.child').eq(i).css("z-index", 3)
 	        	$('.child').eq(i).delay(0).animate({
-			    	backgroundColor: "#53c3d3",
-			    	boxShadow: '2px 1px 6px #888888'
+			    	backgroundColor: "#53c3d3"
 			    } )
 			    $('.child').eq(i).removeClass('child'+checkThis)
         	}//else
@@ -330,22 +324,18 @@ function renderCircle(){
     	$('.child').delay(200).transition({ x:0+'px',y:0+'px',duration: 400, scale: 1.0});
     	$('.child8').fadeIn(0).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 30});
     		$('.child8').delay(0).animate({
-			    backgroundColor: "#ECA812",
-			    boxShadow: '2px 1px 6px #888888'
+			    backgroundColor: "#ECA812"
 			}, 0 )
 			$('.child8').delay(150).transition({ x:0+'px',y:0+'px',duration: 500, scale: 1.0}).delay(60).transition({ x:translateArr[0][checkThis-1]+'px', y:-translateArr[1][checkThis-1]+'px'});
 			//느려서 좀 뒤로 넣음
     		$( '.parent, .child' ).delay(600).not('.child8').animate({
-	          backgroundColor: "transparent",
-	          boxShadow: '0 0 30px rgba(255, 255, 255, 1.0)'
+	          backgroundColor: "transparent"
 	        }, 200)
 	        $( '.parent').delay(600).animate({
-	          backgroundColor: "#53c3d3",
-	          boxShadow: '2px 1px 6px #888888'
+	          backgroundColor: "#53c3d3"
 	        }, 300)
 			$( '.child').not('.child8').delay(400).animate({
-	          backgroundColor: "#ECA812",
-	          boxShadow: '2px 1px 6px #888888'
+	          backgroundColor: "#ECA812"
 	        }, 50)
 	        //child8과 이전 가지의 교환
 	        $('.child'+checkThis).addClass('child9')
@@ -399,8 +389,7 @@ function renderCircle(){
     	else{
 	        $('.child8').fadeOut(0)
 	        $( '.child8' ).animate({
-	          backgroundColor: "transparent",
-	          boxShadow: '0 0 30px rgba(255, 255, 255, 1.0)'
+	          backgroundColor: "transparent"
 	        }, 0 )
 	        for(var i = 1; i <=noOfServ; i++){
 	        	$('.child'+i).transition({ x:translateArr[0][i-1]+'px', y:-translateArr[1][i-1]+'px'});
@@ -451,8 +440,7 @@ function renderCircle(){
     $('.parent').click(function(){
     	if(checkFirst==false){
 	    	$( '.child8' ).css({
-		          backgroundColor: "transparent",
-		          boxShadow: '0 0 30px rgba(255, 255, 255, 1.0)'
+		          backgroundColor: "transparent"
 		        }, 0 )
 	    }
     	if(checkFirst==false){

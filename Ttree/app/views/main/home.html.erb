@@ -88,6 +88,7 @@ $(document).ready(function(){
   getInfo();
   getteamInfo();
   getTeamFromUser();
+  
   $(document).on("click", '.team_more' , function(){
     tId=$(this).data("team_id");
     window.location='/main/team/'+tId;
