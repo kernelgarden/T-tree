@@ -17,8 +17,8 @@ window.teamID = "<%= @team_id%>";
   <section id="first-tab-group" class="tabgroup">
     <div id="tab1" class="tab1">
       <div class="team_work_wrap">
-        </div>
       </div>
+    </div>
     <div id="tab2" class="tab2">
       <h2>Team Members</h2>
       <p>김시훈, 오지원, 류정원</p>
@@ -26,26 +26,20 @@ window.teamID = "<%= @team_id%>";
   </section>
 </div>
 <script>
-var getTeamWork=function(){
+var getWorkFromTeam=function(){
   $(".team_work_wrap").hide
   $.getJSON("/api/team/"+teamID, function(response){
-    for(var i=0; i<(response.work_ids.length); i++){
-        if(i!=response.work_ids.length){
-          $(".team_work_wrap").append('<div class="team_work team_work'+i+'"></div>').show('slow');
-      }
-    }
-    $(".team_work_wrap").append('<div class="create_team_work create_team_work'+i+'"></div>').show('slow');
-    $(".create_team_work").append('<div class="create_team_work_content">Create Team Work</div>').show('slow');
-  })
-}//function
-var getWorkFromTeam=function(){
-  $.getJSON("/api/team/"+teamID, function(response){
     $.each(response.work_ids, function (i,id){
+      if(i!=response.work_ids.length){
+        $(".team_work_wrap").append('<div class="team_work team_work'+i+'"></div>').show('slow');
+      }
       $.getJSON("/api/work/"+id, function(response){
         $(".team_work"+i).append('<div class="team_work_name team_work_name'+i+'">'+response.name+'</div>').show('slow');
       })
     })
   })
+  $(".team_work_wrap").append('<div class="create_team_work"></div>').show('slow');
+  $(".create_team_work").append('<div class="create_team_work_content">Create Team Work</div>').show('slow');
 }
 $('.tabgroup > div').hide();
 $('.tabgroup > div:first-of-type').show();
@@ -61,7 +55,9 @@ $('.tabs a').click(function(e){
   $(target).show();
 });
 $(document).ready(function(){
-  getTeamWork();
+  $.ajaxSetup({ //Json 비동기>>>동기
+    async:false
+  });
   getWorkFromTeam();
 });
 </script>

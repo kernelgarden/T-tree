@@ -1,6 +1,6 @@
 <%= javascript_tag do %>
-  window.userID = "<%= current_user.id%>";
-  window.userName ="<%= current_user.name %>";
+window.userID = "<%= current_user.id%>";
+window.userName ="<%= current_user.name %>";
 <% end %>
 <ul id="header">
   <li class="menu" id="menu_1">
@@ -55,7 +55,6 @@
       <span class='right_icon plus_icon team'><img src="/assets/plus.png" height="15px" width="15px"></span>
     </li>
     <ul id="TeamWorks"></ul>
-
   </ul>
 </div>
 <div id="dropDown5">
@@ -78,9 +77,7 @@
     method: :delete, data: {confirm: "로그아웃?" }%>
   </ul>
 </div>
-
 <script>
-
 var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
 var heightPosition =(window.innerHeight||document.body.clientHeigh)-60;
 var count=0;
@@ -100,7 +97,7 @@ var setHeight=function(){ //높이 정해주는 함수
   }
   console.log(height)
   if($('.team').hasClass('minus_icon')){
-      height=+Change2;
+    height=+Change2;
   }
   console.log(height)
   if(height>heightPosition-220) $('#dropDown1').height(heightPosition)
@@ -119,7 +116,7 @@ var getPersonalWork=function(){ //persoanl work 가져오는 json
     }
     for(var i=0; i<response.work_ids.length; i++){
       if($("#PersonalWorks").eq(i).empty(0))
-        $("#PersonalWorks").append("<li class='work_detail_li' id='PersonalWorks_li"+i+"'></li>")
+      $("#PersonalWorks").append("<li class='work_detail_li' id='PersonalWorks_li"+i+"'></li>")
     }
 
     $.each(response.work_ids, function (i,id) {
@@ -250,15 +247,15 @@ $(document).ready(function(){
       $.getJSON("/api/user/"+userID, function(response) {
         $.each(response.team_ids, function (i,id) {
           $.getJSON("/api/team/"+id, function(response) {
-              $("#TeamWorks").append("<li class='team_li' id='team_li"+id+"'>"+response.name+"<span class='team_right_icon team_plus_icon'><img src='/assets/plus.png' height='15px' width='15px'></span></li>");
-              //일정 크기를 넘어가면 높이를 고정
-              if(($('#dropDown1').height()+30)<=heightPosition){
-                var height=$('#dropDown1').height()+35;
-                heightChange2=heightChange2+35;
-              }
-              else var height=$('#dropDown1').height()
-              Change2=Change2+35;
-              $('#dropDown1').height(height)
+            $("#TeamWorks").append("<li class='team_li' id='team_li"+id+"'>"+response.name+"<span class='team_right_icon team_plus_icon'><img src='/assets/plus.png' height='15px' width='15px'></span></li>");
+            //일정 크기를 넘어가면 높이를 고정
+            if(($('#dropDown1').height()+30)<=heightPosition){
+              var height=$('#dropDown1').height()+35;
+              heightChange2=heightChange2+35;
+            }
+            else var height=$('#dropDown1').height()
+            Change2=Change2+35;
+            $('#dropDown1').height(height)
           });
         });
       });
@@ -293,11 +290,11 @@ $(document).ready(function(){
     $('#addList').append('<form class=\"add_formContain\" name=\"ReadingInfoSelectForm2\" id=\"ReadingInfoSelectForm2\" action=\"\" method=\"post\"><select id=\"selectTeam\" name=\"team\"><option value=\"null\">(none)</option></select></form>')
     ///////////////////////////////////////JSON/////////////////////////////////////
     $.getJSON("/api/user/"+userID, function(response) {
-        $.each(response.team_ids, function (i,id) {
-          $.getJSON("/api/team/"+id, function(response) {
-            $("#selectTeam").append("<option value=\""+id+"\">"+response.name+"</option>");
-          });
+      $.each(response.team_ids, function (i,id) {
+        $.getJSON("/api/team/"+id, function(response) {
+          $("#selectTeam").append("<option value=\""+id+"\">"+response.name+"</option>");
         });
+      });
     });
     ///////////////////////////////////////////////////////////////////////////////
     //submit button
@@ -306,79 +303,79 @@ $(document).ready(function(){
 
   //Create Work에서 Create 버튼 눌렀을 때
   $(document).on("click","#ReadingInfoSelectBtn",function() {
-      jQuery.fn.mySerialize = function() {
+    jQuery.fn.mySerialize = function() {
 
-        var returning = '';
+      var returning = '';
 
-        $('input, select, textarea', this).each(function() {
-            if (this.value !== "") // check this to avoid && in returning string
-                returning += '&' + this.value;
-        });
-        return returning.substring(1);
-      };
-      var formData1 = $("#ReadingInfoSelectForm").mySerialize();
-      var formData2 = $("#ReadingInfoSelectForm2").mySerialize();
+      $('input, select, textarea', this).each(function() {
+        if (this.value !== "") // check this to avoid && in returning string
+        returning += '&' + this.value;
+      });
+      return returning.substring(1);
+    };
+    var formData1 = $("#ReadingInfoSelectForm").mySerialize();
+    var formData2 = $("#ReadingInfoSelectForm2").mySerialize();
 
-      //alert(formData2)
-      //값이 하나라도 안들어오면 알림창을 표시하고 리턴하여 함수빠져나감
-      if(formData1==''||formData2=='') {
-        //alert("빈칸!")
-        nCount3=0;
-        return;
-      }
-      if(formData2=="null"){
-        var inputData={"work":{"name":formData1, "user_id":userID}}
-      }else{
-        var inputData={"work":{"name":formData1, "user_id":userID, "team_id":formData2}}
-      }
-
-      //gvar json=$.parseJSON(formData);
-      //alert(json.id)
-      countDropdown5++
-      if(countDropdown5==1){
-        $.ajax({
-              type : "POST",
-              url : "/api/post/work",
-              contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-              cache : false,
-              data :  inputData,
-              success:function(data){
-                //alert('success');
-              }
-        });
-      }
-      //재조회
-      getInfo();
-      $('#dropDown5').hide();
+    //alert(formData2)
+    //값이 하나라도 안들어오면 알림창을 표시하고 리턴하여 함수빠져나감
+    if(formData1==''||formData2=='') {
+      //alert("빈칸!")
       nCount3=0;
-      //dropdown5에서 처음 모양으로 돌아가기 위해서
-      goBackDropdown5();
-      $('#dropDown5').hide();
-      nCount3=0;
-      //dropdown5에서 처음 모양으로 돌아가기 위해서
-      goBackDropdown5();
+      return;
+    }
+    if(formData2=="null"){
+      var inputData={"work":{"name":formData1, "user_id":userID}}
+    }else{
+      var inputData={"work":{"name":formData1, "user_id":userID, "team_id":formData2}}
+    }
 
-      /*
-      if($('.personal').hasClass('minus_icon')){
-        Change=0;
-        $("#PersonalWorks").empty(0)
-        ///////////////////////////////////////JSON/////////////////////////////////////
-        //getPersonalWork();
-        ////////////////////////////////////////////////////////////////////////////////
-      }*/
-  })
-  //Create Team
-  $('#add_li3').click(function(){
-    //$('#add_li1').empty().append('<span id=\'left_icon\'><img src="/assets/arrow-left.png" height="15px" width="15px"></span>Create Team')
-    //$('.add_li').fadeOut();
-
-  })
-  //왼쪽 화살표를 누르면 이전 화면으로 이동
-  $(document).on("click","#left_icon",function() {
-    //dropdown5에서 이전화살표를 눌렀을 때
+    //gvar json=$.parseJSON(formData);
+    //alert(json.id)
+    countDropdown5++
+    if(countDropdown5==1){
+      $.ajax({
+        type : "POST",
+        url : "/api/post/work",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        cache : false,
+        data :  inputData,
+        success:function(data){
+          //alert('success');
+        }
+      });
+    }
+    //재조회
+    getInfo();
+    $('#dropDown5').hide();
+    nCount3=0;
+    //dropdown5에서 처음 모양으로 돌아가기 위해서
     goBackDropdown5();
-    $(this).fadeOut(0)
-  });
+    $('#dropDown5').hide();
+    nCount3=0;
+    //dropdown5에서 처음 모양으로 돌아가기 위해서
+    goBackDropdown5();
+
+    /*
+    if($('.personal').hasClass('minus_icon')){
+    Change=0;
+    $("#PersonalWorks").empty(0)
+    ///////////////////////////////////////JSON/////////////////////////////////////
+    //getPersonalWork();
+    ////////////////////////////////////////////////////////////////////////////////
+  }*/
+})
+//Create Team
+$('#add_li3').click(function(){
+  //$('#add_li1').empty().append('<span id=\'left_icon\'><img src="/assets/arrow-left.png" height="15px" width="15px"></span>Create Team')
+  //$('.add_li').fadeOut();
+
+})
+//왼쪽 화살표를 누르면 이전 화면으로 이동
+$(document).on("click","#left_icon",function() {
+  //dropdown5에서 이전화살표를 눌렀을 때
+  goBackDropdown5();
+  $(this).fadeOut(0)
+});
 });
 //스크롤 내릴 때 dropDown1도 같이 움직이기
 $(window).scroll(function(){
@@ -404,6 +401,5 @@ $(window).resize(function(){
   else if(widthMax*2/3<=widthPosition){
     $("#menuDiv6").empty().append(userName)
   }
-
 });
 </script>
