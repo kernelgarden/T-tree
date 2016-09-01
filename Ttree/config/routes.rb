@@ -5,11 +5,8 @@ Rails.application.routes.draw do
   get 'users/profile'
   get 'main/login'
   get 'main/team/:id', to: 'main#team'
-
   resources :users
-
   get '/main/work/:id', to: 'main#work'
-
   get '/show/pages', to: 'main#pages'
 
   #json
@@ -30,11 +27,8 @@ Rails.application.routes.draw do
   get '/api/branch/:id/pages', to: 'apis#pages' #해당 branch의 page들의 정보
   get '/api/branch/:id/page_ids', to: 'apis#page_ids' #해당 branch의 page id들
   get '/api/page/:id', to: 'apis#page'         #해당 page의 정보
-
   get '/api/user/:id/unclassifiedpages', to: 'apis#unclassifiedpages' #해당 branch의 page들의 정보
   get '/api/unclassifiedpage/:id', to: 'apis#unclassifiedpage'         #해당 page의 정보
-
-
   post '/api/post/work', to: 'apis#getWork'         #해당 work의 정보
   get '/api/post/work', to: 'apis#getWork1'         #해당 work의 정보
   post '/api/post/team', to:'apis#getTeam'
