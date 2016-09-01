@@ -149,6 +149,9 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
   $('div:not(#page_alert)').click(function(){
 
   })
+  $(document).on("click",".pageli",function() {
+      window.open($(this).data("url"),'_blank');
+    })
 }
 
 $(document).ready(function(){
@@ -164,7 +167,7 @@ $(document).ready(function(){
   //사이즈 세팅
   setSize();
   //branch에 포함되지 않은 페이지들의 개수를 체크해 할당
-  checkPageAlerNum();
+  setInterval( checkPageAlerNum, 1000 );
   //pagesInform();
   showPages();
 });
