@@ -91,15 +91,12 @@ var heightMax =window.screen.availHeight||document.body.clientHeigh;
 
 var setHeight=function(){ //높이 정해주는 함수
   var height=0;
-  console.log(height)
   if($('.personal').hasClass('minus_icon')){
     height=+Change;
   }
-  console.log(height)
   if($('.team').hasClass('minus_icon')){
     height=+Change2;
   }
-  console.log(height)
   if(height>heightPosition-220) $('#dropDown1').height(heightPosition)
   else $('#dropDown1').height(220+height)
 }//setHeight()
@@ -107,22 +104,29 @@ var setHeight=function(){ //높이 정해주는 함수
 var getPersonalWork=function(){ //persoanl work 가져오는 json
   Change=0;
   ///////////////////////////////////////JSON/////////////////////////////////////
-  $.getJSON("/api/user/"+userID, function(response) {
-    if(response.work_ids.length==0){
+  $.getJSON("/api/user/"+userID+"/works", function(response) {
+    
+    /////////personalwork 개수 구하기 ////////
+    var length=0;
+    $.each(response, function (i,work) {
+        if(work.team_id==null) 
+          length++;
+    });
+    /////////personalwork 개수 구하기 ////////
+    if(length==0){
       alert("work를 추가해주세요!")
       count=0;
       $('.personal').empty(0).append("<img src='/assets/plus.png' height='15px' width='15px'>")
       $('.personal').removeClass('minus_icon').addClass('plus_icon')
     }
-    for(var i=0; i<response.work_ids.length; i++){
+    for(var i=0; i<length; i++){
       if($("#PersonalWorks").eq(i).empty(0))
       $("#PersonalWorks").append("<li class='work_detail_li' id='PersonalWorks_li"+i+"'></li>")
     }
-
-    $.each(response.work_ids, function (i,id) {
-      $.getJSON("/api/work/"+id, function(response) {
-        if(response.team_id==null&&$(".work_detail_li").eq(i).empty(0)){
-          $(".work_detail_li").eq(i).append(response.name);
+    var cnt=0;
+    $.each(response, function (i,work) {
+        if(work.team_id==null&&$(".work_detail_li").eq(i).empty(0)){
+          $(".work_detail_li").eq(cnt).append(work.name);
           //일정 크기를 넘어가면 높이를 고정
           if(($('#dropDown1').height()+30)<=heightPosition){
             var height=$('#dropDown1').height()+35;
@@ -131,9 +135,9 @@ var getPersonalWork=function(){ //persoanl work 가져오는 json
           else var height=$('#dropDown1').height()
           Change=Change+35;
           $('#dropDown1').height(height)
+          cnt++;
         }
         else Change=0;
-      });
     });
   });
 }//getPersonalWork()
