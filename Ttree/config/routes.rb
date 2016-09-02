@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get '/api/work/:id/branche_ids', to: 'apis#branche_ids' #해당 work의 branch id들
   get '/api/work/:id/tree', to: 'apis#tree'      #해당 work의 tree
   get '/api/branch/:id', to: 'apis#branch'      #해당 branch의 정보
+  get '/api/branch/:id/childs', to: 'apis#branchChilds'      #해당 branch의 정보
   get '/api/branch/:id/pages', to: 'apis#pages' #해당 branch의 page들의 정보
   get '/api/branch/:id/page_ids', to: 'apis#page_ids' #해당 branch의 page id들
   get '/api/page/:id', to: 'apis#page'         #해당 page의 정보

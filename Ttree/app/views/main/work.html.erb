@@ -1,13 +1,13 @@
 <!--
 <div class='pages'>
-	<ol class="page">
-		<% for i in 0..30 %>
-		<li class="pageli zoomTarget">
-			<img class="img" src="http://ryugarden.org/api/thumb?url=http://naver.com" />
-			<div class="page_url_div"><a class="page_url">http://naver.com</a></div>
-		</li>
-		<% end %>
-	</ol>
+<ol class="page">
+<% for i in 0..30 %>
+<li class="pageli zoomTarget">
+<img class="img" src="http://ryugarden.org/api/thumb?url=http://naver.com" />
+<div class="page_url_div"><a class="page_url">http://naver.com</a></div>
+</li>
+<% end %>
+</ol>
 </div>-->
 
 <script>
@@ -32,260 +32,458 @@ var fixedHeight=40;			//헤더를 고정하면서 내려가야하는 높이
 var backButtonFlag=0;
 var currentWorkId;
 function renderCircle(){
-  	function toDegrees(angle){
-    	return angle * (Math.PI / 180);
-  	}//toDegrees()
-  	var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
-  	var height =window.screen.availHeight||document.body.clientHeigh;
-  	var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
-  	var heightPosition =window.innerHeight||document.body.clientHeigh;
-  	if(height<500){
-	    width=1366;
-	    height=768;
-  	}//if
-  	//넓이 고정
-  	$('#wrapDiv').width(width)
+  function toDegrees(angle){
+    return angle * (Math.PI / 180);
+  }//toDegrees()
+  var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
+  var height =window.screen.availHeight||document.body.clientHeigh;
+  var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
+  var heightPosition =window.innerHeight||document.body.clientHeigh;
+  if(height<500){
+    width=1366;
+    height=768;
+  }//if
+  //넓이 고정
+  $('#wrapDiv').width(width)
 
-  	widthPosition=width
-  	//최소 높이, 넢이를 제한
-  	//if(heightPosition<490)	heightPosition=490;
+  widthPosition=width
+  //최소 높이, 넢이를 제한
+  //if(heightPosition<490)	heightPosition=490;
 
 
-  	//parent 위치 설정
-  	var parent = $('div.parent');
-  	parentWidth=width*(1/9);
-  	parentHeight=parentWidth;
-  	parent.width(String(parentWidth));
-  	parent.height(String(parentHeight));
-  	var parentCircleHalfWidth = (parent.width()/2);
-  	var parentTop = parent.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth+fixedHeight});
-  	var parentLeft = parent.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
+  //parent 위치 설정
+  var parent = $('div.parent');
+  parentWidth=width*(1/9);
+  parentHeight=parentWidth;
+  parent.width(String(parentWidth));
+  parent.height(String(parentHeight));
+  var parentCircleHalfWidth = (parent.width()/2);
+  var parentTop = parent.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth+fixedHeight});
+  var parentLeft = parent.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
 
-  	//childGroup 설정
-  	var childGroup = $('div.childGroup');
-  	childGroup.width(String(parentWidth));
-  	childGroup.height(String(parentHeight));
-  	childGroup.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth+fixedHeight});
-  	childGroup.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
+  //childGroup 설정
+  var childGroup = $('div.childGroup');
+  childGroup.width(String(parentWidth));
+  childGroup.height(String(parentHeight));
+  childGroup.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth+fixedHeight});
+  childGroup.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
 
-  	//Number of services
-  	noOfServices = 8;
-  	noOfServ=noOfServices;
-  	translateArr[0]=new Array(noOfServices);
-  	translateArr[1]=new Array(noOfServices);
-  	//Add some padding from parent circle
-  	var Hyp = parentCircleHalfWidth*2;
-  	//360 degrees / the number of services
-  	var angle = Math.round(360 / noOfServices);
-  	for(var i = 1; i <= noOfServices; i++){
-	    var currentAngle = i * angle;
-	    //calculate the positioning of the child circle around the parent circle
-	    var circlePosXOpp = (Math.sin(toDegrees(currentAngle)) * Hyp);
-	    var circlePosYAdj = (Math.cos(toDegrees(currentAngle)) * Hyp);
-	  	translateArr[0][i-1]=circlePosXOpp;
-	    translateArr[1][i-1]=circlePosYAdj;
-	    //create a child element and assign "child" class with some properties such as positining
-	    var currentChild = $('<div class="child"></div>').appendTo('div.childGroup');
-	    currentChild.addClass('child'+i);
-	    currentChild.width(String(width*(1/18)));
-	    currentChild.height(String(width*(1/18)));
-	    var childCircleHalfWidth=(currentChild.width()/2);
-	    currentChild.css({'top':(+childCircleHalfWidth)+'px'});
-	    currentChild.css({'left':(+childCircleHalfWidth)+'px'});
-      //currentChild.css({'-webkit-transform': 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'});
-	    currentChild.css({'transform' : 'translate('+(circlePosXOpp) + 'px, ' + -circlePosYAdj + 'px)'});
-  	}//for
+  //Number of services
+  noOfServices = 8;
+  noOfServ=noOfServices;
+  translateArr[0]=new Array(noOfServices);
+  translateArr[1]=new Array(noOfServices);
+  //Add some padding from parent circle
+  var Hyp = parentCircleHalfWidth*2;
+  //360 degrees / the number of services
+  var angle = Math.round(360 / noOfServices);
+  for(var i = 1; i <= noOfServices; i++){
+    var currentAngle = i * angle;
+    //calculate the positioning of the child circle around the parent circle
+    var circlePosXOpp = (Math.sin(toDegrees(currentAngle)) * Hyp);
+    var circlePosYAdj = (Math.cos(toDegrees(currentAngle)) * Hyp);
+    translateArr[0][i-1]=circlePosXOpp;
+    translateArr[1][i-1]=circlePosYAdj;
+    //create a child element and assign "child" class with some properties such as positining
+    var currentChild = $('<div class="child"></div>').appendTo('div.childGroup');
+    currentChild.addClass('child'+i);
+    currentChild.width(String(width*(1/18)));
+    currentChild.height(String(width*(1/18)));
+    var childCircleHalfWidth=(currentChild.width()/2);
+    currentChild.css({'top':(+childCircleHalfWidth)+'px'});
+    currentChild.css({'left':(+childCircleHalfWidth)+'px'});
+    //currentChild.css({'-webkit-transform': 'translate('+circlePosXOpp + 'px, ' + -circlePosYAdj + 'px)'});
+    currentChild.css({'transform' : 'translate('+(circlePosXOpp) + 'px, ' + -circlePosYAdj + 'px)'});
+  }//for
 
-  	///////////////////////////// back버튼 //////////////////////////////////
-  	var backButton = $('<div class="back"></div>').appendTo('div.childGroup');
-  	backButton.width(String(width*(1/18)));
-	backButton.height(String(width*(1/18)));
-	backButton.css({'top':(+(backButton.width()/2))+'px'});
-	backButton.css({'left':(+(backButton.width()/2))+'px'});
-	var backPosXOpp = (Math.sin(toDegrees(8 * angle)) * Hyp);
-	var backPosYAdj = (Math.cos(toDegrees(8 * angle)) * Hyp)*1.5;
-	backButton.css({'transform' : 'translate('+backPosXOpp + 'px, ' + -backPosYAdj + 'px)'});
-	$('.back').fadeOut(0);
-	////////////////////////////////////////////////////////////////////////
-  	//리스트
-    $(function() {
-      var width = window.innerWidth||document.body.clientWidth;
-      var height =window.innerHeight||document.body.clientHeigh;
-      $('.child4,.child5,.child6,.child7').hover(function(){
-        $('.list').fadeIn(800)
-        .width(String(width*(1/8)))
-        .height(String(width*(1/6)))
-        .css('top', +height*(1/2)-width*(1/12))
-        .css('left', +width*(1/8))
-        $('.list li').transition({
-          rotateX: '360',
-          duration:1000
+  ///////////////////////////// back버튼 //////////////////////////////////
+  var backButton = $('<div class="back"></div>').appendTo('div.childGroup');
+  backButton.width(String(width*(1/18)));
+  backButton.height(String(width*(1/18)));
+  backButton.css({'top':(+(backButton.width()/2))+'px'});
+  backButton.css({'left':(+(backButton.width()/2))+'px'});
+  var backPosXOpp = (Math.sin(toDegrees(8 * angle)) * Hyp);
+  var backPosYAdj = (Math.cos(toDegrees(8 * angle)) * Hyp)*1.5;
+  backButton.css({'transform' : 'translate('+backPosXOpp + 'px, ' + -backPosYAdj + 'px)'});
+  $('.back').fadeOut(0);
+  ////////////////////////////////////////////////////////////////////////
+  //리스트
+  $(".child").mouseenter(function(){
+    var branchID=$(this).data("id");
+    $.getJSON("/api/branch/"+branchID, function(response) {
+      if(response.child_id==null){
+        alert("하위 목록이 비었습니다");
+      }
+      else{
+        $.each(response.child_id, function (i,id){
+
         })
-      }, function() {
-        $('.list').stop(true).fadeOut(300);
-      })
-      $('.child1,.child2,.child3,.child8').hover(function(){
-        $('.list').fadeIn(800)
-        .width(String(width*(1/8)))
-        .height(String(width*(1/6)))
-        .css('top', +height*(1/2)-width*(1/12))
-        .css('left', width-2*(width*(1/8)))
-        $('.list li').transition({
-          rotateX: '360',
-          duration:1000
-        })
-      }, function() {
-        $('.list').stop(true).fadeOut(300);
-      })
-    })//리스트 function
+      }
+    })
+  })
+  $(".child").mouseleave(function(){
+    $(".branch_list").hide();
+  })
+  /////////////////////////////Json/////////////////////////////
 
-    /////////////////////////////Json/////////////////////////////
+  if(checkFirst==true){
+    $(".parent").empty();
+    $(".child").empty();
 
-    if(checkFirst==true){
-    	$(".parent").empty();
-    	$(".child").empty();
+    $.getJSON("/api/work/"+currentWorkId, function(response) {
+      $(".parent").empty().append(response.id);
+      $(".parent").append(response.name);
+    });
+    $.getJSON("/api/work/"+currentWorkId+"/branche_ids", function(response) {
+      $.each(response, function (i,first) {
+        //$(".child"+(i+1)).append(first);
+        var temp=(i+1)
+        $.getJSON("/api/branch/"+first, function(response) {
+          if(response.parent_id==null){
+            $(".child"+temp).empty().append(response.id);
+            $(".child"+temp).append(response.name);
+            $(".child"+temp).attr("data-id",first)
+          }
+        });
+      });
+    });
 
-	    $.getJSON("/api/work/"+currentWorkId, function(response) {
-				$(".parent").empty().append(response.id);
-				$(".parent").append(response.name);
-			});
-	  	$.getJSON("/api/work/"+currentWorkId+"/branche_ids", function(response) {
-			$.each(response, function (i,first) {
-				//$(".child"+(i+1)).append(first);
-				var temp=(i+1)
-				$.getJSON("/api/branch/"+first, function(response) {
-					if(response.parent_id==null){
-						$(".child"+temp).empty().append(response.id);
-						$(".child"+temp).append(response.name);
-						$(".child"+temp).attr("data-id",first)
-					}
-				});
-			});
-		});
+  }
+  //////////////////////////////////////////////////////////////
 
-  	}
-  	//////////////////////////////////////////////////////////////
+  /////////////////////////////Json/////////////////////////////
+  //window resize할 때 필요
+  if(checkFirst!=true){
+    $.getJSON("/api/branch/"+checkThis, function(response) {
+      $(".parent").empty().append(response.id);
+      $(".parent").append(response.name);
+    });
+    $.getJSON("/api/branch/"+checkThis, function(response) {
+      $.each(response.child_ids, function (i,first) {
+        //$(".child"+(i+1)).append(first);
+        var temp=first
+        $.getJSON("/api/branch/"+temp, function(response) {
+          var index=(temp%7)
+          if(index==0) index=7;
+          $(".child"+index).empty().append(response.id);
+          $(".child"+index).append(response.name);
+        });
+      });
+    });
+  }
+  ////////////////////////////////////////////////////////////
 
-  	/////////////////////////////Json/////////////////////////////
-  	//window resize할 때 필요
-  	if(checkFirst!=true){
-		$.getJSON("/api/branch/"+checkThis, function(response) {
-			$(".parent").empty().append(response.id);
-			$(".parent").append(response.name);
-		});
-		$.getJSON("/api/branch/"+checkThis, function(response) {
-			$.each(response.child_ids, function (i,first) {
-				//$(".child"+(i+1)).append(first);
-				var temp=first
-				$.getJSON("/api/branch/"+temp, function(response) {
-					var index=(temp%7)
-					if(index==0) index=7;
-					$(".child"+index).empty().append(response.id);
-					$(".child"+index).append(response.name);
-				});
-			});
-		});
-	}
-  	////////////////////////////////////////////////////////////
+  //branch 누르면
+  $('.child').click(function(){
+    backButtonFlag=0;
+    $('.back').fadeOut();
+    ///////////////////// json 초기화 //////////////////////
+    $(".parent").empty();
+    $(".child").empty();
+    ///////////////////////////////////////////////////////
+    //$('.parent').removeClass("zoomTarget selectedZoomTarget zoomNotClickable")
+    movingChild=true;
+    $('.child').fadeIn(0)
+    //$('.child').unbind("mouseenter");
+    $('.parent').css("z-index", 5)
+    $(this).css("z-index", 2)
+    //선택된 가지를 제외 하고 사라짐
+    //$('.child').not(this).fadeOut('slow')
+    // parent 가지의 색깔을 투명하게
 
-    //branch 누르면
-    $('.child').click(function(){
-    	backButtonFlag=0;
-    	$('.back').fadeOut();
-    	///////////////////// json 초기화 //////////////////////
-    	$(".parent").empty();
-    	$(".child").empty();
-    	///////////////////////////////////////////////////////
-    	//$('.parent').removeClass("zoomTarget selectedZoomTarget zoomNotClickable")
-    	movingChild=true;
-    	$('.child').fadeIn(0)
-    	//$('.child').unbind("mouseenter");
-    	$('.parent').css("z-index", 5)
-    	$(this).css("z-index", 2)
-    	//선택된 가지를 제외 하고 사라짐
- 		//$('.child').not(this).fadeOut('slow')
- 		// parent 가지의 색깔을 투명하게
+    $( '.parent, .child' ).not(this).animate({
+      backgroundColor: "transparent"
+    }, 700 )
+    $('.child').not(this).transition({ x:0+'px', y:0+'px', scale: 1, duration:0});
+    // 선택된 가지를 중심으로 이동
+    $(this).delay(200).transition({ x:0+'px',y:0+'px',duration: 400});
+    // 선택된 가지를 parent가지의 크기만큼 확대
+    $(this).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 400});
+    // parent 가지의 색깔을 child 가지의 색깔로 변화시킴
+    $( '.parent' ).delay(400).animate({
+      backgroundColor: "#53c3d3"
+    }, 'slow' )
+    // 선택했던 child가지를 사라지게 함
+    //$(this).delay(300).fadeOut('fast')
+    // parent가지의 색깔을 원래 색깔로 되돌려줌
+    /*$( '.parent' ).animate({
+    backgroundColor: "#53c3d3",
+  }, 3000 )*/
+  //$(this).transition({ x:0+'px', y:0+'px', scale: 1, duration:0})
+  //$('.child').fadeIn('slow')
+  var checkBranch;
 
- 		$( '.parent, .child' ).not(this).animate({
-          backgroundColor: "transparent"
-        }, 700 )
-        $('.child').not(this).transition({ x:0+'px', y:0+'px', scale: 1, duration:0});
-        // 선택된 가지를 중심으로 이동
-        $(this).delay(200).transition({ x:0+'px',y:0+'px',duration: 400});
-        // 선택된 가지를 parent가지의 크기만큼 확대
-       	$(this).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 400});
-       	// parent 가지의 색깔을 child 가지의 색깔로 변화시킴
-       	$( '.parent' ).delay(400).animate({
+  for(var i = 1; i <= noOfServ; i++){
+    if($(this).hasClass('child'+i)){
+      checkThis=i;
+      checkId=$(this).data("id");
+    }
+  }
+  for(var i = 0; i < noOfServ; i++){
+    if($('.child').eq(i).hasClass('child8')){
+      if(checkThis==8){
+        $('.child').eq(i).css("z-index", 3)
+        $('.child').eq(i).delay(0).animate({
           backgroundColor: "#53c3d3"
-        }, 'slow' )
-        // 선택했던 child가지를 사라지게 함
-        //$(this).delay(300).fadeOut('fast')
-        // parent가지의 색깔을 원래 색깔로 되돌려줌
-        /*$( '.parent' ).animate({
-          backgroundColor: "#53c3d3",
-        }, 3000 )*/
-        //$(this).transition({ x:0+'px', y:0+'px', scale: 1, duration:0})
-        //$('.child').fadeIn('slow')
-        var checkBranch;
-
-        for(var i = 1; i <= noOfServ; i++){
-        	if($(this).hasClass('child'+i)){
-        		checkThis=i;
-        		checkId=$(this).data("id");
-        	}
+        } )
+        $('.child').eq(i).removeClass('child'+checkThis)
+      }else{
+        $('.child').eq(i).css("z-index", 2)
+        $('.child').eq(i).delay(300).animate({
+          backgroundColor: "#f3ba00"
+        } )
+        $('.child').eq(i).delay(30).transition({ x:translateArr[0][checkThis-1]+'px', y:-translateArr[1][checkThis-1]+'px'});
+        $('.child').eq(i).addClass('child'+checkThis)
+        $('.child').eq(i).removeClass('child8')
+      }
+    }//if
+    else if(!($('.child').eq(i).hasClass('child'+checkThis))){
+      $('.child').eq(i).css("z-index", 2)
+      for(var j = 1; j <= noOfServ; j++){
+        if($('.child').eq(i).hasClass('child'+j)){
+          checkBranch=j;
         }
-        for(var i = 0; i < noOfServ; i++){
-        	if($('.child').eq(i).hasClass('child8')){
-        		if(checkThis==8){
-        			$('.child').eq(i).css("z-index", 3)
-		        	$('.child').eq(i).delay(0).animate({
-				    	backgroundColor: "#53c3d3"
-				    } )
-				    $('.child').eq(i).removeClass('child'+checkThis)
-        		}else{
-	        		$('.child').eq(i).css("z-index", 2)
-	        		$('.child').eq(i).delay(300).animate({
-			          backgroundColor: "#f3ba00"
-			        } )
-	        		$('.child').eq(i).delay(30).transition({ x:translateArr[0][checkThis-1]+'px', y:-translateArr[1][checkThis-1]+'px'});
-	        		$('.child').eq(i).addClass('child'+checkThis)
-	        		$('.child').eq(i).removeClass('child8')
-	        	}
-        	}//if
-        	else if(!($('.child').eq(i).hasClass('child'+checkThis))){
-        		$('.child').eq(i).css("z-index", 2)
-        		for(var j = 1; j <= noOfServ; j++){
-		        	if($('.child').eq(i).hasClass('child'+j)){
-		        		checkBranch=j;
-		        	}
-		        }
-        		$('.child').eq(i).delay(300).animate({
-			         backgroundColor: "#f3ba00",
-				} )
-	        	$('.child').eq(i).delay(30).transition({ x:translateArr[0][checkBranch-1]+'px', y:-translateArr[1][checkBranch-1]+'px'});
-        	}
-        	else{
-        		$('.child').eq(i).css("z-index", 3)
-	        	$('.child').eq(i).delay(0).animate({
-			    	backgroundColor: "#53c3d3"
-			    } )
-			    $('.child').eq(i).removeClass('child'+checkThis)
-        	}//else
+      }
+      $('.child').eq(i).delay(300).animate({
+        backgroundColor: "#f3ba00",
+      } )
+      $('.child').eq(i).delay(30).transition({ x:translateArr[0][checkBranch-1]+'px', y:-translateArr[1][checkBranch-1]+'px'});
+    }
+    else{
+      $('.child').eq(i).css("z-index", 3)
+      $('.child').eq(i).delay(0).animate({
+        backgroundColor: "#53c3d3"
+      } )
+      $('.child').eq(i).removeClass('child'+checkThis)
+    }//else
+  }//for
+  for(var i = 1; i <= noOfServ; i++){
+    if($(this).hasClass('child8')){
+      checkFirst=true;
+    }else{
+      checkFirst=false;
+    }
+  }
+
+  if(checkFirst==false) {
+    if(checkSecond==true) checkSecond=3;	//이미 두번째를 지났으면 false 표시
+    else if(checkSecond==false) checkSecond=true;	//두번째임을 표시
+    $(this).addClass('child8');
+    if(checkSecond==true) $('.back').delay(1550).fadeIn(300); //두번째일때 속도 조절
+    else $('.back').delay(1200).fadeIn(300);
+  }
+  movingChild=false;
+
+  ////////////////////////////////Json///////////////////////////////
+  setTimeout(function(){
+    $.getJSON("/api/branch/"+checkId, function(response) {
+      $(".parent").empty().append(response.id);
+      $(".parent").append(response.name);
+    });
+    $.getJSON("/api/branch/"+checkId, function(response) {
+      $.each(response.child_ids, function (i,first) {
+        //$(".child"+(i+1)).append(first);
+        var temp=first
+        $.getJSON("/api/branch/"+temp, function(response) {
+          var index=(temp%7)
+          if(index==0) index=7;
+          $(".child"+index).empty().append(response.id);
+          $(".child"+index).append(response.name);
+          $(".child"+index).attr("data-id",first)
+        });
+      });
+    });
+  }, 1400);
+  ///////////////////////////////////////////////////////////////////
+  //전 parent값 저장하는 과정
+  checkBefore3=checkBefore2;
+  checkBefore2=checkId;
+})//child-click
+//back button 누르면
+$('.back').click(function(){
+  backButtonFlag=1;
+  $(this).fadeOut(0)
+  $('.parent').empty();
+  $('.child').empty();
+  //child가지 중심으로 이동
+  $('.child').delay(200).transition({ x:0+'px',y:0+'px',duration: 400, scale: 1.0});
+  $('.child8').fadeIn(0).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 30});
+  $('.child8').delay(0).animate({
+    backgroundColor: "#ECA812"
+  }, 0 )
+  $('.child8').delay(150).transition({ x:0+'px',y:0+'px',duration: 500, scale: 1.0}).delay(60).transition({ x:translateArr[0][checkThis-1]+'px', y:-translateArr[1][checkThis-1]+'px'});
+  //느려서 좀 뒤로 넣음
+  $( '.parent, .child' ).delay(600).not('.child8').animate({
+    backgroundColor: "transparent"
+  }, 200)
+  $( '.parent').delay(600).animate({
+    backgroundColor: "#53c3d3"
+  }, 300)
+  $( '.child').not('.child8').delay(400).animate({
+    backgroundColor: "#ECA812"
+  }, 50)
+  //child8과 이전 가지의 교환
+  $('.child'+checkThis).addClass('child9')
+  $('.child9').removeClass('child'+checkThis);
+  $('.child8').addClass('child'+checkThis);
+
+  $('.child'+checkThis).removeClass('child8')
+
+  $('.child9').addClass('child8')
+
+  $('.child8').removeClass('child9')
+  if(checkSecond==true) {
+    $('.child8').css("z-index", 3)
+    $('.child').not('.child8').css("z-index", 2)
+  }
+
+  //두번째 childbranch이면
+  if(checkSecond==true){
+    checkSecond=false;
+    for(var i = 1; i <=noOfServ; i++){
+      $('.child'+i).transition({ x:translateArr[0][i-1]+'px', y:-translateArr[1][i-1]+'px'});
+    }//for
+    //루트로 변경
+    checkFirst=true;
+    /////////////////////////////Json/////////////////////////////
+    setTimeout(function(){
+      if(checkFirst==true){
+        $(".parent").empty();
+        $(".child").empty();
+        $.getJSON("/api/work/"+currentWorkId, function(response) {
+          $(".parent").empty().append(response.id);
+          $(".parent").append(response.name);
+        });
+        $.getJSON("/api/work/"+currentWorkId+"/branche_ids", function(response) {
+          $.each(response, function (i,first) {
+            //$(".child"+(i+1)).append(first);
+            var temp=(i+1)
+            $.getJSON("/api/branch/"+first, function(response) {
+              if(response.parent_id==null){
+                $(".child"+temp).empty().append(response.id);
+                $(".child"+temp).append(response.name);
+                $(".child"+temp).attr("data-id",first)
+              }
+            });
+          });
+        });
+      }
+    }, 1900);
+    //////////////////////////////////////////////////////////////
+  }
+  else{
+    $('.child8').fadeOut(0)
+    $( '.child8' ).animate({
+      backgroundColor: "transparent"
+    }, 0 )
+    for(var i = 1; i <=noOfServ; i++){
+      $('.child'+i).transition({ x:translateArr[0][i-1]+'px', y:-translateArr[1][i-1]+'px'});
+    }//for
+    /////////////////////////////Json/////////////////////////////
+    setTimeout(function(){
+      $.getJSON("/api/branch/"+checkId, function(response) {
+        checkBefore=response.parent_id;
+        $.getJSON("/api/branch/"+checkBefore, function(response) {
+          $(".parent").empty().append(response.id);
+          $(".parent").append(response.name);
+        });
+        $.getJSON("/api/branch/"+checkBefore, function(response) {
+          $.each(response.child_ids, function (i,first) {
+            //$(".child"+(i+1)).append(first);
+            var temp=first
+            $.getJSON("/api/branch/"+temp, function(response) {
+              var index=(temp%7)
+              if(index==0) index=7;
+              $(".child"+index).empty().append(response.id);
+              $(".child"+index).append(response.name);
+              $(".child"+index).attr("data-id",first)
+            });
+          });
+        });
+        for(var i = 1; i <=noOfServ; i++){
+          if($('.child'+i).data("id")==checkBefore){
+            checkThis=i;
+          }
         }//for
-        for(var i = 1; i <= noOfServ; i++){
-        	if($(this).hasClass('child8')){
-        		checkFirst=true;
-        	}else{
-        		checkFirst=false;
-        	}
-        }
+        $.getJSON("/api/branch/"+checkBefore, function(response) {
+          checkBefore=response.parent_id;
+          if(checkBefore==null){
+            checkSecond=true
+          }
+        });
+      });
+    }, 1900);
+    //////////////////////////////////////////////////////////////
+    $(this).delay(2100).fadeIn()
 
-        if(checkFirst==false) {
-        	if(checkSecond==true) checkSecond=3;	//이미 두번째를 지났으면 false 표시
-        	else if(checkSecond==false) checkSecond=true;	//두번째임을 표시
-        	$(this).addClass('child8');
-        	if(checkSecond==true) $('.back').delay(1550).fadeIn(300); //두번째일때 속도 조절
-        	else $('.back').delay(1200).fadeIn(300);
+  }
+  //$('.child').eq(i).delay(30).transition({ x:translateArr[0][checkThis-1]
+  //$('.child8').css("z-index", 2)
+});
+
+//parent가지를 눌렀을 때
+$('.parent').click(function(){
+  if(checkFirst==false){
+    $( '.child8' ).css({
+      backgroundColor: "transparent"
+    }, 0 )
+  }
+  if(checkFirst==false){
+    if(parentClickCnt==0){
+      parentClickCnt++;
+      $('.pages').transition({ x:+(widthPosition*1.4/5)+'px',y:0+'px',duration: 0, scale: 1.0});
+      $('.pages').width(width*2.1/5+parentWidth)
+      $('.pages').height(height*7/10)
+      $('.pages').css({top:height*1/10})
+      $('.pages').delay(700).fadeIn(300);
+      $('.child').fadeOut();
+      $('.back').fadeOut();
+      $(this).delay(300).transition({ x:-(widthPosition*1.8/5)+'px',y:0+'px',duration: 900, scale: 1.0});
+
+
+      /////////////////////////////Json/////////////////////////////
+      setTimeout(function(){
+        if(backButtonFlag==0){
+          $.getJSON("/api/branch/"+checkId+"/pages", function(response) {
+            for(var i=0; i<response.length; i++){
+              //한번만 박스 그려주도록
+              if($('.pageli').eq(i).hasClass('pageli'+i)) break;
+
+              else $('<li class="pageli pageli'+i+'"></li>').appendTo('.page');
+
+            }//for
+          }, 0);
+          $.getJSON("/api/branch/"+checkId+"/pages", function(response) {
+            $.each(response, function (i,first) {
+              var temp=(i+1)
+              if($('.pageli').eq(i).empty()){
+                $('.pageli').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url='+first.url+'" />');
+                $('.pageli').eq(i).append('<div class="page_url_div"><a class="page_url">'+first.title+'</a></div>');
+                $('.pageli').eq(i).attr("data-url",first.url )
+              }
+            });
+          }, 1900);
+        }else{
+          //back버튼을 누른후에는 전전값을 대입해줘야함=>checkBefore3
+          $.getJSON("/api/branch/"+checkBefore3+"/pages", function(response) {
+            for(var i=0; i<response.length; i++){
+              //한번만 박스 그려주도록
+              if($('.pageli').eq(i).hasClass('pageli'+i)) break;
+
+              else $('<li class="pageli pageli'+i+'"></li>').appendTo('.page');
+
+            }//for
+          }, 0);
+          $.getJSON("/api/branch/"+checkBefore3+"/pages", function(response) {
+            $.each(response, function (i,first) {
+              var temp=(i+1)
+              if($('.pageli').eq(i).empty()){
+                $('.pageli').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url='+first.url+'" />');
+                $('.pageli').eq(i).append('<div class="page_url_div"><a class="page_url">'+first.title+'</a></div>');
+                $('.pageli').eq(i).attr("data-url",first.url )
+              }
+            });
+          }, 1900);
         }
         movingChild=false;
 
@@ -314,9 +512,8 @@ function renderCircle(){
   	checkBefore3=checkBefore2;
   	checkBefore2=checkId;
     })//child-click
-		//back button 누르면
-    $('.back').click(function(){
-    	backButtonFlag=1;
+
+		$('.back').click(function(){
     	$(this).fadeOut(0)
     	$('.parent').empty();
     	$('.child').empty();
@@ -324,34 +521,26 @@ function renderCircle(){
     	$('.child').delay(200).transition({ x:0+'px',y:0+'px',duration: 400, scale: 1.0});
     	$('.child8').fadeIn(0).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 30});
     		$('.child8').delay(0).animate({
-			    backgroundColor: "#ECA812"
+			    backgroundColor: "#ECA812",
 			}, 0 )
 			$('.child8').delay(150).transition({ x:0+'px',y:0+'px',duration: 500, scale: 1.0}).delay(60).transition({ x:translateArr[0][checkThis-1]+'px', y:-translateArr[1][checkThis-1]+'px'});
 			//느려서 좀 뒤로 넣음
     		$( '.parent, .child' ).delay(600).not('.child8').animate({
-	          backgroundColor: "transparent"
+	          backgroundColor: "transparent",
 	        }, 200)
 	        $( '.parent').delay(600).animate({
-	          backgroundColor: "#53c3d3"
+	          backgroundColor: "#53c3d3",
 	        }, 300)
-			$( '.child').not('.child8').delay(400).animate({
-	          backgroundColor: "#ECA812"
+			$( '.child').not('.child8').delay(500).animate({
+	          backgroundColor: "#ECA812",
 	        }, 50)
 	        //child8과 이전 가지의 교환
 	        $('.child'+checkThis).addClass('child9')
 	        $('.child9').removeClass('child'+checkThis);
 	        $('.child8').addClass('child'+checkThis);
-
 	        $('.child'+checkThis).removeClass('child8')
-
 	        $('.child9').addClass('child8')
-
 	        $('.child8').removeClass('child9')
-	        if(checkSecond==true) {
-	        	$('.child8').css("z-index", 3)
-	        	$('.child').not('.child8').css("z-index", 2)
-	        }
-
     	//두번째 childbranch이면
     	if(checkSecond==true){
     		checkSecond=false;
@@ -389,7 +578,7 @@ function renderCircle(){
     	else{
 	        $('.child8').fadeOut(0)
 	        $( '.child8' ).animate({
-	          backgroundColor: "transparent"
+	          backgroundColor: "transparent",
 	        }, 0 )
 	        for(var i = 1; i <=noOfServ; i++){
 	        	$('.child'+i).transition({ x:translateArr[0][i-1]+'px', y:-translateArr[1][i-1]+'px'});
@@ -433,8 +622,8 @@ function renderCircle(){
 
     	}
     	//$('.child').eq(i).delay(30).transition({ x:translateArr[0][checkThis-1]
-    	//$('.child8').css("z-index", 2)
     });
+
 
     //parent가지를 눌렀을 때
     $('.parent').click(function(){
@@ -518,279 +707,280 @@ function renderCircle(){
     })
 }//renderCircle()
 function pagesInform(){
-	var pages = $('<div class="pages"></div>').appendTo('#wrapDiv');
-	var page=$('<ol class="page"></ol>').appendTo('.pages');
-	$('.pages').fadeOut();
+  var pages = $('<div class="pages"></div>').appendTo('#wrapDiv');
+  var page=$('<ol class="page"></ol>').appendTo('.pages');
+  $('.pages').fadeOut();
 }
 
-  $(document).ready(function(){
-  	//$('#side_bar').css({top: 70})
-  	currentWorkId= '<%= @work_id %>';
-  	checkDocument=true;
-    var width = window.innerWidth||document.body.clientWidth;
-    var height =window.innerHeight||document.body.clientHeigh;
-    if(height<500){
-      width=1366;
-      height=768;
+$(document).ready(function(){
+  //$('#side_bar').css({top: 70})
+  currentWorkId= '<%= @work_id %>';
+  checkDocument=true;
+  var width = window.innerWidth||document.body.clientWidth;
+  var height =window.innerHeight||document.body.clientHeigh;
+  if(height<500){
+    width=1366;
+    height=768;
+  }
+  renderCircle();
+  pagesInform();
+
+  /*
+  $(document).on("mouseenter", ".child", function(){
+  if(movingChild==false){
+  $(this).width(String(width*(1/13)));
+  $(this).height(String(width*(1/13)));
+  $(this).css({'top':(+(width*(1/52)))+'px'});
+  $(this).css({'left':(+(width*(1/52)))+'px'});
+}
+})
+$(document).on("mouseleave", ".child", function(){
+if(movingChild==false){
+$(this).width(String(width*(1/18)));
+$(this).height(String(width*(1/18)));
+$(this).css({'top':((width*(1/36)))+'px'});
+$(this).css({'left':((width*(1/36)))+'px'});
+}
+})
+*/
+$(document).on("click",".child",function() {
+  $('.parent').empty();
+  $('.child').empty();
+
+  if(checkFirst==false){
+    $('.child8').fadeOut();
+  }
+  //$(this).zoomTo({targetsize:0.75, duration:600});
+  //e.stopPropagation();
+});
+/*
+$(document).on("click",".pageli",function() {
+$(this).zoomTo({targetsize:0.75, duration:600});
+e.stopPropagation();
+});
+*/
+//루트가 아닐 때
+
+$(document).on("click", function(){
+
+  /*
+  if(checkFirst==false){
+  //parent 가지를 눌렀을 때 확대 조정
+  $(document).on("click",".parent",function() {
+  if(checkFirst!=true){
+  //1번 눌렀을 때 조금 확대(0.85배)
+  if(parentClickCnt==0){
+  parentClickCnt++;
+  //$(this).zoomTo({targetsize:0.8, duration:900});
+  //$(this).empty().append("ㅎㅎ");
+  //$('body').animate({ 'zoom': 2 }, 400);
+
+  $('.child').fadeOut();
+  $('.back').fadeOut();
+  $(this).transition({ x:-(parentWidth*3)+'px',y:0+'px',duration: 1000, scale: 1.0});
+  //$(this).
+
+}
+//2번 눌렀을 때 완전 확대(3배)
+else if(parentClickCnt==1){
+parentClickCnt=0;
+$(this).transition({ x:0+'px',y:0+'px',duration: 1000, scale: 1.0});
+//$(this).zoomTo({targetsize:3, duration:900});
+//$('body').animate({ 'zoom': 3 }, 900);
+}
+
+//그 이상으로 눌렀을 때 다시 축소
+else {
+parentClickCnt=0;
+$('body').zoomTo({targetsize:1, duration:600});
+//$('body').animate({ 'zoom': 1 }, 600);
+}
+
+//e.stopPropagation();
+}
+});
+//바탕을 누르면 다시 축소
+$(document).click(function() {
+//확대 수 초기화
+parentClickCnt=0;
+$('body').zoomTo({targetsize:1, duration:600});
+//$('body').animate({ 'zoom': 1 }, 600);
+});
+}*/
+$(document).on("click",".pageli",function() {
+  /*
+  //1번 눌렀을 때 조금 확대(0.85배)
+  if(pageliClickCnt==0){
+  pageliClickCnt++;
+  //$(this).zoomTo({targetsize:0.8, duration:500});
+  //$('body').animate({ 'zoom': 2 }, 400);
+}//if
+//2번 눌렀을 때 완전 확대(3배)
+else if(pageliClickCnt==1){
+pageliClickCnt=0;
+}//else-if
+
+//그 이상으로 눌렀을 때 다시 축소
+else {
+pageliClickCnt=0;
+$('body').zoomTo({targetsize:1, duration:500});
+//$('body')
+}
+//$(this).zoomTo({targetsize:0.8, duration:400});
+e.stopPropagation();
+pageliClickCnt=0;
+*/
+//alert($(this).data("url"));
+//window.open("http://"+$(this).data("url"),'_blank');
+
+});
+//바탕을 누르면 다시 축소
+$(document).click(function() {
+  //확대 수 초기화
+  pageliClickCnt=0;
+  //$('body').zoomTo({targetsize:1, duration:700});
+  //$('body').animate({ 'zoom': 1 }, 600);
+});
+
+});//document.click
+
+$('.child').each(function(idx) {
+  $(this).droppable({
+    accept: '#page_alert',
+    drop: function(event, ui) {
+      // awesome code that works and handles successful drops...
+      $(this).class
+      ui.helper.data('droppedAt', $(this).attr('class').match(/\d/)[0]);
     }
-    renderCircle();
-    pagesInform();
+  })
+});
+})//document.ready
 
-    /*
-    $(document).on("mouseenter", ".child", function(){
-    	if(movingChild==false){
-    		$(this).width(String(width*(1/13)));
-		    $(this).height(String(width*(1/13)));
-		    $(this).css({'top':(+(width*(1/52)))+'px'});
-		    $(this).css({'left':(+(width*(1/52)))+'px'});
-    	}
-    })
-    $(document).on("mouseleave", ".child", function(){
-    	if(movingChild==false){
-    		$(this).width(String(width*(1/18)));
-		    $(this).height(String(width*(1/18)));
-		    $(this).css({'top':((width*(1/36)))+'px'});
-		    $(this).css({'left':((width*(1/36)))+'px'});
-    	}
-    })
-    */
-    $(document).on("click",".child",function() {
-    	$('.parent').empty();
-    	$('.child').empty();
+/*
+$(window).resize(function(){
+checkDocument=false
+$('.parent').empty();
+$('.childGroup').empty();
+var width = window.innerWidth||document.body.clientWidth;
+var height =window.innerHeight||document.body.clientHeigh;
+if(height<500){
+width=1366;
+height=768;
+}
+renderCircle();
+if(checkFirst==false){
+$('.child8')
+}
+$(document).on("mouseenter", ".child", function(){
+if(movingChild==false){
+$(this).width(String(width*(1/13)));
+$(this).height(String(width*(1/13)));
+$(this).css({'top':(+(width*(1/52)))+'px'});
+$(this).css({'left':(+(width*(1/52)))+'px'});
+}
+})
+$(document).on("mouseleave", ".child", function(){
+if(movingChild==false){
+$(this).width(String(width*(1/18)));
+$(this).height(String(width*(1/18)));
+$(this).css({'top':((width*(1/36)))+'px'});
+$(this).css({'left':((width*(1/36)))+'px'});
+}
+})
+$(document).on("click",".child",function() {
+if(checkFirst==false) $('.child8').fadeOut(0);
+//$(this).zoomTo({targetsize:0.75, duration:600});
+//e.stopPropagation();
+});
+//parent 가지를 눌렀을 때 확대 조정
+$(document).on("click",".parent",function() {
+//1번 눌렀을 때 조금 확대(0.85배)
+if(parentClickCnt==0){
+parentClickCnt++;
+$(this).zoomTo({targetsize:0.8, duration:900});
+}
+//2번 눌렀을 때 완전 확대(3배)
+else if(parentClickCnt==1){
+parentClickCnt++;
+$(this).zoomTo({targetsize:3, duration:900});
+}
+//그 이상으로 눌렀을 때 다시 축소
+else {
+parentClickCnt=0;
+$('body').zoomTo({targetsize:1, duration:600});
+}
+e.stopPropagation();
+});
+})*/
+//위치만 리사이즈
+$(window).resize(function(){
+  var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
+  var height =window.screen.availHeight||document.body.clientHeigh;
+  var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
+  var heightPosition =window.innerHeight||document.body.clientHeigh;
+  if(height<500){
+    width=1366;
+    height=768;
+  }//if
+  $('.pages').width(width*2.1/5+parentWidth)
+  $('.pages').height(height*7.5/10)
+  //넓이 고정
+  $('#wrapDiv').width(width)
+  widthPosition=width
 
-        if(checkFirst==false){
-        	$('.child8').fadeOut();
-        }
-        //$(this).zoomTo({targetsize:0.75, duration:600});
-    	//e.stopPropagation();
-    });
-    /*
-    $(document).on("click",".pageli",function() {
-    	$(this).zoomTo({targetsize:0.75, duration:600});
-    	e.stopPropagation();
-    });
-    */
-    //루트가 아닐 때
+  //최소 높이를 제한
+  if(heightPosition<490)	heightPosition=490;
 
-    $(document).on("click", function(){
+  if(parentClickCnt==1){
+    $('.child').fadeOut();
+    $('.back').fadeOut();
 
-    	/*
-    	if(checkFirst==false){
-		    //parent 가지를 눌렀을 때 확대 조정
-		    $(document).on("click",".parent",function() {
-		    	if(checkFirst!=true){
-			    	//1번 눌렀을 때 조금 확대(0.85배)
-			    	if(parentClickCnt==0){
-			    		parentClickCnt++;
-			    		//$(this).zoomTo({targetsize:0.8, duration:900});
-			    		//$(this).empty().append("ㅎㅎ");
-			    		//$('body').animate({ 'zoom': 2 }, 400);
+    $(this).delay(300).transition({ x:-(widthPosition*1.8/5)+'px',y:0+'px',duration: 900, scale: 1.0})
+    //$(this).
 
-					    $('.child').fadeOut();
-					   	$('.back').fadeOut();
-					   	$(this).transition({ x:-(parentWidth*3)+'px',y:0+'px',duration: 1000, scale: 1.0});
-					    //$(this).
+  }//if
+  else{
+    var parent = $('div.parent');
+    parentWidth=width*(1/9);
+    parentHeight=parentWidth;
+    parent.width(String(parentWidth));
+    parent.height(String(parentHeight));
+    var parentCircleHalfWidth = (parent.width()/2);
+    var parentTop = parent.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth+fixedHeight});
+    var parentLeft = parent.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
 
-			    	}
-			    	//2번 눌렀을 때 완전 확대(3배)
-			    	else if(parentClickCnt==1){
-			    		parentClickCnt=0;
-			    		$(this).transition({ x:0+'px',y:0+'px',duration: 1000, scale: 1.0});
-			    		//$(this).zoomTo({targetsize:3, duration:900});
-			    		//$('body').animate({ 'zoom': 3 }, 900);
-			    	}
+    //childGroup 설정
+    var childGroup = $('div.childGroup');
+    childGroup.width(String(parentWidth));
+    childGroup.height(String(parentHeight));
+    childGroup.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth+fixedHeight});
+    childGroup.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
+  }
+});
 
-			    	//그 이상으로 눌렀을 때 다시 축소
-			    	else {
-			    		parentClickCnt=0;
-			    		$('body').zoomTo({targetsize:1, duration:600});
-			    		//$('body').animate({ 'zoom': 1 }, 600);
-			    	}
-
-			    	//e.stopPropagation();
-		    	}
-		    });
-		    //바탕을 누르면 다시 축소
-		    $(document).click(function() {
-		    	//확대 수 초기화
-		    	parentClickCnt=0;
-			  	$('body').zoomTo({targetsize:1, duration:600});
-			  	//$('body').animate({ 'zoom': 1 }, 600);
-		  	});
-			}*/
-			$(document).on("click",".pageli",function() {
-		    /*
-			  //1번 눌렀을 때 조금 확대(0.85배)
-			  if(pageliClickCnt==0){
-			    pageliClickCnt++;
-			    //$(this).zoomTo({targetsize:0.8, duration:500});
-			    //$('body').animate({ 'zoom': 2 }, 400);
-			  }//if
-			  //2번 눌렀을 때 완전 확대(3배)
-			  else if(pageliClickCnt==1){
-			  	pageliClickCnt=0;
-			  }//else-if
-
-			  //그 이상으로 눌렀을 때 다시 축소
-			  else {
-			    pageliClickCnt=0;
-			    $('body').zoomTo({targetsize:1, duration:500});
-			    //$('body')
-			  }
-			  //$(this).zoomTo({targetsize:0.8, duration:400});
-			  e.stopPropagation();
-		    pageliClickCnt=0;
-		    */
-		  	//alert($(this).data("url"));
-		  	//window.open("http://"+$(this).data("url"),'_blank');
-
-		  });
-		  //바탕을 누르면 다시 축소
-		  $(document).click(function() {
-		    //확대 수 초기화
-		    pageliClickCnt=0;
-			  //$('body').zoomTo({targetsize:1, duration:700});
-			  //$('body').animate({ 'zoom': 1 }, 600);
-		  });
-
-		});//document.click
-
-    $('.child').each(function(idx) {
-      $(this).droppable({
-        accept: '#page_alert',
-        drop: function(event, ui) {
-            // awesome code that works and handles successful drops...
-          $(this).class
-          ui.helper.data('droppedAt', $(this).attr('class').match(/\d/)[0]);
-        }
-      })
-    });
-  })//document.ready
-
- 	/*
-  $(window).resize(function(){
-  	checkDocument=false
-    $('.parent').empty();
-    $('.childGroup').empty();
-    var width = window.innerWidth||document.body.clientWidth;
-    var height =window.innerHeight||document.body.clientHeigh;
-    if(height<500){
-      width=1366;
-      height=768;
+// 드랍 이벤트 핸들러를 child에 적용
+$('.child').each(function(idx) {
+  $(this).droppable({
+    accept: '#page_alert',
+    drop: function(event, ui) {
+      // awesome code that works and handles successful drops...
+      ui.helper.data('dropped', true);
     }
-    renderCircle();
-    if(checkFirst==false){
-    	$('.child8')
-    }
-    $(document).on("mouseenter", ".child", function(){
-    	if(movingChild==false){
-    		$(this).width(String(width*(1/13)));
-		    $(this).height(String(width*(1/13)));
-		    $(this).css({'top':(+(width*(1/52)))+'px'});
-		    $(this).css({'left':(+(width*(1/52)))+'px'});
-    	}
-    })
-    $(document).on("mouseleave", ".child", function(){
-    	if(movingChild==false){
-    		$(this).width(String(width*(1/18)));
-		    $(this).height(String(width*(1/18)));
-		    $(this).css({'top':((width*(1/36)))+'px'});
-		    $(this).css({'left':((width*(1/36)))+'px'});
-    	}
-    })
-    $(document).on("click",".child",function() {
-        if(checkFirst==false) $('.child8').fadeOut(0);
-        //$(this).zoomTo({targetsize:0.75, duration:600});
-    	//e.stopPropagation();
-    });
-    //parent 가지를 눌렀을 때 확대 조정
-    $(document).on("click",".parent",function() {
-    	//1번 눌렀을 때 조금 확대(0.85배)
-    	if(parentClickCnt==0){
-    		parentClickCnt++;
-    		$(this).zoomTo({targetsize:0.8, duration:900});
-    	}
-    	//2번 눌렀을 때 완전 확대(3배)
-    	else if(parentClickCnt==1){
-    		parentClickCnt++;
-    		$(this).zoomTo({targetsize:3, duration:900});
-    	}
-    	//그 이상으로 눌렀을 때 다시 축소
-    	else {
-    		parentClickCnt=0;
-    		$('body').zoomTo({targetsize:1, duration:600});
-    	}
-    	e.stopPropagation();
-    });
-  })*/
-  //위치만 리사이즈
-  $(window).resize(function(){
-  	var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
-  	var height =window.screen.availHeight||document.body.clientHeigh;
-  	var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
-  	var heightPosition =window.innerHeight||document.body.clientHeigh;
-  	if(height<500){
-	    width=1366;
-	    height=768;
-  	}//if
-  	$('.pages').width(width*2.1/5+parentWidth)
-		$('.pages').height(height*7.5/10)
-  	//넓이 고정
-  	$('#wrapDiv').width(width)
-  	widthPosition=width
-
-  	//최소 높이를 제한
-  	if(heightPosition<490)	heightPosition=490;
-
-  	if(parentClickCnt==1){
-			$('.child').fadeOut();
-		  $('.back').fadeOut();
-
-		  $(this).delay(300).transition({ x:-(widthPosition*1.8/5)+'px',y:0+'px',duration: 900, scale: 1.0})
-	   //$(this).
-
-   	}//if
-  	else{
-			var parent = $('div.parent');
-	  	parentWidth=width*(1/9);
-	  	parentHeight=parentWidth;
-	  	parent.width(String(parentWidth));
-	  	parent.height(String(parentHeight));
-	  	var parentCircleHalfWidth = (parent.width()/2);
-	  	var parentTop = parent.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth+fixedHeight});
-	  	var parentLeft = parent.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
-
-	  	//childGroup 설정
-	  	var childGroup = $('div.childGroup');
-	  	childGroup.width(String(parentWidth));
-	  	childGroup.height(String(parentHeight));
-	  	childGroup.offset({top:((heightPosition)+40)/2 - parentCircleHalfWidth+fixedHeight});
-	  	childGroup.offset({left:(widthPosition)/2 - parentCircleHalfWidth});
-  	}
-  });
-
-  // 드랍 이벤트 핸들러를 child에 적용
-    $('.child').each(function(idx) {
-      $(this).droppable({
-        accept: '#page_alert',
-        drop: function(event, ui) {
-            // awesome code that works and handles successful drops...
-          ui.helper.data('dropped', true);
-        }
-      })
-    });
-  </script>
+  })
+});
+</script>
 <div id="wrapDiv">
-	<div id="parent" class="parent"></div>
-	<div class="childGroup"> </div>
-	<ul class="list" id="list">
-		<li>One</li>
-		<li>Two</li>
-		<li>Three</li>
-		<li>Four</li>
-		<li>Five</li>
-		<li>Six</li>
-		<li>Seven</li>
-		<li>Eight</li>
-	</ul>
+  <div id="parent" class="parent"></div>
+  <div class="childGroup"></div>
+  <div class="branch_list">
+    <div class="branch branch_title "><div class="branch_title_name">What's inside?</div></div>
+    <div class="branch">branch_1</div>
+    <div class="branch">branch_2</div>
+    <div class="branch">branch_2</div>
+    <div class="branch">branch_2</div>
+    <div class="branch">branch_2</div>
+    <div class="branch">branch_2</div>
+    <div class="branch">branch_2</div>
+    <div class="branch">branch_2</div>
+  </div>
 </div>
