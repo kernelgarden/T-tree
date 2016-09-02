@@ -114,9 +114,9 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
             $.getJSON("/api/user/"+userID, function(response) {
               for(var i=0; i<response.unclassifiedpage_ids.length; i++){
                 //한번만 박스 그려주도록
-                if($('.pageli2').eq(i).hasClass('pageli2'+i)) break;
+                if($('.pageli-2').eq(i).hasClass('pageli2_'+i)) break;
 
-                else $('<li class="pageli2 pageli2'+i+'"></li>').appendTo('.unPage');
+                else $('<li class="pageli-2 pageli2_'+i+'"></li>').appendTo('.unPage');
 
               }//for
 
@@ -127,9 +127,9 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
               $.each(response, function (i,first) {
                 var temp=(i+1)
 
-                  $('.pageli2').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url='+first.url+'" />');
-                  $('.pageli2').eq(i).append('<div class="page_url_div"><a class="page_url">'+first.title+'</a></div>');
-                  $('.pageli2').eq(i).attr("data-url",first.url )
+                  $('.pageli-2').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url='+first.url+'" />');
+                  $('.pageli-2').eq(i).append('<div class="page_url_div"><a class="page_url">'+first.title+'</a></div>');
+                  $('.pageli-2').eq(i).attr("data-url",first.url )
 
               });
             }, 1900);
@@ -148,7 +148,7 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
   $('div:not(#page_alert)').click(function(){
 
   })
-  $(document).on("click",".pageli2",function() {
+  $(document).on("click",".pageli-2",function() {
       window.open($(this).data("url"),'_blank');
     })
 }

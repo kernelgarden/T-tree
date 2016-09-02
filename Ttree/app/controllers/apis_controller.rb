@@ -75,6 +75,11 @@ class ApisController < ApplicationController
   		render :json =>  Branch.json_tree(@branches)
 	end
 
+	def branchChilds
+			@branch=Branch.find(params[:id])
+  		render :json => @branch.children
+	end
+
 	def pages
 		@branch=Branch.find(params[:id])
   		render :json => @branch.pages

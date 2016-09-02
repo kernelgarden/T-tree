@@ -116,7 +116,7 @@ function renderCircle(){
       }
       else{
         $.each(response.child_id, function (i,id){
-          
+
         })
       }
     })
@@ -485,22 +485,226 @@ $('.parent').click(function(){
             });
           }, 1900);
         }
-        //////////////////////////////////////////////////////////////
-      });//setTimeout
-    }//if
-    else if(parentClickCnt==1){
-      parentClickCnt=0;
-      $(this).transition({ x:0+'px',y:0+'px',duration: 1000, scale: 1.0});
-      $('.pages').fadeOut();
-      $('.back').delay(900).fadeIn();
-      $('.child').delay(900).fadeIn();
-      $('.page').empty();
-    }//else if
-  }//if$('.parent').click(function(){})
-})//
-$(document).on("click",".pageli",function() {
-  window.open("http://"+$(this).data("url"),'_blank');
-})
+        movingChild=false;
+
+    ////////////////////////////////Json///////////////////////////////
+		setTimeout(function(){
+		 	$.getJSON("/api/branch/"+checkId, function(response) {
+				$(".parent").empty().append(response.id);
+				$(".parent").append(response.name);
+			});
+			$.getJSON("/api/branch/"+checkId, function(response) {
+				$.each(response.child_ids, function (i,first) {
+					//$(".child"+(i+1)).append(first);
+					var temp=first
+					$.getJSON("/api/branch/"+temp, function(response) {
+						var index=(temp%7)
+						if(index==0) index=7;
+						$(".child"+index).empty().append(response.id);
+						$(".child"+index).append(response.name);
+						$(".child"+index).attr("data-id",first)
+					});
+				});
+			});
+		}, 1400);
+  	///////////////////////////////////////////////////////////////////
+  	//전 parent값 저장하는 과정
+  	checkBefore3=checkBefore2;
+  	checkBefore2=checkId;
+    })//child-click
+
+		$('.back').click(function(){
+    	$(this).fadeOut(0)
+    	$('.parent').empty();
+    	$('.child').empty();
+    	//child가지 중심으로 이동
+    	$('.child').delay(200).transition({ x:0+'px',y:0+'px',duration: 400, scale: 1.0});
+    	$('.child8').fadeIn(0).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 30});
+    		$('.child8').delay(0).animate({
+			    backgroundColor: "#ECA812",
+			}, 0 )
+			$('.child8').delay(150).transition({ x:0+'px',y:0+'px',duration: 500, scale: 1.0}).delay(60).transition({ x:translateArr[0][checkThis-1]+'px', y:-translateArr[1][checkThis-1]+'px'});
+			//느려서 좀 뒤로 넣음
+    		$( '.parent, .child' ).delay(600).not('.child8').animate({
+	          backgroundColor: "transparent",
+	        }, 200)
+	        $( '.parent').delay(600).animate({
+	          backgroundColor: "#53c3d3",
+	        }, 300)
+			$( '.child').not('.child8').delay(500).animate({
+	          backgroundColor: "#ECA812",
+	        }, 50)
+	        //child8과 이전 가지의 교환
+	        $('.child'+checkThis).addClass('child9')
+	        $('.child9').removeClass('child'+checkThis);
+	        $('.child8').addClass('child'+checkThis);
+	        $('.child'+checkThis).removeClass('child8')
+	        $('.child9').addClass('child8')
+	        $('.child8').removeClass('child9')
+    	//두번째 childbranch이면
+    	if(checkSecond==true){
+    		checkSecond=false;
+	        for(var i = 1; i <=noOfServ; i++){
+	        	$('.child'+i).transition({ x:translateArr[0][i-1]+'px', y:-translateArr[1][i-1]+'px'});
+	        }//for
+	        //루트로 변경
+    		checkFirst=true;
+	        /////////////////////////////Json/////////////////////////////
+	        setTimeout(function(){
+			    if(checkFirst==true){
+			    	$(".parent").empty();
+			    	$(".child").empty();
+				    $.getJSON("/api/work/"+currentWorkId, function(response) {
+						$(".parent").empty().append(response.id);
+						$(".parent").append(response.name);
+					});
+				  	$.getJSON("/api/work/"+currentWorkId+"/branche_ids", function(response) {
+						$.each(response, function (i,first) {
+							//$(".child"+(i+1)).append(first);
+							var temp=(i+1)
+							$.getJSON("/api/branch/"+first, function(response) {
+								if(response.parent_id==null){
+									$(".child"+temp).empty().append(response.id);
+									$(".child"+temp).append(response.name);
+									$(".child"+temp).attr("data-id",first)
+								}
+							});
+						});
+					});
+			  	}
+			  }, 1900);
+		  	//////////////////////////////////////////////////////////////
+    	}
+    	else{
+	        $('.child8').fadeOut(0)
+	        $( '.child8' ).animate({
+	          backgroundColor: "transparent",
+	        }, 0 )
+	        for(var i = 1; i <=noOfServ; i++){
+	        	$('.child'+i).transition({ x:translateArr[0][i-1]+'px', y:-translateArr[1][i-1]+'px'});
+	        }//for
+	        /////////////////////////////Json/////////////////////////////
+	        setTimeout(function(){
+	        	$.getJSON("/api/branch/"+checkId, function(response) {
+					checkBefore=response.parent_id;
+				    $.getJSON("/api/branch/"+checkBefore, function(response) {
+						$(".parent").empty().append(response.id);
+						$(".parent").append(response.name);
+					});
+					$.getJSON("/api/branch/"+checkBefore, function(response) {
+						$.each(response.child_ids, function (i,first) {
+							//$(".child"+(i+1)).append(first);
+							var temp=first
+							$.getJSON("/api/branch/"+temp, function(response) {
+								var index=(temp%7)
+								if(index==0) index=7;
+								$(".child"+index).empty().append(response.id);
+								$(".child"+index).append(response.name);
+								$(".child"+index).attr("data-id",first)
+							});
+						});
+					});
+					for(var i = 1; i <=noOfServ; i++){
+	        	if($('.child'+i).data("id")==checkBefore){
+	        		checkThis=i;
+	        	}
+	        }//for
+					$.getJSON("/api/branch/"+checkBefore, function(response) {
+						checkBefore=response.parent_id;
+						if(checkBefore==null){
+							checkSecond=true
+						}
+					});
+				});
+			  }, 1900);
+		  	//////////////////////////////////////////////////////////////
+			$(this).delay(2100).fadeIn()
+
+    	}
+    	//$('.child').eq(i).delay(30).transition({ x:translateArr[0][checkThis-1]
+    });
+
+
+    //parent가지를 눌렀을 때
+    $('.parent').click(function(){
+    	if(checkFirst==false){
+	    	$( '.child8' ).css({
+		          backgroundColor: "transparent"
+		        }, 0 )
+	    }
+    	if(checkFirst==false){
+    		if(parentClickCnt==0){
+		    	parentClickCnt++;
+		   		$('.pages').transition({ x:+(widthPosition*1.4/5)+'px',y:0+'px',duration: 0, scale: 1.0});
+		    	$('.pages').width(width*2.1/5+parentWidth)
+		    	$('.pages').height(height*7/10)
+		    	$('.pages').css({top:height*1/10})
+		    	$('.pages').delay(700).fadeIn(300);
+				  $('.child').fadeOut();
+				  $('.back').fadeOut();
+				  $(this).delay(300).transition({ x:-(widthPosition*1.8/5)+'px',y:0+'px',duration: 900, scale: 1.0});
+
+
+				  /////////////////////////////Json/////////////////////////////
+	        setTimeout(function(){
+	        	if(backButtonFlag==0){
+	        	$.getJSON("/api/branch/"+checkId+"/pages", function(response) {
+							for(var i=0; i<response.length; i++){
+								//한번만 박스 그려주도록
+								if($('.pageli').eq(i).hasClass('pageli'+i)) break;
+
+								else $('<li class="pageli pageli'+i+'"></li>').appendTo('.page');
+
+							}//for
+				  	}, 0);
+				  	$.getJSON("/api/branch/"+checkId+"/pages", function(response) {
+							$.each(response, function (i,first) {
+								var temp=(i+1)
+								if($('.pageli').eq(i).empty()){
+									$('.pageli').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url='+first.url+'" />');
+									$('.pageli').eq(i).append('<div class="page_url_div"><a class="page_url">'+first.title+'</a></div>');
+									$('.pageli').eq(i).attr("data-url",first.url )
+								}
+							});
+				  	}, 1900);
+				  }else{
+				  	//back버튼을 누른후에는 전전값을 대입해줘야함=>checkBefore3
+				  	$.getJSON("/api/branch/"+checkBefore3+"/pages", function(response) {
+							for(var i=0; i<response.length; i++){
+								//한번만 박스 그려주도록
+								if($('.pageli').eq(i).hasClass('pageli'+i)) break;
+
+								else $('<li class="pageli pageli'+i+'"></li>').appendTo('.page');
+
+							}//for
+				  	}, 0);
+				  	$.getJSON("/api/branch/"+checkBefore3+"/pages", function(response) {
+							$.each(response, function (i,first) {
+								var temp=(i+1)
+								if($('.pageli').eq(i).empty()){
+									$('.pageli').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url='+first.url+'" />');
+									$('.pageli').eq(i).append('<div class="page_url_div"><a class="page_url">'+first.title+'</a></div>');
+									$('.pageli').eq(i).attr("data-url",first.url )
+								}
+							});
+				  	}, 1900);
+				  }
+		  		//////////////////////////////////////////////////////////////
+		  		});//setTimeout
+		    }//if
+			  else if(parentClickCnt==1){
+			   	parentClickCnt=0;
+			   	$(this).transition({ x:0+'px',y:0+'px',duration: 1000, scale: 1.0});
+			   	$('.pages').fadeOut();
+			   	$('.back').delay(900).fadeIn();
+				  $('.child').delay(900).fadeIn();
+				  $('.page').empty();
+			  }//else if
+    	}//if$('.parent').click(function(){})
+    })//
+    $(document).on("click",".pageli",function() {
+    	window.open("http://"+$(this).data("url"),'_blank');
+    })
 }//renderCircle()
 function pagesInform(){
   var pages = $('<div class="pages"></div>').appendTo('#wrapDiv');
