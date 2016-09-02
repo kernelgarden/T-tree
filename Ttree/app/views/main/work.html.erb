@@ -314,9 +314,8 @@ function renderCircle(){
   	checkBefore3=checkBefore2;
   	checkBefore2=checkId;
     })//child-click
-		//back button 누르면
-    $('.back').click(function(){
-    	backButtonFlag=1;
+
+		$('.back').click(function(){
     	$(this).fadeOut(0)
     	$('.parent').empty();
     	$('.child').empty();
@@ -324,34 +323,26 @@ function renderCircle(){
     	$('.child').delay(200).transition({ x:0+'px',y:0+'px',duration: 400, scale: 1.0});
     	$('.child8').fadeIn(0).transition({ x:-(parentWidth/4)+'px', y:-(parentWidth/4)+'px', scale: 2.0 ,duration: 30});
     		$('.child8').delay(0).animate({
-			    backgroundColor: "#ECA812"
+			    backgroundColor: "#ECA812",
 			}, 0 )
 			$('.child8').delay(150).transition({ x:0+'px',y:0+'px',duration: 500, scale: 1.0}).delay(60).transition({ x:translateArr[0][checkThis-1]+'px', y:-translateArr[1][checkThis-1]+'px'});
 			//느려서 좀 뒤로 넣음
     		$( '.parent, .child' ).delay(600).not('.child8').animate({
-	          backgroundColor: "transparent"
+	          backgroundColor: "transparent",
 	        }, 200)
 	        $( '.parent').delay(600).animate({
-	          backgroundColor: "#53c3d3"
+	          backgroundColor: "#53c3d3",
 	        }, 300)
-			$( '.child').not('.child8').delay(400).animate({
-	          backgroundColor: "#ECA812"
+			$( '.child').not('.child8').delay(500).animate({
+	          backgroundColor: "#ECA812",
 	        }, 50)
 	        //child8과 이전 가지의 교환
 	        $('.child'+checkThis).addClass('child9')
 	        $('.child9').removeClass('child'+checkThis);
 	        $('.child8').addClass('child'+checkThis);
-
 	        $('.child'+checkThis).removeClass('child8')
-
 	        $('.child9').addClass('child8')
-
 	        $('.child8').removeClass('child9')
-	        if(checkSecond==true) {
-	        	$('.child8').css("z-index", 3)
-	        	$('.child').not('.child8').css("z-index", 2)
-	        }
-
     	//두번째 childbranch이면
     	if(checkSecond==true){
     		checkSecond=false;
@@ -389,7 +380,7 @@ function renderCircle(){
     	else{
 	        $('.child8').fadeOut(0)
 	        $( '.child8' ).animate({
-	          backgroundColor: "transparent"
+	          backgroundColor: "transparent",
 	        }, 0 )
 	        for(var i = 1; i <=noOfServ; i++){
 	        	$('.child'+i).transition({ x:translateArr[0][i-1]+'px', y:-translateArr[1][i-1]+'px'});
@@ -430,11 +421,11 @@ function renderCircle(){
 			  }, 1900);
 		  	//////////////////////////////////////////////////////////////
 			$(this).delay(2100).fadeIn()
-
+		
     	}
     	//$('.child').eq(i).delay(30).transition({ x:translateArr[0][checkThis-1]
-    	//$('.child8').css("z-index", 2)
     });
+
 
     //parent가지를 눌렀을 때
     $('.parent').click(function(){
