@@ -15,7 +15,7 @@ class Branch < ApplicationRecord
 
   def self.json_search(nodes)
     nodes.map do |node|
-        {:name => node.name, :id => node.id}
+        {:name => node.name, :id => node.id, :attr =>"Branch", :description => Work.find(node.work_id).name}
     end
   end
 

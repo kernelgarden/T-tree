@@ -66,7 +66,7 @@ class User < ApplicationRecord
 
   def self.json_search(nodes)
     nodes.map do |node|
-        {:name => node.email, :id => node.id}
+        {:name => node.email, :id => node.id, :attr =>"User", :description => node.id }
     end
   end
 end

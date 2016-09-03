@@ -25,7 +25,7 @@ class Work < ApplicationRecord
   
   def self.json_search(nodes)
     nodes.map do |node|
-        {:name => node.name, :id => node.id}
+        {:name => node.name, :id => node.id, :attr =>"Work", :description => User.find(node.user_id).email}
     end
   end
 

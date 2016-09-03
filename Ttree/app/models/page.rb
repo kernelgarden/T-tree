@@ -10,7 +10,10 @@ class Page < ApplicationRecord
 
   def self.json_search(nodes)
     nodes.map do |node|
-        {:name => node.title, :id => node.id}
+        { :name => node.title, 
+        	:id => node.id, 
+        	:attr =>"Page", 
+        	:description => Branch.find(node.branch_id).name+" / "+node.created_at.strftime("%Y-%m-%d")}
     end
   end
 

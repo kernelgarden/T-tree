@@ -324,7 +324,7 @@ $(document).ready(function(){
     template: {
         type: "description",
         fields: {
-            description: "id"
+            description: "description"
         }
     },
 
@@ -335,6 +335,13 @@ $(document).ready(function(){
         },
         sort: {
             enabled: true
+        },
+        onClickEvent: function() {
+          var model = $("#categories-basic").getSelectedItemData().attr;
+          var id = $("#categories-basic").getSelectedItemData().id;
+          if(model=="Work"){
+            window.location='/main/work/'+ id;
+          }
         }
     },
     theme: "round"
