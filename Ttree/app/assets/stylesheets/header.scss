@@ -179,11 +179,10 @@ $backgorundColor:#E2E4E6;
     background-color: #999999;
     border-radius:5px;
   }
-  position:absolute;
+  position:fixed;
   overflow:auto;
   height: 220px;
   width: 260px;
-  position: absolute;
   display: none;
   top: 50px;
   left: 10px;
@@ -300,7 +299,7 @@ $backgorundColor:#E2E4E6;
 #dropDown5{
   height: 240px;
   width: 220px;
-  position: absolute;
+  position: fixed;
   display: none;
   top: 50px;
   right: 10px;
@@ -418,7 +417,7 @@ $backgorundColor:#E2E4E6;
 #dropDown6{
   height: 310px;
   width: 220px;
-  position: absolute;
+  position: fixed;
   display: none;
   top: 50px;
   right: 10px;
