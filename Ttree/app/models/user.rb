@@ -63,4 +63,10 @@ class User < ApplicationRecord
       end
     end
   end
+
+  def self.json_search(nodes)
+    nodes.map do |node|
+        {:name => node.email, :id => node.id}
+    end
+  end
 end

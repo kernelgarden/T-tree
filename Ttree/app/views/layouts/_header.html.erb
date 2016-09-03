@@ -10,7 +10,7 @@ window.userName ="<%= current_user.name %>";
     <div class="wrapDiv">
       <form action="/users/profile" accept-charset="UTF-8" method="get">
         <input name="utf8" type="hidden" value="✓">
-        <input type="text" id="provider-json" name="search" class="search blue" value="" placeholder="">
+        <input type="text" id="categories-basic" name="search" class="search blue" value="" placeholder="">
       </form>
     </div>
   </li>
@@ -296,18 +296,50 @@ $(document).ready(function(){
 
   /*************************************#dropdown2*************************************/
   var options = {
-    url: "/api/users",
 
-    getValue: "email",
+    url: "/search",
+
+    categories: [{
+        listLocation: "users",
+        maxNumberOfElements: 3,
+        header: "Users"
+    }, {
+        listLocation: "works",
+        maxNumberOfElements: 3,
+        header: "Works"
+    }, {
+        listLocation: "branches",
+        maxNumberOfElements: 3,
+        header: "Branches"
+    }, {
+        listLocation: "pages",
+        maxNumberOfElements: 3,
+        header: "Pages"
+    }],
+
+    getValue: function(element) {
+        return element.name;
+    },
+
+    template: {
+        type: "description",
+        fields: {
+            description: "id"
+        }
+    },
 
     list: {
-      match: {
-        enabled: true
-      }
-    }
+        maxNumberOfElements: 12,
+        match: {
+            enabled: true
+        },
+        sort: {
+            enabled: true
+        }
+    },
   };
 
-  $("#provider-json").easyAutocomplete(options);
+  $("#categories-basic").easyAutocomplete(options);
 
   /*************************************#dropdown5*************************************/
   //Create Work

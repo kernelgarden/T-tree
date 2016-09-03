@@ -263,7 +263,7 @@
 .easy-autocomplete.eac-purple ul li.selected,
 .easy-autocomplete.eac-purple ul .eac-category.selected {
     background-color: #ebe8f3;
-    color: #333
+    color: #333;
 }
 .easy-autocomplete.eac-bootstrap input {
     border-color: #ccc;
@@ -271,13 +271,13 @@
     border-style: solid;
     border-width: 1px;
     color: #555;
-    padding: 6px 12px
+    padding: 6px 12px;
 }
 .easy-autocomplete-container {
     left: 0;
     position: absolute;
-    width: 100%;
-    z-index: 2
+    width: 200%;
+    z-index: 2;
 }
 .easy-autocomplete-container ul {
     background: none repeat scroll 0 0 #ffffff;
@@ -287,7 +287,7 @@
     padding-bottom: 0;
     padding-left: 0;
     position: relative;
-    top: -1px
+    top: -1px;
 }
 .easy-autocomplete-container ul li,
 .easy-autocomplete-container ul .eac-category {
@@ -299,50 +299,50 @@
     display: block;
     font-size: 14px;
     font-weight: normal;
-    padding: 4px 12px
+    padding: 4px 12px;
 }
 .easy-autocomplete-container ul li:last-child {
     border-radius: 0 0 2px 2px;
-    border-width: 0 1px 1px
+    border-width: 0 1px 1px;
 }
 .easy-autocomplete-container ul li.selected {
     background: none repeat scroll 0 0 #ebebeb;
-    cursor: pointer
+    cursor: pointer;
 }
 .easy-autocomplete-container ul li.selected div {
-    font-weight: normal
+    font-weight: normal;
 }
 .easy-autocomplete-container ul li div {
     display: block;
     font-weight: normal;
-    word-break: break-all
+    word-break: break-all;
 }
 .easy-autocomplete-container ul li b {
-    font-weight: bold
+    font-weight: bold;
 }
 .easy-autocomplete-container ul .eac-category {
     font-color: #aaa;
-    font-style: italic
+    font-style: italic;
 }
 .eac-description .eac-item span {
     color: #aaa;
     font-style: italic;
-    font-size: 0.9em
+    font-size: 0.9em;
 }
 .eac-icon-left .eac-item img {
     margin-right: 4px;
-    max-height: 30px
+    max-height: 30px;
 }
 .eac-icon-right .eac-item {
     margin-top: 8px;
     min-height: 24px;
-    position: relative
+    position: relative;
 }
 .eac-icon-right .eac-item img {
     margin-left: 4px;
     max-height: 30px;
     position: absolute;
     right: -4px;
-    top: -8px
+    top: -8px;
 }
 /*# sourceMappingURL=easy-autocomplete.min.css.map */
