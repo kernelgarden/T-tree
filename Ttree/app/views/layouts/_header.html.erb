@@ -342,12 +342,27 @@ $(document).ready(function(){
           if(model=="Work"){
             window.location='/main/work/'+ id;
           }
+        },
+        onChooseEvent: function() {
+          var model = $("#categories-basic").getSelectedItemData().attr;
+          var id = $("#categories-basic").getSelectedItemData().id;
+          if(model=="Work"){
+            window.location='/main/work/'+ id;
+          }
         }
     },
     theme: "round"
   };
 
   $("#categories-basic").easyAutocomplete(options);
+
+  $('html').bind('keypress', function(e)
+  {
+     if(e.keyCode == 13)
+     {
+        return false;
+     }
+  });
 
   /*************************************#dropdown5*************************************/
   //Create Work
