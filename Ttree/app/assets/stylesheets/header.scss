@@ -61,8 +61,10 @@ $backgorundColor:#E2E4E6;
       margin-right: 10px;
       margin-top: 5px;
       margin-bottom: 5px;
-      width:80%;
+      width:98%;
       height: 30px;
+      color:white;
+      text-shadow: 2px 2px #757575;
       -webkit-transition:width .35s ease-in-out;
       transition:width .35s ease-in-out;
       &:focus {
@@ -70,11 +72,12 @@ $backgorundColor:#E2E4E6;
         border:3px solid #5cb3c1;
         color:#34495E;
         font-weight:600;
+        text-shadow: none;
         /*background-image: url(/assets/close.png);*/
         background-position: 95% 50%;
         background-size: 15px 15px;
         background-repeat: no-repeat;
-        width: 95%;
+        width: 130%;
 
         background-image:hover{
           cursor: pointer;
