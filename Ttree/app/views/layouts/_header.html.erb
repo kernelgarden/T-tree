@@ -97,8 +97,10 @@ var count=0;
 var countDropdown5=0;
 var heightChange=0;   //높이 변화 체크
 var heightChange2=0;  //team 높이 변화 체크
+var heightChange3=0;  //team 높이 변화 체크
 var Change=0;         //원래 변화 체크
 var Change2=0;        //team 높이 원래 변화 체크
+var Change3=0;        //team2 높이 원래 변화 체크
 var widthMax =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
 var heightMax =window.screen.availHeight||document.body.clientHeigh;
 
@@ -142,6 +144,7 @@ var getPersonalWork=function(){ //persoanl work 가져오는 json
     $.each(response, function (i,work) {
       if(work.team_id==null&&$(".work_detail_li").eq(i).empty(0)){
         $(".work_detail_li").eq(cnt).append(work.name);
+        $(".work_detail_li").eq(cnt).attr("data-id",work.id);
         //일정 크기를 넘어가면 높이를 고정
         if(($('#dropDown1').height()+(heightPosition-60)/10)<=heightPosition){
           var height=$('#dropDown1').height()+35;
@@ -160,11 +163,13 @@ var getPersonalWork=function(){ //persoanl work 가져오는 json
   //////////////////////////////////////////////////////////////
 }//getPersonalWork()
 
-var getTeamWork=function(){ //Team work 가져오는 json
+var getTeamName=function(){ //Team work 가져오는 json
   ///////////////////////////////////////JSON/////////////////////////////////////
   $.getJSON("/api/user/"+userID+"/teams", function(response) {
     $.each(response, function (i,team) {
-      $("#TeamWorks").append("<li class='team_li' id='team_li"+team.id+"'>"+team.name+"<span class='team_right_icon team_plus_icon'><img src='/assets/plus.png' height='15px' width='15px'></span></li>");
+      $("#TeamWorks").append("<li class='team_li' id='team_li"+team.id+"'>"+team.name+"<span class='teamName team_right_icon team_plus_icon'><img src='/assets/plus.png' height='15px' width='15px'></span></li><ul id='TeamWorks_"+team.id+"'></ul>");
+
+      $(".team_li span").eq(i).attr("data-id",team.id);
       //일정 크기를 넘어가면 높이를 고정
       if(($('#dropDown1').height()+(heightPosition-60)/10)<=heightPosition){
         var height=$('#dropDown1').height()+35;
@@ -174,6 +179,26 @@ var getTeamWork=function(){ //Team work 가져오는 json
       Change2=Change2+35;
       $('#dropDown1').height(height)
       $("#dropDown1").attr("data-change2",Change2)
+    });
+  });
+}//getTeamName()
+
+var getTeamWork=function(team_id){ //Team work 가져오는 json
+  ///////////////////////////////////////JSON/////////////////////////////////////
+  $.getJSON("/api/team/"+team_id+"/works", function(response) {
+    $.each(response, function (i,work) {
+      $("#TeamWorks_"+team_id).append("<li class='work_detail_li' id='TeamWorks_li"+work.id+"'>"+work.name+"</li>");
+
+      $(".work_detail_li").eq(i).attr("data-id",work.id);
+      //일정 크기를 넘어가면 높이를 고정
+      if(($('#dropDown1').height()+(heightPosition-60)/10)<=heightPosition){
+        var height=$('#dropDown1').height()+35;
+        heightChange3=heightChange3+35;
+      }
+      else var height=$('#dropDown1').height()
+      Change3=Change3+35;
+      $('#dropDown1').height(height)
+      $("#dropDown1").attr("data-change2",Change3)
     });
   });
 }//getTeamWork()
@@ -284,10 +309,19 @@ $(document).ready(function(){
     if($(this).hasClass('team')){
       Change2=0;
       ///////////////////////////////////////JSON/////////////////////////////////////
-      getTeamWork();
+      getTeamName();
       ///////////////////////////////////////////////////////////////////////////////
     }//team
   })
+
+  $(document).on("click",".teamName",function(){
+    $(this).empty(0).append("<img src='/assets/minus.png' height='15px' width='15px'>")
+    $(this).removeClass('team_plus_icon').addClass('team_minus_icon')
+    Change3=0;
+    ///////////////////////////////////////JSON/////////////////////////////////////
+    getTeamWork($(this).data("id"));
+    ///////////////////////////////////////////////////////////////////
+  });
 
   $(document).on("click",".minus_icon",function(){
     count=0;
@@ -302,6 +336,10 @@ $(document).ready(function(){
     }
 
     setHeight();  //높이 정해주는 함수
+  })
+
+  $(document).on("click",".work_detail_li",function(){
+    window.location='/main/work/'+ $(this).data("id");
   })
 
   /*************************************#dropdown2*************************************/

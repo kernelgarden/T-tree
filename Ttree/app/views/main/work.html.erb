@@ -115,6 +115,7 @@ function renderCircle(){
   /************************************************************/
   
 	/**************************리스트*****************************/
+	/*
 	$(".child").mouseenter(function() {
 	  var branchID = $(this).data("id");
 	  $.getJSON("/api/branch/" + branchID + "/childs", function(response) {
@@ -136,29 +137,33 @@ function renderCircle(){
 	    $(".branch_list").hide();
 	    $(".branch_content").empty();
 	}) //리스트 function
+	*/
 	/************************************************************/
 
 	/////////////////////////////Json/////////////////////////////
 	if (checkFirst == true) {
-	  $(".parent").empty();
-	  $(".child").empty();
-	  $.getJSON("/api/work/" + currentWorkId, function(response) {
-	    $(".parent").empty().append(response.id);
-	    $(".parent").append(response.name);
-	  });
-	  $.getJSON("/api/work/" + currentWorkId + "/branches", function(response) {
-	    $.each(response, function(i, branch) {
-	      var temp = (i + 1)
-	      if (branch.parent_id == null) {
-	        $(".child" + temp).empty().append(branch.id);
-	        $(".child" + temp).append(branch.name);
-	        $(".child" + temp).attr("data-id", branch.id)
-	      }
-	    });
-	  });
-	} //if
+  $(".parent").empty();
+  $(".child").empty();
+  $.getJSON("/api/work/" + currentWorkId, function(response) {
+    $(".parent").empty().append(response.id);
+    $(".parent").append(response.name);
+  });
+  $.getJSON("/api/work/" + currentWorkId + "/branche_ids", function(response) {
+    $.each(response, function(i, first) {
+      //$(".child"+(i+1)).append(first);
+      var temp = (i + 1)
+      $.getJSON("/api/branch/" + first, function(response) {
+        if (response.parent_id == null) {
+          $(".child" + temp).empty().append(response.id);
+          $(".child" + temp).append(response.name);
+          $(".child" + temp).attr("data-id", first)
+        }
+      });
+    });
+  });
+}
 	//////////////////////////////////////////////////////////////
-    
+   
 	/////////////////////////////Json/////////////////////////////
 	//window resize할 때 필요
 	if (checkFirst != true) {

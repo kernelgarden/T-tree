@@ -6,8 +6,8 @@ window.userName ="<%= current_user.name %>";
 <div class="member_work">
   <div class="personal_work">
     <div id="personal_work_header">
-      <img src="/assets/person.png" style="float:left">
-      <h3 style="float:left; margin-left:3px;">Personal Works</h3>
+      <img src="/assets/personal2.png" style="float:left">
+      <h3 id="homeTitle" style="float:left; margin-left:3px;">Personal Works</h3>
     </div>
     <div class='personal_work_group'  style="text-align:left;"></div>
   </div>
@@ -36,56 +36,81 @@ window.userName ="<%= current_user.name %>";
 </div>
 <script>
 var tId;
-var getInfo=function(){		//work박스를 그려주는 함수
-  $(".personal_work_group").hide();
-  $.getJSON("/api/user/"+userID, function(response) {
+function hover(element) {
+    element.setAttribute('src', '/assets/star2.png');
+}
+function unhover(element) {
+    element.setAttribute('src', '/assets/star3.png');
+}
+/***********************Personal work Box********************/
+var makePersonalWorkBox=function(){
+	$(".personal_work_group").hide();
+	var cnt=0;
+  $.getJSON("/api/user/"+userID+"/works", function(response) {
     if($(".personal_work_group").empty(0)){
-      $.each(response.work_ids, function (i,id) {
-        $(".personal_work_group").append("<div class='userWork personal_work_content personal_work_content"+i+"''></div>").show('slow')
-        $.getJSON("/api/work/"+id, function(response){
-          if($(".personal_work_content").eq(i).empty(0)){
-            $(".personal_work_content"+i).append('<div class="personal_work_name">'+response.name+'</div>')
-            $(".personal_work_content").eq(i).attr("data-id",id)
-          }
-        })
+      $.each(response, function (i,work) {
+      	if(work.team_id==null){
+	        $(".personal_work_group").append("<div class='userWork personal_work_content personal_work_content"+cnt+"''></div>").show('slow')
+	        if($(".personal_work_content").eq(cnt).empty(0)){
+	          $(".personal_work_content"+cnt).append('<div class="personal_work_name">'+work.name+'</div>')
+	          $(".personal_work_content"+cnt).append('<span class="boxIcon"><img src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
+	          $(".personal_work_content").eq(cnt).attr("data-id",work.id)
+	        }
+	        cnt++;
+	      }//if(work.team_id==null)
       });
     }
-    $.each(response.team_ids, function (i,id) {
-      if($(".personal_team_group").eq(i).empty(0)){
-        if(i!=response.team_ids.length){
-          $(".personal_team_group").append("<div class='personal_team personal_team"+i+"'></div>").show('slow')
-          $(".personal_team"+i).append("<div class='personal_team_header personal_team_header"+i+"'></div>").show('slow')
-          $(".personal_team"+i).append("<div class='wrap_team_content wrap_team_content"+i+"'></div>").show('slow')
-          $(".personal_team_header"+i).append("<img src='/assets/team.png' style='float:left ;'>").show('slow')
-          $(".personal_team_header"+i).append("<div class='team_more team_more"+i+"'>").show('slow')
-          $(".team_more"+i).append("<img src='/assets/more.png' style='width:15px; height:15px; margin-top:7px; margin-left:7px;'> More").show('slow')
-        }
-      }
-      $.getJSON("/api/team/"+id, function(response) {
-        $(".personal_team_header").eq(i).append('<h3 style=" float:left; margin-left:5px;">'+response.name+'</h3>')
-        $(".personal_team_name").eq(i).addClass(''+id)
-        $(".team_more"+i).attr("data-team_id",id)
-        $.each(response.work_ids,function(j,id){
-          $.getJSON("/api/work/"+id,function(response){
-            $(".wrap_team_content"+i).append('<div class="personal_team_content personal_team_content'+response.team_id+'_'+j+'"></div>').show('slow')
-            $(".personal_team_content"+response.team_id+"_"+j).append('<div class="personal_team_name">'+response.name+'</div>').show('slow')
-          })
-        })
-      })
-      $(".wrap_team_content"+i).append("<div class='create_personal_team create_personal_team"+i+"'></div>").show('slow')
-      $(".create_personal_team"+i).append('<div class="create_personal_team_content">Create Team Work</div>')
-      $(".create_personal_team"+i).attr("data-team_id",id)
-    })
   });
   $(".personal_work_group").append('<div class="addWork personal_work_content"></div>').show('slow')
-  $(".addWork").append('<div class="add_work_name">Create Personal Work</div>')
 }
+/************************************************************/
+
+/***********************Team work Box************************/
+var makeTeamWorkBox=function(){
+	$.getJSON("/api/user/" + userID + "/teams", function(response) {
+	  $.each(response, function(i, team) {
+	    if ($(".personal_team_group").eq(i).empty(0)) {
+	      if (i != response.length) {
+	        $(".personal_team_group").append("<div class='personal_team personal_team" + i + "'></div>").show('slow')
+	        $(".personal_team" + i).append("<div class='personal_team_header personal_team_header" + i + "'></div>").show('slow')
+	        $(".personal_team" + i).append("<div class='wrap_team_content wrap_team_content" + i + "'></div>").show('slow')
+	        $(".personal_team_header" + i).append("<img src='/assets/team3.png' style='float:left ;'>").show('slow')
+	        $(".personal_team_header" + i).append("<div class='team_more team_more" + i + "'>").show('slow')
+	        $(".team_more" + i).append("<img src='/assets/more.png' style='width:15px; height:15px; margin-top:7px; margin-left:7px;'> More").show('slow')
+	      }
+	    }
+	    $(".personal_team_header").eq(i).append('<h3 style=" float:left; margin-left:5px;">' + team.name + '</h3>')
+	    $(".personal_team_name").eq(i).addClass('' + team.id)
+	    $(".team_more" + i).attr("data-team_id", team.id)
+
+	    $.each(team.work_ids, function(j, id) {
+	      $.getJSON("/api/work/" + id, function(response) {
+	        $(".wrap_team_content" + i).append('<div class="personal_team_content personal_team_content' + response.team_id + '_' + j + '"></div>').show('slow')
+	        $(".personal_team_content" + response.team_id + "_" + j).append('<div class="personal_team_name">' + response.name + '</div>').show('slow')
+	        $(".personal_team_content"+ response.team_id + "_" + j).append('<span class="boxIcon"><img src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
+	      })
+	    })
+
+	    $(".wrap_team_content" + i).append("<div class='create_personal_team create_personal_team" + i + "'></div>").show('slow')
+	    $(".create_personal_team" + i).append('<div class="create_personal_team_content">Create Team Work</div>')
+	    $(".create_personal_team" + i).attr("data-team_id", team.id)
+	  })
+	});
+	$(".addWork").append('<div class="add_work_name">Create Personal Work</div>')
+}
+/************************************************************/
+
 /////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function(){
   $.ajaxSetup({ //Json 비동기>>>동기
     async:false
   });
-  getInfo();
+
+  //getInfo();
+
+	makePersonalWorkBox();
+	makeTeamWorkBox();
+
   $(document).on("click", '.team_more' , function(){
     tId=$(this).data("team_id");
     window.location='/main/team/'+tId;
@@ -94,6 +119,7 @@ $(document).ready(function(){
     var sId = $(this).data("id")
     window.location='/main/work/'+ sId;
   })
+
   var nCount5 = 0;
   $.getJSON("/api/user/"+userID, function(response) {
     $.each(response.team_ids, function (i,id) {
