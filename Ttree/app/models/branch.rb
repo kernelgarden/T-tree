@@ -12,4 +12,11 @@ class Branch < ApplicationRecord
       	{:name => node.name, :id => node.id, :work_id => node.work_id, :pages => node.pages.as_json(only:[:id, :name]), :children => Branch.json_tree(sub_nodes).compact}
     end
   end
+
+  def self.json_search(nodes)
+    nodes.map do |node|
+        {:name => node.name, :id => node.id, :attr =>"Branch", :description => Work.find(node.work_id).name}
+    end
+  end
+
 end

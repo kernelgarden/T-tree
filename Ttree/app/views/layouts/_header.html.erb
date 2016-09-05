@@ -10,7 +10,7 @@ window.userName ="<%= current_user.name %>";
     <div class="wrapDiv">
       <form action="/users/profile" accept-charset="UTF-8" method="get">
         <input name="utf8" type="hidden" value="✓">
-        <input type="text" id="provider-json" name="search" class="search blue" value="" placeholder="">
+        <input type="text" id="categories-basic" name="search" class="search blue" value="" placeholder="">
       </form>
     </div>
   </li>
@@ -97,33 +97,37 @@ var count=0;
 var countDropdown5=0;
 var heightChange=0;   //높이 변화 체크
 var heightChange2=0;  //team 높이 변화 체크
+var heightChange3=0;  //team 높이 변화 체크
 var Change=0;         //원래 변화 체크
 var Change2=0;        //team 높이 원래 변화 체크
+var Change3=0;        //team2 높이 원래 변화 체크
 var widthMax =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
 var heightMax =window.screen.availHeight||document.body.clientHeigh;
 
 var setHeight=function(){ //높이 정해주는 함수
   var height=0;
+  var flag1=0, flag2=0; 
   if($('.personal').hasClass('minus_icon')){
-    height=+Change;
+    height=+$("#dropDown1").data("change");
+    flag1=1
   }
   if($('.team').hasClass('minus_icon')){
-    height=+Change2;
+    height=+$("#dropDown1").data("change2");
+    flag2=1
   }
-  if(height>heightPosition-220) $('#dropDown1').height(heightPosition)
+  if(height>heightPosition-220) $('#dropDown1').height(heightPosition-(heightPosition-60)/10)
   else $('#dropDown1').height(220+height)
 }//setHeight()
 
 var getPersonalWork=function(){ //persoanl work 가져오는 json
-  Change=0;
-  ///////////////////////////////////////JSON/////////////////////////////////////
+  heightChange=0;
+  /////////////////////////////Json/////////////////////////////
   $.getJSON("/api/user/"+userID+"/works", function(response) {
     
     /////////personalwork 개수 구하기 ////////
     var length=0;
     $.each(response, function (i,work) {
-        if(work.team_id==null) 
-          length++;
+      if(work.team_id==null) length++;
     });
     /////////personalwork 개수 구하기 ////////
     if(length==0){
@@ -138,22 +142,66 @@ var getPersonalWork=function(){ //persoanl work 가져오는 json
     }
     var cnt=0;
     $.each(response, function (i,work) {
-        if(work.team_id==null&&$(".work_detail_li").eq(i).empty(0)){
-          $(".work_detail_li").eq(cnt).append(work.name);
-          //일정 크기를 넘어가면 높이를 고정
-          if(($('#dropDown1').height()+30)<=heightPosition){
-            var height=$('#dropDown1').height()+35;
-            heightChange=heightChange+35;
-          }
-          else var height=$('#dropDown1').height()
-          Change=Change+35;
-          $('#dropDown1').height(height)
-          cnt++;
+      if(work.team_id==null&&$(".work_detail_li").eq(i).empty(0)){
+        $(".work_detail_li").eq(cnt).append(work.name);
+        $(".work_detail_li").eq(cnt).attr("data-id",work.id);
+        //일정 크기를 넘어가면 높이를 고정
+        if(($('#dropDown1').height()+(heightPosition-60)/10)<=heightPosition){
+          var height=$('#dropDown1').height()+35;
+          heightChange=heightChange+35;
         }
-        else Change=0;
+        else var height=$('#dropDown1').height()
+
+        Change=Change+35;
+        $('#dropDown1').height(height)
+        cnt++; 
+      }
+      //else Change=0;
+      $("#dropDown1").attr("data-change",Change)
     });
   });
+  //////////////////////////////////////////////////////////////
 }//getPersonalWork()
+
+var getTeamName=function(){ //Team work 가져오는 json
+  ///////////////////////////////////////JSON/////////////////////////////////////
+  $.getJSON("/api/user/"+userID+"/teams", function(response) {
+    $.each(response, function (i,team) {
+      $("#TeamWorks").append("<li class='team_li' id='team_li"+team.id+"'>"+team.name+"<span class='teamName team_right_icon team_plus_icon'><img src='/assets/plus.png' height='15px' width='15px'></span></li><ul id='TeamWorks_"+team.id+"'></ul>");
+
+      $(".team_li span").eq(i).attr("data-id",team.id);
+      //일정 크기를 넘어가면 높이를 고정
+      if(($('#dropDown1').height()+(heightPosition-60)/10)<=heightPosition){
+        var height=$('#dropDown1').height()+35;
+        heightChange2=heightChange2+35;
+      }
+      else var height=$('#dropDown1').height()
+      Change2=Change2+35;
+      $('#dropDown1').height(height)
+      $("#dropDown1").attr("data-change2",Change2)
+    });
+  });
+}//getTeamName()
+
+var getTeamWork=function(team_id){ //Team work 가져오는 json
+  ///////////////////////////////////////JSON/////////////////////////////////////
+  $.getJSON("/api/team/"+team_id+"/works", function(response) {
+    $.each(response, function (i,work) {
+      $("#TeamWorks_"+team_id).append("<li class='work_detail_li' id='TeamWorks_li"+work.id+"'>"+work.name+"</li>");
+
+      $(".work_detail_li").eq(i).attr("data-id",work.id);
+      //일정 크기를 넘어가면 높이를 고정
+      if(($('#dropDown1').height()+(heightPosition-60)/10)<=heightPosition){
+        var height=$('#dropDown1').height()+35;
+        heightChange3=heightChange3+35;
+      }
+      else var height=$('#dropDown1').height()
+      Change3=Change3+35;
+      $('#dropDown1').height(height)
+      $("#dropDown1").attr("data-change2",Change3)
+    });
+  });
+}//getTeamWork()
 
 var goBackDropdown5=function(){ //dropdown5에서 처음 모양으로 돌아가기 위해서
   $('.add_li').fadeIn()
@@ -177,7 +225,7 @@ var widthChangeReact=function(){  //width가 변함에 따라 네비게이션바
   else if(widthMax*2/3<=widthPosition){
     $("#menuDiv6").empty().append(userName)
   }
-}
+}//widthChangeReact()
 
 $(document).ready(function(){
   var nCount1=0;
@@ -261,24 +309,20 @@ $(document).ready(function(){
     if($(this).hasClass('team')){
       Change2=0;
       ///////////////////////////////////////JSON/////////////////////////////////////
-      $.getJSON("/api/user/"+userID, function(response) {
-        $.each(response.team_ids, function (i,id) {
-          $.getJSON("/api/team/"+id, function(response) {
-            $("#TeamWorks").append("<li class='team_li' id='team_li"+id+"'>"+response.name+"<span class='team_right_icon team_plus_icon'><img src='/assets/plus.png' height='15px' width='15px'></span></li>");
-            //일정 크기를 넘어가면 높이를 고정
-            if(($('#dropDown1').height()+30)<=heightPosition){
-              var height=$('#dropDown1').height()+35;
-              heightChange2=heightChange2+35;
-            }
-            else var height=$('#dropDown1').height()
-            Change2=Change2+35;
-            $('#dropDown1').height(height)
-          });
-        });
-      });
+      getTeamName();
       ///////////////////////////////////////////////////////////////////////////////
     }//team
   })
+
+  $(document).on("click",".teamName",function(){
+    $(this).empty(0).append("<img src='/assets/minus.png' height='15px' width='15px'>")
+    $(this).removeClass('team_plus_icon').addClass('team_minus_icon')
+    Change3=0;
+    ///////////////////////////////////////JSON/////////////////////////////////////
+    getTeamWork($(this).data("id"));
+    ///////////////////////////////////////////////////////////////////
+  });
+
   $(document).on("click",".minus_icon",function(){
     count=0;
     $(this).empty(0).append("<img src='/assets/plus.png' height='15px' width='15px'>")
@@ -294,20 +338,79 @@ $(document).ready(function(){
     setHeight();  //높이 정해주는 함수
   })
 
+  $(document).on("click",".work_detail_li",function(){
+    window.location='/main/work/'+ $(this).data("id");
+  })
+
   /*************************************#dropdown2*************************************/
   var options = {
-    url: "/api/users",
 
-    getValue: "email",
+    url: "/search",
+
+    categories: [{
+        listLocation: "users",
+        maxNumberOfElements: 3,
+        header: "Users"
+    }, {
+        listLocation: "works",
+        maxNumberOfElements: 3,
+        header: "Works"
+    }, {
+        listLocation: "branches",
+        maxNumberOfElements: 3,
+        header: "Branches"
+    }, {
+        listLocation: "pages",
+        maxNumberOfElements: 3,
+        header: "Pages"
+    }],
+
+    getValue: function(element) {
+        return element.name;
+    },
+
+    template: {
+        type: "description",
+        fields: {
+            description: "description"
+        }
+    },
 
     list: {
-      match: {
-        enabled: true
-      }
-    }
+        maxNumberOfElements: 12,
+        match: {
+            enabled: true
+        },
+        sort: {
+            enabled: true
+        },
+        onClickEvent: function() {
+          var model = $("#categories-basic").getSelectedItemData().attr;
+          var id = $("#categories-basic").getSelectedItemData().id;
+          if(model=="Work"){
+            window.location='/main/work/'+ id;
+          }
+        },
+        onChooseEvent: function() {
+          var model = $("#categories-basic").getSelectedItemData().attr;
+          var id = $("#categories-basic").getSelectedItemData().id;
+          if(model=="Work"){
+            window.location='/main/work/'+ id;
+          }
+        }
+    },
+    theme: "round"
   };
 
-  $("#provider-json").easyAutocomplete(options);
+  $("#categories-basic").easyAutocomplete(options);
+
+  $('html').bind('keypress', function(e)
+  {
+     if(e.keyCode == 13)
+     {
+        return false;
+     }
+  });
 
   /*************************************#dropdown5*************************************/
   //Create Work
@@ -411,9 +514,9 @@ $(document).on("click","#left_icon",function() {
 });
 //스크롤 내릴 때 dropDown1도 같이 움직이기
 $(window).scroll(function(){
-  $('#dropDown1').animate({top:($(window).scrollTop()+50)+"px"}, {queue:false, duration:10})
-  $('#dropDown5').animate({top:($(window).scrollTop()+50)+"px"}, {queue:false, duration:10})
-  $('#dropDown6').animate({top:($(window).scrollTop()+50)+"px"}, {queue:false, duration:10})
+  //$('#dropDown1').animate({top:($(window).scrollTop()+50)+"px"}, {queue:false, duration:10})
+  //$('#dropDown5').animate({top:($(window).scrollTop()+50)+"px"}, {queue:false, duration:10})
+  //$('#dropDown6').animate({top:($(window).scrollTop()+50)+"px"}, {queue:false, duration:10})
   //$('#header').css('top', $(window).scrollTop() + "px");
 })
 //resize될때마다 dropDown1의 길이도 변경해주기

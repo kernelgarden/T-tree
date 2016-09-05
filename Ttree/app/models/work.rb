@@ -22,6 +22,13 @@ class Work < ApplicationRecord
   #    include: [:branches]
   #  )
   #end
+  
+  def self.json_search(nodes)
+    nodes.map do |node|
+        {:name => node.name, :id => node.id, :attr =>"Work", :description => User.find(node.user_id).email}
+    end
+  end
+
 end
 #Work.__elasticsearch__.client.indices.delete index: Work.index_name rescue nil
 
