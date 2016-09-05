@@ -25,6 +25,20 @@ window.userName ="<%= current_user.name %>";
     </form>
     <input type="button" class="personal_work_form_button" value="Create" />
   </div>
+  <!-- team work 연동 시켜야함...
+  <div class="create_team_work_form" id="create_team_work_form">
+    <div id="team_work_form_main" class="team_work_form_element">Create Personal Work</div>
+    <form id="team_work_form">
+      <div id="team_work_form_title" class="team_work_form_element">Title</div>
+      <input type="text" name="title" class="team_input team_work_form_element" />
+      <div id="team_work_form_team_name" class="team_work_form_element">Team</div>
+      <select id="team_work_form_selectTeam" name="team_name" class="team_work_form_element">
+        <option value="null">(none)</option>
+      </select>
+    </form>
+    <input type="button" class="team_work_form_button" value="Create" />
+  </div>
+  -->
   <div class="create_team" id="create_team">Create Team</div>
   <div class="create_team_form" id="create_team_form">
     <form id="team_form">
@@ -99,6 +113,7 @@ $(document).ready(function(){
     $.each(response.team_ids, function (i,id) {
       $.getJSON("/api/team/"+id, function(response) {
         $("#personal_work_form_selectTeam").append("<option value=\""+id+"\">"+response.name+"</option>");
+        //$("#team_work_form_selectTeam").append("<option value=\""+id+"\">"+response.name+"</option>");
       });
     });
   });
