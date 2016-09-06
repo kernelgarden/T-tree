@@ -4,54 +4,54 @@ class ApisController < ApplicationController
 
 	def users
 		@users=User.all
-  		render :json => @users
+		render :json => @users
 	end
 
 	def user_ids
 		@users=User.all
-  		render :json => @users.ids
+		render :json => @users.ids
 	end
 
 	def user
 		@user=User.find(params[:id])
-  		render :json => @user
+		render :json => @user
 	end
 
 
 	def works
 		@user=User.find(params[:id])
-  		render :json => @user.works
+		render :json => @user.works
 	end
 
 	def work_ids
 		@user=User.find(params[:id])
-  		render :json => @user.work_ids
+		render :json => @user.work_ids
 	end
 
 	def teams
 		@user=User.find(params[:id])
-  		render :json => @user.teams
+		render :json => @user.teams
 	end
 
 	def team
 		@team=Team.find(params[:id])
-  		render :json => @team
+		render :json => @team
 	end
 
 
 	def teamworks
 		@team=Team.find(params[:id])
-  		render :json => @team.works
+		render :json => @team.works
 	end
 
 	def teamwork_ids
 		@team=Team.find(params[:id])
-  		render :json => @team.work_ids
+		render :json => @team.work_ids
 	end
 
 	def member_ids
 		@team=Team.find(params[:id])
-  		render :json => @team.user_ids
+		render :json => @team.user_ids
 	end
 
 	def work
@@ -61,12 +61,12 @@ class ApisController < ApplicationController
 
 	def branches
 		@work=Work.find(params[:id])
-  		render :json => @work.branches
+		render :json => @work.branches
 	end
 
 	def branche_ids
 		@work=Work.find(params[:id])
-  		render :json => @work.branch_ids
+		render :json => @work.branch_ids
 	end
 
 	def branch
@@ -77,22 +77,22 @@ class ApisController < ApplicationController
 	def tree
 		@work=Work.find(params[:id])
 		@branches=@work.branches.first.subtree.arrange
-  		render :json =>  Branch.json_tree(@branches)
+		render :json =>  Branch.json_tree(@branches)
 	end
 
 	def branchChilds
-			@branch=Branch.find(params[:id])
-  		render :json => @branch.children
+		@branch=Branch.find(params[:id])
+		render :json => @branch.children
 	end
 
 	def pages
 		@branch=Branch.find(params[:id])
-  		render :json => @branch.pages
+		render :json => @branch.pages
 	end
 
 	def page_ids
 		@branch=Branch.find(params[:id])
-  		render :json => @branch.page_ids
+		render :json => @branch.page_ids
 	end
 
 	def page
@@ -107,13 +107,13 @@ class ApisController < ApplicationController
 
 	def unclassifiedpages
 		@user=User.find(params[:id])
-  		render :json => @user.unclassifiedpages
+		render :json => @user.unclassifiedpages
 	end
 
 	def getWork
 		#@work=(params[:work])
 		Work.create(work_params)
-  		#render :json => @work
+		#render :json => @work
 	end
 	def getTeam
 		@team=Team.create(team_params)
@@ -126,6 +126,11 @@ class ApisController < ApplicationController
 		@json["pages"].each do |page|
 			Unclassifiedpage.create(:user_id=>@user.id, :title=>page["title"], :url=>page["url"])
 		end
+	end
+	def getMember
+		@team_id=params[:team_id]
+		@user_id=params[:user_id]
+		User.find(@user_id).join(Team.find(@team_id))
 	end
 
 	def setStar
