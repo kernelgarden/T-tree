@@ -133,7 +133,8 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
 
           } //for
           $.each(response, function(i, page) {
-            $('.pageli-2').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url=' + page.url + '" />');
+            //$('.pageli-2').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url=' + page.url + '" />');
+            $('.pageli-2').eq(i).append('<img class="img" src="/assets/loading.gif"/>');
             $('.pageli-2').eq(i).append('<div class="page_url_div"><a class="page_url">' + page.title + '</a></div>');
             $('.pageli-2').eq(i).attr("data-url", page.url)
 

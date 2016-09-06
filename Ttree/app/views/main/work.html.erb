@@ -113,7 +113,7 @@ function renderCircle(){
 	});
 	$('.back').fadeOut(0);
   /************************************************************/
-
+  
 	/**************************리스트*****************************/
 	/*
 	$(".child").mouseenter(function() {
@@ -163,7 +163,7 @@ function renderCircle(){
   });
 }
 	//////////////////////////////////////////////////////////////
-
+   
 	/////////////////////////////Json/////////////////////////////
 	//window resize할 때 필요
 	if (checkFirst != true) {
@@ -185,8 +185,8 @@ function renderCircle(){
 	  });
 	}
 	//////////////////////////////////////////////////////////////
-
-  /***********************branch 누르면*************************/
+  
+  /***********************branch 누르면*************************/  
   $('.child').click(function(){
 		backButtonFlag = 0;
 		movingChild = true;
@@ -360,7 +360,7 @@ function renderCircle(){
 		$('.child').not('.child8').delay(500).animate({
 		    backgroundColor: "#ECA812",
 		}, 50)
-
+		
 		//child8과 이전 가지의 교환
 		$('.child' + checkThis).addClass('child9')
 		$('.child9').removeClass('child' + checkThis);
@@ -459,8 +459,8 @@ function renderCircle(){
 	/************************************************************/
 
   /***********************parent 누르면*************************/
-  $('.parent').click(function(){
-  	if($('#name_formContain').click()) return;
+  $(document).on("click",".parent",function() {
+  	if($('.name_formContain').data("status")==1) return;
 		if (checkFirst == false) {
 		  $('.child8').css({
 		    backgroundColor: "transparent"
@@ -489,7 +489,7 @@ function renderCircle(){
 				  duration: 900,
 				  scale: 1.0
 				});
-
+        
         /////////////////////////////Json/////////////////////////////
         setTimeout(function(){
 					if (backButtonFlag == 0) {
@@ -559,7 +559,7 @@ function renderCircle(){
 
 }//renderCircle()
 
-//페이지 정보 출력 바탕
+//페이지 정보 출력 바탕 
 function pagesInform(){
    var pages = $('<div class="pages"></div>').appendTo('#wrapDiv');
    var page=$('<ol class="page"></ol>').appendTo('.pages');
@@ -577,7 +577,7 @@ $(document).ready(function(){
 	}
 	renderCircle();
 	pagesInform();
-
+  
   /*
 	$(document).on("mouseenter", ".child", function() {
 	  if (movingChild == false) {
@@ -614,14 +614,14 @@ $(document).ready(function(){
 	  //$(this).zoomTo({targetsize:0.75, duration:600});
 	  //e.stopPropagation();
 	});
-
+    
   /*
   $(document).on("click",".pageli",function() {
     $(this).zoomTo({targetsize:0.75, duration:600});
     e.stopPropagation();
   });
   */
-
+    
   //루트가 아닐 때
   $(document).on("click", function(){
 
@@ -730,8 +730,11 @@ $(document).ready(function(){
 	      ui.helper.data('droppedAt', $(this).attr('class').match(/\d/)[0]);
 	      $(this).trigger('click');
 	      $('#parent').append('<form class=\"name_formContain\" name=\"ReadingInfoSelectForm\" id=\"ReadingInfoSelectForm\" action=\"\" method=\"post\"><input id=\"WorkName\" type=\"text\" name=\"addFormData\" value=\"\"></form>')
-	      $('.name_formContain').fadeOut(0);
-	      $('.name_formContain').fadeIn(3000);
+	      //submit button
+    		$('#parent').append('<input type=\"button\" class=\"name_formContain\" id=\"saveNameBtn\" name=\"saveNameBtn\" value=\"Save\">')
+    		$('.name_formContain').fadeOut(0);
+	      $('.name_formContain').delay(1500).fadeIn(500);  
+	      $('.name_formContain').attr("data-status", 1)
 	      $('#WorkName').focus();
 	    }
 	  })
