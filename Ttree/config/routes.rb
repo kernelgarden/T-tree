@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   get '/api/post/work', to: 'apis#getWork1'         #해당 work의 정보
   post '/api/post/team', to:'apis#getTeam'
   post '/api/page/new', to: 'apis#getPages'
-
+  post '/api/post/team_member', to:'apis#getMember'
 
   get '/search', to:'search#getResult'
   # For details on the DSL available within this file, see http://guides.ruonrails.org/routing.html
