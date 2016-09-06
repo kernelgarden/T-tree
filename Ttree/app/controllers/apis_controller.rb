@@ -121,13 +121,14 @@ class ApisController < ApplicationController
 	end
 
 	def getPages
-
 		@json= JSON.parse(request.raw_post)
 		@user= User.find_by_email(@json["user_email"])
 		@json["pages"].each do |page|
 			Unclassifiedpage.create(:user_id=>@user.id, :title=>page["title"], :url=>page["url"])
 		end
+	end
 
+	def setStar
 	end
 
 	private
