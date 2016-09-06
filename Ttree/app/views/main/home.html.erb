@@ -130,9 +130,16 @@ $(document).ready(function(){
     e.stopPropagation();
     //alert($(this).parent().parent().attr('data-id').match(/\d+/)[0]);
     var work_id = $(this).parent().parent().attr('data-id').match(/\d+/)[0];
+    var fuck = this;
+    $.post("/api/user/" + userID + "/setStar", {"starlists": {"work_id": work_id, "user_id": userID}})
+
+    $(this).removeAttr("onmouseout");
+    $(this).attr("src", "/assets/star2.png");
+    /*
     $.get("/api/user/" + userID + "/setStar?" + "work_id=" + work_id, function(data, status) {
       alert(Data + status);
     })
+    */
   });
 
   $(document).on("click", '.team_more' , function(){
@@ -142,12 +149,6 @@ $(document).ready(function(){
   $(document).on("click",".userWork",function(){
     var sId = $(this).data("id")
     window.location='/main/work/'+ sId;
-  })
-
-
-  //별표 눌렀을 때
-  $(document).on("click",".boxIcon",function(){
-
   })
 
   var nCount5 = 0;

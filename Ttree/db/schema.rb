@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906083846) do
+ActiveRecord::Schema.define(version: 20160906122429) do
 
   create_table "branches", force: :cascade do |t|
     t.string   "name"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20160906083846) do
   end
 
   create_table "starlists", force: :cascade do |t|
-    t.integer  "list"
+    t.integer  "work_id"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

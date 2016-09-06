@@ -129,6 +129,7 @@ class ApisController < ApplicationController
 	end
 
 	def setStar
+		Starlist.create(starlist_params)
 	end
 
 	private
@@ -137,5 +138,8 @@ class ApisController < ApplicationController
 	end
 	def team_params
 		params.require(:team).permit(:name)
+	end
+	def starlist_params
+		params.require(:starlists).permit(:work_id, :user_id)
 	end
 end
