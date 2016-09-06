@@ -117,13 +117,6 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
     }
 
     console.log($('.unPages').data("id"))
-    $(document).ajaxStart(function(){
-        alert("start")
-    });
-
-    $(document).ajaxComplete(function(){
-      alert("stop")
-    });
     if ($('.unPages').data("id") == 0) {
       $('.unPages').show();
       $('.unPages').attr("data-id", 1)
@@ -158,7 +151,9 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
 
   })
   $(document).on("click",".pageli-2",function() {
-      window.open($(this).data("url"),'_blank');
+      var popup = window.open($(this).data("url"),'_blank');
+      popup.blur();
+      window.focus();
     })
 }
 
