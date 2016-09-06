@@ -124,7 +124,7 @@ function renderCircle(){
        })
      })
      $(".child").mouseleave(function(){
-       $(".branch_list").hide();
+       $(".branch_list").hide('fast');
        $(".branch_content").empty();
      })//리스트 function
 
@@ -180,6 +180,7 @@ function renderCircle(){
     //branch 누르면
     $('.child').click(function(){
        backButtonFlag=0;
+       $(".branch_list").hide('fast');
        $('.back').fadeOut();
        ///////////////////// json 초기화 //////////////////////
        $(".parent").empty();
