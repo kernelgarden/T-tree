@@ -61,8 +61,10 @@ $backgorundColor:#E2E4E6;
       margin-right: 10px;
       margin-top: 5px;
       margin-bottom: 5px;
-      width:80%;
+      width:98%;
       height: 30px;
+      color:white;
+      text-shadow: 2px 2px #757575;
       -webkit-transition:width .35s ease-in-out;
       transition:width .35s ease-in-out;
       &:focus {
@@ -70,11 +72,12 @@ $backgorundColor:#E2E4E6;
         border:3px solid #5cb3c1;
         color:#34495E;
         font-weight:600;
+        text-shadow: none;
         /*background-image: url(/assets/close.png);*/
         background-position: 95% 50%;
         background-size: 15px 15px;
         background-repeat: no-repeat;
-        width: 95%;
+        width: 130%;
 
         background-image:hover{
           cursor: pointer;
@@ -176,11 +179,10 @@ $backgorundColor:#E2E4E6;
     background-color: #999999;
     border-radius:5px;
   }
-  position:absolute;
+  position:fixed;
   overflow:auto;
   height: 220px;
   width: 260px;
-  position: absolute;
   display: none;
   top: 50px;
   left: 10px;
@@ -226,8 +228,8 @@ $backgorundColor:#E2E4E6;
       .team_li{
         height: 25px;
         width: 90%;
-        padding-top:5px;
-        padding-bottom:5px;
+        padding-top:7px;
+        padding-bottom:3px;
         padding-right:5%;
         padding-left:5%;
         color:#6B6B6B;
@@ -297,7 +299,7 @@ $backgorundColor:#E2E4E6;
 #dropDown5{
   height: 240px;
   width: 220px;
-  position: absolute;
+  position: fixed;
   display: none;
   top: 50px;
   right: 10px;
@@ -415,7 +417,7 @@ $backgorundColor:#E2E4E6;
 #dropDown6{
   height: 310px;
   width: 220px;
-  position: absolute;
+  position: fixed;
   display: none;
   top: 50px;
   right: 10px;
