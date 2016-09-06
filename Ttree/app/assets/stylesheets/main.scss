@@ -232,7 +232,7 @@ div.back{
     box-sizing: border-box;
     width:96%;
     background-color: #CCF7FE;
-		box-shadow: 0px 0px 15px 2px #A3A3A3;
+		//box-shadow: 0px 0px 15px 2px #A3A3A3;
 		text-align: center;
 		text-size:15px;
     &:focus {
@@ -240,6 +240,7 @@ div.back{
     }
   }/*input*/
 }
+
 #saveNameBtn{
       margin-left:0%;
       margin-top:2%;
