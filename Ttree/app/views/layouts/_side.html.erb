@@ -38,6 +38,8 @@ var setSize=function(){ //사이즈 세팅해주는 함수
   //사이드바 원 높이를 가로와 맞게
   $('#page_alert').height($('#page_alert').width())
   $('#page_alert_num').height($('#page_alert_num').width()*4/5)
+
+  $('#page_alert').show();
 }
 
 $('#page_alert').draggable({
@@ -184,6 +186,7 @@ $(window).resize(function(){
 
   //사이즈 세팅
   setSize();
+  $('#page_alert').show();
   checkPageAlerNum();
   showPages();
 });
