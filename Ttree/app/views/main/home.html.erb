@@ -144,6 +144,12 @@ $(document).ready(function(){
     window.location='/main/work/'+ sId;
   })
 
+
+  //별표 눌렀을 때
+  $(document).on("click",".boxIcon",function(){
+
+  })
+
   var nCount5 = 0;
   $.getJSON("/api/user/"+userID, function(response) {
     $.each(response.team_ids, function (i,id) {
