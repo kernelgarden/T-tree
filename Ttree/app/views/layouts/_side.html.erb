@@ -45,9 +45,17 @@ $('#page_alert').draggable({
 	start: function(event, ui) {
 		ui.helper.data('droppedAt', -1); // 원에 드랍시 0 > 의 상수 기타 <= 0
 		ui.helper.data('draggablePos', $(this).position());
+    $('#page_alert').transition({
+      scale: 0.65,
+      duration: 0
+    });
 	},
 	stop: function(event, ui) {
-      alert(ui.helper.data('droppedAt'));
+      $('#page_alert').transition({
+        scale: 1,
+        duration: 0
+      });
+      //alert(ui.helper.data('droppedAt'));
 			if (ui.helper.data('droppedAt') != -1)
 				$(this).css({
 					left: ui.helper.data('draggablePos').left,

@@ -111,6 +111,7 @@ $(document).ready(function(){
 	makePersonalWorkBox();
 	makeTeamWorkBox();
 
+
   $(document).on("click", '.team_more' , function(){
     tId=$(this).data("team_id");
     window.location='/main/team/'+tId;
@@ -118,6 +119,12 @@ $(document).ready(function(){
   $(document).on("click",".userWork",function(){
     var sId = $(this).data("id")
     window.location='/main/work/'+ sId;
+  })
+
+
+  //별표 눌렀을 때 
+  $(document).on("click",".boxIcon",function(){
+
   })
 
   var nCount5 = 0;

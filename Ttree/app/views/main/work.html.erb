@@ -460,6 +460,7 @@ function renderCircle(){
 
   /***********************parent 누르면*************************/
   $('.parent').click(function(){
+  	if($('#name_formContain').click()) return;
 		if (checkFirst == false) {
 		  $('.child8').css({
 		    backgroundColor: "transparent"
@@ -727,6 +728,11 @@ $(document).ready(function(){
 	      // awesome code that works and handles successful drops...
 	      $(this).class
 	      ui.helper.data('droppedAt', $(this).attr('class').match(/\d/)[0]);
+	      $(this).trigger('click');
+	      $('#parent').append('<form class=\"name_formContain\" name=\"ReadingInfoSelectForm\" id=\"ReadingInfoSelectForm\" action=\"\" method=\"post\"><input id=\"WorkName\" type=\"text\" name=\"addFormData\" value=\"\"></form>')
+	      $('.name_formContain').fadeOut(0);
+	      $('.name_formContain').fadeIn(3000);
+	      $('#WorkName').focus();
 	    }
 	  })
 	});
@@ -758,7 +764,7 @@ $(window).resize(function() {
         duration: 900,
         scale: 1.0
       })
-      //$(this).
+      $(this).trigger('click');
   } //if
   else {
     var parent = $('div.parent');
@@ -793,6 +799,7 @@ $('.child').each(function(idx) {
     drop: function(event, ui) {
       // awesome code that works and handles successful drops...
       ui.helper.data('dropped', true);
+      //$(this).trigger('click');
     }
   })
 });
