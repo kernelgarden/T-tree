@@ -115,11 +115,16 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
     }
 
     console.log($('.unPages').data("id"))
+    $(document).ajaxStart(function(){
+        alert("start")
+    });
 
+    $(document).ajaxComplete(function(){
+      alert("stop")
+    });
     if ($('.unPages').data("id") == 0) {
       $('.unPages').show();
       $('.unPages').attr("data-id", 1)
-
       /////////////////////////////Json/////////////////////////////
       setTimeout(function() {
         $.getJSON("/api/user/" + userID + "/unclassifiedpages", function(response) {
@@ -131,8 +136,9 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
 
           } //for
           $.each(response, function(i, page) {
-            //$('.pageli-2').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url=' + page.url + '" />');
-            $('.pageli-2').eq(i).append('<img class="img" src="/assets/loading.gif"/>');
+            $('.pageli-2').eq(i).append('<img class="img'+i+'" src="/assets/loading.gif" />');
+            $('.img'+i).replaceWith('<img class="img" src="http://ryugarden.org/api/thumb?url=' + page.url + '" />');
+            //$('.pageli-2').eq(i).append('<img class="img" src="/' + page.url + '" />');
             $('.pageli-2').eq(i).append('<div class="page_url_div"><a class="page_url">' + page.title + '</a></div>');
             $('.pageli-2').eq(i).attr("data-url", page.url)
 
