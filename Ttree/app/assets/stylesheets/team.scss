@@ -132,17 +132,14 @@
   width: 100%;
   height: auto;
 }
-.member{
-  width: 100%;
-}
-.content_1{
+.content_name{
   display: inline-block;
   width: 30%;
   height:60px;
   float: left;
 }
-.content_2{
-    display: inline-block;
+.content_email{
+  display: inline-block;
   width: 40%;
   height: 60px;
   float:left;
@@ -153,5 +150,5 @@
 }
 .member_email{
   font-size: 16px;
-  margin-top: 15px;
+  margin-top: 16px;
 }

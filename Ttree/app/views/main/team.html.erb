@@ -32,15 +32,6 @@ window.teamID = "<%= @team_id%>";
           <div class="title">Team Members</div>
           <div class="line"></div>
           <div class="member_list">
-            <div class="member">
-              <div class="content_1">
-                <div class="member_name">김시훈</div>
-              </div>
-              <div class="content_2">
-                <div class="member_email">shuni93@naver.com</div>
-              </div>
-            </div>
-            <div class="line"></div>
           </div>
         </div>
       </div>
@@ -57,6 +48,15 @@ var getWorkFromTeam=function(){
       }
       $.getJSON("/api/work/"+id, function(response){
         $(".team_work"+i).append('<div class="team_work_name team_work_name'+i+'">'+response.name+'</div>').show('slow');
+      })
+    })
+    $.each(response.user_ids, function(i,id){
+      $.getJSON("/api/user/"+id, function(response){
+        $(".member_list").append('<div class="content_name content_name'+i+'"></div>').show('slow');
+        $(".member_list").append('<div class="content_email content_email'+i+'"></div>').show('slow');
+        $(".member_list").append('<div class="line"></div>').show('slow');
+        $(".content_name"+i).append('<div class="member_name member_name'+i+'">'+response.name+'</div>').show('slow');
+        $(".content_email"+i).append('<div class="member_email member_email'+i+'">'+response.email+'</div>').show('slow');
       })
     })
   })
