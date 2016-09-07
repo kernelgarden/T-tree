@@ -132,6 +132,11 @@ class ApisController < ApplicationController
 		@user_id=params[:user_id]
 		User.find(@user_id).join(Team.find(@team_id))
 	end
+	def teamWithdraw
+		@team_id=params[:team_id]
+		@user_id=params[:user_id]
+		User.find(@user_id).withdraw(Team.find(@team_id))
+	end
 
 	def staring
 		@user = User.find(params[:starlists][:user_id])
@@ -142,6 +147,7 @@ class ApisController < ApplicationController
 		@user = User.find(params[:starlists][:user_id])
 		@user.unstaring(Work.find(params[:starlists][:work_id]))
 	end
+
 
 	private
 	def work_params

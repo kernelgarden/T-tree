@@ -3,7 +3,7 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
   has_many :ut_relationships, :foreign_key => "member_id", :dependent => :destroy
-  has_many :teams, :through => :ut_relationships
+  has_many :teams, :through => :ut_relationships, :dependent=>:destroy
   has_many :works, :dependent => :destroy, :foreign_key => "user_id"
   has_many :unclassifiedpages, :dependent => :destroy
   has_many :starlists, :dependent => :destroy, :foreign_key => "user_id"
