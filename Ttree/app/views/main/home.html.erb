@@ -25,7 +25,6 @@ window.userName ="<%= current_user.name %>";
     </form>
     <input type="button" class="personal_work_form_button" value="Create" />
   </div>
-  <!-- team work 연동 시켜야함... -->
   <div class="create_team_work_form" id="create_team_work_form">
     <div id="team_work_form_main" class="team_work_form_element">Create Team Work</div>
     <form id="team_work_form">
@@ -59,6 +58,7 @@ function unhover(element) {
 var makePersonalWorkBox=function(){
 	$(".personal_work_group").hide();
 	var cnt=0;
+  var flag = false;
   $.getJSON("/api/user/"+userID+"/works", function(response) {
     if($(".personal_work_group").empty(0)){
       $.each(response, function (i,work) {
@@ -66,8 +66,25 @@ var makePersonalWorkBox=function(){
 	        $(".personal_work_group").append("<div class='userWork personal_work_content personal_work_content"+cnt+"''></div>").show('slow')
 	        if($(".personal_work_content").eq(cnt).empty(0)){
 	          $(".personal_work_content"+cnt).append('<div class="personal_work_name">'+work.name+'</div>')
-	          $(".personal_work_content"+cnt).append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
+	          //$(".personal_work_content"+cnt)
+            //.append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
 	          $(".personal_work_content").eq(cnt).attr("data-id",work.id)
+            //console.log(work.starlists);
+            $.each(work.starlists, function (i, relation) {
+              if (relation.user_id == userID)
+                flag = true;
+              //console.log(relation.user_id + " " + userID);
+              //console.log(userID);
+              //console.log("flag" + flag)
+            })
+            if (flag == true) { // 즐겨찾기 되있음
+              $(".personal_work_content"+cnt)
+              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /></span>')
+            } else {
+              $(".personal_work_content"+cnt)
+              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
+            }
+            flag = false;
 	        }
 	        cnt++;
 	      }//if(work.team_id==null)
@@ -100,8 +117,21 @@ var makeTeamWorkBox=function(){
 	      $.getJSON("/api/work/" + id, function(response) {
 	        $(".wrap_team_content" + i).append('<div class="personal_team_content personal_team_content' + response.team_id + '_' + j + '"></div>').show('slow')
 	        $(".personal_team_content" + response.team_id + "_" + j).append('<div class="personal_team_name">' + response.name + '</div>').show('slow')
-	        $(".personal_team_content" + response.team_id + "_" + j).append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
+	        //$(".personal_team_content" + response.team_id + "_" + j)
+          //.append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
           $(".personal_team_content" + response.team_id + "_" + j).attr("data-id", id)
+          $.each(response.starlists, function (i, relation) {
+            if (relation.user_id == userID)
+              flag = true;
+          });
+          if (flag == true) {
+            $(".personal_team_content" + response.team_id + "_" + j)
+            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /></span>')
+          } else {
+            $(".personal_team_content" + response.team_id + "_" + j)
+            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
+          }
+          flag = false;
 	      })
 	    })
 
@@ -130,11 +160,24 @@ $(document).ready(function(){
     e.stopPropagation();
     //alert($(this).parent().parent().attr('data-id').match(/\d+/)[0]);
     var work_id = $(this).parent().parent().attr('data-id').match(/\d+/)[0];
-    var fuck = this;
-    $.post("/api/user/" + userID + "/setStar", {"starlists": {"work_id": work_id, "user_id": userID}})
+    //console.log(work_id)
+    //$.post("/api/user/" + userID + "/setStar", {"starlists": {"work_id": work_id, "user_id": userID}})
 
-    $(this).removeAttr("onmouseout");
-    $(this).attr("src", "/assets/star2.png");
+    if ($(this).attr("src").match(/\d+/)[0] == "2") {
+      $.get("/api/user/" + userID + "/staring", {"starlists": {"work_id": work_id, "user_id": userID}})
+      $(this).removeAttr("onmouseout");
+      $(this).removeAttr("onmouseover");
+      $(this).attr("onmouseout", "hover(this)");
+      $(this).attr("onmouseover", "unhover(this)");
+      $(this).attr("src", "/assets/star2.png");
+    } else {
+      $.get("/api/user/" + userID + "/unstaring", {"starlists": {"work_id": work_id, "user_id": userID}})
+      $(this).removeAttr("onmouseout");
+      $(this).removeAttr("onmouseover");
+      $(this).attr("onmouseout", "unhover(this)");
+      $(this).attr("onmouseover", "hover(this)");
+      $(this).attr("src", "/assets/star3.png");
+    }
     /*
     $.get("/api/user/" + userID + "/setStar?" + "work_id=" + work_id, function(data, status) {
       alert(Data + status);

@@ -9,6 +9,8 @@ class Work < ApplicationRecord
 	validates:name, presence:true, length:{maximum:50}
 
 	has_many :branches, :dependent => :destroy
+	has_many :starlists, :dependent => :destroy, :foreign_key => "work_id"
+	has_many :stared_users, :through => :starlists, class_name: "User"
 
 	#settings index: { number_of_shards: 1 } do
 	#  mappings dynamic: 'false' do
@@ -22,7 +24,7 @@ class Work < ApplicationRecord
   #    include: [:branches]
   #  )
   #end
-  
+
   def self.json_search(nodes)
     nodes.map do |node|
         {:name => node.name, :id => node.id, :attr =>"Work", :description => User.find(node.user_id).email}

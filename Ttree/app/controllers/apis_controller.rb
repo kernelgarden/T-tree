@@ -133,8 +133,14 @@ class ApisController < ApplicationController
 		User.find(@user_id).join(Team.find(@team_id))
 	end
 
-	def setStar
-		Starlist.create(starlist_params)
+	def staring
+		@user = User.find(params[:starlists][:user_id])
+		@user.staring(Work.find(params[:starlists][:work_id]))
+	end
+
+	def unstaring
+		@user = User.find(params[:starlists][:user_id])
+		@user.unstaring(Work.find(params[:starlists][:work_id]))
 	end
 
 	private

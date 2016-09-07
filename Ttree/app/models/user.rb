@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :works, :dependent => :destroy, :foreign_key => "user_id"
   has_many :unclassifiedpages, :dependent => :destroy
   has_many :starlists, :dependent => :destroy, :foreign_key => "user_id"
+  has_many :favorate_works, :through => :starlists, class_name: "Work"
 
   def self.current
     Thread.current[:user]
@@ -27,6 +28,16 @@ class User < ApplicationRecord
   #현재 사용자가 해당 팀에 가입되어있으면 true 반환
   def join?(team)
   	teams.include?(team)
+  end
+
+  # work를 즐겨찾는 work로 설정하기
+  def staring(work)
+    starlists.create(work_id: work.id)
+  end
+
+  # 즐겨찾는 work 해제
+  def unstaring(work)
+    starlists.find_by(work_id: work.id).destroy
   end
 
   def self.find_for_facebook_oauth(auth)
