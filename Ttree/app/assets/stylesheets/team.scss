@@ -140,7 +140,7 @@
 }
 .content_email{
   display: inline-block;
-  width: 40%;
+  width: 50%;
   height: 60px;
   float:left;
 }
@@ -151,4 +151,17 @@
 .member_email{
   font-size: 16px;
   margin-top: 16px;
+}
+.member{
+  width: 100%;
+}
+.content_close{
+  width: 30px;
+  height: 30px;
+  margin-top: 16px;
+  margin-right: 70px;
+  float: right;
+}
+.content_close:hover{
+  cursor: pointer;
 }

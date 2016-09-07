@@ -25,7 +25,6 @@ Rails.application.routes.draw do
   get '/api/team/:id/works', to: 'apis#teamworks'   #해당 team의 work들의 정보
   get '/api/team/:id/work_ids', to: 'apis#teamwork_ids'   #해당 team의 work id들
   get '/api/team/:id/member_ids', to: 'apis#member_ids'   #해당 team의 user id들
-
   get '/api/work/:id', to: 'apis#work'         #해당 work의 정보
   get '/api/work/:id/branches', to: 'apis#branches' #해당 work의 branch들의 정보
   get '/api/work/:id/branche_ids', to: 'apis#branche_ids' #해당 work의 branch id들
@@ -47,7 +46,7 @@ Rails.application.routes.draw do
   post '/api/post/team', to:'apis#getTeam'
   post '/api/page/new', to: 'apis#getPages'
   post '/api/post/team_member', to:'apis#getMember'
-
+  get '/api/team/:id/withdraw', to:'apis#teamWithdraw'
   get '/search', to:'search#getResult'
   # For details on the DSL available within this file, see http://guides.ruonrails.org/routing.html
 end

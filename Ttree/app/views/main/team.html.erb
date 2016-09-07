@@ -1,6 +1,7 @@
 <%= stylesheet_link_tag    'application', team: 'all', 'data-turbolinks-track': 'reload' %>
 <%= javascript_tag do %>
 window.teamID = "<%= @team_id%>";
+window.userID = "<%= current_user.id%>";
 <% end %>
 <div class="team_info">
   <div class="team_wrapper">
@@ -52,9 +53,13 @@ var getWorkFromTeam=function(){
     })
     $.each(response.user_ids, function(i,id){
       $.getJSON("/api/user/"+id, function(response){
-        $(".member_list").append('<div class="content_name content_name'+i+'"></div>').show('slow');
-        $(".member_list").append('<div class="content_email content_email'+i+'"></div>').show('slow');
-        $(".member_list").append('<div class="line"></div>').show('slow');
+        $(".member_list").append('<div class="member member'+i+'"></div>').show('slow');
+        $(".member"+i).append('<div class="content_name content_name'+i+'"></div>').show('slow');
+        $(".member"+i).append('<div class="content_email content_email'+i+'"></div>').show('slow');
+        if(userID==id){
+          $(".member"+i).append('<img id="withdraw" src="/assets/close1.png" class="content_close">').show('slow');
+        }
+        $(".member"+i).append('<div class="line"></div>').show('slow');
         $(".content_name"+i).append('<div class="member_name member_name'+i+'">'+response.name+'</div>').show('slow');
         $(".content_email"+i).append('<div class="member_email member_email'+i+'">'+response.email+'</div>').show('slow');
       })
@@ -183,5 +188,12 @@ $(document).ready(function(){
     theme: "team"
   };
   $("#team_search").easyAutocomplete(team_search);
+  $(".content_close").click(function(){
+    $.get("/api/team/" + teamID + "/withdraw", {"team_id": teamID, "user_id": userID})
+    .done(function(data){
+      alert("팀을 떠났습니다.");
+      window.location = '/';
+    })
+  })
 });
 </script>
