@@ -7,7 +7,17 @@ $addMainColor:#99d8dd;
   top:-30px;
   display:none;
 }
-
+.form_btn{
+  width: 15px;
+  height: 15px;
+  top: 10px;
+  right:10px;
+  position: absolute;
+  float: right;
+}
+.form_btn:hover{
+  cursor: pointer;
+}
 .member_work{
   margin: 70 auto;
   width: 90%;

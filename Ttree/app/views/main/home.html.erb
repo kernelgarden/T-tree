@@ -14,6 +14,7 @@ window.userName ="<%= current_user.name %>";
   <div class="personal_team_group">
   </div>
   <div class="create_personal_work_form" id="create_personal_work_form">
+    <img class="form_personal_work_btn form_btn" src="/assets/close1.png">
     <div id="personal_work_form_main" class="personal_work_form_element">Create Personal Work</div>
     <form id="personal_work_form">
       <div id="personal_work_form_title" class="personal_work_form_element">Title</div>
@@ -27,6 +28,7 @@ window.userName ="<%= current_user.name %>";
   </div>
   <!-- team work 연동 시켜야함... -->
   <div class="create_team_work_form" id="create_team_work_form">
+    <img class="form_team_work_btn form_btn" src="/assets/close1.png">
     <div id="team_work_form_main" class="team_work_form_element">Create Team Work</div>
     <form id="team_work_form">
       <div id="team_work_form_title" class="team_work_form_element">Title</div>
@@ -42,6 +44,7 @@ window.userName ="<%= current_user.name %>";
   <div class="create_team_form" id="create_team_form">
     <form id="team_form">
       <div id="team_name">Team Name</div>
+      <img class="create_team_btn form_btn" src="/assets/close1.png">
       <input type="text" name="name" class="team_input">
     </form>
     <input type="button" class="team_button" value="Create">
@@ -50,27 +53,27 @@ window.userName ="<%= current_user.name %>";
 <script>
 var tId;
 function hover(element) {
-    element.setAttribute('src', '/assets/star2.png');
+  element.setAttribute('src', '/assets/star2.png');
 }
 function unhover(element) {
-    element.setAttribute('src', '/assets/star3.png');
+  element.setAttribute('src', '/assets/star3.png');
 }
 /***********************Personal work Box********************/
 var makePersonalWorkBox=function(){
-	$(".personal_work_group").hide();
-	var cnt=0;
+  $(".personal_work_group").hide();
+  var cnt=0;
   $.getJSON("/api/user/"+userID+"/works", function(response) {
     if($(".personal_work_group").empty(0)){
       $.each(response, function (i,work) {
-      	if(work.team_id==null){
-	        $(".personal_work_group").append("<div class='userWork personal_work_content personal_work_content"+cnt+"''></div>").show('slow')
-	        if($(".personal_work_content").eq(cnt).empty(0)){
-	          $(".personal_work_content"+cnt).append('<div class="personal_work_name">'+work.name+'</div>')
-	          $(".personal_work_content"+cnt).append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
-	          $(".personal_work_content").eq(cnt).attr("data-id",work.id)
-	        }
-	        cnt++;
-	      }//if(work.team_id==null)
+        if(work.team_id==null){
+          $(".personal_work_group").append("<div class='userWork personal_work_content personal_work_content"+cnt+"''></div>").show('slow')
+          if($(".personal_work_content").eq(cnt).empty(0)){
+            $(".personal_work_content"+cnt).append('<div class="personal_work_name">'+work.name+'</div>')
+            $(".personal_work_content"+cnt).append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
+            $(".personal_work_content").eq(cnt).attr("data-id",work.id)
+          }
+          cnt++;
+        }//if(work.team_id==null)
       });
     }
   });
@@ -80,37 +83,37 @@ var makePersonalWorkBox=function(){
 
 /***********************Team work Box************************/
 var makeTeamWorkBox=function(){
-	$.getJSON("/api/user/" + userID + "/teams", function(response) {
-	  $.each(response, function(i, team) {
-	    if ($(".personal_team_group").eq(i).empty(0)) {
-	      if (i != response.length) {
-	        $(".personal_team_group").append("<div class='personal_team personal_team" + i + "'></div>").show('slow')
-	        $(".personal_team" + i).append("<div class='personal_team_header personal_team_header" + i + "'></div>").show('slow')
-	        $(".personal_team" + i).append("<div class='wrap_team_content wrap_team_content" + i + "'></div>").show('slow')
-	        $(".personal_team_header" + i).append("<img src='/assets/team3.png' style='float:left ;'>").show('slow')
-	        $(".personal_team_header" + i).append("<div class='team_more team_more" + i + "'>").show('slow')
-	        $(".team_more" + i).append("<img src='/assets/more.png' style='width:15px; height:15px; margin-top:7px; margin-left:7px;'> More").show('slow')
-	      }
-	    }
-	    $(".personal_team_header").eq(i).append('<h3 style=" float:left; margin-left:5px;">' + team.name + '</h3>')
-	    $(".personal_team_name").eq(i).addClass('' + team.id)
-	    $(".team_more" + i).attr("data-team_id", team.id)
+  $.getJSON("/api/user/" + userID + "/teams", function(response) {
+    $.each(response, function(i, team) {
+      if ($(".personal_team_group").eq(i).empty(0)) {
+        if (i != response.length) {
+          $(".personal_team_group").append("<div class='personal_team personal_team" + i + "'></div>").show('slow')
+          $(".personal_team" + i).append("<div class='personal_team_header personal_team_header" + i + "'></div>").show('slow')
+          $(".personal_team" + i).append("<div class='wrap_team_content wrap_team_content" + i + "'></div>").show('slow')
+          $(".personal_team_header" + i).append("<img src='/assets/team3.png' style='float:left ;'>").show('slow')
+          $(".personal_team_header" + i).append("<div class='team_more team_more" + i + "'>").show('slow')
+          $(".team_more" + i).append("<img src='/assets/more.png' style='width:15px; height:15px; margin-top:7px; margin-left:7px;'> More").show('slow')
+        }
+      }
+      $(".personal_team_header").eq(i).append('<h3 style=" float:left; margin-left:5px;">' + team.name + '</h3>')
+      $(".personal_team_name").eq(i).addClass('' + team.id)
+      $(".team_more" + i).attr("data-team_id", team.id)
 
-	    $.each(team.work_ids, function(j, id) {
-	      $.getJSON("/api/work/" + id, function(response) {
-	        $(".wrap_team_content" + i).append('<div class="personal_team_content personal_team_content' + response.team_id + '_' + j + '"></div>').show('slow')
-	        $(".personal_team_content" + response.team_id + "_" + j).append('<div class="personal_team_name">' + response.name + '</div>').show('slow')
-	        $(".personal_team_content" + response.team_id + "_" + j).append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
+      $.each(team.work_ids, function(j, id) {
+        $.getJSON("/api/work/" + id, function(response) {
+          $(".wrap_team_content" + i).append('<div class="personal_team_content personal_team_content' + response.team_id + '_' + j + '"></div>').show('slow')
+          $(".personal_team_content" + response.team_id + "_" + j).append('<div class="personal_team_name">' + response.name + '</div>').show('slow')
+          $(".personal_team_content" + response.team_id + "_" + j).append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
           $(".personal_team_content" + response.team_id + "_" + j).attr("data-id", id)
-	      })
-	    })
+        })
+      })
 
-	    $(".wrap_team_content" + i).append("<div class='create_personal_team create_personal_team" + (i + 1) + "'></div>").show('slow')
-	    $(".create_personal_team" + (i + 1)).append('<div class="create_personal_team_content">Create Team Work</div>')
-	    $(".create_personal_team" + (i + 1)).attr("data-team_id", team.id)
-	  })
-	});
-	$(".addWork").append('<div class="add_work_name">Create Personal Work</div>')
+      $(".wrap_team_content" + i).append("<div class='create_personal_team create_personal_team" + (i + 1) + "'></div>").show('slow')
+      $(".create_personal_team" + (i + 1)).append('<div class="create_personal_team_content">Create Team Work</div>')
+      $(".create_personal_team" + (i + 1)).attr("data-team_id", team.id)
+    })
+  });
+  $(".addWork").append('<div class="add_work_name">Create Personal Work</div>')
 }
 /************************************************************/
 
@@ -122,8 +125,8 @@ $(document).ready(function(){
 
   //getInfo();
 
-	makePersonalWorkBox();
-	makeTeamWorkBox();
+  makePersonalWorkBox();
+  makeTeamWorkBox();
 
   // 즐겨찾기 구현
   $('.star_btn').on("click", function(e) {
@@ -137,204 +140,216 @@ $(document).ready(function(){
     $(this).attr("src", "/assets/star2.png");
     /*
     $.get("/api/user/" + userID + "/setStar?" + "work_id=" + work_id, function(data, status) {
-      alert(Data + status);
-    })
-    */
-  });
-
-  $(document).on("click", '.team_more' , function(){
-    tId=$(this).data("team_id");
-    window.location='/main/team/'+tId;
+    alert(Data + status);
   })
-  $(document).on("click",".userWork",function(){
-    var sId = $(this).data("id")
-    window.location='/main/work/'+ sId;
-  })
+  */
+});
 
-  var nCount5 = 0;
-  $.getJSON("/api/user/"+userID, function(response) {
-    $.each(response.team_ids, function (i,id) {
-      $.getJSON("/api/team/"+id, function(response) {
-        $("#personal_work_form_selectTeam").append("<option value=\""+id+"\">"+response.name+"</option>");
-        $("#team_work_form_selectTeam").append("<option value=\""+id+"\">"+response.name+"</option>");
-      });
+$(document).on("click", '.team_more' , function(){
+  tId=$(this).data("team_id");
+  window.location='/main/team/'+tId;
+})
+$(document).on("click",".userWork",function(){
+  var sId = $(this).data("id")
+  window.location='/main/work/'+ sId;
+})
+
+var nCount5 = 0;
+$.getJSON("/api/user/"+userID, function(response) {
+  $.each(response.team_ids, function (i,id) {
+    $.getJSON("/api/team/"+id, function(response) {
+      $("#personal_work_form_selectTeam").append("<option value=\""+id+"\">"+response.name+"</option>");
+      $("#team_work_form_selectTeam").append("<option value=\""+id+"\">"+response.name+"</option>");
     });
   });
-  $(document).on("click", ".addWork", function(e) {
-    e.stopPropagation();
-    if (nCount5 == 0) {
-      var x = e.pageX;
-      var y = e.pageY;
-      $("#create_personal_work_form").css({top:y, left:x});
-      $("#create_personal_work_form").show();
-      nCount5 = 1;
-    } else {
-      $("#create_personal_work_form").hide();
-      nCount5 = 0;
-    }
+});
+$(document).on("click", ".addWork", function(e) {
+  e.stopPropagation();
+  if (nCount5 == 0) {
+    var x = e.pageX;
+    var y = e.pageY;
+    $("#create_personal_work_form").css({top:y, left:x});
+    $("#create_personal_work_form").show();
+    nCount5 = 1;
+  } else {
+    $("#create_personal_work_form").hide();
+    nCount5 = 0;
+  }
+  $('.form_personal_work_btn').click(function(){
+    $("#create_personal_work_form").hide();
+    nCount5=0;
   })
-  var work_countForm = 0;
-  $(document).on("click", ".personal_work_form_button", function(e) {
-    e.preventDefault();
-    $.fn.mySerialize = function() { // 병합해야할듯...
-      var returning = '';
-      $('input, select, textarea',this).each(function(){
-        if (this.value!=="") // check this to avoid && in returning string
-        returning +='&'+this.value;
-      })
-      return returning.substring(1);
-    }
-    var formData1 = $("#personal_work_form").mySerialize();
-    formData = formData1.split('&');
-    if (formData.length != 2) {
-      return;
+})
+var work_countForm = 0;
+$(document).on("click", ".personal_work_form_button", function(e) {
+  e.preventDefault();
+  $.fn.mySerialize = function() { // 병합해야할듯...
+    var returning = '';
+    $('input, select, textarea',this).each(function(){
+      if (this.value!=="") // check this to avoid && in returning string
+      returning +='&'+this.value;
+    })
+    return returning.substring(1);
+  }
+  var formData1 = $("#personal_work_form").mySerialize();
+  formData = formData1.split('&');
+  if (formData.length != 2) {
+    return;
+  } else {
+    if (formData[1] == "null") {
+      var inputData={"work":{"name":formData[0], "user_id": userID}}
     } else {
-      if (formData[1] == "null") {
-        var inputData={"work":{"name":formData[0], "user_id": userID}}
-      } else {
-        var inputData={"work":{"name":formData[0], "user_id": userID,"team_id": formData[1]}}
+      var inputData={"work":{"name":formData[0], "user_id": userID,"team_id": formData[1]}}
+    }
+    //window.location = '/';
+  }
+  work_countForm++;
+  //console.log(work_countForm);
+  if (work_countForm == 1) {
+    $.ajax({
+      type:"POST",
+      url:"/api/post/work",
+      contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+      cache:false,
+      data: inputData,
+      success:function(data){
+        //alert("팀이 생성되었습니다");
+        //alert(data);
+      },
+      error:function(error){
+        //alert(error);
       }
-      //window.location = '/';
-    }
-    work_countForm++;
-    //console.log(work_countForm);
-    if (work_countForm == 1) {
-      $.ajax({
-        type:"POST",
-        url:"/api/post/work",
-        contentType:"application/x-www-form-urlencoded; charset=UTF-8",
-        cache:false,
-        data: inputData,
-        success:function(data){
-          //alert("팀이 생성되었습니다");
-          //alert(data);
-        },
-        error:function(error){
-          //alert(error);
-        }
-      })
-    }
-  })
-  var team_work_countForm = 0;
-  $(document).on("click", ".team_work_form_button", function(e) {
-    e.preventDefault();
-    $.fn.mySerialize = function() { // 병합해야할듯...
-      var returning = '';
-      $('input, select, textarea',this).each(function(){
-        if (this.value!=="") // check this to avoid && in returning string
-        returning +='&'+this.value;
-      })
-      return returning.substring(1);
-    }
-    var formData1 = $("#team_work_form").mySerialize();
-    formData = formData1.split('&');
-    if (formData.length != 2) {
-      return;
+    })
+  }
+})
+var team_work_countForm = 0;
+$(document).on("click", ".team_work_form_button", function(e) {
+  e.preventDefault();
+  $.fn.mySerialize = function() { // 병합해야할듯...
+    var returning = '';
+    $('input, select, textarea',this).each(function(){
+      if (this.value!=="") // check this to avoid && in returning string
+      returning +='&'+this.value;
+    })
+    return returning.substring(1);
+  }
+  var formData1 = $("#team_work_form").mySerialize();
+  formData = formData1.split('&');
+  if (formData.length != 2) {
+    return;
+  } else {
+    if (formData[1] == "null") {
+      var inputData={"work":{"name":formData[0], "user_id": userID}}
     } else {
-      if (formData[1] == "null") {
-        var inputData={"work":{"name":formData[0], "user_id": userID}}
-      } else {
-        var inputData={"work":{"name":formData[0], "user_id": userID,"team_id": formData[1]}}
+      var inputData={"work":{"name":formData[0], "user_id": userID,"team_id": formData[1]}}
+    }
+    //window.location = '/';
+  }
+  team_work_countForm++;
+  //console.log(work_countForm);
+  if (team_work_countForm == 1) {
+    $.ajax({
+      type:"POST",
+      url:"/api/post/work",
+      contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+      cache:false,
+      data: inputData,
+      success:function(data){
+        //alert("팀이 생성되었습니다");
+        //alert(data);
+      },
+      error:function(error){
+        //alert(error);
       }
-      //window.location = '/';
-    }
-    team_work_countForm++;
-    //console.log(work_countForm);
-    if (team_work_countForm == 1) {
-      $.ajax({
-        type:"POST",
-        url:"/api/post/work",
-        contentType:"application/x-www-form-urlencoded; charset=UTF-8",
-        cache:false,
-        data: inputData,
-        success:function(data){
-          //alert("팀이 생성되었습니다");
-          //alert(data);
-        },
-        error:function(error){
-          //alert(error);
-        }
-      })
-    }
+    })
+  }
+})
+var nCount6 = 0;
+$(document).on("click", ".create_personal_team", function(e) {
+  e.stopPropagation();
+  if (nCount6 == 0) {
+    var x = e.pageX;
+    var y = e.pageY;
+    $("#create_team_work_form").css({top:y, left:x});
+    $("#create_team_work_form").show();
+    nCount6 = 1;
+    $("select#team_work_form_selectTeam").val($(this).attr('class').match(/\d/)[0]);
+  } else {
+    $("#create_team_work_form").hide();
+    nCount6 = 0;
+  }
+  $('.form_team_work_btn').click(function(){
+    $("#create_team_work_form").hide();
+    nCount6=0;
   })
-  var nCount6 = 0;
-  $(document).on("click", ".create_personal_team", function(e) {
-    e.stopPropagation();
-    if (nCount6 == 0) {
-      var x = e.pageX;
-      var y = e.pageY;
-      $("#create_team_work_form").css({top:y, left:x});
-      $("#create_team_work_form").show();
-      nCount6 = 1;
-      console.log($(this).attr('class').match(/\d/)[0]);
-      $("select#team_work_form_selectTeam").val($(this).attr('class').match(/\d/)[0]);
-    } else {
-      $("#create_team_work_form").hide();
-      nCount6 = 0;
-    }
+})
+var nCount4 = 0;
+$('#create_team').click(function(e){
+  e.stopPropagation();
+  if(nCount4==0){
+    var x = e.pageX;
+    var y = e.pageY;
+    $("#create_team_form").css({top:y-180, left:x});
+    $("#create_team_form").show();
+    nCount4=1;
+  }
+  else{
+    $("#create_team_form").hide();
+    nCount4=0;
+  }
+  $('.create_team_btn').click(function(){
+    $("#create_team_form").hide();
+    nCount4=0;
   })
-  var nCount4 = 0;
-  $('#create_team').click(function(e){
-    e.stopPropagation();
-    if(nCount4==0){
-      var x = e.pageX;
-      var y = e.pageY;
-      $("#create_team_form").css({top:y-180, left:x});
-      $("#create_team_form").show();
-      nCount4=1;
-    }
-    else{
-      $("#create_team_form").hide();
-      nCount4=0;
-    }
-  })
-  //  $('#create_team_form,#team_name').click(function(e){
-  //e.stopImmediatePropagation();
-  //  })
-  //  $('div:not(#create_team_form, #create_team)').click(function(e){
-  //  if(nCount4==1){
-  //    $('#create_team_form').hide();
-  //      nCount4=0;
-  //  }
-  //  })
-  var countForm=0;
-  $(document).on("click",".team_button", function(e){
-    e.preventDefault();
-    jQuery.fn.mySerialize = function(){
-      var returning = '';
-      $('input, select, textarea',this).each(function(){
-        if (this.value!=="") // check this to avoid && in returning string
-        returning +='&'+this.value;
-      })
-      return returning.substring(1);
-    }
-    var formData1=$("#team_form").mySerialize();
-    //값이 하나라도 안들어오면 알림창을 표시하고 리턴하여 함수빠져나감
-    if(formData1==''){
-      //alert("빈칸!");
-      //window.location = '/'
-      return;
-    }
-    else{
-      var inputData={"team":{"name":formData1}}
-      window.location = '/';
-    }
-    //gvar json=$.parseJSON(formData);
-    //alert(json.id)
-    countForm++;
-    if(countForm==1){
-      $.ajax({
-        type:"POST",
-        url:"/api/post/team",
-        contentType:"application/x-www-form-urlencoded; charset=UTF-8",
-        cache:false,
-        data: inputData,
-        success:function(data){
-          //alert("팀이 생성되었습니다");
-        },
-      })
-    }
-  })
+})
+
+//  $('#create_team_form,#team_name').click(function(e){
+//e.stopImmediatePropagation();
+//  })
+//  $('div:not(#create_team_form, #create_team)').click(function(e){
+//  if(nCount4==1){
+//    $('#create_team_form').hide();
+//      nCount4=0;
+//  }
+//  })
+var countForm=0;
+$(document).on("click",".team_button", function(e){
+  e.preventDefault();
+  jQuery.fn.mySerialize = function(){
+    var returning = '';
+    $('input, select, textarea',this).each(function(){
+      if (this.value!=="") // check this to avoid && in returning string
+      returning +='&'+this.value;
+    })
+    return returning.substring(1);
+  }
+  var formData1=$("#team_form").mySerialize();
+  //값이 하나라도 안들어오면 알림창을 표시하고 리턴하여 함수빠져나감
+  if(formData1==''){
+    //alert("빈칸!");
+    //window.location = '/'
+    return;
+  }
+  else{
+    var inputData={"team":{"name":formData1}}
+    window.location = '/';
+  }
+  //gvar json=$.parseJSON(formData);
+  //alert(json.id)
+  countForm++;
+  if(countForm==1){
+    $.ajax({
+      type:"POST",
+      url:"/api/post/team",
+      contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+      cache:false,
+      data: inputData,
+      success:function(data){
+        //alert("팀이 생성되었습니다");
+      },
+    })
+  }
+})
 })
 //============================================//
 </script>
