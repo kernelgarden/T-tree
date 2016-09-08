@@ -71,6 +71,13 @@
   margin: 10px;
   display: inline-block;
   background-color: #026AA7;
+  &:hover{
+    // 색상 바꿔야 할듯...
+    background-color: #AED9DF;
+    .boxIcon{
+      display:inline-block;
+    }
+  }
 }
 .team_work_name{
   float: left;
