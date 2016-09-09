@@ -269,28 +269,6 @@ function renderCircle(){
 	/************************************************************/
 
 	/////////////////////////////Json/////////////////////////////
-	/*
-	if (checkFirst == true) {
-	  $(".parent").empty();
-	  $(".child").empty();
-	  $.getJSON("/api/work/" + currentWorkId, function(response) {
-	    $(".parent").empty().append(response.id);
-	    $(".parent").append(response.name);
-	  });
-	  $.getJSON("/api/work/" + currentWorkId + "/branche_ids", function(response) {
-	    $.each(response, function(i, first) {
-	      //$(".child"+(i+1)).append(first);
-	      var temp = (i + 1)
-	      $.getJSON("/api/branch/" + first, function(response) {
-	        if (response.parent_id == null) {
-	          $(".child" + temp).empty().append(response.id);
-	          $(".child" + temp).append(response.name);
-	          $(".child" + temp).attr("data-id", first)
-	        }
-	      });
-	    });
-	  });
-	}*/
 	firstWorkBranchSetting();
 	//////////////////////////////////////////////////////////////
   /*
@@ -652,17 +630,24 @@ function renderCircle(){
 					    for (var i = 0; i < response.length; i++) {
 					      //한번만 박스 그려주도록
 					      if ($('.pageli').eq(i).hasClass('pageli' + i)) break;
-					      else $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
+					      else {
+		              $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
+		              $('.pageli'+i).append('<img id="loadingImg" class="img'+i+'" src="/assets/loading3.svg" />');
+		            }
 					    } //for
 					  }, 0);
 					  $.getJSON("/api/branch/" + checkParentId + "/pages", function(response) {
 					    $.each(response, function(i, first) {
 					      var temp = (i + 1)
-					      if ($('.pageli').eq(i).empty()) {
-					        $('.pageli').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url=' + first.url + '" />');
+					      //if ($('.pageli').eq(i).empty()) {
+					      	var img=$('<img class="img" src="http://ryugarden.org/api/thumb?url=' + first.url + '" />')
+			            img.load(function(){
+			              $('.img'+i).replaceWith(img);
+			            });
+					        //$('.pageli').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url=' + first.url + '" />');
 					        $('.pageli').eq(i).append('<div class="page_url_div"><a class="page_url">' + first.title + '</a></div>');
 					        $('.pageli').eq(i).attr("data-url", first.url)
-					      }
+					      //}
 					    });
 					  }, 1900);
 					}//if
@@ -672,14 +657,22 @@ function renderCircle(){
 					    for (var i = 0; i < response.length; i++) {
 					      //한번만 박스 그려주도록
 					      if ($('.pageli').eq(i).hasClass('pageli' + i)) break;
-					      else $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
+					      //else $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
+					      else {
+		              $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
+		              $('.pageli'+i).append('<img id="loadingImg" class="img'+i+'" src="/assets/loading3.svg" />');
+		            }
 					    } //for
 					  }, 0);
 					  $.getJSON("/api/branch/" + checkBefore3 + "/pages", function(response) {
 					    $.each(response, function(i, first) {
 					      var temp = (i + 1)
 					      if ($('.pageli').eq(i).empty()) {
-					        $('.pageli').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url=' + first.url + '" />');
+					      	var img=$('<img class="img" src="http://ryugarden.org/api/thumb?url=' + first.url + '" />')
+			            img.load(function(){
+			              $('.img'+i).replaceWith(img);
+			            });
+					        //$('.pageli').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url=' + first.url + '" />');
 					        $('.pageli').eq(i).append('<div class="page_url_div"><a class="page_url">' + first.title + '</a></div>');
 					        $('.pageli').eq(i).attr("data-url", first.url)
 					      }
