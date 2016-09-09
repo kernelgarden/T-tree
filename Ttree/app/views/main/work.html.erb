@@ -27,6 +27,12 @@ var checkMakeId;	//방금 만든 가지를 인식하도록
 var checkParentId;	//parent ID 체크 
 var creating;			//추가중임을 나타냄 
 
+function pencilHover(element) {
+  element.setAttribute('src', '/assets/modify2.png');
+}
+function pencilUnhover(element) {
+  element.setAttribute('src', '/assets/modify.png');
+}
 
 var firstWorkBranchSetting=function(flag){	
 	if (checkFirst == true) {
@@ -80,6 +86,7 @@ var childBranchSetting=function(flag){
 	      $(".parent").empty().append(response.id);
 	      $(".parent").append(response.name);
 	      $(".parent").attr("data-id", response.id)
+	      $(".parent").append('<img src="/assets/modify.png" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
 	    });
 	  }
 	}); //complete
@@ -117,15 +124,9 @@ var setNameFormFunction=function(){
     }
     //alert(formData1)
     //alert(branchID)
-    
-    //if(typeof branchID==="undefined")
+    //
     var inputData = {"name":formData1, "branch_id":branchID}
-      //else var inputData={"branch":{"name":formData1, "work_id":workId, "parent_id":parentId}}
-      //var inputData={"name":formData1}
-      //var json=$.parseJSON(inputData);
-      //alert(json)
-    //alert(3)
-      //if(countDropdown5==1){
+
     $.ajax({
       type: "POST",
       url: "/api/post/branchName2",
@@ -140,6 +141,7 @@ var setNameFormFunction=function(){
 			  $(".parent").append(branch.name);
 		    $(".parent").attr("data-id", branch.id);
 		    checkParentId=branch.id;
+		    $(".parent").append('<img src="/assets/modify.png" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
 		  })
     })//complete
   }) //click
@@ -440,6 +442,7 @@ function renderCircle(){
 				if(creating!=1){
 					$(".parent").empty().append(branch.id);
 			    $(".parent").append(branch.name);
+			    $(".parent").append('<img src="/assets/modify.png" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
 				}
 		    $(".parent").attr("data-id", branch.id);
 		    checkParentId=branch.id;
@@ -541,6 +544,7 @@ function renderCircle(){
 		      $.getJSON("/api/work/" + currentWorkId, function(response) {
 		        $(".parent").empty().append(response.id);
 		        $(".parent").append(response.name);
+		        //$(".parent").append('<img src="/assets/modify.png" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
 		      });
 		      $.getJSON("/api/work/" + currentWorkId + "/branches", function(response) {
 				    $.each(response, function(i, branch) {
@@ -579,6 +583,7 @@ function renderCircle(){
 		        $(".parent").empty().append(response.id);
 		        $(".parent").append(response.name);
 		        $(".parent").attr("data-id", response.id)
+		        $(".parent").append('<img src="/assets/modify.png" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
 		        checkParentId=response.id
 		      });
 		      $.getJSON("/api/branch/" + checkBefore + "/childs", function(response) {
@@ -707,6 +712,11 @@ function renderCircle(){
   })//page-click
   /************************************************************/
 
+  /***********************page 누르면***************************/
+  $(document).on("click","#modifyBranchName",function() {
+    setNameFormFunction();
+  })//page-click
+  /************************************************************/
 }//renderCircle()
 
 //페이지 정보 출력 바탕 
