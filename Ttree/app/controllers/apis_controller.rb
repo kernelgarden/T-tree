@@ -150,11 +150,13 @@ class ApisController < ApplicationController
 		end
 
 	end
+
 	def getMember
 		@team_id=params[:team_id]
 		@user_id=params[:user_id]
 		User.find(@user_id).join(Team.find(@team_id))
 	end
+
 	def teamWithdraw
 		@team_id=params[:team_id]
 		@user_id=params[:user_id]
@@ -164,22 +166,23 @@ class ApisController < ApplicationController
 	def branchName
 		@name=branch_params
 		@branch=Branch.create(branch_params)
-		#@pages=User.current.unclassifiedpage_ids
-		#@pages.each do |page|
-			#@page=Unclassifiedpage.find(page)
-	 		#@branch.pages.create(title: @page.title, url:@page.url)
-		#end
+		@pages=User.current.unclassifiedpage_ids
+		@pages.each do |page|
+			@page=Unclassifiedpage.find(page)
+	 		@branch.pages.create(title: @page.title, url:@page.url)
+		end
+		Unclassifiedpage.delete_all
 		#debugger
 	end
 
 	def branchName2
 		@name=params
-		#@pages=User.current.unclassifiedpage_ids
-		#@pages.each do |page|
-			#@page=Unclassifiedpage.find(page)
-	 		#@branch.pages.create(title: @page.title, url:@page.url)
-		#end
-		debugger
+		@pages=User.current.unclassifiedpage_ids
+		@pages.each do |page|
+			@page=Unclassifiedpage.find(page)
+	 		@branch.pages.create(title: @page.title, url:@page.url)
+		end
+		Unclassifiedpage.delete_all
 	end
 
 	def staring
