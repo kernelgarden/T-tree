@@ -115,13 +115,7 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
     }
 
     console.log($('.unPages').data("id"))
-    $(document).ajaxStart(function(){
-        alert("start")
-    });
 
-    $(document).ajaxComplete(function(){
-      alert("stop")
-    });
     if ($('.unPages').data("id") == 0) {
       $('.unPages').show();
       $('.unPages').attr("data-id", 1)
@@ -173,7 +167,7 @@ $(document).ready(function(){
   //사이즈 세팅
   setSize();
   //branch에 포함되지 않은 페이지들의 개수를 체크해 할당
-  setInterval( checkPageAlerNum, 1000 );
+  refreshIntervalId=setInterval( checkPageAlerNum, 1000 );
   //pagesInform();
   showPages();
 });

@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 20160906083846) do
 
   create_table "branches", force: :cascade do |t|
     t.string   "name"
+    t.integer  "position"
     t.integer  "work_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
