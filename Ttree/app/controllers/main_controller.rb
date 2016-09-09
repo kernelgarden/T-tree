@@ -3,6 +3,7 @@ class MainController < ApplicationController
     before_action :logged_in_user, only: [:home]
 
   def home
+		#@star_lists = current_user.starlists.pluck(:work_id)
   end
 
   def pages

@@ -1,3 +1,3 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :work_ids, :team_ids, :unclassifiedpage_ids
+  attributes :id, :name,:email, :work_ids, :team_ids, :unclassifiedpage_ids
 end

@@ -1,5 +1,4 @@
 $addMainColor:#99d8dd;
-
 .boxIcon{
   position:relative;
   float:right;
@@ -7,7 +6,17 @@ $addMainColor:#99d8dd;
   top:-30px;
   display:none;
 }
-
+.form_btn{
+  width: 15px;
+  height: 15px;
+  top: 10px;
+  right:10px;
+  position: absolute;
+  float: right;
+}
+.form_btn:hover{
+  cursor: pointer;
+}
 .member_work{
   margin: 70 auto;
   width: 90%;
@@ -163,7 +172,7 @@ $addMainColor:#99d8dd;
     padding-left:5%;
 
     #personal_work_form_title {
-      margin-top:15px;
+      margin-top:8px;
     }
 
     .personal_input {
@@ -272,7 +281,7 @@ $addMainColor:#99d8dd;
     padding-left:5%;
 
     #team_work_form_title {
-      margin-top:15px;
+      margin-top:8px;
     }
 
     .team_input {
@@ -352,61 +361,61 @@ $addMainColor:#99d8dd;
 
 }
 
-  .create_team:hover{
-    background-color: red;
+.create_team:hover{
+  background-color: red;
+  cursor: pointer;
+}
+.create_team_form{
+  font-size: 20px;
+  box-shadow: 2px 1px 10px #888888;
+  width: 300px;
+  height: 150px;
+  background-color: #F8F8F8;
+  position: absolute;
+  display: none;
+  border-radius: 5px;
+  top:0;
+  bottom: 0;
+  z-index: 2;
+}
+#team_name{
+  height: 40px;
+  padding-top: 10px;
+}
+.team_input{
+  margin-left:2%;
+  margin-right:2%;
+  padding-bottom:2%;
+  padding-top:2%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width:90%;
+  background-color: #EFEFEF;
+  transition: all 0.4s ease 0s;
+  &:focus {
+    background-color: #FFFFFF;
+  }
+}
+.team_button{
+  margin-top: 25px;
+  text-align:center;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #5cb3c1;
+  border: none;
+  color: white;
+  padding: 7px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+  &:hover{
     cursor: pointer;
+    background-color: #44A1B0;
   }
-  .create_team_form{
-    font-size: 20px;
-    box-shadow: 2px 1px 10px #888888;
-    width: 300px;
-    height: 150px;
-    background-color: #F8F8F8;
-    position: absolute;
-    display: none;
-    border-radius: 5px;
-    top:0;
-    bottom: 0;
-    z-index: 2;
-  }
-  #team_name{
-    height: 40px;
-    padding-top: 10px;
-  }
-  .team_input{
-      margin-left:2%;
-      margin-right:2%;
-      padding-bottom:2%;
-      padding-top:2%;
-      display: inline-block;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      width:90%;
-      background-color: #EFEFEF;
-      transition: all 0.4s ease 0s;
-      &:focus {
-        background-color: #FFFFFF;
-      }
-    }
-    .team_button{
-      margin-top: 25px;
-      text-align:center;
-      border-radius: 4px;
-      font-size: 16px;
-      background-color: #5cb3c1;
-      border: none;
-      color: white;
-      padding: 7px 25px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.4s ease 0s;
-      &:hover{
-        cursor: pointer;
-        background-color: #44A1B0;
-      }
-    }
-    .wrap_team_content{
-      text-align: left;
-    }
+}
+.wrap_team_content{
+  text-align: left;
+}
