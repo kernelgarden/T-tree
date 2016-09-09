@@ -176,13 +176,9 @@ class ApisController < ApplicationController
 	end
 
 	def branchName2
-		@name=params
-		@pages=User.current.unclassifiedpage_ids
-		@pages.each do |page|
-			@page=Unclassifiedpage.find(page)
-	 		@branch.pages.create(title: @page.title, url:@page.url)
-		end
-		Unclassifiedpage.delete_all
+		@branch=Branch.find(params[:branch_id])
+		@name=params[:name]
+		@branch.update_attributes(:name => @name)
 	end
 
 	def staring

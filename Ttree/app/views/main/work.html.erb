@@ -25,8 +25,10 @@ var backButtonFlag=0;
 var currentWorkId;
 var checkMakeId;	//방금 만든 가지를 인식하도록 
 var checkParentId;	//parent ID 체크 
+var creating;			//추가중임을 나타냄 
 
-var firstWorkBranchSetting=function(flag){
+
+var firstWorkBranchSetting=function(flag){	
 	if (checkFirst == true) {
 		//alert(8)
 	  $(".parent").empty();
@@ -81,6 +83,66 @@ var childBranchSetting=function(flag){
 	    });
 	  }
 	}); //complete
+}
+
+var setNameFormFunction=function(){
+	$('#parent').empty();
+	$('#parent').append('<form class=\"name_formContain\" name=\"BranchNameForm\" id=\"BranchNameForm\" action=\"\" method=\"post\"><input id=\"BranchName\" type=\"text\" name=\"BranchName\" value=\"\"></form>')
+	  //submit button
+	$('#parent').append('<input type=\"button\" class=\"name_formContain\" id=\"saveNameBtn\" name=\"saveNameBtn\" value=\"Save\">')
+	$('.name_formContain').fadeOut(0);
+	$('.name_formContain').fadeIn(500);
+	$('.name_formContain').attr("data-status", 1)
+	$('#WorkName').focus();
+
+	$('#saveNameBtn').click(function() {
+    //alert(3)
+    jQuery.fn.mySerialize = function() {
+
+      var returning = '';
+
+      $('input, select, textarea', this).each(function() {
+        if (this.value !== "") // check this to avoid && in returning string
+          returning += '&' + this.value;
+      });
+      return returning.substring(1);
+    };
+    var formData1 = $("#BranchNameForm").mySerialize();
+    var branchID = checkParentId
+      //alert(formData2)
+      //값이 하나라도 안들어오면 알림창을 표시하고 리턴하여 함수빠져나감
+    if (formData1 == '') {
+      alert("빈칸!")
+      return;
+    }
+    //alert(formData1)
+    //alert(branchID)
+    
+    //if(typeof branchID==="undefined")
+    var inputData = {"name":formData1, "branch_id":branchID}
+      //else var inputData={"branch":{"name":formData1, "work_id":workId, "parent_id":parentId}}
+      //var inputData={"name":formData1}
+      //var json=$.parseJSON(inputData);
+      //alert(json)
+    //alert(3)
+      //if(countDropdown5==1){
+    $.ajax({
+      type: "POST",
+      url: "/api/post/branchName2",
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      cache: false,
+      data: inputData
+    }).complete(function(){
+    	$('.name_formContain').fadeOut(0);
+    	$.getJSON("/api/branch/"+checkParentId, function(response) {
+				var branch=response;
+				$(".parent").empty().append(branch.id);
+			  $(".parent").append(branch.name);
+		    $(".parent").attr("data-id", branch.id);
+		    checkParentId=branch.id;
+		  })
+    })//complete
+  }) //click
 }
 
 function renderCircle(){
@@ -374,8 +436,11 @@ function renderCircle(){
 		setTimeout(function() {
 			$.getJSON("/api/work/" + currentWorkId + "/branches/"+checkParentId+"/position/"+checkThis, function(response) {
 				var branch=response[0]
-		    $(".parent").empty().append(branch.id);
-		    $(".parent").append(branch.name);
+				//브렌치추가중이 아닐때만 
+				if(creating!=1){
+					$(".parent").empty().append(branch.id);
+			    $(".parent").append(branch.name);
+				}
 		    $(".parent").attr("data-id", branch.id);
 		    checkParentId=branch.id;
 		  }).complete(function(){
@@ -386,6 +451,12 @@ function renderCircle(){
 					  $(".child" + position).append(branch.name);
 					  $(".child" + position).attr("data-id", branch.id)
 					});
+			  }).complete(function(){
+			  	if(creating==1){
+			  		//이름 정하는 폼 나타내는 함수 
+			  		setNameFormFunction();
+			      creating=0;
+			  	}//if
 			  });
 			  //alert(checkParentId)
 		  })//complete
@@ -848,56 +919,12 @@ $(document).ready(function(){
 						  cache: false,
 						  data: inputData
 						}).complete(function(){
+							creating=1;
 							if (checkParentId == null) firstWorkBranchSetting(position);
 							else childBranchSetting(position);
 						})
-						
-		      }
+		      }//if
 				}); //complete*/
-				
-	      
-	      $('#saveNameBtn').click(function(){
-	      	refreshIntervalId=setInterval( checkPageAlerNum, 1000 );
-	      	alert(3)
-	      	jQuery.fn.mySerialize = function() {
-
-			      var returning = '';
-
-			      $('input, select, textarea', this).each(function() {
-			        if (this.value !== "") // check this to avoid && in returning string
-			        returning += '&' + this.value;
-			      });
-			      return returning.substring(1);
-			    };
-			    var formData1 = $("#workNameForm").mySerialize();
-			    var branchID=$('#parent').data("id")
-			    //alert(formData2)
-			    //값이 하나라도 안들어오면 알림창을 표시하고 리턴하여 함수빠져나감
-			    if(formData1=='') {
-			      alert("빈칸!")
-			      return;
-			    }
-			    alert(formData1)
-			    alert(branchID)
-
-			    //if(typeof branchID==="undefined")
-			    	var inputData=formData1
-			    //else var inputData={"branch":{"name":formData1, "work_id":workId, "parent_id":parentId}}
-			    //var inputData={"name":formData1}
-			    //var json=$.parseJSON(inputData);
-			    //alert(json)
-			    alert(3)
-			    //if(countDropdown5==1){
-			      $.ajax({
-			        type : "POST",
-			        url : "/api/post/branchName2",
-			        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-			        cache : false,
-			        data : inputData
-			      });
-			      alert(5)
-			    //}
-	      })//click
 	    }//drop
 	  })//droppable
 	});
