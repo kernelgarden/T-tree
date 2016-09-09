@@ -33,6 +33,12 @@ function pencilHover(element) {
 function pencilUnhover(element) {
   element.setAttribute('src', '/assets/modify.png');
 }
+function closeHover(element) {
+  element.setAttribute('src', '/assets/closeMini2.png');
+}
+function closeUnhover(element) {
+  element.setAttribute('src', '/assets/closeMini.png');
+}
 
 var firstWorkBranchSetting=function(flag){	
 	if (checkFirst == true) {
@@ -94,9 +100,11 @@ var childBranchSetting=function(flag){
 
 var setNameFormFunction=function(){
 	$('#parent').empty();
+	$('#parent').append("<span class='name_formContain' ><img id='closeButton' src='/assets/closeMini.png' onmouseover='closeHover(this);' onmouseout='closeUnhover(this);'  height='15px' width='15px'></span>")
 	$('#parent').append('<form class=\"name_formContain\" name=\"BranchNameForm\" id=\"BranchNameForm\" action=\"\" method=\"post\"><input id=\"BranchName\" type=\"text\" name=\"BranchName\" value=\"\"></form>')
 	  //submit button
 	$('#parent').append('<input type=\"button\" class=\"name_formContain\" id=\"saveNameBtn\" name=\"saveNameBtn\" value=\"Save\">')
+
 	$('.name_formContain').fadeOut(0);
 	$('.name_formContain').fadeIn(500);
 	$('.name_formContain').attr("data-status", 1)
@@ -134,7 +142,7 @@ var setNameFormFunction=function(){
       cache: false,
       data: inputData
     }).complete(function(){
-    	$('.name_formContain').fadeOut(0);
+    	$('.name_formContain').fadeOut(500);
     	$.getJSON("/api/branch/"+checkParentId, function(response) {
 				var branch=response;
 				$(".parent").empty().append(branch.id);
@@ -145,6 +153,18 @@ var setNameFormFunction=function(){
 		  })
     })//complete
   }) //click
+
+  $('#closeButton').click(function() {
+  	$('.name_formContain').fadeOut(500);
+  	$.getJSON("/api/branch/"+checkParentId, function(response) {
+			var branch=response;
+			$(".parent").empty().append(branch.id);
+			$(".parent").append(branch.name);
+		  $(".parent").attr("data-id", branch.id);
+		  checkParentId=branch.id;
+		  $(".parent").append('<img src="/assets/modify.png" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
+		})
+  });
 }
 
 function renderCircle(){
@@ -635,8 +655,6 @@ function renderCircle(){
 		              $('.pageli'+i).append('<img id="loadingImg" class="img'+i+'" src="/assets/loading3.svg" />');
 		            }
 					    } //for
-					  }, 0);
-					  $.getJSON("/api/branch/" + checkParentId + "/pages", function(response) {
 					    $.each(response, function(i, first) {
 					      var temp = (i + 1)
 					      //if ($('.pageli').eq(i).empty()) {
@@ -663,8 +681,6 @@ function renderCircle(){
 		              $('.pageli'+i).append('<img id="loadingImg" class="img'+i+'" src="/assets/loading3.svg" />');
 		            }
 					    } //for
-					  }, 0);
-					  $.getJSON("/api/branch/" + checkBefore3 + "/pages", function(response) {
 					    $.each(response, function(i, first) {
 					      var temp = (i + 1)
 					      if ($('.pageli').eq(i).empty()) {

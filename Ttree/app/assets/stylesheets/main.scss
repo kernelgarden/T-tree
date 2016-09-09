@@ -236,12 +236,19 @@ div.back{
   padding-bottom:5%;
   padding-right:5%;
   padding-left:5%;
-  margin-top: 40%;
+  //margin-top: 20%;
+  #closeButton{
+  	//position:absolute;
+  	margin-top:15px;
+  	//padding-top:10%;
+  	//margin-top:30%;
+  }
   input{
+  	margin-top: 18%;
     margin-left:2%;
     margin-right:2%;
     padding-bottom:3%;
-    padding-top:3%;
+    //padding-top:3%;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
