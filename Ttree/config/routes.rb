@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   #post '/api/user/:id/setStar', to: 'apis#setStar'   #해당 work를 즐겨찾기 함
   get '/api/user/:id/staring', to: 'apis#staring'   # 해당 work를 즐겨찾기 함
   get '/api/user/:id/unstaring', to: 'apis#unstaring' # 해당 work를 즐겨찾기 해제함
-  post '/api/user/:id/setStar', to: 'apis#setStar'   #해당 work를 즐겨찾기 함
 
   get '/api/team/:id', to: 'apis#team'         #해당 team의 정보
   get '/api/team/:id/works', to: 'apis#teamworks'   #해당 team의 work들의 정보
@@ -53,7 +52,7 @@ Rails.application.routes.draw do
   post '/api/post/branchName', to: 'apis#branchName'         #해당 work의 정보
   post '/api/post/branchName2', to: 'apis#branchName2'         #해당 work의 정보
   get '/api/work/:id/delete', to:'apis#workDelete' #해당 work 삭제
-
+  
   post '/api/post/team', to:'apis#getTeam'
   post '/api/page/new', to: 'apis#getPages'
   post '/api/post/team_member', to:'apis#getMember'

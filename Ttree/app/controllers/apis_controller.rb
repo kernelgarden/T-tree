@@ -97,8 +97,8 @@ class ApisController < ApplicationController
 	def tree
 		@work=Work.find(params[:id])
 		@branches=@work.branches.arrange_serializable
-  		#render :json =>  Branch.json_tree(@branches)
-  		render :json => @branches
+		#render :json =>  Branch.json_tree(@branches)
+		render :json => @branches
 	end
 
 	def branchChilds
@@ -142,13 +142,11 @@ class ApisController < ApplicationController
 	end
 
 	def getPages
-
 		@json= JSON.parse(request.raw_post)
 		@user= User.find_by_email(@json["user_email"])
 		@json["pages"].each do |page|
 			Unclassifiedpage.create(:user_id=>@user.id, :title=>page["title"], :url=>page["url"])
 		end
-
 	end
 
 	def getMember
@@ -167,14 +165,14 @@ class ApisController < ApplicationController
 		@work_id=params[:work_id]
 		Work.find(@work_id).destroy
 	end
-	
+
 	def branchName
 		@name=branch_params
 		@branch=Branch.create(branch_params)
 		@pages=User.current.unclassifiedpage_ids
 		@pages.each do |page|
 			@page=Unclassifiedpage.find(page)
-	 		@branch.pages.create(title: @page.title, url:@page.url)
+			@branch.pages.create(title: @page.title, url:@page.url)
 		end
 		Unclassifiedpage.delete_all
 		#debugger
