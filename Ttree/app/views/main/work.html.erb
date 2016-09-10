@@ -1,3 +1,8 @@
+<%= stylesheet_link_tag    'application', home: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_tag do %>
+window.workId = "<%= @work_id%>";
+window.pageIds = "<%= @page_ids%>";
+<% end %>
 <script>
 var translateArr=new Array(2);   //translate 정보를 저장한 배열
 var parentWidth;            //중심 원 가로 길이
@@ -18,6 +23,149 @@ var childBranchArr=new Array(8)   //child 가지 저장 배열
 var fixedHeight=40;         //헤더를 고정하면서 내려가야하는 높이
 var backButtonFlag=0;
 var currentWorkId;
+var checkMakeId;	//방금 만든 가지를 인식하도록 
+var checkParentId;	//parent ID 체크 
+var creating;			//추가중임을 나타냄 
+
+function pencilHover(element) {
+  element.setAttribute('src', '/assets/modify2.png');
+}
+function pencilUnhover(element) {
+  element.setAttribute('src', '/assets/modify.png');
+}
+function closeHover(element) {
+  element.setAttribute('src', '/assets/closeMini2.png');
+}
+function closeUnhover(element) {
+  element.setAttribute('src', '/assets/closeMini.png');
+}
+
+var firstWorkBranchSetting=function(flag){	
+	if (checkFirst == true) {
+		//alert(8)
+	  $(".parent").empty();
+	  $(".child").empty();
+
+	  $.getJSON("/api/work/" + currentWorkId + "/branches", function(response) {
+	    $.each(response, function(i, branch) {
+	    	var position=branch.position
+	    	if(branch.parent_id==null){
+		    	$(".child" + position).empty().append(branch.id);
+		      $(".child" + position).append(branch.name);
+		      $(".child" + position).attr("data-id", branch.id)	
+	    	}
+	    });
+	  }).complete(function() { 
+	  	checkParentId=null;
+	  	if(typeof flag!=="undefined") {
+		    	//clearInterval(refreshIntervalId);
+		    	$(".child" + flag).trigger('click');
+		    	$('#parent').empty()
+		    	//$('.child').attr("data-id", 0)
+		  }
+		  else{
+			  $.getJSON("/api/work/" + currentWorkId, function(response) {
+			    $(".parent").empty().append(response.id);
+			    $(".parent").append(response.name);
+			  });
+			}  
+	  });
+	  
+	}//if
+
+}//firstWorkBranchSetting();
+
+var childBranchSetting=function(flag){
+	$.getJSON("/api/work/" + currentWorkId + "/branches/" + checkParentId, function(response) {
+	  $.each(response, function(i, branch) {
+	    var position = branch.position;
+	    $(".child" + position).empty().append(branch.id);
+	    $(".child" + position).append(branch.name);
+	    $(".child" + position).attr("data-id", branch.id)
+	  });
+	}).complete(function() {
+	  if (typeof flag !== "undefined") {
+	    //alert(flag)
+	    $(".child" + flag).trigger('click');
+	  } else {
+	    $.getJSON("/api/branch/" + checkId, function(response) {
+	      $(".parent").empty().append(response.id);
+	      $(".parent").append(response.name);
+	      $(".parent").attr("data-id", response.id)
+	      $(".parent").append('<img src="/assets/modify.png" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
+	    });
+	  }
+	}); //complete
+}
+
+var setNameFormFunction=function(){
+	$('#parent').empty();
+	$('#parent').append("<span class='name_formContain' ><img id='closeButton' src='/assets/closeMini.png' onmouseover='closeHover(this);' onmouseout='closeUnhover(this);'  height='15px' width='15px'></span>")
+	$('#parent').append('<form class=\"name_formContain\" name=\"BranchNameForm\" id=\"BranchNameForm\" action=\"\" method=\"post\"><input id=\"BranchName\" type=\"text\" name=\"BranchName\" value=\"\"></form>')
+	  //submit button
+	$('#parent').append('<input type=\"button\" class=\"name_formContain\" id=\"saveNameBtn\" name=\"saveNameBtn\" value=\"Save\">')
+
+	$('.name_formContain').fadeOut(0);
+	$('.name_formContain').fadeIn(500);
+	$('.name_formContain').attr("data-status", 1)
+	$('#WorkName').focus();
+
+	$('#saveNameBtn').click(function() {
+    //alert(3)
+    jQuery.fn.mySerialize = function() {
+
+      var returning = '';
+
+      $('input, select, textarea', this).each(function() {
+        if (this.value !== "") // check this to avoid && in returning string
+          returning += '&' + this.value;
+      });
+      return returning.substring(1);
+    };
+    var formData1 = $("#BranchNameForm").mySerialize();
+    var branchID = checkParentId
+      //alert(formData2)
+      //값이 하나라도 안들어오면 알림창을 표시하고 리턴하여 함수빠져나감
+    if (formData1 == '') {
+      alert("빈칸!")
+      return;
+    }
+    //alert(formData1)
+    //alert(branchID)
+    //
+    var inputData = {"name":formData1, "branch_id":branchID}
+
+    $.ajax({
+      type: "POST",
+      url: "/api/post/branchName2",
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      cache: false,
+      data: inputData
+    }).complete(function(){
+    	$('.name_formContain').fadeOut(500);
+    	$.getJSON("/api/branch/"+checkParentId, function(response) {
+				var branch=response;
+				$(".parent").empty().append(branch.id);
+			  $(".parent").append(branch.name);
+		    $(".parent").attr("data-id", branch.id);
+		    checkParentId=branch.id;
+		    $(".parent").append('<img src="/assets/modify.png" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
+		  })
+    })//complete
+  }) //click
+
+  $('#closeButton').click(function() {
+  	$('.name_formContain').fadeOut(500);
+  	$.getJSON("/api/branch/"+checkParentId, function(response) {
+			var branch=response;
+			$(".parent").empty().append(branch.id);
+			$(".parent").append(branch.name);
+		  $(".parent").attr("data-id", branch.id);
+		  checkParentId=branch.id;
+		  $(".parent").append('<img src="/assets/modify.png" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
+		})
+  });
+}
 
 function renderCircle(){
 	function toDegrees(angle) {
@@ -141,29 +289,9 @@ function renderCircle(){
 	/************************************************************/
 
 	/////////////////////////////Json/////////////////////////////
-	if (checkFirst == true) {
-  $(".parent").empty();
-  $(".child").empty();
-  $.getJSON("/api/work/" + currentWorkId, function(response) {
-    $(".parent").empty().append(response.id);
-    $(".parent").append(response.name);
-  });
-  $.getJSON("/api/work/" + currentWorkId + "/branche_ids", function(response) {
-    $.each(response, function(i, first) {
-      //$(".child"+(i+1)).append(first);
-      var temp = (i + 1)
-      $.getJSON("/api/branch/" + first, function(response) {
-        if (response.parent_id == null) {
-          $(".child" + temp).empty().append(response.id);
-          $(".child" + temp).append(response.name);
-          $(".child" + temp).attr("data-id", first)
-        }
-      });
-    });
-  });
-}
+	firstWorkBranchSetting();
 	//////////////////////////////////////////////////////////////
-   
+  /*
 	/////////////////////////////Json/////////////////////////////
 	//window resize할 때 필요
 	if (checkFirst != true) {
@@ -185,9 +313,10 @@ function renderCircle(){
 	  });
 	}
 	//////////////////////////////////////////////////////////////
-  
+  */
   /***********************branch 누르면*************************/  
   $('.child').click(function(){
+  	//alert(3)
 		backButtonFlag = 0;
 		movingChild = true;
 
@@ -234,6 +363,11 @@ function renderCircle(){
 		    checkId = $(this).data("id");
 		  }
 		}
+		//alert(checkParentId)
+		//alert(checkId)
+		//if(checkId==0) checkId=checkMakeId;
+		//console.log(checkId)	
+		//alert(checkId)
 		for (var i = 0; i < noOfServ; i++) {
 		  if ($('.child').eq(i).hasClass('child8')) {
 		    if (checkThis == 8) {
@@ -297,23 +431,39 @@ function renderCircle(){
 		movingChild = false;
 
     ////////////////////////////////Json///////////////////////////////
+		//childBranchSetting();
+		//$(".child").attr("data-id", 0)
 		setTimeout(function() {
-		  $.getJSON("/api/branch/" + checkId, function(response) {
-		    $(".parent").empty().append(response.id);
-		    $(".parent").append(response.name);
-		  });
-		  $.getJSON("/api/branch/" + checkId + "/childs", function(response) {
-		    $.each(response, function(i, child) {
-		      var temp = child.id;
-		      var index = (temp % 7)
-		      if (index == 0) index = 7;
-		      $(".child" + index).empty().append(child.id);
-		      $(".child" + index).append(child.name);
-		      $(".child" + index).attr("data-id", child.id)
-		    });
-		  });
+			$.getJSON("/api/work/" + currentWorkId + "/branches/"+checkParentId+"/position/"+checkThis, function(response) {
+				var branch=response[0]
+				//브렌치추가중이 아닐때만 
+				if(creating!=1){
+					$(".parent").empty().append(branch.id);
+			    $(".parent").append(branch.name);
+			    $(".parent").append('<img src="/assets/modify.png" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
+				}
+		    $(".parent").attr("data-id", branch.id);
+		    checkParentId=branch.id;
+		  }).complete(function(){
+		  	$.getJSON("/api/work/" + currentWorkId + "/branches/"+checkParentId, function(response) {
+			    $.each(response, function(i, branch) {
+					  var position=branch.position
+					  $(".child" + position).empty().append(branch.id);
+					  $(".child" + position).append(branch.name);
+					  $(".child" + position).attr("data-id", branch.id)
+					});
+			  }).complete(function(){
+			  	if(creating==1){
+			  		//이름 정하는 폼 나타내는 함수 
+			  		setNameFormFunction();
+			      creating=0;
+			  	}//if
+			  });
+			  //alert(checkParentId)
+		  })//complete
 		}, 1400);
     ///////////////////////////////////////////////////////////////////
+    
     //전 parent값 저장하는 과정
     checkBefore3=checkBefore2;
     checkBefore2=checkId;
@@ -322,6 +472,7 @@ function renderCircle(){
 
   /***********************back버튼 누르면***********************/
   $('.back').click(function(){
+  	//alert(checkParentId)
 		$(this).fadeOut(0);
 		$('.parent').empty();
 		$('.child').empty();
@@ -387,29 +538,29 @@ function renderCircle(){
 		    if (checkFirst == true) {
 		      $(".parent").empty();
 		      $(".child").empty();
+		      checkParentId=null;
 		      $.getJSON("/api/work/" + currentWorkId, function(response) {
 		        $(".parent").empty().append(response.id);
 		        $(".parent").append(response.name);
+		        //$(".parent").append('<img src="/assets/modify.png" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
 		      });
-		      $.getJSON("/api/work/" + currentWorkId + "/branche_ids", function(response) {
-		        $.each(response, function(i, first) {
-		          //$(".child"+(i+1)).append(first);
-		          var temp = (i + 1)
-		          $.getJSON("/api/branch/" + first, function(response) {
-		            if (response.parent_id == null) {
-		              $(".child" + temp).empty().append(response.id);
-		              $(".child" + temp).append(response.name);
-		              $(".child" + temp).attr("data-id", first)
-		            }
-		          });
-		        });
-		      });
+		      $.getJSON("/api/work/" + currentWorkId + "/branches", function(response) {
+				    $.each(response, function(i, branch) {
+				    	var position=branch.position
+				    	if(branch.parent_id==null){
+					     	$(".child" + position).empty().append(branch.id);
+					      $(".child" + position).append(branch.name);
+					      $(".child" + position).attr("data-id", branch.id)
+					    }
+				    });
+				  });
 		    }
 		  }, 1900);
 		  //////////////////////////////////////////////////////////////
 		} //if
 
 		else {
+
 		  $('.child8').fadeOut(0)
 		  $('.child8').animate({
 		    backgroundColor: "transparent",
@@ -422,22 +573,24 @@ function renderCircle(){
 		  } //for
 
 		  /////////////////////////////Json/////////////////////////////
+		  //alert(checkParentId)
 		  setTimeout(function() {
-		    $.getJSON("/api/branch/" + checkId, function(response) {
+		    $.getJSON("/api/branch/" + checkParentId, function(response) {
 		      checkBefore = response.parent_id;
 		      $.getJSON("/api/branch/" + checkBefore, function(response) {
 		        $(".parent").empty().append(response.id);
 		        $(".parent").append(response.name);
+		        $(".parent").attr("data-id", response.id)
+		        $(".parent").append('<img src="/assets/modify.png" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
+		        checkParentId=response.id
 		      });
 		      $.getJSON("/api/branch/" + checkBefore + "/childs", function(response) {
-		        $.each(response, function(i, child) {
-		          var temp = child.id;
-		          var index = (temp % 7)
-		          if (index == 0) index = 7;
-		          $(".child" + index).empty().append(child.id);
-		          $(".child" + index).append(child.name);
-		          $(".child" + index).attr("data-id", child.id)
-		        });
+		        $.each(response, function(i, branch) {
+				    	var position=branch.position
+				     	$(".child" + position).empty().append(branch.id);
+				      $(".child" + position).append(branch.name);
+				      $(".child" + position).attr("data-id", branch.id)
+				    });
 		      });
 		      for (var i = 1; i <= noOfServ; i++) {
 		        if ($('.child' + i).data("id") == checkBefore) {
@@ -493,21 +646,26 @@ function renderCircle(){
         /////////////////////////////Json/////////////////////////////
         setTimeout(function(){
 					if (backButtonFlag == 0) {
-					  $.getJSON("/api/branch/" + checkId + "/pages", function(response) {
+					  $.getJSON("/api/branch/" + checkParentId + "/pages", function(response) {
 					    for (var i = 0; i < response.length; i++) {
 					      //한번만 박스 그려주도록
 					      if ($('.pageli').eq(i).hasClass('pageli' + i)) break;
-					      else $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
+					      else {
+		              $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
+		              $('.pageli'+i).append('<img id="loadingImg" class="img'+i+'" src="/assets/loading3.svg" />');
+		            }
 					    } //for
-					  }, 0);
-					  $.getJSON("/api/branch/" + checkId + "/pages", function(response) {
 					    $.each(response, function(i, first) {
 					      var temp = (i + 1)
-					      if ($('.pageli').eq(i).empty()) {
-					        $('.pageli').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url=' + first.url + '" />');
+					      //if ($('.pageli').eq(i).empty()) {
+					      	var img=$('<img class="img" src="http://ryugarden.org/api/thumb?url=' + first.url + '" />')
+			            img.load(function(){
+			              $('.img'+i).replaceWith(img);
+			            });
+					        //$('.pageli').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url=' + first.url + '" />');
 					        $('.pageli').eq(i).append('<div class="page_url_div"><a class="page_url">' + first.title + '</a></div>');
 					        $('.pageli').eq(i).attr("data-url", first.url)
-					      }
+					      //}
 					    });
 					  }, 1900);
 					}//if
@@ -517,14 +675,20 @@ function renderCircle(){
 					    for (var i = 0; i < response.length; i++) {
 					      //한번만 박스 그려주도록
 					      if ($('.pageli').eq(i).hasClass('pageli' + i)) break;
-					      else $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
+					      //else $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
+					      else {
+		              $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
+		              $('.pageli'+i).append('<img id="loadingImg" class="img'+i+'" src="/assets/loading3.svg" />');
+		            }
 					    } //for
-					  }, 0);
-					  $.getJSON("/api/branch/" + checkBefore3 + "/pages", function(response) {
 					    $.each(response, function(i, first) {
 					      var temp = (i + 1)
 					      if ($('.pageli').eq(i).empty()) {
-					        $('.pageli').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url=' + first.url + '" />');
+					      	var img=$('<img class="img" src="http://ryugarden.org/api/thumb?url=' + first.url + '" />')
+			            img.load(function(){
+			              $('.img'+i).replaceWith(img);
+			            });
+					        //$('.pageli').eq(i).append('<img class="img" src="http://ryugarden.org/api/thumb?url=' + first.url + '" />');
 					        $('.pageli').eq(i).append('<div class="page_url_div"><a class="page_url">' + first.title + '</a></div>');
 					        $('.pageli').eq(i).attr("data-url", first.url)
 					      }
@@ -553,10 +717,15 @@ function renderCircle(){
 
   /***********************page 누르면***************************/
   $(document).on("click",".pageli",function() {
-    window.open("http://"+$(this).data("url"),'_blank');
+    window.open($(this).data("url"),'_blank');
   })//page-click
   /************************************************************/
 
+  /***********************page 누르면***************************/
+  $(document).on("click","#modifyBranchName",function() {
+    setNameFormFunction();
+  })//page-click
+  /************************************************************/
 }//renderCircle()
 
 //페이지 정보 출력 바탕 
@@ -728,16 +897,55 @@ $(document).ready(function(){
 	      // awesome code that works and handles successful drops...
 	      $(this).class
 	      ui.helper.data('droppedAt', $(this).attr('class').match(/\d/)[0]);
-	      $(this).trigger('click');
-	      $('#parent').append('<form class=\"name_formContain\" name=\"ReadingInfoSelectForm\" id=\"ReadingInfoSelectForm\" action=\"\" method=\"post\"><input id=\"WorkName\" type=\"text\" name=\"addFormData\" value=\"\"></form>')
-	      //submit button
-    		$('#parent').append('<input type=\"button\" class=\"name_formContain\" id=\"saveNameBtn\" name=\"saveNameBtn\" value=\"Save\">')
-    		$('.name_formContain').fadeOut(0);
-	      $('.name_formContain').delay(1500).fadeIn(500);  
-	      $('.name_formContain').attr("data-status", 1)
-	      $('#WorkName').focus();
-	    }
-	  })
+	      
+	      var position=$(this).attr('class').match(/\d/)[0]
+	      var createFlag=true	//branch를 추가할수 있는지 여부 
+	      $.getJSON("/api/work/" + currentWorkId + "/branches/" + checkParentId, function(response) {
+				  $.each(response, function(i, branch) {
+				    //현재 position에 이미 branch가 존재하면 
+				    if (position == branch.position)
+				      createFlag = false;
+				  });
+				}).complete(function() {
+				  if (createFlag==false) {
+				    alert("이 위치에는 이미 branch가 존재합니다!")
+				  } 
+				  if (createFlag) {
+			      var formData1 = "unsettled";
+						//alert(formData1)
+						//alert(parentId)
+
+						if (checkParentId == null)
+						  var inputData = {
+						    "branch": {
+						      "name": formData1,
+						      "work_id": workId,
+						      "position": position
+						    }
+						  }
+						else var inputData = {
+						  "branch": {
+						    "name": formData1,
+						    "work_id": workId,
+						    "parent_id": checkParentId,
+						    "position": position
+						  }
+						}
+						$.ajax({
+						  type: "POST",
+						  url: "/api/post/branchName",
+						  contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+						  cache: false,
+						  data: inputData
+						}).complete(function(){
+							creating=1;
+							if (checkParentId == null) firstWorkBranchSetting(position);
+							else childBranchSetting(position);
+						})
+		      }//if
+				}); //complete*/
+	    }//drop
+	  })//droppable
 	});
 })//document.ready
 

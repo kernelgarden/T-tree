@@ -64,6 +64,26 @@ class ApisController < ApplicationController
 		render :json => @work.branches
 	end
 
+	def branchesByParent
+		if params[:id2]=="null"
+			@branches=Branch.where(:work_id=>params[:id]).roots
+		else
+			@parent=Branch.find(params[:id2])
+			@branches=Branch.children_of(@parent)
+		end
+		render :json => @branches
+	end
+
+	def branchesByParentandPosition
+		if params[:id2]=="null"
+			@branches=Branch.where(:work_id=>params[:id], :position=>params[:id3]).roots
+		else
+			@parent=Branch.find(params[:id2])
+			@branches=Branch.children_of(@parent).where(:position=>params[:id3])
+		end
+		render :json => @branches
+	end
+
 	def branche_ids
 		@work=Work.find(params[:id])
 		render :json => @work.branch_ids
@@ -76,8 +96,9 @@ class ApisController < ApplicationController
 
 	def tree
 		@work=Work.find(params[:id])
-		@branches=@work.branches.first.subtree.arrange
-		render :json =>  Branch.json_tree(@branches)
+		@branches=@work.branches.arrange_serializable
+  		#render :json =>  Branch.json_tree(@branches)
+  		render :json => @branches
 	end
 
 	def branchChilds
@@ -121,17 +142,21 @@ class ApisController < ApplicationController
 	end
 
 	def getPages
+
 		@json= JSON.parse(request.raw_post)
 		@user= User.find_by_email(@json["user_email"])
 		@json["pages"].each do |page|
 			Unclassifiedpage.create(:user_id=>@user.id, :title=>page["title"], :url=>page["url"])
 		end
+
 	end
+
 	def getMember
 		@team_id=params[:team_id]
 		@user_id=params[:user_id]
 		User.find(@user_id).join(Team.find(@team_id))
 	end
+
 	def teamWithdraw
 		@team_id=params[:team_id]
 		@user_id=params[:user_id]
@@ -141,6 +166,28 @@ class ApisController < ApplicationController
 	def workDelete
 		@work_id=params[:work_id]
 		Work.find(@work_id).destroy
+
+	def branchName
+		@name=branch_params
+		@branch=Branch.create(branch_params)
+		@pages=User.current.unclassifiedpage_ids
+		@pages.each do |page|
+			@page=Unclassifiedpage.find(page)
+	 		@branch.pages.create(title: @page.title, url:@page.url)
+		end
+		Unclassifiedpage.delete_all
+		#debugger
+	end
+
+	def branchName2
+		@branch=Branch.find(params[:branch_id])
+		@name=params[:name]
+		@branch.update_attributes(:name => @name)
+	end
+
+	def staring
+		@user = User.find(params[:starlists][:user_id])
+		@user.staring(Work.find(params[:starlists][:work_id]))
 	end
 
 	def setStar
@@ -153,6 +200,9 @@ class ApisController < ApplicationController
 	end
 	def team_params
 		params.require(:team).permit(:name)
+	end
+	def branch_params
+		params.require(:branch).permit(:name, :work_id, :parent_id, :position)
 	end
 	def starlist_params
 		params.require(:starlists).permit(:work_id, :user_id)
