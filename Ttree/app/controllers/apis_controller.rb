@@ -193,6 +193,19 @@ class ApisController < ApplicationController
 		Starlist.create(starlist_params)
 	end
 
+<<<<<<< HEAD
+	def deleteunclassifiedpages
+		#debugger
+		Unclassifiedpage.find(params[:id]).destroy
+		#debugger
+	end 
+
+	def deletePages
+		Page.find(params[:id]).destroy	
+	end
+
+=======
+>>>>>>> 26941eee616a4abd557d1599c5169ecdf890423b
 	private
 	def work_params
 		params.require(:work).permit(:name, :user_id, :team_id, :branch_ids)

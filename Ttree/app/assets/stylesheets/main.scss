@@ -158,6 +158,14 @@ div.back{
     list-style-type: decimal;
     position: relative;
     text-align: left;
+    .closeImg{
+    	position:absolute;
+			margin-left: -24px;
+    	margin-top: 7px;
+    	&:hover{
+    		cursor: pointer;
+    	}
+    }
 		.pageli{
 			width:17.7%;
 			height:20%;
