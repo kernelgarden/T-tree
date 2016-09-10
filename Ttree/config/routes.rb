@@ -54,7 +54,11 @@ Rails.application.routes.draw do
   post '/api/post/team', to:'apis#getTeam'
   post '/api/page/new', to: 'apis#getPages'
   post '/api/post/team_member', to:'apis#getMember'
+  post '/api/post/deleteunclassifiedpages', to:'apis#deleteunclassifiedpages'
+  post '/api/post/deletePages', to:'apis#deletePages'
+
   get '/api/team/:id/withdraw', to:'apis#teamWithdraw'
+
   get '/search', to:'search#getResult'
   # For details on the DSL available within this file, see http://guides.ruonrails.org/routing.html
 end

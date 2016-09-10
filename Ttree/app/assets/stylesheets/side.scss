@@ -74,7 +74,14 @@
     list-style-type: decimal;
     position: relative;
     text-align: left;
-
+		.closeImg{
+			position:absolute;
+			margin-left: -20px;
+    	margin-top: 5px;
+    	&:hover{
+    		cursor: pointer;
+    	}
+		}
 		.pageli-2{
 			width:17.7%;
 			height:17%;
@@ -89,6 +96,7 @@
 			border-radius: 8px;
 			box-shadow: 2px 1px 4px #A3A3A3;
 			transition: all 0.4s ease 0s;
+			
 			#loadingImg{
 	    	//position:relative;
 	    	width:60%;

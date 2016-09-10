@@ -191,6 +191,15 @@ class ApisController < ApplicationController
 		@user.unstaring(Work.find(params[:starlists][:work_id]))
 	end
 
+	def deleteunclassifiedpages
+		#debugger
+		Unclassifiedpage.find(params[:id]).destroy
+		#debugger
+	end 
+
+	def deletePages
+		Page.find(params[:id]).destroy	
+	end
 
 	private
 	def work_params
