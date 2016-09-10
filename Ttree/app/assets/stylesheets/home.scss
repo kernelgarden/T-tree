@@ -2,9 +2,18 @@ $addMainColor:#99d8dd;
 .boxIcon{
   position:relative;
   float:right;
+  width: 20px;
+  height: 80px;
   right:5px;
-  top:-30px;
-  display:none;
+  top:-35px;
+}
+.close_btn{
+  position: fixed;
+  display: none;
+}
+.star_btn{
+  position:relative;
+  display: none;
 }
 .form_btn{
   width: 15px;
@@ -55,8 +64,11 @@ $addMainColor:#99d8dd;
       transition: all 0.4s ease 0s;
       &:hover{
         background-color: #AED9DF;
-        .boxIcon{
+        .star_btn{
           display:inline-block;
+        }
+        .close_btn{
+          display: inline-block;
         }
       }
     }
@@ -92,8 +104,11 @@ $addMainColor:#99d8dd;
       &:hover{
         cursor: pointer;
         background-color: #AED9DF;
-        .boxIcon{
+        .star_btn{
           display:inline-block;
+        }
+        .close_btn{
+          display: inline-block;
         }
       }
       width: 20%;

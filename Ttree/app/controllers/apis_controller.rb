@@ -163,6 +163,10 @@ class ApisController < ApplicationController
 		User.find(@user_id).withdraw(Team.find(@team_id))
 	end
 
+	def workDelete
+		@work_id=params[:work_id]
+		Work.find(@work_id).destroy
+
 	def branchName
 		@name=branch_params
 		@branch=Branch.create(branch_params)
@@ -186,11 +190,11 @@ class ApisController < ApplicationController
 		@user.staring(Work.find(params[:starlists][:work_id]))
 	end
 
-	def unstaring
-		@user = User.find(params[:starlists][:user_id])
-		@user.unstaring(Work.find(params[:starlists][:work_id]))
+	def setStar
+		Starlist.create(starlist_params)
 	end
 
+<<<<<<< HEAD
 	def deleteunclassifiedpages
 		#debugger
 		Unclassifiedpage.find(params[:id]).destroy
@@ -201,6 +205,8 @@ class ApisController < ApplicationController
 		Page.find(params[:id]).destroy	
 	end
 
+=======
+>>>>>>> 26941eee616a4abd557d1599c5169ecdf890423b
 	private
 	def work_params
 		params.require(:work).permit(:name, :user_id, :team_id, :branch_ids)

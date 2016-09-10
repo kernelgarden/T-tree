@@ -19,9 +19,7 @@ Rails.application.routes.draw do
   get '/api/user/:id/works', to: 'apis#works'   #해당 user의 work들의 정보
   get '/api/user/:id/work_ids', to: 'apis#work_ids'   #해당 user의 work id들
   get '/api/user/:id/teams', to: 'apis#teams'   #해당 user의 team들의 정보
-  #post '/api/user/:id/setStar', to: 'apis#setStar'   #해당 work를 즐겨찾기 함
-  get '/api/user/:id/staring', to: 'apis#staring'   # 해당 work를 즐겨찾기 함
-  get '/api/user/:id/unstaring', to: 'apis#unstaring' # 해당 work를 즐겨찾기 해제함
+  post '/api/user/:id/setStar', to: 'apis#setStar'   #해당 work를 즐겨찾기 함
 
   get '/api/team/:id', to: 'apis#team'         #해당 team의 정보
   get '/api/team/:id/works', to: 'apis#teamworks'   #해당 team의 work들의 정보
@@ -35,7 +33,8 @@ Rails.application.routes.draw do
   			to: 'apis#branchesByParentandPosition' #해당 work의 parent_id에 따른 branch들의 정보들중 해당 position
   get '/api/work/:id/branche_ids', to: 'apis#branche_ids' #해당 work의 branch id들
   get '/api/work/:id/tree', to: 'apis#tree'      #해당 work의 tree
-
+  get '/api/work/:id/delete', to:'apis#workDelete' #해당 work 삭제
+  
   get '/api/branch/:id', to: 'apis#branch'      #해당 branch의 정보
   get '/api/branch/:id/childs', to: 'apis#branchChilds'      #해당 branch의 정보
   get '/api/branch/:id/pages', to: 'apis#pages' #해당 branch의 page들의 정보
