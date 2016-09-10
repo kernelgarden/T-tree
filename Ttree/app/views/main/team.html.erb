@@ -208,7 +208,7 @@ $(document).ready(function(){
   $("#team_search").easyAutocomplete(team_search);
   $(".close_btn").on("click",function(e){ //팀의 워크 지우기
     e.stopPropagation();
-    var work_id = $(this).parent().attr('data-work_id');
+    var work_id = $(this).parent().parent().attr('data-work_id');
     $.get("/api/work/"+work_id + "/delete", {"user_id": userID, "work_id": work_id})
     .done(function(data){
       alert("삭제완료.");
