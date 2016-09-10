@@ -69,6 +69,7 @@ var makePersonalWorkBox=function(){
           $(".personal_work_group").append("<div class='userWork personal_work_content personal_work_content"+cnt+"''></div>").show('slow')
           if($(".personal_work_content").eq(cnt).empty(0)){
             $(".personal_work_content"+cnt).append('<div class="personal_work_name">'+work.name+'</div>')
+            //$(".personal_work_content"+cnt).append('<img class="close_btn closebtn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/>')
             //$(".personal_work_content"+cnt)
             //.append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
             $(".personal_work_content").eq(cnt).attr("data-id",work.id)
@@ -82,10 +83,10 @@ var makePersonalWorkBox=function(){
             })
             if (flag == true) { // 즐겨찾기 되있음
               $(".personal_work_content"+cnt)
-              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /></span>')
+              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="close_btn close_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/></span>')
             } else {
               $(".personal_work_content"+cnt)
-              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
+              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="close_btn close_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/></span>')
             }
             flag = false;
           }
@@ -118,19 +119,19 @@ var makeTeamWorkBox=function(){
         $.getJSON("/api/work/" + id, function(response) {
           $(".wrap_team_content" + i).append('<div class="personal_team_content personal_team_content' + response.team_id + '_' + j + '"></div>').show('slow')
           $(".personal_team_content" + response.team_id + "_" + j).append('<div class="personal_team_name">' + response.name + '</div>').show('slow')
-          //$(".personal_team_content" + response.team_id + "_" + j)
-          //.append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
           $(".personal_team_content" + response.team_id + "_" + j).attr("data-id", id)
           $.each(response.starlists, function (i, relation) {
+            //$(".personal_team_content" + response.team_id + "_" + j)
+            //.append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
             if (relation.user_id == userID)
             flag = true;
           });
           if (flag == true) {
             $(".personal_team_content" + response.team_id + "_" + j)
-            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /></span>')
+            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="close_btn close_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/></span>')
           } else {
             $(".personal_team_content" + response.team_id + "_" + j)
-            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
+            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="close_btn close_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/></span>')
           }
           flag = false;
         })
@@ -179,6 +180,15 @@ $(document).ready(function(){
   })
   */
 });
+$(".close_btn").on("click",function(e){
+  e.stopPropagation();
+  var work_id = $(this).parent().parent().attr('data-id');
+  $.get("/api/work/"+work_id + "/delete", {"user_id": userID, "work_id": work_id})
+  .done(function(data){
+    alert("삭제완료.");
+    window.location = '/';
+  })
+})
 $(document).on("click", '.team_more' , function(){
   tId=$(this).data("team_id");
   window.location='/main/team/'+tId;
