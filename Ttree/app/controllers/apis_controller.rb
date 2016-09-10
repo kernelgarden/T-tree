@@ -197,10 +197,10 @@ class ApisController < ApplicationController
 		#debugger
 		Unclassifiedpage.find(params[:id]).destroy
 		#debugger
-	end 
+	end
 
 	def deletePages
-		Page.find(params[:id]).destroy	
+		Page.find(params[:id]).destroy
 	end
 
 	private
