@@ -15,6 +15,6 @@
 
 //= require_tree .
 //= require jquery.zoomooz.min
-
+//= require snap.svg.js
 /*main/pages*/
 

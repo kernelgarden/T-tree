@@ -646,6 +646,7 @@ function renderCircle(){
         /////////////////////////////Json/////////////////////////////
         setTimeout(function(){
 					if (backButtonFlag == 0) {
+						//alert(checkParentId)
 					  $.getJSON("/api/branch/" + checkParentId + "/pages", function(response) {
 					    for (var i = 0; i < response.length; i++) {
 					      //한번만 박스 그려주도록
@@ -818,6 +819,7 @@ $(document).ready(function(){
 	}
 	renderCircle();
 	pagesInform();
+  
   
   /*
 	$(document).on("mouseenter", ".child", function() {
