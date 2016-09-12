@@ -103,7 +103,7 @@ var makePersonalWorkBox=function(){
         }//if(work.team_id==null)
       });
     }
-  });
+  })
   $(".personal_work_group").append('<div class="addWork personal_work_content"></div>').show('slow')
 }
 /************************************************************/
@@ -275,6 +275,11 @@ $(document).on("click", ".personal_work_form_button", function(e) {
       error:function(error){
         //alert(error);
       }
+    }).complete(function(){
+    	$.getJSON("/api/user/" + userID+"/work_ids", function(response) {
+	      //alert(response.length)
+	      window.location='/main/work/'+ response[response.length-1];
+	    });
     })
   }
 })
