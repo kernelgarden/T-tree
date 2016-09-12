@@ -183,7 +183,11 @@ class ApisController < ApplicationController
 		@name=params[:name]
 		@branch.update_attributes(:name => @name)
 	end
-
+	def workName
+		@work=Work.find(params[:work_id])
+		@name=params[:name]
+		@work.update_attributes(:name=>@name)
+	end
 	def staring
 		@user = User.find(params[:starlists][:user_id])
 		@user.staring(Work.find(params[:starlists][:work_id]))
