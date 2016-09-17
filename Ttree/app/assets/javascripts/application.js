@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-
+//= require turbolinks
 //= require_tree .
 //= require jquery.zoomooz.min
+//= require select2
 
 /*main/pages*/
-

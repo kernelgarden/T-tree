@@ -5,7 +5,7 @@ class SearchController < ApplicationController
 		@works=Work.all
 		@branches=Branch.all
 		@pages=Page.all
-  	render :json => 
+  	render :json =>
   	{
   		"users": User.json_search(@users),
   		"works": Work.json_search(@works),
