@@ -39,16 +39,31 @@ window.userID = "<%= current_user.id%>";
     </div>
   </section>
 </div>
+<div class="create_team_work_form" id="create_team_work_form">
+  <div id="team_work_form_main" class="team_work_form_element">Create Team Work</div>
+  <img class="close_team_work_btn form_btn" src="/assets/close1.png">
+  <form id="team_work_form">
+    <div id="team_work_form_title" class="team_work_form_element">Title</div>
+    <input type="text" name="title" class="team_input team_work_form_element" />
+    <div id="team_work_form_team_name" class="team_work_form_element">Team</div>
+    <select id="team_work_form_selectTeam" name="team_name" class="team_work_form_element">
+    </select>
+  </form>
+  <input type="button" class="team_work_form_button" value="Create" />
+</div>
 <script>
 var getWorkFromTeam=function(){
   $(".team_work_wrap").hide
   $.getJSON("/api/team/"+teamID, function(response){
+    $("#team_work_form_selectTeam").append("<option value=\""+teamID+"\">"+response.name+"</option>");
     $.each(response.work_ids, function (i,id){
       if(i!=response.work_ids.length){
         $(".team_work_wrap").append('<div class="team_work team_work'+i+'"></div>').show('slow');
       }
       $.getJSON("/api/work/"+id, function(response){
         $(".team_work"+i).append('<div class="team_work_name team_work_name'+i+'">'+response.name+'</div>').show('slow');
+        $(".team_work"+i).append('<span id="teamBoxIcon"class="boxIcon"><img class="close_btn closebtn'+i+'" src="/assets/close1.png" height="15px" width="15px";/></span>')
+        $(".team_work"+i).attr("data-work_id",response.id)
       })
     })
     $.each(response.user_ids, function(i,id){
@@ -86,7 +101,10 @@ $(document).ready(function(){
     async:false
   });
   getWorkFromTeam();
-
+  $(document).on("click", '.team_work' , function(){
+    wId=$(this).data("work_id");
+    window.location='/main/work/'+wId;
+  })
   var team_search = {
     url: "/search",
     categories: [{
@@ -188,11 +206,80 @@ $(document).ready(function(){
     theme: "team"
   };
   $("#team_search").easyAutocomplete(team_search);
+  $(".close_btn").on("click",function(e){ //팀의 워크 지우기
+    e.stopPropagation();
+    var work_id = $(this).parent().parent().attr('data-work_id');
+    $.get("/api/work/"+work_id + "/delete", {"user_id": userID, "work_id": work_id})
+    .done(function(data){
+      alert("삭제완료.");
+      window.location = '/main/team/'+teamID;
+    })
+  })
   $(".content_close").click(function(){
     $.get("/api/team/" + teamID + "/withdraw", {"team_id": teamID, "user_id": userID})
     .done(function(data){
       alert("팀을 떠났습니다.");
       window.location = '/';
+    })
+  })
+  var team_work_countForm = 0;
+  $(document).on("click", ".team_work_form_button", function(e) {
+    e.preventDefault();
+    $.fn.mySerialize = function() { // 병합해야할듯...
+      var returning = '';
+      $('input, select, textarea',this).each(function(){
+        if (this.value!=="") // check this to avoid && in returning string
+        returning +='&'+this.value;
+      })
+      return returning.substring(1);
+    }
+    var formData1 = $("#team_work_form").mySerialize();
+    formData = formData1.split('&');
+    if (formData.length != 2) {
+      return;
+    } else {
+      if (formData[1] == "null") {
+        var inputData={"work":{"name":formData[0], "user_id": userID}}
+      } else {
+        var inputData={"work":{"name":formData[0], "user_id": userID,"team_id": formData[1]}}
+      }
+      window.location = '/main/team/'+teamID;
+    }
+    team_work_countForm++;
+    //console.log(work_countForm);
+    if (team_work_countForm == 1) {
+      $.ajax({
+        type:"POST",
+        url:"/api/post/work",
+        contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+        cache:false,
+        data: inputData,
+        success:function(data){
+          //alert("팀이 생성되었습니다");
+          //alert(data);
+        },
+        error:function(error){
+          //alert(error);
+        }
+      })
+    }
+  })
+  var nCount10=0;
+  $(document).on("click", ".create_team_work", function(e) {
+    e.stopPropagation();
+    if (nCount10==0) {
+      var x = e.pageX;
+      var y = e.pageY;
+      $("#create_team_work_form").css({top:y, left:x});
+      $("#create_team_work_form").show();
+      nCount10=1;
+    } else {
+      $("#create_team_work_form").hide();
+      nCount10=0;
+    }
+    $('.close_team_work_btn').click(function(){
+      $("#create_team_work_form").hide();
+      nCount10=0;
     })
   })
 });

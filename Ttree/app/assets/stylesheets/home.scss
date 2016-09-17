@@ -2,9 +2,23 @@ $addMainColor:#99d8dd;
 .boxIcon{
   position:relative;
   float:right;
+  width: 20px;
+  height: 80px;
   right:5px;
-  top:-30px;
-  display:none;
+  top:-35px;
+}
+.edit_work_btn{
+  position: relative;
+  display: none;
+  top: 15px;
+}
+.close_btn{
+  position: fixed;
+  display: none;
+}
+.star_btn{
+  position:relative;
+  display: none;
 }
 .form_btn{
   width: 15px;
@@ -55,8 +69,14 @@ $addMainColor:#99d8dd;
       transition: all 0.4s ease 0s;
       &:hover{
         background-color: #AED9DF;
-        .boxIcon{
+        .star_btn{
           display:inline-block;
+        }
+        .close_btn{
+          display: inline-block;
+        }
+        .edit_work_btn{
+          display: inline-block;
         }
       }
     }
@@ -92,8 +112,14 @@ $addMainColor:#99d8dd;
       &:hover{
         cursor: pointer;
         background-color: #AED9DF;
-        .boxIcon{
+        .star_btn{
           display:inline-block;
+        }
+        .close_btn{
+          display: inline-block;
+        }
+        .edit_work_btn{
+          display: inline-block;
         }
       }
       width: 20%;
@@ -418,4 +444,50 @@ $addMainColor:#99d8dd;
 }
 .wrap_team_content{
   text-align: left;
+}
+.edit_work_name{
+  font-size: 20px;
+  box-shadow: 2px 1px 10px #888888;
+  width: 300px;
+  height: 150px;
+  background-color: #F8F8F8;
+  position: absolute;
+  display: none;
+  border-radius: 5px;
+  bottom: 0;
+  z-index: 2;
+}
+.edit_work_button{
+  margin-top: 25px;
+  text-align:center;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #5cb3c1;
+  border: none;
+  color: white;
+  padding: 7px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+  &:hover{
+    cursor: pointer;
+    background-color: #44A1B0;
+  }
+}
+.work_name{
+  margin-left:2%;
+  margin-right:2%;
+  padding-bottom:2%;
+  padding-top:2%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width:90%;
+  background-color: #EFEFEF;
+  transition: all 0.4s ease 0s;
+  &:focus {
+    background-color: #FFFFFF;
+  }
 }

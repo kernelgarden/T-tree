@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   get '/api/team/:id/member_ids', to: 'apis#member_ids'   #해당 team의 user id들
   get '/api/work/:id', to: 'apis#work'         #해당 work의 정보
   get '/api/work/:id/branches', to: 'apis#branches' #해당 work의 branch들의 정보
+  get '/api/work/:id/branches/:id2',
+  			to: 'apis#branchesByParent' #해당 work의 parent_id에 따른 branch들의 정보
+  get '/api/work/:id/branches/:id2/position/:id3',
+  			to: 'apis#branchesByParentandPosition' #해당 work의 parent_id에 따른 branch들의 정보들중 해당 position
   get '/api/work/:id/branche_ids', to: 'apis#branche_ids' #해당 work의 branch id들
   get '/api/work/:id/tree', to: 'apis#tree'      #해당 work의 tree
 
@@ -45,10 +49,19 @@ Rails.application.routes.draw do
 
   post '/api/post/work', to: 'apis#getWork'         #해당 work의 정보
   get '/api/post/work', to: 'apis#getWork1'         #해당 work의 정보
+  post '/api/post/workName', to: 'apis#workName'
+  post '/api/post/branchName', to: 'apis#branchName'         #해당 work의 정보
+  post '/api/post/branchName2', to: 'apis#branchName2'         #해당 work의 정보
+  get '/api/work/:id/delete', to:'apis#workDelete' #해당 work 삭제
+
   post '/api/post/team', to:'apis#getTeam'
   post '/api/page/new', to: 'apis#getPages'
   post '/api/post/team_member', to:'apis#getMember'
+  post '/api/post/deleteunclassifiedpages', to:'apis#deleteunclassifiedpages'
+  post '/api/post/deletePages', to:'apis#deletePages'
+
   get '/api/team/:id/withdraw', to:'apis#teamWithdraw'
+
   get '/search', to:'search#getResult'
   # For details on the DSL available within this file, see http://guides.ruonrails.org/routing.html
 end

@@ -11,6 +11,7 @@ class MainController < ApplicationController
 
   def work
   	@work_id=params[:id]
+  	@page_ids=User.current.unclassifiedpage_ids
   end
 
 
