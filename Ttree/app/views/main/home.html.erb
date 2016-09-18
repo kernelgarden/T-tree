@@ -152,12 +152,14 @@ var makeTeamWorkBox=function(){
   });
   $(".addWork").append('<div class="add_work_name">Create Personal Work</div>')
 }
+
 /************************************************************/
 /////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function(){
   $.ajaxSetup({ //Json 비동기>>>동기
     async:false
   });
+
   //getInfo();
   makePersonalWorkBox();
   makeTeamWorkBox();
