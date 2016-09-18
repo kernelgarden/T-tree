@@ -15,10 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery.zoomooz.min
-<<<<<<< HEAD
 //= require snap.svg.js
-=======
 //= require select2
 
->>>>>>> 9b513d582c8e4a81aa2709e3cadc2e689f04b281
 /*main/pages*/
