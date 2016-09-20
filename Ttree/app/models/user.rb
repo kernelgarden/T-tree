@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :starlists, :dependent => :destroy, :foreign_key => "user_id"
   has_many :favorate_works, :through => :starlists, class_name: "Work"
 
+  searchkick text_start: [:email]
+
   def self.current
     Thread.current[:user]
   end

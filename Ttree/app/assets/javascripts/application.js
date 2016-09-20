@@ -14,8 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery.typeahead.min
 //= require jquery.zoomooz.min
 //= require snap.svg.js
-//= require select2
 
 /*main/pages*/

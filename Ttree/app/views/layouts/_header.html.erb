@@ -7,12 +7,27 @@ window.userName ="<%= current_user.name %>";
     <div id="menuDiv1">Works</div>
   </li>
   <li class="menu" id="menu_2">
+    <!--
     <div class="wrapDiv">
       <form action="/users/profile" accept-charset="UTF-8" method="get">
         <input name="utf8" type="hidden" value="✓">
         <input type="text" id="categories-basic" name="search" class="search blue" value="" placeholder="">
       </form>
-    </div>
+      -->
+      <form id="form-user_v1" name="form-user_v1">
+        <div class="typeahead__container">
+          <div class="typeahead__field">
+            <span class="typeahead__query">
+              <input class="js-typeahead-user_v1" name="user_v1[query]" type="search" autocomplete="off">
+            </span>
+            <span class="typeahead__button">
+              <button type="submit">
+                <i class="typeahead__search-icon"></i>
+              </button>
+            </span>
+          </div>
+        </div>
+      </form>
   </li>
   <li class="menu" id="menu_3">
     <div class="wrapDiv"><%=link_to image_tag("logo4.png", alt:"home",id:"home" ),root_path %></div>

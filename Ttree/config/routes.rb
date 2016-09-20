@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :search_suggestions
   devise_for :users, :controllers =>{:omniauth_callbacks =>"users/omniauth_callbacks" }
   root 'main#home'
   get 'users/new'
@@ -63,5 +64,6 @@ Rails.application.routes.draw do
   get '/api/team/:id/withdraw', to:'apis#teamWithdraw'
 
   get '/search', to:'search#getResult'
+  get '/search/autocomplete', to: 'search#autocomplete'
   # For details on the DSL available within this file, see http://guides.ruonrails.org/routing.html
 end
