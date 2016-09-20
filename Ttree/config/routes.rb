@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :users
 
   get '/main/work/:id', to: 'main#work'
-
+  get '/main/temp', to:'main#temp'
   get '/show/pages', to: 'main#pages'
 
   #json
@@ -58,8 +58,8 @@ Rails.application.routes.draw do
   post '/api/post/team', to:'apis#getTeam'
   post '/api/page/new', to: 'apis#getPages'
   post '/api/post/team_member', to:'apis#getMember'
-  post '/api/post/deleteunclassifiedpages', to:'apis#deleteunclassifiedpages'
-  post '/api/post/deletePages', to:'apis#deletePages'
+  post '/api/post/deleteunclassifiedpages', to:'apis#deleteunclassifiedpages'	#해당 임시페이지 삭제 
+  post '/api/post/deletePages', to:'apis#deletePages'	#해당 페이지 삭제 
 
   get '/api/team/:id/withdraw', to:'apis#teamWithdraw'
 

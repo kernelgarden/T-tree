@@ -26,6 +26,10 @@ class MainController < ApplicationController
 		@team=Team.find(@team_id)
   end
 
+  def temp
+
+  end
+
   private
   def logged_in_user
     unless user_signed_in?
