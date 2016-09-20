@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160906083846) do
-=======
 ActiveRecord::Schema.define(version: 20160917133310) do
->>>>>>> e945fde5c748ced8e3aeab95a9eb7d0297bacefe
 
   create_table "branches", force: :cascade do |t|
     t.string   "name"
@@ -46,12 +42,13 @@ ActiveRecord::Schema.define(version: 20160917133310) do
   end
 
   create_table "starlists", force: :cascade do |t|
-    t.integer  "list"
     t.integer  "user_id"
+    t.integer  "work_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id", "created_at"], name: "index_starlists_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_starlists_on_user_id"
+    t.index ["work_id", "user_id"], name: "index_starlists_on_work_id_and_user_id", unique: true
+    t.index ["work_id"], name: "index_starlists_on_work_id"
   end
 
   create_table "teams", force: :cascade do |t|
