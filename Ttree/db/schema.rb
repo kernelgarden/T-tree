@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907044211) do
+ActiveRecord::Schema.define(version: 20160917133310) do
 
   create_table "branches", force: :cascade do |t|
     t.string   "name"
-    t.integer  "position"
     t.integer  "work_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,6 +31,13 @@ ActiveRecord::Schema.define(version: 20160907044211) do
     t.datetime "updated_at", null: false
     t.index ["branch_id", "created_at"], name: "index_pages_on_branch_id_and_created_at"
     t.index ["branch_id"], name: "index_pages_on_branch_id"
+  end
+
+  create_table "search_suggestions", force: :cascade do |t|
+    t.string   "term"
+    t.integer  "popularity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "starlists", force: :cascade do |t|

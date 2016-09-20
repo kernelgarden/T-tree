@@ -7,12 +7,13 @@ class Page < ApplicationRecord
   validates:title, presence:true, length:{maximum:50}
   validates:branch_id, presence:true
 
+  searchkick text_start: [:title, :url], suggest: ["title"]
 
   def self.json_search(nodes)
     nodes.map do |node|
-        { :name => node.title, 
-        	:id => node.id, 
-        	:attr =>"Page", 
+        { :name => node.title,
+        	:id => node.id,
+        	:attr =>"Page",
         	:description => Branch.find(node.branch_id).name+" / "+node.created_at.strftime("%Y-%m-%d")}
     end
   end

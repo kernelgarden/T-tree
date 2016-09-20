@@ -160,6 +160,103 @@ $(document).ready(function(){
     async:false
   });
 
+$.typeahead({
+  input: '.js-typeahead-user_v1',
+  minLength: 1,
+  maxItem: 0,
+  order: "asc",
+  dynamic: true,
+  delay: 500,
+  hint: true,
+  cache: true,
+  compression: true,
+  cancelButton: false,
+  hightlight: true,
+  emptyTemplate: "no result for {{query}}",
+  source: {
+    user: {
+      display: "email",
+      ajax: [{
+        type: "GET",
+        url: "/search/autocomplete",
+        path: "data.user",
+        data: {
+          query: "{{query}}"
+        }
+      }],
+      template: '<span class="row">' +
+        '<span class="useremail">{{email}} <small style="color:#777;">user</small></span>' +
+        '</span>'
+    },
+    work: {
+      display: "name",
+      href: function (item) {
+        return '/main/work/' + item.id;
+      },
+      ajax: [{
+        type: "GET",
+        url: "/search/autocomplete",
+        path: "data.work",
+        data: {
+          query: "{{query}}"
+        }
+      }],
+      template: '<span>' +
+      '<span class="__work">' +
+      '<span class="__work_name">{{name}} <small style="color:#777;">work</small></span>' +
+      '</span>' +
+      '</span>'
+    },
+    branch: {
+      display: "branch_name",
+      ajax: [{
+        type: "GET",
+        url: "/search/autocomplete",
+        path: "data.branch",
+        data: {
+          query: "{{query}}"
+        }
+      }],
+      template: '<span>' +
+      '<span class="__branch">' +
+      '<span class="__branch_name">{{branch_name}} <small style="color:#777;">branch</small></span>' +
+      '</span>' +
+      '</span>'
+    },
+    page: {
+      display: "title",
+      ajax: [{
+        type: "GET",
+        url: "/search/autocomplete",
+        data: {
+          query: "{{query}}"
+        }
+      }, "data.page"],
+      template: '<span>' +
+      '<span class="__page">' +
+      '<span class="__page_title">{{title}} </span>' +
+      //'<span class-"__page_url">{{page[1]}}</span>' +
+      '<small style="color:#777;">page</small>' +
+      '</span>' +
+      '</span>'
+      }
+  },
+  callback: {
+    onClick: function (node, a, item, event) {
+
+      // You can do a simple window.location of the item.href
+      //alert(JSON.stringify(item));
+
+    },
+    onSendRequest: function (node, query) {
+      //console.log('request is sent')
+    },
+    onReceiveRequest: function (node, query) {
+      //console.log('request is received')
+    }
+  }
+});
+
   //getInfo();
   makePersonalWorkBox();
   makeTeamWorkBox();
