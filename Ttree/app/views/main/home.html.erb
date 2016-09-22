@@ -238,6 +238,15 @@ $(document).on("click", ".addWork", function(e) {
     nCount5=0;
   })
 })
+
+$('body').click(function(e){
+  if ( !$(e.target).is('.create_personal_work_form') ) {
+  	//alert()
+    $("#create_personal_work_form").hide();
+    nCount5=0;
+  }
+});
+
 var work_countForm = 0;
 $(document).on("click", ".personal_work_form_button", function(e) {
   e.preventDefault();
@@ -346,6 +355,14 @@ $(document).on("click", ".create_personal_team", function(e) {
     nCount6=0;
   })
 })
+
+$('body').click(function(e){
+  if ( !$(e.target).is('#create_team_work_form') ) {
+    $("#create_team_work_form").hide();
+    nCount6 = 0;
+  }
+});
+
 var nCount4 = 0;
 $('#create_team').click(function(e){
   e.stopPropagation();
@@ -365,6 +382,14 @@ $('#create_team').click(function(e){
     nCount4=0;
   })
 })
+
+$('body').click(function(e){
+  if ( !$(e.target).is('#create_team_form') ) {
+    $("#create_team_form").hide();
+    nCount4=0;
+  }
+});
+
 //워크 이름 수정
 var nCount7=0;
 $('.edit_work_btn').click(function(e){
@@ -424,6 +449,14 @@ $('.edit_work_btn').click(function(e){
     }
   })
 })
+
+$('body').click(function(e){
+  if ( !$(e.target).is('.edit_work_name') ) {
+    $(".edit_work_name").hide();
+    nCount7=0;
+  }
+});
+
 //  $('#create_team_form,#team_name').click(function(e){
 //e.stopImmediatePropagation();
 //  })
