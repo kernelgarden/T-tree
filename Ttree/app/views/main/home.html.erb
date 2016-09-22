@@ -227,7 +227,7 @@ $(document).on("click", ".addWork", function(e) {
     var x = e.pageX;
     var y = e.pageY;
     $("#create_personal_work_form").css({top:y, left:x});
-    $("#create_personal_work_form").show();
+    $("#create_personal_work_form").fadeIn(200);
     nCount5 = 1;
   } else {
     $("#create_personal_work_form").hide();
@@ -343,7 +343,7 @@ $(document).on("click", ".create_personal_team", function(e) {
     var x = e.pageX;
     var y = e.pageY;
     $("#create_team_work_form").css({top:y, left:x});
-    $("#create_team_work_form").show();
+    $("#create_team_work_form").fadeIn(200);
     nCount6 = 1;
     $("select#team_work_form_selectTeam").val($(this).attr('class').match(/\d/)[0]);
   } else {
@@ -370,7 +370,7 @@ $('#create_team').click(function(e){
     var x = e.pageX;
     var y = e.pageY;
     $("#create_team_form").css({top:y-180, left:x});
-    $("#create_team_form").show();
+    $("#create_team_form").fadeIn(200);
     nCount4=1;
   }
   else{
@@ -399,7 +399,7 @@ $('.edit_work_btn').click(function(e){
     var x = e.pageX;
     var y = e.pageY;
     $(".edit_work_name").css({top:y, left:x});
-    $(".edit_work_name").show();
+    $(".edit_work_name").fadeIn(200);
     nCount7=1;
   }
   else{
