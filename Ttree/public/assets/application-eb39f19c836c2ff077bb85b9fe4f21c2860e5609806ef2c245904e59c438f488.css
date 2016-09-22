@@ -7,11 +7,11 @@
  * @version 1.3.5
  * Copyright  License: 
  */
-/* line 11, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 11, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .easy-autocomplete {
   position: relative;
 }
-/* line 14, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 14, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .easy-autocomplete input {
   float: none;
   padding: 6px 12px;
@@ -22,15 +22,15 @@
   border-radius: 4px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
 }
-/* line 26, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 26, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .easy-autocomplete input:hover, .easy-autocomplete input:focus {
   box-shadow: none;
 }
-/* line 31, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 31, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .easy-autocomplete a {
   display: block;
 }
-/* line 35, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 35, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .easy-autocomplete.eac-bootstrap input {
   padding: 6px 12px;
   color: #555;
@@ -40,7 +40,7 @@
   border-radius: 4px;
 }
 
-/* line 46, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 46, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .easy-autocomplete-container {
   position: absolute;
   left: 0;
@@ -48,7 +48,7 @@
   width: 130%;
   border-radius: 10px;
 }
-/* line 55, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 55, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .easy-autocomplete-container ul {
   position: relative;
   display: none;
@@ -59,7 +59,7 @@
   background: none repeat scroll 0 0 #ffffff;
   border-top: 1px dotted #ccc;
 }
-/* line 67, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 67, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .easy-autocomplete-container ul li, .easy-autocomplete-container ul .eac-category {
   display: block;
   padding: 4px 12px;
@@ -71,31 +71,31 @@
   border-width: 0 1px;
   border-image: none;
 }
-/* line 82, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 82, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .easy-autocomplete-container ul li:last-child {
   border-width: 0 1px 1px;
   border-radius: 0 0 2px 2px;
 }
-/* line 87, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 87, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .easy-autocomplete-container ul li.selected {
   cursor: pointer;
   background: none repeat scroll 0 0 #ebebeb;
 }
-/* line 91, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 91, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .easy-autocomplete-container ul li.selected div {
   font-weight: normal;
 }
-/* line 96, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 96, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .easy-autocomplete-container ul li div {
   display: block;
   font-weight: normal;
   word-break: break-all;
 }
-/* line 103, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 103, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .easy-autocomplete-container ul li b {
   font-weight: bold;
 }
-/* line 108, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 108, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .easy-autocomplete-container ul .eac-category {
   height: 20px;
   background-color: #a8cfc3;
@@ -103,26 +103,26 @@
   font-color: #aaa;
 }
 
-/* line 119, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 119, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .eac-description .eac-item span {
   font-size: 0.9em;
   font-style: italic;
   color: #aaa;
 }
 
-/* line 125, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 125, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .eac-icon-left .eac-item img {
   max-height: 30px;
   margin-right: 4px;
 }
 
-/* line 130, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 130, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .eac-icon-right .eac-item {
   position: relative;
   min-height: 24px;
   margin-top: 8px;
 }
-/* line 136, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
+/* line 136, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.min.scss */
 .eac-icon-right .eac-item img {
   position: absolute;
   top: -8px;
@@ -141,7 +141,7 @@
  * @version 1.3.5
  * Copyright  License:
  */
-/* line 11, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 11, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete {
    /*
   &.eac-square {
@@ -324,18 +324,18 @@
   }
   */
 }
-/* line 59, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 59, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-round {
   font-family: 'Raleway', sans-serif;
 }
-/* line 62, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 62, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-round input {
   color: #888;
   font-family: inherit;
   font-size: 16px;
   font-weight: 400;
 }
-/* line 69, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 69, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-round ul {
   background: none;
   border-color: #888;
@@ -345,7 +345,7 @@
   top: 5px;
   left: 2px;
 }
-/* line 78, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 78, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-round ul li, .easy-autocomplete.eac-round ul .eac-category {
   background: #fff;
   border-color: #AFAFAF;
@@ -355,7 +355,7 @@
   transition: all 0.4s ease 0s;
   text-align: left;
 }
-/* line 87, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 87, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-round ul .eac-category {
   background-color: #AFAFAF;
   color: white;
@@ -364,37 +364,37 @@
   font-size: 18px;
   font-weight: 1000;
 }
-/* line 95, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 95, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-round ul li.selected, .easy-autocomplete.eac-round ul .eac-category.selected {
   background-color: #E2E2E2;
 }
-/* line 99, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 99, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-round ul li:first-child, .easy-autocomplete.eac-round ul .eac-category:first-child {
   border-radius: 10px 10px 0 0;
   border-width: 2px 2px 0;
 }
-/* line 104, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 104, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-round ul li:last-child, .easy-autocomplete.eac-round ul .eac-category:last-child {
   border-radius: 0 0 10px 10px;
   border-width: 0 2px 2px;
 }
-/* line 109, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 109, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-round ul li b, .easy-autocomplete.eac-round ul .eac-category b {
   font-weight: 700;
 }
-/* line 116, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 116, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-team {
   font-family: 'Raleway', sans-serif;
   margin: 0 auto;
 }
-/* line 119, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 119, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-team input {
   color: #888;
   font-family: inherit;
   font-size: 16px;
   font-weight: 400;
 }
-/* line 125, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 125, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-team ul {
   background: none;
   border-color: #888;
@@ -405,7 +405,7 @@
   top: 5px;
   left: 2px;
 }
-/* line 134, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 134, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-team ul li, .easy-autocomplete.eac-team ul .eac-category {
   background: #fff;
   border-color: #AFAFAF;
@@ -415,7 +415,7 @@
   transition: all 0.4s ease 0s;
   text-align: left;
 }
-/* line 143, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 143, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-team ul .eac-category {
   background-color: #AFAFAF;
   color: white;
@@ -424,27 +424,27 @@
   font-size: 18px;
   font-weight: 1000;
 }
-/* line 151, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 151, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-team ul li.selected, .easy-autocomplete.eac-team ul .eac-category.selected {
   background-color: #E2E2E2;
 }
-/* line 155, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 155, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-team ul li:first-child, .easy-autocomplete.eac-team ul .eac-category:first-child {
   border-radius: 10px 10px 0 0;
   border-width: 2px 2px 0;
 }
-/* line 160, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 160, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-team ul li:last-child, .easy-autocomplete.eac-team ul .eac-category:last-child {
   border-radius: 0 0 10px 10px;
   border-width: 0 2px 2px;
 }
-/* line 165, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
+/* line 165, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/easy-autocomplete.themes.min.scss */
 .easy-autocomplete.eac-team ul li b, .easy-autocomplete.eac-team ul .eac-category b {
   font-weight: 700;
 }
 
 /*# sourceMappingURL=easy-autocomplete.themes.min.css.map */
-/* line 5, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 5, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header {
   position: fixed;
   top: 0px;
@@ -465,7 +465,7 @@
   /*#menu_5*/
   /*#menu_6*/
 }
-/* line 17, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 17, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header .menu {
   display: inline-block;
   background-color: #99d8dd;
@@ -473,13 +473,13 @@
   float: left;
   border-style: none;
 }
-/* line 24, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 24, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_1 {
   width: 10%;
   background-color: #E2E4E6;
   /*#menuDiv1*/
 }
-/* line 27, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 27, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_1 #menuDiv1 {
   background-color: #01587a;
   color: white;
@@ -494,17 +494,17 @@
   cursor: pointer;
   font-weight: bold;
 }
-/* line 40, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 40, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_1 #menuDiv1:hover {
   background-color: #016B92;
 }
-/* line 46, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 46, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 {
   width: 20%;
   background-color: #E2E4E6;
   /*.search*/
 }
-/* line 49, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 49, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .search {
   display: block;
   -webkit-border-radius: 6px;
@@ -528,7 +528,7 @@
   transition: width .35s ease-in-out;
   /*.search:focus*/
 }
-/* line 70, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 70, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .search:focus {
   background: #fff;
   border: 3px solid #5cb3c1;
@@ -541,27 +541,27 @@
   background-repeat: no-repeat;
   width: 130%;
 }
-/* line 82, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 82, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .search:focus background-image:hover {
   cursor: pointer;
 }
-/* line 86, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 86, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .search::-webkit-input-placeholder {
   color: black;
 }
-/* line 89, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 89, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .search:-moz-placeholder {
   color: black;
 }
-/* line 92, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 92, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .search::-moz-placeholder {
   color: black;
 }
-/* line 95, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 95, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .search:-ms-input-placeholder {
   color: black;
 }
-/* line 99, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 99, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .blue {
   background: #5cb3c1;
   background-image: url(/assets/search2.png);
@@ -569,33 +569,33 @@
   background-repeat: no-repeat;
   background-position: 95% 50%;
 }
-/* line 106, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 106, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .blue:checked {
   background: #3498DB;
 }
-/* line 109, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 109, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_3 {
   width: 41%;
   background-color: #E2E4E6;
   /*#home*/
 }
-/* line 112, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 112, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_3 #home {
   padding: 5px;
   height: 30px;
 }
-/* line 118, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 118, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_4 {
   width: 7%;
   background-color: #E2E4E6;
 }
-/* line 123, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 123, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_5 {
   width: 10%;
   background-color: #E2E4E6;
   /*#menuDiv5*/
 }
-/* line 126, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 126, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_5 #menuDiv5 {
   background-color: #5cb3c1;
   float: right;
@@ -607,18 +607,18 @@
   width: 30px;
   cursor: pointer;
 }
-/* line 136, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 136, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_5 #menuDiv5:hover {
   background-color: #44A1B0;
 }
-/* line 142, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 142, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_6 {
   width: 11%;
   background-color: #E2E4E6;
   padding-right: 1%;
   /*#menuDiv6*/
 }
-/* line 146, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 146, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_6 #menuDiv6 {
   text-shadow: 2px 2px #8C8C8C;
   background-color: #f3ba00;
@@ -634,14 +634,14 @@
   cursor: pointer;
   font-weight: bold;
 }
-/* line 160, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 160, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_6 #menuDiv6:hover {
   background-color: #FEC823;
 }
 
 /*#header*/
 /*//////////////#dropDown1/////////////*/
-/* line 169, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 169, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 {
   position: fixed;
   overflow: auto;
@@ -657,22 +657,22 @@
   font-family: 'Raleway', sans-serif;
   /*#WorkList*/
 }
-/* line 170, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 170, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #F5F5F5;
 }
-/* line 174, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 174, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1::-webkit-scrollbar {
   width: 6px;
   background-color: #F5F5F5;
 }
-/* line 178, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 178, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1::-webkit-scrollbar-thumb {
   background-color: #999999;
   border-radius: 5px;
 }
-/* line 195, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 195, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList {
   list-style: none;
   padding-bottom: 20px;
@@ -682,7 +682,7 @@
   /*TeamWorks*/
   /*.work_searchContain*/
 }
-/* line 200, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 200, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_li {
   height: 25px;
   width: 90%;
@@ -693,30 +693,29 @@
   color: #6B6B6B;
   /*font-weight: bold;*/
 }
-/* line 209, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 209, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_li .left_icon {
   float: left;
   margin-top: 0.5%;
   margin-right: 5%;
 }
-/* line 214, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 214, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_li .right_icon {
   float: right;
-  padding: 2%;
   margin-bottom: 4.5%;
   border-radius: 4px;
 }
-/* line 219, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 219, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_li .right_icon:hover {
   background-color: #99d8dd;
   cursor: pointer;
 }
-/* line 226, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 226, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList #TeamWorks {
   background-color: #EFEFEF;
   /*team_li*/
 }
-/* line 228, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 228, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList #TeamWorks .team_li {
   height: 25px;
   width: 90%;
@@ -727,25 +726,25 @@
   color: #6B6B6B;
   /*font-weight: bold;*/
 }
-/* line 237, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 237, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList #TeamWorks .team_li .left_icon {
   float: left;
   margin-top: 0.5%;
   margin-right: 5%;
 }
-/* line 242, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 242, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList #TeamWorks .team_li .team_right_icon {
   float: right;
   padding: 2%;
   margin-bottom: 4.5%;
   border-radius: 4px;
 }
-/* line 247, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 247, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList #TeamWorks .team_li .team_right_icon:hover {
   background-color: #FFEA8E;
   cursor: pointer;
 }
-/* line 255, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 255, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_detail_li {
   height: 15px;
   width: 90%;
@@ -757,12 +756,12 @@
   background-color: #EFEFEF;
   overflow: hidden;
 }
-/* line 265, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 265, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_detail_li:hover {
   background-color: #99d8dd;
   cursor: pointer;
 }
-/* line 270, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 270, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_searchContain {
   padding-top: 5%;
   padding-bottom: 5%;
@@ -770,7 +769,7 @@
   padding-left: 2%;
   /*input*/
 }
-/* line 275, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 275, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_searchContain input {
   margin-left: 2%;
   margin-right: 2%;
@@ -787,15 +786,15 @@
   color: #7C7C7C;
   font-size: 15px;
 }
-/* line 290, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 290, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_searchContain input:focus {
   background-color: #FFFFFF;
 }
 
 /*//////////////#dropDown5/////////////*/
-/* line 299, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 299, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 {
-  height: 240px;
+  height: 250px;
   width: 220px;
   position: fixed;
   display: none;
@@ -808,7 +807,7 @@
   font-family: 'Raleway', sans-serif;
   /*#addList*/
 }
-/* line 312, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 312, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList {
   list-style: none;
   padding-bottom: 20px;
@@ -821,7 +820,7 @@
   /*#ReadingInfoSelectBtn*/
   /*.add_formContain*/
 }
-/* line 317, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 317, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_li {
   height: 25px;
   width: 90%;
@@ -831,12 +830,12 @@
   padding-left: 5%;
   /*font-weight: bold;*/
 }
-/* line 325, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 325, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_li:hover {
   background-color: #99d8dd;
   cursor: pointer;
 }
-/* line 330, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 330, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_li_name {
   height: 20px;
   width: 80%;
@@ -850,25 +849,25 @@
   color: #868686;
   border-bottom: 2px dotted #A8A8A8;
 }
-/* line 342, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 342, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_li_name #left_icon {
   float: left;
   margin-top: 5px;
 }
-/* line 345, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 345, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_li_name #left_icon:hover {
   cursor: pointer;
 }
-/* line 350, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 350, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_form {
   padding-right: 5%;
   padding-left: 5%;
 }
-/* line 354, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 354, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList #add_form1 {
   margin-top: 15px;
 }
-/* line 357, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 357, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList #ReadingInfoSelectBtn {
   margin-left: 7%;
   margin-top: 2%;
@@ -884,12 +883,12 @@
   text-decoration: none;
   display: inline-block;
 }
-/* line 371, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 371, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList #ReadingInfoSelectBtn:hover {
   cursor: pointer;
   background-color: #44A1B0;
 }
-/* line 376, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 376, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_formContain {
   padding-top: 3%;
   padding-bottom: 5%;
@@ -898,7 +897,7 @@
   /*input*/
   /*select*/
 }
-/* line 381, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 381, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_formContain input {
   margin-left: 2%;
   margin-right: 2%;
@@ -911,11 +910,11 @@
   width: 96%;
   background-color: #EFEFEF;
 }
-/* line 393, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 393, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_formContain input:focus {
   background-color: #FFFFFF;
 }
-/* line 397, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 397, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_formContain select {
   margin-left: 2%;
   margin-right: 2%;
@@ -928,14 +927,14 @@
   width: 96%;
   background-color: #EFEFEF;
 }
-/* line 408, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 408, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_formContain select:focus {
   background-color: #FFFFFF;
 }
 
 /*#dropDown5*/
 /*//////////////#dropDown6/////////////*/
-/* line 417, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 417, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 {
   height: 310px;
   width: 220px;
@@ -951,12 +950,12 @@
   /*a*/
   /*#userList*/
 }
-/* line 429, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 429, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 a {
   text-decoration: none;
   color: inherit;
 }
-/* line 433, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 433, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 #userList {
   list-style: none;
   padding-bottom: 20px;
@@ -965,7 +964,7 @@
   /*.user_li*/
   /*.user_li_name*/
 }
-/* line 438, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 438, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 #userList .user_li {
   height: 20px;
   width: 90%;
@@ -978,12 +977,12 @@
   /*font-weight: bold;*/
   /*.user_li:hover*/
 }
-/* line 448, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 448, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 #userList .user_li:hover {
   background-color: #99d8dd;
   cursor: pointer;
 }
-/* line 453, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 453, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 #userList .user_li_name {
   height: 40px;
   width: 84%;
@@ -997,7 +996,7 @@
   color: #868686;
   border-bottom: 2px dotted #A8A8A8;
 }
-/* line 466, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 466, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 #userList .user_li_logout {
   border-top: 2px dotted #A8A8A8;
   height: 40px;
@@ -1011,7 +1010,7 @@
   color: #888888;
   /*.user_li:hover*/
 }
-/* line 477, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 477, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 #userList .user_li_logout:hover {
   /*background-color: $addMainColor;*/
   cursor: pointer;
@@ -1019,12 +1018,12 @@
 }
 
 /*#dropDown6*/
-/* line 486, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 486, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 .typeahead__container {
   top: 4px;
   width: 140%;
 }
-/* line 2, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 2, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .boxIcon {
   position: relative;
   float: right;
@@ -1034,26 +1033,26 @@
   top: -35px;
 }
 
-/* line 10, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 10, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .edit_work_btn {
   position: relative;
   display: none;
   top: 15px;
 }
 
-/* line 15, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 15, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .close_btn {
   position: fixed;
   display: none;
 }
 
-/* line 19, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 19, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .star_btn {
   position: relative;
   display: none;
 }
 
-/* line 23, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 23, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .form_btn {
   width: 15px;
   height: 15px;
@@ -1063,12 +1062,12 @@
   float: right;
 }
 
-/* line 31, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 31, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .form_btn:hover {
   cursor: pointer;
 }
 
-/* line 34, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 34, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work {
   margin: 70 auto;
   width: 90%;
@@ -1076,18 +1075,18 @@
   /*.personal_work*/
   /*.personal_team*/
 }
-/* line 38, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 38, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_work {
   /*#personal_work_header*/
   /*.personal_work_content*/
 }
-/* line 39, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 39, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_work #personal_work_header {
   height: 35px;
   text-align: left;
   color: #444444;
 }
-/* line 44, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 44, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_work .personal_work_content {
   transition: all 0.4s ease 0s;
   width: 20%;
@@ -1100,50 +1099,50 @@
   /*.personal_work_name*/
   /*.personal_work_name*/
 }
-/* line 53, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 53, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_work .personal_work_content:hover {
   cursor: pointer;
 }
-/* line 56, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 56, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_work .personal_work_content .personal_work_name {
   margin: 10px;
   color: white;
 }
-/* line 60, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 60, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_work .personal_work_content .add_work_name {
   margin: 10px;
   color: black;
 }
-/* line 65, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 65, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_work .userWork {
   background-color: #5cb3c1;
   box-shadow: 2px 1px 4px #A3A3A3;
   text-shadow: 2px 2px #8C8C8C;
   transition: all 0.4s ease 0s;
 }
-/* line 70, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 70, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_work .userWork:hover {
   background-color: #AED9DF;
 }
-/* line 72, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 72, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_work .userWork:hover .star_btn {
   display: inline-block;
 }
-/* line 75, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 75, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_work .userWork:hover .close_btn {
   display: inline-block;
 }
-/* line 78, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 78, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_work .userWork:hover .edit_work_btn {
   display: inline-block;
 }
-/* line 83, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 83, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_work .addWork {
   cursor: default;
   background-color: #E2E4E6;
   box-shadow: 2px 1px 4px #A3A3A3;
 }
-/* line 89, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 89, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_team {
   margin-top: 40px;
   text-align: left;
@@ -1151,14 +1150,14 @@
   /*.personal_team_content*/
   /*.create_personal_team*/
 }
-/* line 92, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 92, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_team .personal_team_header {
   height: 35px;
   text-align: left;
   color: #444444;
   /*.personal_team_header*/
 }
-/* line 96, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 96, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_team .personal_team_header .team_more {
   width: 70px;
   height: 30px;
@@ -1168,12 +1167,12 @@
   display: inline-block;
   transition: all 0.4s ease 0s;
 }
-/* line 104, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 104, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_team .personal_team_header .team_more:hover {
   cursor: pointer;
   box-shadow: 2px 1px 4px #A3A3A3;
 }
-/* line 110, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 110, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_team .personal_team_content {
   transition: all 0.4s ease 0s;
   width: 20%;
@@ -1186,29 +1185,29 @@
   vertical-align: bottom;
   /*.personal_team_name*/
 }
-/* line 112, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 112, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_team .personal_team_content:hover {
   cursor: pointer;
   background-color: #AED9DF;
 }
-/* line 115, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 115, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_team .personal_team_content:hover .star_btn {
   display: inline-block;
 }
-/* line 118, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 118, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_team .personal_team_content:hover .close_btn {
   display: inline-block;
 }
-/* line 121, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 121, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_team .personal_team_content:hover .edit_work_btn {
   display: inline-block;
 }
-/* line 133, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 133, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_team .personal_team_content .personal_team_name {
   margin: 10px;
   color: white;
 }
-/* line 138, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 138, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_team .create_personal_team {
   width: 20%;
   height: 90px;
@@ -1220,19 +1219,19 @@
   cursor: pointer;
   /*.create_personal_team_content*/
 }
-/* line 147, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 147, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .member_work .personal_team .create_personal_team .create_personal_team_content {
   margin: 12px;
 }
 
 /*.member_work*/
-/* line 153, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 153, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_personal_work_form {
   text-align: left;
   padding-bottom: 20px;
   margin-left: 0;
   margin-right: 0;
-  height: 218px;
+  height: 240px;
   width: 220px;
   top: 50px;
   right: 10px;
@@ -1244,14 +1243,14 @@
   position: absolute;
   display: none;
 }
-/* line 169, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 169, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_personal_work_form .personal_work_form_element {
   padding-top: 3%;
   padding-bottom: 5%;
   padding-right: 5%;
   /*padding-left:5%;*/
 }
-/* line 175, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 175, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_personal_work_form #personal_work_form_main {
   height: 20px;
   width: 80%;
@@ -1265,26 +1264,26 @@
   color: #868686;
   border-bottom: 2px dotted #A8A8A8;
 }
-/* line 187, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 187, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_personal_work_form #personal_work_form_main #left_icon {
   float: left;
   margin-top: 5px;
   transition: all 0.4s ease 0s;
 }
-/* line 191, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 191, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_personal_work_form #personal_work_form_main #left_icon:hover {
   cursor: pointer;
 }
-/* line 196, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 196, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_personal_work_form #personal_work_form {
   padding-right: 5%;
   padding-left: 5%;
 }
-/* line 200, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 200, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_personal_work_form #personal_work_form #personal_work_form_title {
   margin-top: 8px;
 }
-/* line 204, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 204, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_personal_work_form #personal_work_form .personal_input {
   margin-left: 2%;
   margin-right: 2%;
@@ -1297,15 +1296,15 @@
   width: 96%;
   background-color: #EFEFEF;
 }
-/* line 216, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 216, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_personal_work_form #personal_work_form .personal_input:focus {
   background-color: #FFFFFF;
 }
-/* line 221, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 221, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_personal_work_form #personal_work_form #personal_work_form_team_name {
   margin-top: 4px;
 }
-/* line 225, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 225, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_personal_work_form #personal_work_form #personal_work_form_selectTeam {
   margin-left: 2%;
   margin-right: 2%;
@@ -1318,11 +1317,11 @@
   width: 96%;
   background-color: #EFEFEF;
 }
-/* line 236, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 236, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_personal_work_form #personal_work_form #personal_work_form_selectTeam:focus {
   background-color: #FFFFFF;
 }
-/* line 241, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 241, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_personal_work_form .personal_work_form_button {
   margin-left: 7%;
   margin-top: 7%;
@@ -1339,19 +1338,19 @@
   display: inline-block;
   transition: all 0.4s ease 0s;
 }
-/* line 256, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 256, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_personal_work_form .personal_work_form_button:hover {
   cursor: pointer;
   background-color: #44A1B0;
 }
 
-/* line 262, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 262, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team_work_form {
   text-align: left;
   padding-bottom: 20px;
   margin-left: 0;
   margin-right: 0;
-  height: 218px;
+  height: 230px;
   width: 220px;
   top: 50px;
   right: 10px;
@@ -1363,14 +1362,14 @@
   position: absolute;
   display: none;
 }
-/* line 278, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 278, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team_work_form .team_work_form_element {
   padding-top: 3%;
   padding-bottom: 5%;
   padding-right: 5%;
   /*padding-left:5%;*/
 }
-/* line 284, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 284, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team_work_form #team_work_form_main {
   height: 20px;
   width: 80%;
@@ -1384,26 +1383,26 @@
   color: #868686;
   border-bottom: 2px dotted #A8A8A8;
 }
-/* line 296, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 296, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team_work_form #team_work_form_main #left_icon {
   float: left;
   margin-top: 5px;
   transition: all 0.4s ease 0s;
 }
-/* line 300, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 300, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team_work_form #team_work_form_main #left_icon:hover {
   cursor: pointer;
 }
-/* line 305, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 305, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team_work_form #team_work_form {
   padding-right: 5%;
   padding-left: 5%;
 }
-/* line 309, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 309, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team_work_form #team_work_form #team_work_form_title {
   margin-top: 8px;
 }
-/* line 313, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 313, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team_work_form #team_work_form .team_input {
   margin-left: 2%;
   margin-right: 2%;
@@ -1416,15 +1415,15 @@
   width: 96%;
   background-color: #EFEFEF;
 }
-/* line 325, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 325, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team_work_form #team_work_form .team_input:focus {
   background-color: #FFFFFF;
 }
-/* line 330, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 330, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team_work_form #team_work_form #team_work_form_team_name {
   margin-top: 4px;
 }
-/* line 334, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 334, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team_work_form #team_work_form #team_work_form_selectTeam {
   margin-left: 2%;
   margin-right: 2%;
@@ -1437,11 +1436,11 @@
   width: 96%;
   background-color: #EFEFEF;
 }
-/* line 345, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 345, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team_work_form #team_work_form #team_work_form_selectTeam:focus {
   background-color: #FFFFFF;
 }
-/* line 350, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 350, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team_work_form .team_work_form_button {
   margin-left: 7%;
   margin-top: 7%;
@@ -1458,13 +1457,13 @@
   display: inline-block;
   transition: all 0.4s ease 0s;
 }
-/* line 365, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 365, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team_work_form .team_work_form_button:hover {
   cursor: pointer;
   background-color: #44A1B0;
 }
 
-/* line 371, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 371, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team {
   width: 100px;
   height: 25px;
@@ -1477,24 +1476,24 @@
   box-shadow: 2px 1px 10px #888888;
 }
 
-/* line 382, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 382, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 #personal_work_form_main {
   height: 40px;
   padding-top: 10px;
 }
 
-/* line 390, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 390, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team:hover {
   background-color: red;
   cursor: pointer;
 }
 
-/* line 394, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 394, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .create_team_form {
   font-size: 20px;
   box-shadow: 2px 1px 10px #888888;
   width: 300px;
-  height: 150px;
+  height: 170px;
   background-color: #F8F8F8;
   position: absolute;
   display: none;
@@ -1504,13 +1503,13 @@
   z-index: 2;
 }
 
-/* line 407, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 407, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 #team_name {
   height: 40px;
   padding-top: 10px;
 }
 
-/* line 411, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 411, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .team_input {
   margin-left: 2%;
   margin-right: 2%;
@@ -1524,12 +1523,12 @@
   background-color: #EFEFEF;
   transition: all 0.4s ease 0s;
 }
-/* line 423, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 423, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .team_input:focus {
   background-color: #FFFFFF;
 }
 
-/* line 427, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 427, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .team_button {
   margin-top: 25px;
   text-align: center;
@@ -1544,18 +1543,18 @@
   display: inline-block;
   transition: all 0.4s ease 0s;
 }
-/* line 440, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 440, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .team_button:hover {
   cursor: pointer;
   background-color: #44A1B0;
 }
 
-/* line 445, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 445, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .wrap_team_content {
   text-align: left;
 }
 
-/* line 448, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 448, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .edit_work_name {
   font-size: 20px;
   box-shadow: 2px 1px 10px #888888;
@@ -1569,7 +1568,7 @@
   z-index: 2;
 }
 
-/* line 460, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 460, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .edit_work_button {
   margin-top: 25px;
   text-align: center;
@@ -1584,13 +1583,13 @@
   display: inline-block;
   transition: all 0.4s ease 0s;
 }
-/* line 473, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 473, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .edit_work_button:hover {
   cursor: pointer;
   background-color: #44A1B0;
 }
 
-/* line 478, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 478, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .work_name {
   margin-left: 2%;
   margin-right: 2%;
@@ -1604,12 +1603,12 @@
   background-color: #EFEFEF;
   transition: all 0.4s ease 0s;
 }
-/* line 490, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/home.scss */
+/* line 490, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/home.scss */
 .work_name:focus {
   background-color: #FFFFFF;
 }
 button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}.typeahead__container{position:relative;font:14px Lato,Helvetica Neue,Arial,Helvetica,sans-serif}.typeahead__container *{box-sizing:border-box;outline:0}.typeahead__query{position:relative;z-index:2;width:100%}.typeahead__filter{position:relative}.typeahead__filter button{min-width:100%;white-space:nowrap}.typeahead__filter button:after{display:inline-block;margin-left:4px;width:0;height:0;vertical-align:-2px;content:"";border:4px solid;border-right-color:transparent;border-bottom-color:transparent;border-left-color:transparent}.typeahead__field{font-size:0;position:relative;display:table;border-collapse:separate;width:100%}.typeahead__field>*{display:table-cell;vertical-align:top}.typeahead__button,.typeahead__filter,.typeahead__query{font-size:14px}.typeahead__button{position:relative;font-size:0;width:1%;vertical-align:middle}.typeahead__button button{border-top-right-radius:2px;border-bottom-right-radius:2px}.typeahead__field input{display:block;width:100%;height:32px;padding:6px 12px;color:#555;background:#fff;border:1px solid #ccc;border-radius:2px 0 0 2px;transition:all ease-in-out .15s;-webkit-appearance:none;-moz-appearance:none;appearance:none;box-sizing:border-box}.typeahead__field input:active,.typeahead__field input:focus{border-color:#66afe9}.typeahead__field input[type=search],.typeahead__field input[type=search]::-webkit-search-cancel-button{-webkit-appearance:textfield;appearance:textfield}.typeahead__field input[type=search]::-ms-clear{display:none;width:0;height:0}.typeahead__container.hint .typeahead__field input{background:transparent}.typeahead__container.hint .typeahead__field input:last-child,.typeahead__hint{background:#fff}.typeahead__container button{display:inline-block;margin-bottom:0;text-align:center;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;background-color:#fff;border:1px solid #ccc;height:32px;padding:6px 12px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;color:#555}.typeahead__container button:focus,.typeahead__container button:hover{color:#3c3c3c;background-color:#f5f5f5;border-color:#b3b3b3}.typeahead__container button.active,.typeahead__container button:active{background-image:none}.typeahead__container button:active,.typeahead__container button:focus{border-color:#66afe9}.typeahead__container button.disabled,.typeahead__container button[disabled],.typeahead__container input.disabled,.typeahead__container input[disabled]{cursor:not-allowed;pointer-events:none;opacity:.65;box-shadow:none;background-color:#fff;border-color:#ccc}.typeahead__button,.typeahead__filter{z-index:1}.typeahead__button button,.typeahead__filter button{margin-left:-1px;border-bottom-left-radius:0;border-top-left-radius:0}.typeahead__button:active,.typeahead__button:active button:active,.typeahead__button:active button:focus,.typeahead__button:focus,.typeahead__button:focus button:active,.typeahead__button:focus button:focus,.typeahead__button:hover,.typeahead__button:hover button:active,.typeahead__button:hover button:focus,.typeahead__filter:active,.typeahead__filter:active button:active,.typeahead__filter:active button:focus,.typeahead__filter:focus,.typeahead__filter:focus button:active,.typeahead__filter:focus button:focus,.typeahead__filter:hover,.typeahead__filter:hover button:active,.typeahead__filter:hover button:focus{z-index:5}.typeahead__filter+.typeahead__button button{margin-left:-2px}.typeahead__container.filter .typeahead__filter{z-index:5}.typeahead__dropdown,.typeahead__list{position:absolute;top:100%;left:0;z-index:4;width:100%;min-width:160px;padding:5px 0;margin:2px 0 0;list-style:none;text-align:left;background-color:#fff;border:1px solid #ccc;border-radius:2px;background-clip:padding-box}.typeahead__result.detached .typeahead__list{position:relative;z-index:6;top:initial;left:initial}.typeahead__dropdown{right:0;left:initial;z-index:5}.typeahead__list>li{position:relative;border-top:1px solid #ccc}.typeahead__list>li:first-child{border-top:none}.typeahead__dropdown>li>a,.typeahead__list>li>a{display:block;padding:6px 12px;clear:both;color:#333;text-decoration:none}.typeahead__dropdown>li.active>a,.typeahead__dropdown>li>a:focus,.typeahead__dropdown>li>a:hover,.typeahead__list>li.active>a,.typeahead__list>li>a:focus,.typeahead__list>li>a:hover{background-color:#f5f5f5;color:#3c3c3c}.typeahead__list.empty>li>a{cursor:default}.typeahead__list.empty>li.active>a,.typeahead__list.empty>li>a:focus,.typeahead__list.empty>li>a:hover{background-color:transparent}.typeahead__list>li.typeahead__group{border-color:#bfdef6;font-weight:700}.typeahead__list>li.typeahead__group:first-child{border-top:1px solid #bfdef6}.typeahead__list>li.typeahead__group.active>a,.typeahead__list>li.typeahead__group>a,.typeahead__list>li.typeahead__group>a:focus,.typeahead__list>li.typeahead__group>a:hover{cursor:default;color:#17639f;background:#ecf5fc}.typeahead__list>li.typeahead__group+li.typeahead__item{border-color:#bfdef6}.typeahead__container.backdrop+.typeahead__backdrop,.typeahead__container.filter .typeahead__dropdown,.typeahead__container.hint .typeahead__hint,.typeahead__container.result .typeahead__list{display:block!important}.typeahead__container+.typeahead__backdrop,.typeahead__container .typeahead__dropdown,.typeahead__container .typeahead__hint,.typeahead__container .typeahead__list{display:none!important}.typeahead__dropdown li:last-child{margin-top:5px;padding-top:5px;border-top:1px solid #ccc}.typeahead__cancel-button{visibility:hidden;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border-radius:50%;width:16px;height:16px;position:absolute;top:8px;right:.8em;cursor:pointer;background:url(data:image/svg+xml;charset=utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCIgdmlld0JveD0iMCAwIDQzOC41MzMgNDM4LjUzMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDM4LjUzMyA0MzguNTMzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTQwOS4xMzMsMTA5LjIwM2MtMTkuNjA4LTMzLjU5Mi00Ni4yMDUtNjAuMTg5LTc5Ljc5OC03OS43OTZDMjk1LjczNiw5LjgwMSwyNTkuMDU4LDAsMjE5LjI3MywwICAgYy0zOS43ODEsMC03Ni40Nyw5LjgwMS0xMTAuMDYzLDI5LjQwN2MtMzMuNTk1LDE5LjYwNC02MC4xOTIsNDYuMjAxLTc5LjgsNzkuNzk2QzkuODAxLDE0Mi44LDAsMTc5LjQ4OSwwLDIxOS4yNjcgICBjMCwzOS43OCw5LjgwNCw3Ni40NjMsMjkuNDA3LDExMC4wNjJjMTkuNjA3LDMzLjU5Miw0Ni4yMDQsNjAuMTg5LDc5Ljc5OSw3OS43OThjMzMuNTk3LDE5LjYwNSw3MC4yODMsMjkuNDA3LDExMC4wNjMsMjkuNDA3ICAgczc2LjQ3LTkuODAyLDExMC4wNjUtMjkuNDA3YzMzLjU5My0xOS42MDIsNjAuMTg5LTQ2LjIwNiw3OS43OTUtNzkuNzk4YzE5LjYwMy0zMy41OTYsMjkuNDAzLTcwLjI4NCwyOS40MDMtMTEwLjA2MiAgIEM0MzguNTMzLDE3OS40ODUsNDI4LjczMiwxNDIuNzk1LDQwOS4xMzMsMTA5LjIwM3ogTTMyMi42MjEsMjcwLjkzOWMzLjYxNywzLjYxMyw1LjQyOCw3LjkwNSw1LjQyOCwxMi44NTQgICBjMCw1LjEzMy0xLjgxMSw5LjUxNC01LjQyOCwxMy4xMjdsLTI1LjY5MywyNS43MDFjLTMuNjE0LDMuNjEzLTcuOTk0LDUuNDItMTMuMTM1LDUuNDJjLTQuOTQ4LDAtOS4yMzYtMS44MDctMTIuODQ3LTUuNDIgICBsLTUxLjY3Ni01MS42ODJsLTUxLjY3OCw1MS42ODJjLTMuNjE2LDMuNjEzLTcuODk4LDUuNDItMTIuODQ3LDUuNDJjLTUuMTQsMC05LjUxNy0xLjgwNy0xMy4xMzQtNS40MmwtMjUuNjk3LTI1LjcwMSAgIGMtMy42MTYtMy42MTMtNS40MjQtNy45OTQtNS40MjQtMTMuMTI3YzAtNC45NDgsMS44MDktOS4yNCw1LjQyNC0xMi44NTRsNTEuNjc4LTUxLjY3M2wtNTEuNjc4LTUxLjY3OCAgIGMtMy42MTYtMy42MTItNS40MjQtNy44OTgtNS40MjQtMTIuODQ3YzAtNS4xNCwxLjgwOS05LjUxNyw1LjQyNC0xMy4xMzRsMjUuNjk3LTI1LjY5M2MzLjYxNy0zLjYxNiw3Ljk5NC01LjQyNCwxMy4xMzQtNS40MjQgICBjNC45NDksMCw5LjIzMSwxLjgwOSwxMi44NDcsNS40MjRsNTEuNjc4LDUxLjY3NGw1MS42NzYtNTEuNjc0YzMuNjEtMy42MTYsNy44OTgtNS40MjQsMTIuODQ3LTUuNDI0ICAgYzUuMTQxLDAsOS41MjEsMS44MDksMTMuMTM1LDUuNDI0bDI1LjY5MywyNS42OTNjMy42MTcsMy42MTcsNS40MjgsNy45OTQsNS40MjgsMTMuMTM0YzAsNC45NDgtMS44MTEsOS4yMzUtNS40MjgsMTIuODQ3ICAgbC01MS42NzUsNTEuNjc4TDMyMi42MjEsMjcwLjkzOXoiIGZpbGw9IiM1NTU1NTUiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K) no-repeat scroll 50% transparent}.typeahead__container.cancel:not(.loading) .typeahead__cancel-button{visibility:visible;opacity:.25}.typeahead__container.cancel:not(.loading) .typeahead__cancel-button:hover{opacity:.4}.typeahead__search-icon{padding:0 1.25rem;width:16px;height:16px;display:block;background:url(data:image/svg+xml;charset=utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMS4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI1MC4zMTMgMjUwLjMxMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjUwLjMxMyAyNTAuMzEzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnIGlkPSJTZWFyY2giPgoJPHBhdGggc3R5bGU9ImZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkOyIgZD0iTTI0NC4xODYsMjE0LjYwNGwtNTQuMzc5LTU0LjM3OGMtMC4yODktMC4yODktMC42MjgtMC40OTEtMC45My0wLjc2ICAgYzEwLjctMTYuMjMxLDE2Ljk0NS0zNS42NiwxNi45NDUtNTYuNTU0QzIwNS44MjIsNDYuMDc1LDE1OS43NDcsMCwxMDIuOTExLDBTMCw0Ni4wNzUsMCwxMDIuOTExICAgYzAsNTYuODM1LDQ2LjA3NCwxMDIuOTExLDEwMi45MSwxMDIuOTExYzIwLjg5NSwwLDQwLjMyMy02LjI0NSw1Ni41NTQtMTYuOTQ1YzAuMjY5LDAuMzAxLDAuNDcsMC42NCwwLjc1OSwwLjkyOWw1NC4zOCw1NC4zOCAgIGM4LjE2OSw4LjE2OCwyMS40MTMsOC4xNjgsMjkuNTgzLDBDMjUyLjM1NCwyMzYuMDE3LDI1Mi4zNTQsMjIyLjc3MywyNDQuMTg2LDIxNC42MDR6IE0xMDIuOTExLDE3MC4xNDYgICBjLTM3LjEzNCwwLTY3LjIzNi0zMC4xMDItNjcuMjM2LTY3LjIzNWMwLTM3LjEzNCwzMC4xMDMtNjcuMjM2LDY3LjIzNi02Ny4yMzZjMzcuMTMyLDAsNjcuMjM1LDMwLjEwMyw2Ny4yMzUsNjcuMjM2ICAgQzE3MC4xNDYsMTQwLjA0NCwxNDAuMDQzLDE3MC4xNDYsMTAyLjkxMSwxNzAuMTQ2eiIgZmlsbD0iIzU1NTU1NSIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=) no-repeat scroll 50% transparent}.typeahead__container.loading .typeahead__query:after,.typeahead__container.loading .typeahead__query:before{transition:all 0s linear,opacity .2s ease;position:absolute;z-index:3;content:'';top:50%;right:.55em;margin-top:-10.5px;width:21px;height:21px;box-sizing:border-box;border-radius:500rem;border-style:solid;border-width:.1em}.typeahead__container.loading .typeahead__query:before{border-color:rgba(0,0,0,.35)}.typeahead__container.loading .typeahead__query:after{-webkit-animation:a .6s linear;animation:a .6s linear;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;border-color:#fff transparent transparent;box-shadow:0 0 0 1px transparent}@-webkit-keyframes a{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}@keyframes a{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}
-/* line 1, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 1, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 #login_header {
   width: 100%;
   height: 40px;
@@ -1621,14 +1620,14 @@ button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button
   z-index: 2;
 }
 
-/* line 11, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 11, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 #logo {
   width: 150px;
   height: 40px;
   margin-left: 15px;
 }
 
-/* line 16, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 16, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 #login_1 {
   width: 100%;
   height: 200px;
@@ -1636,19 +1635,19 @@ button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button
   background-color: #FFFFFF;
 }
 
-/* line 22, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 22, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 .login_content {
   text-align: center;
   width: 100%;
   height: 100%;
 }
 
-/* line 27, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 27, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 #login_form {
   margin-top: 20px;
 }
 
-/* line 30, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 30, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 #login_2 {
   width: 100%;
   height: 280px;
@@ -1656,14 +1655,14 @@ button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button
   background-color: #BCD9EA;
 }
 
-/* line 36, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 36, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 #login_3 {
   width: 100%;
   height: 200px;
   background-color: #F5EA92;
 }
 
-/* line 41, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 41, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 .loginBtn {
   box-sizing: border-box;
   position: relative;
@@ -1678,7 +1677,7 @@ button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button
   color: #FFF;
 }
 
-/* line 54, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 54, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 .loginBtn:before {
   content: "";
   box-sizing: border-box;
@@ -1689,17 +1688,17 @@ button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button
   height: 100%;
 }
 
-/* line 63, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 63, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 .loginBtn:focus {
   outline: none;
 }
 
-/* line 66, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 66, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 .loginBtn:active {
   box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
 }
 
-/* line 69, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 69, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 .loginBtn--facebook {
   background: url("icon_facebook.png") 6px 6px no-repeat;
   background-color: #4C69BA;
@@ -1707,14 +1706,14 @@ button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button
   text-shadow: 0 -1px 0 #354C8C;
 }
 
-/* line 75, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 75, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 .loginBtn--facebook:hover {
   background-color: #5B7BD5;
   cursor: pointer;
 }
 
 /* Google */
-/* line 80, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 80, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 .loginBtn--google {
   background: url("icon_google.png") 6px 6px no-repeat;
   background-color: #DD4B39;
@@ -1722,24 +1721,24 @@ button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button
   text-shadow: 0 -1px 0 #354C8C;
 }
 
-/* line 86, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 86, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 .loginBtn--google:hover {
   background-color: #E74B37;
   cursor: pointer;
 }
 
-/* line 90, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/login.scss */
+/* line 90, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/login.scss */
 #login_2_content {
   margin-top: 20px;
 }
-/* line 7, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 7, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .level0, .level1, .level2 {
   margin-left: 10px;
   margin-top: 10px;
   border: 1px solid black;
 }
 
-/* line 12, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 12, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .level2 {
   width: 80px;
   height: 80px;
@@ -1747,7 +1746,7 @@ button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button
   background: #aaa;
 }
 
-/* line 18, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 18, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .level1 {
   width: 200px;
   height: 200px;
@@ -1757,7 +1756,7 @@ button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button
   font-family: Helvetica;
 }
 
-/* line 26, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 26, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .level0 {
   width: 434px;
   height: 434px;
@@ -1767,15 +1766,15 @@ button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button
 }
 
 /* pages */
-/* line 34, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 34, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .page_box {
   padding: 30px;
 }
-/* line 36, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 36, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .page_box ol {
   position: relative;
 }
-/* line 38, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 38, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .page_box ol .pageli {
   display: inline-block;
   width: 100px;
@@ -1787,7 +1786,7 @@ button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button
   background-color: #FF7F7F;
 }
 
-/* line 50, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 50, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 div.parent {
   width: 150px;
   height: 150px;
@@ -1799,17 +1798,17 @@ div.parent {
   z-index: 10;
 }
 
-/* line 61, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 61, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .parent:hover {
   cursor: pointer;
 }
 
-/* line 64, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 64, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 div.childGroup {
   z-index: 2;
 }
 
-/* line 68, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 68, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 div.child {
   width: 75px;
   height: 75px;
@@ -1818,17 +1817,17 @@ div.child {
   position: absolute;
 }
 
-/* line 75, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 75, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .child8 {
   z-index: 2;
 }
 
-/* line 78, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 78, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .child1, .child2, .child3, .child4, .child5, .child6, .child7 {
   z-index: 3;
 }
 
-/* line 81, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 81, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 div.back {
   width: 75px;
   height: 75px;
@@ -1839,23 +1838,23 @@ div.back {
   box-shadow: 2px 1px 6px #888888;
 }
 
-/* line 90, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 90, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .back:hover {
   cursor: pointer;
 }
 
-/* line 94, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 94, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .child:hover {
   cursor: pointer;
 }
 
-/* line 97, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 97, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 #wrapDiv {
   width: 100%;
   height: 100%;
 }
 
-/* line 101, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 101, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .branch_list {
   margin: 0px;
   margin-bottom: 10px;
@@ -1869,20 +1868,20 @@ div.back {
   display: none;
 }
 
-/* line 113, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 113, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .branch {
   width: auto;
   height: 30px;
 }
 
-/* line 117, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 117, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .branch_title {
   height: 50px;
   padding-top: 5px;
   text-align: center;
 }
 
-/* line 122, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 122, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .branch_title_name {
   margin: 4px auto;
   width: 80%;
@@ -1892,7 +1891,7 @@ div.back {
   font-size: 17px;
 }
 
-/* line 130, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 130, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .pages {
   position: absolute;
   overflow: auto;
@@ -1905,22 +1904,22 @@ div.back {
   font-size: 97%;
   z-index: 50;
 }
-/* line 132, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 132, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .pages::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #F5F5F5;
 }
-/* line 136, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 136, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .pages::-webkit-scrollbar {
   width: 6px;
   background-color: #F5F5F5;
 }
-/* line 140, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 140, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .pages::-webkit-scrollbar-thumb {
   background-color: #999999;
   border-radius: 5px;
 }
-/* line 154, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 154, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .pages .page {
   margin-top: 1.8%;
   margin-left: 1.8%;
@@ -1930,17 +1929,17 @@ div.back {
   text-align: left;
   /*pageli*/
 }
-/* line 161, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 161, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .pages .page .closeImg {
   position: absolute;
   margin-left: -24px;
   margin-top: 7px;
 }
-/* line 165, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 165, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .pages .page .closeImg:hover {
   cursor: pointer;
 }
-/* line 169, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 169, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .pages .page .pageli {
   width: 17.7%;
   height: 20%;
@@ -1954,27 +1953,27 @@ div.back {
   border-radius: 8px;
   box-shadow: 2px 1px 4px #A3A3A3;
 }
-/* line 181, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 181, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .pages .page .pageli #loadingImg {
   width: 70%;
   height: 70%;
   margin-bottom: 5%;
   border-radius: 8px 8px 0 0;
 }
-/* line 192, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 192, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .pages .page .pageli .img {
   width: 100%;
   height: 70%;
   margin-bottom: 5%;
   border-radius: 8px 8px 0 0;
 }
-/* line 200, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 200, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .pages .page .pageli:hover {
   background-color: #EEAD9A;
   cursor: pointer;
 }
 
-/* line 208, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 208, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .page_url_div {
   overflow: hidden;
   -webkit-transition: 3.3s;
@@ -1984,11 +1983,11 @@ div.back {
   -moz-transition-timing-function: linear;
   transition-timing-function: linear;
 }
-/* line 217, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 217, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .page_url_div:hover .page_url {
   margin-left: -200px;
 }
-/* line 221, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 221, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .page_url_div a {
   text-align: center;
   display: inline-block;
@@ -1997,11 +1996,11 @@ div.back {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* line 227, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 227, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .page_url_div a:hover {
   text-decoration: none;
 }
-/* line 231, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 231, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .page_url_div .page_url {
   margin-left: 0em;
   -webkit-transition: 3.3s;
@@ -2012,7 +2011,7 @@ div.back {
   transition-timing-function: linear;
 }
 
-/* line 242, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 242, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .name_formContain {
   padding-top: 3%;
   padding-bottom: 5%;
@@ -2020,11 +2019,11 @@ div.back {
   padding-left: 5%;
   /*input*/
 }
-/* line 248, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 248, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .name_formContain #closeButton {
   margin-top: 15px;
 }
-/* line 254, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 254, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .name_formContain input {
   margin-top: 18%;
   margin-left: 2%;
@@ -2039,12 +2038,12 @@ div.back {
   text-align: center;
   text-size: 15px;
 }
-/* line 269, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 269, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 .name_formContain input:focus {
   background-color: white;
 }
 
-/* line 275, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 275, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 #saveNameBtn {
   margin-left: 0%;
   margin-top: 2%;
@@ -2061,14 +2060,14 @@ div.back {
   display: inline-block;
   box-shadow: 2px 1px 6px #888888;
 }
-/* line 290, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/main.scss */
+/* line 290, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/main.scss */
 #saveNameBtn:hover {
   cursor: pointer;
   background-color: #FF6B6B;
 }
 
 /*#ReadingInfoSelectBtn*/
-/* line 1, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/side.scss */
+/* line 1, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/side.scss */
 #side_bar {
   position: fixed;
   width: 15%;
@@ -2076,7 +2075,7 @@ div.back {
   right: 4px;
   z-index: 88;
 }
-/* line 8, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/side.scss */
+/* line 8, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/side.scss */
 #side_bar #page_alert {
   position: relative;
   border-radius: 50%;
@@ -2089,12 +2088,12 @@ div.back {
   z-index: 89;
   display: none;
 }
-/* line 18, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/side.scss */
+/* line 18, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/side.scss */
 #side_bar #page_alert:hover {
   background-color: #EEAD9A;
   cursor: pointer;
 }
-/* line 24, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/side.scss */
+/* line 24, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/side.scss */
 #side_bar #page_alert_num {
   text-align: center;
   font-size: 150%;
@@ -2113,7 +2112,7 @@ div.back {
   z-index: 90;
 }
 
-/* line 43, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/side.scss */
+/* line 43, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/side.scss */
 .unPages {
   position: fixed;
   overflow: auto;
@@ -2127,22 +2126,22 @@ div.back {
   font-size: 97%;
   z-index: 60;
 }
-/* line 45, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/side.scss */
+/* line 45, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/side.scss */
 .unPages::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #F5F5F5;
 }
-/* line 49, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/side.scss */
+/* line 49, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/side.scss */
 .unPages::-webkit-scrollbar {
   width: 6px;
   background-color: #F5F5F5;
 }
-/* line 53, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/side.scss */
+/* line 53, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/side.scss */
 .unPages::-webkit-scrollbar-thumb {
   background-color: #999999;
   border-radius: 5px;
 }
-/* line 68, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/side.scss */
+/* line 68, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/side.scss */
 .unPages .unPage {
   margin-top: 1.8%;
   margin-bottom: 1.8%;
@@ -2154,17 +2153,17 @@ div.back {
   text-align: left;
   /*pageli*/
 }
-/* line 77, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/side.scss */
+/* line 77, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/side.scss */
 .unPages .unPage .closeImg {
   position: absolute;
   margin-left: -20px;
   margin-top: 5px;
 }
-/* line 81, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/side.scss */
+/* line 81, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/side.scss */
 .unPages .unPage .closeImg:hover {
   cursor: pointer;
 }
-/* line 85, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/side.scss */
+/* line 85, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/side.scss */
 .unPages .unPage .pageli-2 {
   width: 17.7%;
   height: 17%;
@@ -2179,49 +2178,49 @@ div.back {
   box-shadow: 2px 1px 4px #A3A3A3;
   transition: all 0.4s ease 0s;
 }
-/* line 100, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/side.scss */
+/* line 100, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/side.scss */
 .unPages .unPage .pageli-2 #loadingImg {
   width: 60%;
   height: 60%;
   margin-bottom: 5%;
   border-radius: 8px 8px 0 0;
 }
-/* line 109, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/side.scss */
+/* line 109, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/side.scss */
 .unPages .unPage .pageli-2 .img {
   width: 100%;
   height: 60%;
   border-radius: 8px 8px 0 0;
   margin-bottom: 5%;
 }
-/* line 117, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/side.scss */
+/* line 117, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/side.scss */
 .unPages .unPage .pageli-2:hover {
   background-color: #EEAD9A;
   cursor: pointer;
 }
-/* line 1, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 1, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 #teamBoxIcon {
   top: 0px;
 }
 
-/* line 4, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 4, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .team_info {
   width: 100%;
   height: 230px;
   background-color: #EDEFF0;
 }
 
-/* line 9, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 9, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .close_btn {
   position: relative;
   display: none;
   top: 8px;
 }
-/* line 13, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 13, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .close_btn:hover {
   cursor: pointer;
 }
 
-/* line 17, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 17, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .wrapper {
   margin: -24px auto 0;
   width: 90%;
@@ -2230,23 +2229,23 @@ div.back {
   line-height: 24px;
 }
 
-/* line 25, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 25, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .tabs li {
   display: inline-block;
   width: 8%;
   list-style: none;
   overflow: hidden;
 }
-/* line 30, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 30, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .tabs li a {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
-/* line 35, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 35, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .tabs .tab2 {
   margin-left: 10px;
 }
-/* line 38, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 38, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .tabs a {
   display: block;
   text-align: center;
@@ -2255,29 +2254,29 @@ div.back {
   color: #888;
   background: #C5C5C5;
 }
-/* line 45, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 45, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .tabs a:hover {
   background: #B6BBBF;
 }
-/* line 48, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 48, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .tabs a.active {
   background: #fff;
 }
 
-/* line 53, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 53, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 #tab1, #tab2 {
   padding: 30px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* line 57, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 57, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .clearfix:after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* line 62, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 62, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .team_wrapper {
   width: 60%;
   height: 100%;
@@ -2285,21 +2284,21 @@ div.back {
   padding-top: 50px;
 }
 
-/* line 68, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 68, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .team_name {
   width: 45%;
   height: 150px;
   margin: 0 auto;
 }
 
-/* line 73, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 73, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .team_work_wrap {
   margin: 0 auto;
   width: 90%;
   height: auto;
 }
 
-/* line 78, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 78, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .team_work {
   width: 180px;
   height: 90px;
@@ -2308,28 +2307,28 @@ div.back {
   display: inline-block;
   background-color: #026AA7;
 }
-/* line 85, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 85, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .team_work:hover {
   background-color: #AED9DF;
   cursor: pointer;
 }
-/* line 88, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 88, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .team_work:hover .boxIcon {
   display: inline-block;
 }
-/* line 91, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 91, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .team_work:hover .close_btn {
   display: inline-block;
 }
 
-/* line 96, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 96, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .team_work_name {
   float: left;
   margin: 10px;
   color: white;
 }
 
-/* line 101, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 101, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .create_team_work {
   width: 180px;
   height: 90px;
@@ -2339,19 +2338,19 @@ div.back {
   background-color: #E2E4E6;
 }
 
-/* line 109, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 109, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .create_team_work:hover {
   cursor: pointer;
 }
 
-/* line 112, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 112, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .create_team_work_content {
   float: left;
   margin: 10px;
   color: black;
 }
 
-/* line 117, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 117, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .member_left {
   display: inline-block;
   margin-top: 10px;
@@ -2362,14 +2361,14 @@ div.back {
   float: left;
 }
 
-/* line 126, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 126, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .title {
   width: 100%;
   height: 30px;
   font-size: 18px;
 }
 
-/* line 131, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 131, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .line {
   margin: 5px auto;
   width: 80%;
@@ -2377,7 +2376,7 @@ div.back {
   display: inline-block;
 }
 
-/* line 137, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 137, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .member_right {
   display: inline-block;
   margin-top: 10px;
@@ -2387,7 +2386,7 @@ div.back {
   float: left;
 }
 
-/* line 145, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 145, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .add_member {
   height: 30px;
   width: 250px;
@@ -2399,13 +2398,13 @@ div.back {
   margin-top: 5px;
 }
 
-/* line 155, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 155, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .member_list {
   width: 100%;
   height: auto;
 }
 
-/* line 159, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 159, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .content_name {
   display: inline-block;
   width: 30%;
@@ -2413,7 +2412,7 @@ div.back {
   float: left;
 }
 
-/* line 165, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 165, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .content_email {
   display: inline-block;
   width: 50%;
@@ -2421,24 +2420,24 @@ div.back {
   float: left;
 }
 
-/* line 171, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 171, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .member_name {
   font-size: 16px;
   margin-top: 15px;
 }
 
-/* line 175, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 175, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .member_email {
   font-size: 16px;
   margin-top: 16px;
 }
 
-/* line 179, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 179, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .member {
   width: 100%;
 }
 
-/* line 182, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 182, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .content_close {
   width: 30px;
   height: 30px;
@@ -2447,17 +2446,17 @@ div.back {
   float: right;
 }
 
-/* line 189, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/* line 189, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/team.scss */
 .content_close:hover {
   cursor: pointer;
 }
 
-/* line 192, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
+/*
 .create_team_work_form {
   text-align: left;
-  padding-bottom: 20px;
-  margin-left: 0;
-  margin-right: 0;
+  padding-bottom:20px;
+  margin-left:0;
+  margin-right:0;
   height: 218px;
   width: 220px;
   top: 50px;
@@ -2466,108 +2465,109 @@ div.back {
   border-radius: 8px;
   box-shadow: 2px 1px 10px #888888;
   z-index: 100;
-  font-family: 'Raleway', sans-serif;
+  font-family:'Raleway', sans-serif;
   position: absolute;
+  .team_work_form_element {
+    padding-top:3%;
+    padding-bottom:5%;
+    padding-right:5%;
+    //padding-left:5%;
+  }
+  #team_work_form_main {
+    height: 20px;
+    width: 80%;
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-right:5%;
+    padding-left:5%;
+    margin-left:5%;
+    margin-right:5%;
+    text-align: center;
+    color:#868686;
+    border-bottom: 2px dotted #A8A8A8;
+    #left_icon{
+      float:left;
+      margin-top:5px;
+      transition: all 0.4s ease 0s;
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
+  #team_work_form {
+    padding-right:5%;
+    padding-left:5%;
+
+    #team_work_form_title {
+      margin-top:8px;
+    }
+
+    .team_input {
+      margin-left:2%;
+      margin-right:2%;
+      padding-bottom:2%;
+      padding-top:2%;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      width:96%;
+      background-color: #EFEFEF;
+
+      &:focus {
+        background-color: #FFFFFF;
+      }
+    }
+
+    #team_work_form_team_name {
+      margin-top:4px;
+    }
+
+    #team_work_form_selectTeam {
+      margin-left:2%;
+      margin-right:2%;
+      padding-bottom:2%;
+      padding-top:2%;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      width:96%;
+      background-color: #EFEFEF;
+      &:focus {
+        background-color: #FFFFFF;
+      }
+    }
+  }
+  .team_work_form_button {
+    margin-left:7%;
+    margin-top:7%;
+    margin-bottom:5%;
+    text-align:center;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #5cb3c1;
+    border: none;
+    color: white;
+    padding: 7px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.4s ease 0s;
+    &:hover{
+      cursor: pointer;
+      background-color: #44A1B0;
+    }
+  }
 }
-/* line 207, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
-.create_team_work_form .team_work_form_element {
-  padding-top: 3%;
-  padding-bottom: 5%;
-  padding-right: 5%;
-  /*padding-left:5%;*/
-}
-/* line 213, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
-.create_team_work_form #team_work_form_main {
-  height: 20px;
+*/
+/* line 2, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/temp.scss */
+svg {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  height: 80%;
   width: 80%;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-right: 5%;
-  padding-left: 5%;
-  margin-left: 5%;
-  margin-right: 5%;
-  text-align: center;
-  color: #868686;
-  border-bottom: 2px dotted #A8A8A8;
-}
-/* line 225, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
-.create_team_work_form #team_work_form_main #left_icon {
-  float: left;
-  margin-top: 5px;
-  transition: all 0.4s ease 0s;
-}
-/* line 229, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
-.create_team_work_form #team_work_form_main #left_icon:hover {
-  cursor: pointer;
-}
-/* line 234, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
-.create_team_work_form #team_work_form {
-  padding-right: 5%;
-  padding-left: 5%;
-}
-/* line 238, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
-.create_team_work_form #team_work_form #team_work_form_title {
-  margin-top: 8px;
-}
-/* line 242, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
-.create_team_work_form #team_work_form .team_input {
-  margin-left: 2%;
-  margin-right: 2%;
-  padding-bottom: 2%;
-  padding-top: 2%;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  width: 96%;
-  background-color: #EFEFEF;
-}
-/* line 254, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
-.create_team_work_form #team_work_form .team_input:focus {
-  background-color: #FFFFFF;
-}
-/* line 259, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
-.create_team_work_form #team_work_form #team_work_form_team_name {
-  margin-top: 4px;
-}
-/* line 263, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
-.create_team_work_form #team_work_form #team_work_form_selectTeam {
-  margin-left: 2%;
-  margin-right: 2%;
-  padding-bottom: 2%;
-  padding-top: 2%;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  width: 96%;
-  background-color: #EFEFEF;
-}
-/* line 274, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
-.create_team_work_form #team_work_form #team_work_form_selectTeam:focus {
-  background-color: #FFFFFF;
-}
-/* line 279, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
-.create_team_work_form .team_work_form_button {
-  margin-left: 7%;
-  margin-top: 7%;
-  margin-bottom: 5%;
-  text-align: center;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: #5cb3c1;
-  border: none;
-  color: white;
-  padding: 7px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.4s ease 0s;
-}
-/* line 294, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/team.scss */
-.create_team_work_form .team_work_form_button:hover {
-  cursor: pointer;
-  background-color: #44A1B0;
 }
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
@@ -2585,7 +2585,7 @@ div.back {
 
  *= require_main
  */
-/* line 5, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 5, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header {
   position: fixed;
   top: 0px;
@@ -2606,7 +2606,7 @@ div.back {
   /*#menu_5*/
   /*#menu_6*/
 }
-/* line 17, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 17, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header .menu {
   display: inline-block;
   background-color: #99d8dd;
@@ -2614,13 +2614,13 @@ div.back {
   float: left;
   border-style: none;
 }
-/* line 24, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 24, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_1 {
   width: 10%;
   background-color: #E2E4E6;
   /*#menuDiv1*/
 }
-/* line 27, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 27, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_1 #menuDiv1 {
   background-color: #01587a;
   color: white;
@@ -2635,17 +2635,17 @@ div.back {
   cursor: pointer;
   font-weight: bold;
 }
-/* line 40, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 40, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_1 #menuDiv1:hover {
   background-color: #016B92;
 }
-/* line 46, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 46, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 {
   width: 20%;
   background-color: #E2E4E6;
   /*.search*/
 }
-/* line 49, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 49, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .search {
   display: block;
   -webkit-border-radius: 6px;
@@ -2669,7 +2669,7 @@ div.back {
   transition: width .35s ease-in-out;
   /*.search:focus*/
 }
-/* line 70, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 70, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .search:focus {
   background: #fff;
   border: 3px solid #5cb3c1;
@@ -2682,27 +2682,27 @@ div.back {
   background-repeat: no-repeat;
   width: 130%;
 }
-/* line 82, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 82, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .search:focus background-image:hover {
   cursor: pointer;
 }
-/* line 86, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 86, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .search::-webkit-input-placeholder {
   color: black;
 }
-/* line 89, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 89, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .search:-moz-placeholder {
   color: black;
 }
-/* line 92, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 92, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .search::-moz-placeholder {
   color: black;
 }
-/* line 95, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 95, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .search:-ms-input-placeholder {
   color: black;
 }
-/* line 99, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 99, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .blue {
   background: #5cb3c1;
   background-image: url(/assets/search2.png);
@@ -2710,33 +2710,33 @@ div.back {
   background-repeat: no-repeat;
   background-position: 95% 50%;
 }
-/* line 106, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 106, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_2 .blue:checked {
   background: #3498DB;
 }
-/* line 109, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 109, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_3 {
   width: 41%;
   background-color: #E2E4E6;
   /*#home*/
 }
-/* line 112, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 112, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_3 #home {
   padding: 5px;
   height: 30px;
 }
-/* line 118, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 118, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_4 {
   width: 7%;
   background-color: #E2E4E6;
 }
-/* line 123, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 123, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_5 {
   width: 10%;
   background-color: #E2E4E6;
   /*#menuDiv5*/
 }
-/* line 126, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 126, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_5 #menuDiv5 {
   background-color: #5cb3c1;
   float: right;
@@ -2748,18 +2748,18 @@ div.back {
   width: 30px;
   cursor: pointer;
 }
-/* line 136, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 136, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_5 #menuDiv5:hover {
   background-color: #44A1B0;
 }
-/* line 142, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 142, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_6 {
   width: 11%;
   background-color: #E2E4E6;
   padding-right: 1%;
   /*#menuDiv6*/
 }
-/* line 146, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 146, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_6 #menuDiv6 {
   text-shadow: 2px 2px #8C8C8C;
   background-color: #f3ba00;
@@ -2775,14 +2775,14 @@ div.back {
   cursor: pointer;
   font-weight: bold;
 }
-/* line 160, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 160, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #header #menu_6 #menuDiv6:hover {
   background-color: #FEC823;
 }
 
 /*#header*/
 /*//////////////#dropDown1/////////////*/
-/* line 169, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 169, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 {
   position: fixed;
   overflow: auto;
@@ -2798,22 +2798,22 @@ div.back {
   font-family: 'Raleway', sans-serif;
   /*#WorkList*/
 }
-/* line 170, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 170, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #F5F5F5;
 }
-/* line 174, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 174, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1::-webkit-scrollbar {
   width: 6px;
   background-color: #F5F5F5;
 }
-/* line 178, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 178, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1::-webkit-scrollbar-thumb {
   background-color: #999999;
   border-radius: 5px;
 }
-/* line 195, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 195, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList {
   list-style: none;
   padding-bottom: 20px;
@@ -2823,7 +2823,7 @@ div.back {
   /*TeamWorks*/
   /*.work_searchContain*/
 }
-/* line 200, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 200, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_li {
   height: 25px;
   width: 90%;
@@ -2834,30 +2834,29 @@ div.back {
   color: #6B6B6B;
   /*font-weight: bold;*/
 }
-/* line 209, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 209, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_li .left_icon {
   float: left;
   margin-top: 0.5%;
   margin-right: 5%;
 }
-/* line 214, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 214, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_li .right_icon {
   float: right;
-  padding: 2%;
   margin-bottom: 4.5%;
   border-radius: 4px;
 }
-/* line 219, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 219, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_li .right_icon:hover {
   background-color: #99d8dd;
   cursor: pointer;
 }
-/* line 226, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 226, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList #TeamWorks {
   background-color: #EFEFEF;
   /*team_li*/
 }
-/* line 228, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 228, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList #TeamWorks .team_li {
   height: 25px;
   width: 90%;
@@ -2868,25 +2867,25 @@ div.back {
   color: #6B6B6B;
   /*font-weight: bold;*/
 }
-/* line 237, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 237, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList #TeamWorks .team_li .left_icon {
   float: left;
   margin-top: 0.5%;
   margin-right: 5%;
 }
-/* line 242, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 242, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList #TeamWorks .team_li .team_right_icon {
   float: right;
   padding: 2%;
   margin-bottom: 4.5%;
   border-radius: 4px;
 }
-/* line 247, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 247, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList #TeamWorks .team_li .team_right_icon:hover {
   background-color: #FFEA8E;
   cursor: pointer;
 }
-/* line 255, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 255, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_detail_li {
   height: 15px;
   width: 90%;
@@ -2898,12 +2897,12 @@ div.back {
   background-color: #EFEFEF;
   overflow: hidden;
 }
-/* line 265, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 265, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_detail_li:hover {
   background-color: #99d8dd;
   cursor: pointer;
 }
-/* line 270, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 270, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_searchContain {
   padding-top: 5%;
   padding-bottom: 5%;
@@ -2911,7 +2910,7 @@ div.back {
   padding-left: 2%;
   /*input*/
 }
-/* line 275, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 275, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_searchContain input {
   margin-left: 2%;
   margin-right: 2%;
@@ -2928,15 +2927,15 @@ div.back {
   color: #7C7C7C;
   font-size: 15px;
 }
-/* line 290, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 290, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown1 #WorkList .work_searchContain input:focus {
   background-color: #FFFFFF;
 }
 
 /*//////////////#dropDown5/////////////*/
-/* line 299, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 299, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 {
-  height: 240px;
+  height: 250px;
   width: 220px;
   position: fixed;
   display: none;
@@ -2949,7 +2948,7 @@ div.back {
   font-family: 'Raleway', sans-serif;
   /*#addList*/
 }
-/* line 312, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 312, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList {
   list-style: none;
   padding-bottom: 20px;
@@ -2962,7 +2961,7 @@ div.back {
   /*#ReadingInfoSelectBtn*/
   /*.add_formContain*/
 }
-/* line 317, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 317, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_li {
   height: 25px;
   width: 90%;
@@ -2972,12 +2971,12 @@ div.back {
   padding-left: 5%;
   /*font-weight: bold;*/
 }
-/* line 325, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 325, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_li:hover {
   background-color: #99d8dd;
   cursor: pointer;
 }
-/* line 330, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 330, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_li_name {
   height: 20px;
   width: 80%;
@@ -2991,25 +2990,25 @@ div.back {
   color: #868686;
   border-bottom: 2px dotted #A8A8A8;
 }
-/* line 342, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 342, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_li_name #left_icon {
   float: left;
   margin-top: 5px;
 }
-/* line 345, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 345, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_li_name #left_icon:hover {
   cursor: pointer;
 }
-/* line 350, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 350, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_form {
   padding-right: 5%;
   padding-left: 5%;
 }
-/* line 354, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 354, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList #add_form1 {
   margin-top: 15px;
 }
-/* line 357, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 357, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList #ReadingInfoSelectBtn {
   margin-left: 7%;
   margin-top: 2%;
@@ -3025,12 +3024,12 @@ div.back {
   text-decoration: none;
   display: inline-block;
 }
-/* line 371, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 371, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList #ReadingInfoSelectBtn:hover {
   cursor: pointer;
   background-color: #44A1B0;
 }
-/* line 376, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 376, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_formContain {
   padding-top: 3%;
   padding-bottom: 5%;
@@ -3039,7 +3038,7 @@ div.back {
   /*input*/
   /*select*/
 }
-/* line 381, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 381, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_formContain input {
   margin-left: 2%;
   margin-right: 2%;
@@ -3052,11 +3051,11 @@ div.back {
   width: 96%;
   background-color: #EFEFEF;
 }
-/* line 393, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 393, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_formContain input:focus {
   background-color: #FFFFFF;
 }
-/* line 397, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 397, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_formContain select {
   margin-left: 2%;
   margin-right: 2%;
@@ -3069,14 +3068,14 @@ div.back {
   width: 96%;
   background-color: #EFEFEF;
 }
-/* line 408, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 408, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown5 #addList .add_formContain select:focus {
   background-color: #FFFFFF;
 }
 
 /*#dropDown5*/
 /*//////////////#dropDown6/////////////*/
-/* line 417, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 417, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 {
   height: 310px;
   width: 220px;
@@ -3092,12 +3091,12 @@ div.back {
   /*a*/
   /*#userList*/
 }
-/* line 429, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 429, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 a {
   text-decoration: none;
   color: inherit;
 }
-/* line 433, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 433, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 #userList {
   list-style: none;
   padding-bottom: 20px;
@@ -3106,7 +3105,7 @@ div.back {
   /*.user_li*/
   /*.user_li_name*/
 }
-/* line 438, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 438, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 #userList .user_li {
   height: 20px;
   width: 90%;
@@ -3119,12 +3118,12 @@ div.back {
   /*font-weight: bold;*/
   /*.user_li:hover*/
 }
-/* line 448, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 448, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 #userList .user_li:hover {
   background-color: #99d8dd;
   cursor: pointer;
 }
-/* line 453, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 453, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 #userList .user_li_name {
   height: 40px;
   width: 84%;
@@ -3138,7 +3137,7 @@ div.back {
   color: #868686;
   border-bottom: 2px dotted #A8A8A8;
 }
-/* line 466, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 466, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 #userList .user_li_logout {
   border-top: 2px dotted #A8A8A8;
   height: 40px;
@@ -3152,7 +3151,7 @@ div.back {
   color: #888888;
   /*.user_li:hover*/
 }
-/* line 477, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 477, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 #dropDown6 #userList .user_li_logout:hover {
   /*background-color: $addMainColor;*/
   cursor: pointer;
@@ -3160,26 +3159,26 @@ div.back {
 }
 
 /*#dropDown6*/
-/* line 486, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/header.scss */
+/* line 486, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/header.scss */
 .typeahead__container {
   top: 4px;
   width: 140%;
 }
 
-/* line 20, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/application.css.scss */
+/* line 20, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/application.css.scss */
 * {
   margin: 0px;
   padding: 0px;
 }
 
-/* line 24, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/application.css.scss */
+/* line 24, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/application.css.scss */
 #contents {
   height: 100%;
   width: 100%;
   text-align: center;
 }
 
-/* line 31, /Users/garden/Documents/project/T-tree/Ttree/app/assets/stylesheets/application.css.scss */
+/* line 31, /home/ec2-user/Jiwoning/T-tree/Ttree/app/assets/stylesheets/application.css.scss */
 .wrapDiv {
   width: 100%;
   height: 100%;

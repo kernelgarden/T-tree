@@ -75,7 +75,7 @@ var makePersonalWorkBox=function(){
     if($(".personal_work_group").empty(0)){
       $.each(response, function (i,work) {
         if(work.team_id==null){
-          $(".personal_work_group").append("<div class='userWork personal_work_content personal_work_content"+cnt+"''></div>").show('slow')
+          $(".personal_work_group").append("<div class='userWork personal_work_content personal_work_content"+cnt+"''></div>").show()
           if($(".personal_work_content").eq(cnt).empty(0)){
             $(".personal_work_content"+cnt).append('<div class="personal_work_name">'+work.name+'</div>')
             //$(".personal_work_content"+cnt).append('<img class="close_btn closebtn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/>')
@@ -118,7 +118,7 @@ var makeTeamWorkBox=function(){
           $(".personal_team" + i).append("<div class='wrap_team_content wrap_team_content" + i + "'></div>").show('slow')
           $(".personal_team_header" + i).append("<img src='/assets/team3.png' style='float:left ;'>").show('slow')
           $(".personal_team_header" + i).append("<div class='team_more team_more" + i + "'>").show('slow')
-          $(".team_more" + i).append("<img src='/assets/more.png' style='width:15px; height:15px; margin-top:7px; margin-left:7px;'> More").show('slow')
+          $(".team_more" + i).append("<img src='/assets/more.png' style='width:15px; height:15px; margin-top:7px; margin-left:7px;'> More").show()
         }
       }
       $(".personal_team_header").eq(i).append('<h3 style=" float:left; margin-left:5px;">' + team.name + '</h3>')
