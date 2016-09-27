@@ -1,92 +1,205 @@
 #login_header{
   width: 100%;
   height: 40px;
-  padding: 15px 0;
-  background-color: #F8F9F9;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
+}
+#sideList{
+  list-style: none;
+  float: right;
+  margin-right: 20px;
+  li{
+    font-size: 12px;
+    color: white;
+    margin-top: 20px;
+    display: inline-block;
+    cursor: pointer;
+  }
 }
 #logo{
   width:150px;
   height: 40px;
   margin-left: 15px;
+  margin-top: 20px;
+  float: left;
+  display: inline-block;
 }
 #login_1{
   width: 100%;
-  height: 200px;
-  margin-top:70px;
-  background-color: #FFFFFF;
+  height: 570px;
+  background-image: url('loginBack.png');
+  background-size: cover;
+  background-position: center center;
 }
 .login_content{
   text-align: center;
   width: 100%;
   height: 100%;
 }
+.content_header{
+    width: 100%;
+    font: 30px CenturyGothic;
+    font-weight: bold;
+    margin-top: 75px;
+    display: inline-block;
+}
+#login_1_header{
+  font: 40px CenturyGothic;
+  font-weight: bold;
+  color: white;
+  margin-top: 150px;
+  p{
+    font:11px normal;
+  }
+  #p1{
+    margin-top: 15px;
+  }
+  #p2{
+    margin-top: 5px;
+    margin-bottom: 25px;
+  }
+}
 #login_form{
-  margin-top: 20px;
+  height: 40px;
+  text-align: center;
+  #FacebookBtn{
+    margin-right: 10px;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  #GoogleBtn{
+    margin-left: 10px;
+    &:hover{
+      cursor: pointer;
+    }
+  }
 }
 #login_2{
   width: 100%;
-  height: 280px;
-  padding-top: 20px;
-  background-color: #BCD9EA;
+  height: 500px;
+  background-color: #f0f0f0;
+}
+#login_2_content{
+  #login_2_header{
+
+  }
+}
+.underbar{
+  width: 70px;
+  height: 3px;
+  border-radius: 3px;
+  background-color: #bfbfbf;
+  display: inline-block;
+  margin-top: 8px;
 }
 #login_3{
   width: 100%;
-  height: 200px;
-  background-color: #F5EA92;
+  background-color: #f0f0f0;
 }
-.loginBtn {
-  box-sizing: border-box;
-  position: relative;
-  width: 13em;
-  margin: 0.2em;
-  padding: 0 15px 0 46px;
-  border: none;
-  text-align: left;
-  line-height: 34px;
-  border-radius: 0.2em;
-  font-size: 16px;
-  color: #FFF;
+#login_3_content{
+  #profileWrap{
+    width: 1027px;
+    display: inline-block;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+  .profile{
+    width: 216px;
+    display: inline-block;
+    box-shadow: 2px 1px 10px #888888;
+  }
+  .profile_img{
+    width: 120px;
+    height: 187px;
+    margin: 35px 48px 0 48px;
+    display: inline-block;
+    img{
+      width: 120px;
+      height: 187px;
+    }
+  }
+  .profile_name{
+    margin-top: 15px;
+    padding-bottom: 7px;
+    display: inline-block;
+    border-bottom: solid 1px #bfbfbf;
+    font: 14px CenturyGothic;
+    font-weight: bold;
+  }
+  .profile_role{
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 40px;
+    display: inline-block;
+    font: 11px CenturyGothic;
+    color: #757575;
+  }
+  #jiwon{
+    margin-left: 48px;
+  }
+  #jeongwon{
+    margin-left: 48px;
+  }
+  #sumin{
+    margin-left: 48px;
+  }
 }
-.loginBtn:before {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 34px;
-  height: 100%;
+#login_footer{
+  height: 100px;
+  background-color: black;
+  color: white;
+  p{
+    font-size: 10px;
+    display: inline-block;
+    margin-top: 40px;
+    font-weight: utlra Regular;
+  }
 }
-.loginBtn:focus {
-  outline: none;
-}
-.loginBtn:active {
-  box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
-}
-.loginBtn--facebook {
-  background: url('icon_facebook.png') 6px 6px no-repeat;
-  background-color: #4C69BA;
-  font-family: "Helvetica neue", Helvetica, Helvetica, Arial, sans-serif;
-  text-shadow: 0 -1px 0 #354C8C;
-}
-.loginBtn--facebook:hover{
-  background-color: #5B7BD5;
-  cursor: pointer;
-}
-/* Google */
-.loginBtn--google {
-  background: url('icon_google.png') 6px 6px no-repeat;
-  background-color: #DD4B39;
-  font-family: "Roboto", Roboto, arial, sans-serif;
-  text-shadow: 0 -1px 0 #354C8C;
-}
-.loginBtn--google:hover{
-  background-color: #E74B37;
-  cursor: pointer;
-}
-#login_2_content{
-  margin-top: 20px;
-}
+// .loginBtn {
+//   box-sizing: border-box;
+//   position: relative;
+//   width: 13em;
+//   margin: 0.2em;
+//   padding: 0 15px 0 46px;
+//   border: none;
+//   text-align: left;
+//   line-height: 34px;
+//   border-radius: 0.2em;
+//   font-size: 16px;
+//   color: #FFF;
+// }
+// .loginBtn:before {
+//   content: "";
+//   box-sizing: border-box;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 34px;
+//   height: 100%;
+// }
+// .loginBtn:focus {
+//   outline: none;
+// }
+// .loginBtn:active {
+//   box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+// }
+// .loginBtn--facebook {
+//   background: url('icon_facebook.png') 6px 6px no-repeat;
+//   background-color: #4C69BA;
+//   font-family: "Helvetica neue", Helvetica, Helvetica, Arial, sans-serif;
+//   text-shadow: 0 -1px 0 #354C8C;
+// }
+// .loginBtn--facebook:hover{
+//   background-color: #5B7BD5;
+//   cursor: pointer;
+// }
+// /* Google */
+// .loginBtn--google {
+//   background: url('icon_google.png') 6px 6px no-repeat;
+//   background-color: #DD4B39;
+//   font-family: "Roboto", Roboto, arial, sans-serif;
+//   text-shadow: 0 -1px 0 #354C8C;
+// }
+// .loginBtn--google:hover{
+//   background-color: #E74B37;
+//   cursor: pointer;
+// }

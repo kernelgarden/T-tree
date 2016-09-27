@@ -18,7 +18,7 @@ $addMainColor:#99d8dd;
 }
 .star_btn{
   position:relative;
-  display: none;
+  display:inline-block;
 }
 .form_btn{
   width: 15px;
@@ -69,9 +69,6 @@ $addMainColor:#99d8dd;
       transition: all 0.4s ease 0s;
       &:hover{
         background-color: #AED9DF;
-        .star_btn{
-          display:inline-block;
-        }
         .close_btn{
           display: inline-block;
         }
