@@ -227,7 +227,7 @@ $(document).on("click", ".addWork", function(e) {
     var x = e.pageX;
     var y = e.pageY;
     $("#create_personal_work_form").css({top:y, left:x});
-    $("#create_personal_work_form").fadeIn(200);
+    $("#create_personal_work_form").show();
     nCount5 = 1;
   } else {
     $("#create_personal_work_form").hide();
@@ -239,8 +239,8 @@ $(document).on("click", ".addWork", function(e) {
   })
 })
 
-$('body').click(function(e){
-  if ( !$(e.target).is('.create_personal_work_form') ) {
+$(document).click(function(e){
+  if ( !$(e.target).is('.create_personal_work_form, #personal_work_form_main, .form_btn, #personal_work_form, #personal_work_form_title, .personal_input, #personal_work_form_team_name, #personal_work_form_selectTeam, .personal_work_form_button') ) {
   	//alert()
     $("#create_personal_work_form").hide();
     nCount5=0;
@@ -343,7 +343,7 @@ $(document).on("click", ".create_personal_team", function(e) {
     var x = e.pageX;
     var y = e.pageY;
     $("#create_team_work_form").css({top:y, left:x});
-    $("#create_team_work_form").fadeIn(200);
+    $("#create_team_work_form").show();
     nCount6 = 1;
     $("select#team_work_form_selectTeam").val($(this).attr('class').match(/\d/)[0]);
   } else {
@@ -356,8 +356,8 @@ $(document).on("click", ".create_personal_team", function(e) {
   })
 })
 
-$('body').click(function(e){
-  if ( !$(e.target).is('#create_team_work_form') ) {
+$(document).click(function(e){
+  if ( !$(e.target).is('.create_personal_team, #create_team_work_form, #team_work_form_main, .form_btn, .form_team_work_btn, .team_input, #team_work_form, #team_work_form_title, #team_work_form_team_name, #team_work_form_selectTeam, .team_work_form_button') ) {
     $("#create_team_work_form").hide();
     nCount6 = 0;
   }
@@ -370,7 +370,7 @@ $('#create_team').click(function(e){
     var x = e.pageX;
     var y = e.pageY;
     $("#create_team_form").css({top:y-180, left:x});
-    $("#create_team_form").fadeIn(200);
+    $("#create_team_form").show();
     nCount4=1;
   }
   else{
@@ -383,8 +383,8 @@ $('#create_team').click(function(e){
   })
 })
 
-$('body').click(function(e){
-  if ( !$(e.target).is('#create_team_form') ) {
+$(document).click(function(e){
+  if ( !$(e.target).is('#create_team_form, #team_form, #team_name, .team_input, .team_button') ) {
     $("#create_team_form").hide();
     nCount4=0;
   }
@@ -399,7 +399,7 @@ $('.edit_work_btn').click(function(e){
     var x = e.pageX;
     var y = e.pageY;
     $(".edit_work_name").css({top:y, left:x});
-    $(".edit_work_name").fadeIn(200);
+    $(".edit_work_name").show();
     nCount7=1;
   }
   else{
@@ -450,8 +450,8 @@ $('.edit_work_btn').click(function(e){
   })
 })
 
-$('body').click(function(e){
-  if ( !$(e.target).is('.edit_work_name') ) {
+$(document).click(function(e){
+  if ( !$(e.target).is('.edit_work_name, #edit_work_name, #edit_work_form, #team_name, .work_name, .edit_work_button') ) {
     $(".edit_work_name").hide();
     nCount7=0;
   }

@@ -1,11 +1,11 @@
 <script>
 var widthFix = window.innerWidth||document.body.clientWidth;
 var heightFix =window.innerHeight||document.body.clientHeigh;
+var height =window.screen.availHeight||document.body.clientHeigh;
 $(document).ready(function(){
-	$(document).on(function(){
-		$('#contents').width(String(widthFix));
-		$('#contents').height(String(heightFix));
-	})
+	$('#contents').width(String(widthFix));
+	$('#contents').height(String(heightFix));
+	//$('body').height(String(height));
 })
 
 </script>
