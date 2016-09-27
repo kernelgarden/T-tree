@@ -1,0 +1,90 @@
+.container{
+  display: inline-block;
+  margin-top: 100px;
+}
+.folder{
+  -webkit-perspective: 500px;
+  perspective: 500px;
+  width: 240px;
+  height: 50px;
+  background: tomato;
+  display: inline-block;
+  //-webkit-transform: translate(-50%, -50%);
+  //transform: translate(-50%, -50%);
+  border-top-right-radius: 5px;
+  cursor: pointer;
+  -webkit-transition: all 400ms ease;
+  transition: all 400ms ease;
+  margin: 10px 30px;
+
+  &::before{
+     width: 80px;
+     height: 20px;
+     content: '';
+     background: tomato;
+     position: absolute;
+     top: -20px;
+     left: 0px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+   }
+  &::after{
+    width: 240px;
+    height: 110px;
+    position: absolute;
+    content: '';
+    background: darken(tomato, 7%);
+    top: 40px;
+    left: 0px;
+    box-shadow: 0 0 20px 2px fade(#000, 30%);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -webkit-transform: rotateX(-10deg);
+    transform: rotateX(-10deg);
+  -webkit-transition: all 400ms ease;
+  transition: all 400ms ease;
+  }
+}
+
+.folder-inside{
+  width: 220px;
+  height: 100px;
+  position: absolute;
+  background: #fff;
+  top: 20px;
+  left: 10px;
+  box-shadow: 0 0 5px 5px fade(#000, 5%);
+  -webkit-transform: rotate(-1deg);
+  transform: rotate(-1deg);
+  border: 1px solid #ddd;
+  -webkit-transition: all 200ms ease;
+  transition: all 200ms ease;
+
+  &::before{
+    content: '';
+//  background: -webkit-repeating-linear-gradient(145deg, #fff, #fff 10px, #333 7px, #333 20px);
+   //background: repeating-linear-gradient(-0deg, #fff, #fff 10px, #333 10px, #333 20px);
+    position: absolute;
+    top: -37px;
+    left: 65px;
+    width: 220px;
+    height: 100px;
+    color: #343434;
+    font-size: 60px;
+    line-height: 30px;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    opacity: 0.15;
+  }
+
+}
+ .folder:hover{
+  &::after{
+     -webkit-transform: rotateX(-15deg);
+    transform: rotateX(-15deg);
+  }
+  .folder-inside{
+  -webkit-transform: rotate(-7deg) translateY(-15%);
+  transform: rotate(-7deg) translateY(-15%);
+  }
+ }

@@ -1,24 +1,83 @@
 <%= stylesheet_link_tag    'application', login: 'all', 'data-turbolinks-track': 'reload' %>
-<div id="login_header">
-  <div id="logo"><%=link_to image_tag("logo4.png", alt:"home",id:"logo" ),root_path %></div>
-</div>
 <div id="login_1">
-  <div id="login_1_content" class="login_content">
-    <h1>Thanks for using Tab-Storage</h1>
-    <p>로그인이 필요합니다ㅎ.ㅎ</p>
+  <div id="login_header">
+    <%=link_to image_tag("logo4.png", alt:"home",id:"logo" ),root_path %>
+    <ul id=sideList>
+      <li id="home">Home</li>
+      <li id="howtouse"style="margin-right:45px; margin-left:45px;">How To Use</li>
+      <li id="about">About</li>
+    </ul>
+  </div>
+  <div id="login_1_content">
+    <div id="login_1_header">Welcome To Our Tab-Storage
+      <p id="p1">Tab-storage helps your work by maintaining internet tabs</p>
+      <p id="p2">You also do teamwork in Tab-Storage. You can log in with facebook or google</p>
+    </div>
     <div id="login_form">
-      <%= button_to "Login with Facebook", user_facebook_omniauth_authorize_path, :class=>"loginBtn loginBtn--facebook"%>
-      <%= button_to "Login with Google", user_google_oauth2_omniauth_authorize_path , :class=>"loginBtn loginBtn--google"%>
+      <%=link_to image_tag("loginFacebook.png", alt:"Facebook",id:"FacebookBtn" ),user_facebook_omniauth_authorize_path%>
+      <%=link_to image_tag("loginGoogle.png", alt:"Google",id:"GoogleBtn" ),user_google_oauth2_omniauth_authorize_path%>
     </div>
   </div>
 </div>
 <div id="login_2">
-  <div id="login_2_content" class="login_content">
-    <h1>How To Using Tab-Storage?</h1>
+  <div id="login_2_content">
+    <div id="login_2_header" class="content_header">How To Using Tab-Storage?</div>
+    <div class="underbar"></div>
   </div>
 </div>
 <div id="login_3">
-  <div id="login_3_content" class="login_content">
-    <h1>김시훈</h1><h1>오지원</h1><h1>류정원</h1>
+  <div id="login_3_content">
+    <div id="login_3_header" class="content_header">Our Team</div>
+    <div class="underbar"></div>
+    <div>
+      <div id="profileWrap">
+        <div class="profile" id="sihoon">
+          <div class="profile_img"><img src="/assets/kim.jpg"> </div>
+          <div class="profile_name">Kim SiHoon</div>
+          <div class="profile_role">Developer</div>
+        </div>
+        <div class="profile" id="jiwon">
+          <div class="profile_img"><img src="/assets/jiwon.jpg"> </div>
+          <div class="profile_name">Oh Jiwon</div>
+          <div class="profile_role">Developer</div>
+        </div>
+        <div class="profile" id="jeongwon">
+          <div class="profile_img"><img src="/assets/ryu.jpg"> </div>
+          <div class="profile_name">Ryu Jeongwon</div>
+          <div class="profile_role">Developer</div>
+        </div>
+        <div class="profile" id="sumin">
+          <div class="profile_img"><img src="/assets/sumin.jpg"></div>
+          <div class="profile_name">Ji Sumin</div>
+          <div class="profile_role">Designer</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<footer id="login_footer">
+  <p>@2016 by OpenYearRound. Inc. All rights reserved</p>
+</footer>
+<script>
+$(document).ready(function (){
+  $('#logo').on('dragstart', function(event) { event.preventDefault(); });
+  $('#home').on('click', function(event) {
+    event.preventDefault();
+    $('html, body').stop().animate({
+      scrollTop: $("#login_1").offset().top
+    }, 1000);
+  });
+  $('#howtouse').on('click', function(event) {
+    event.preventDefault();
+    $('html, body').stop().animate({
+      scrollTop: $("#login_2").offset().top
+    }, 1000)
+  })
+  $('#about').on('click', function(event) {
+    event.preventDefault();
+    $('html, body').stop().animate({
+      scrollTop: $("#login_3").offset().top
+    }, 1000);
+  });
+})
+</script>

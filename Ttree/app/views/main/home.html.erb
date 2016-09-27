@@ -9,7 +9,8 @@ window.userName ="<%= current_user.name %>";
       <img src="/assets/personal2.png" style="float:left">
       <h3 id="homeTitle" style="float:left; margin-left:3px;">Personal Works</h3>
     </div>
-    <div class='personal_work_group'  style="text-align:left;"></div>
+    <div class='personal_work_group'  style="text-align:left;">
+    </div>
   </div>
   <div class="personal_team_group">
   </div>
@@ -92,10 +93,10 @@ var makePersonalWorkBox=function(){
             })
             if (flag == true) { // 즐겨찾기 되있음
               $(".personal_work_content"+cnt)
-              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="close_btn close_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+cnt+'" src="/assets/edit.png" height="15px" width="15px";/></span>')
+              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="delete_btn delete_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+cnt+'" src="/assets/edit.png" height="15px" width="15px";/></span>')
             } else {
               $(".personal_work_content"+cnt)
-              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="close_btn close_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+cnt+'" src="/assets/edit.png" height="15px" width="15px";/></span>')
+              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="delete_btn delete_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+cnt+'" src="/assets/edit.png" height="15px" width="15px";/></span>')
             }
             flag = false;
           }
@@ -137,20 +138,20 @@ var makeTeamWorkBox=function(){
           });
           if (flag == true) {
             $(".personal_team_content" + response.team_id + "_" + j)
-            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="close_btn close_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+j+'" src="/assets/edit.png" height="15px" width="15px";/></span></span>')
+            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="delete_btn delete_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+j+'" src="/assets/edit.png" height="15px" width="15px";/></span></span>')
           } else {
             $(".personal_team_content" + response.team_id + "_" + j)
-            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="close_btn close_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+j+'" src="/assets/edit.png" height="15px" width="15px";/></span></span>')
+            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="delete_btn delete_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+j+'" src="/assets/edit.png" height="15px" width="15px";/></span></span>')
           }
           flag = false;
         })
       })
       $(".wrap_team_content" + i).append("<div class='create_personal_team create_personal_team" + (i + 1) + "'></div>").show('slow')
-      $(".create_personal_team" + (i + 1)).append('<div class="create_personal_team_content">Create Team Work</div>')
+      $(".create_personal_team" + (i + 1)).append('<div class="create_personal_team_content"></div>')
       $(".create_personal_team" + (i + 1)).attr("data-team_id", team.id)
     })
   });
-  $(".addWork").append('<div class="add_work_name">Create Personal Work</div>')
+//  $(".addWork").append('<div class="add_work_name personal_work_name">Create Personal Work</div>')
 }
 
 /************************************************************/
@@ -191,7 +192,7 @@ $(document).ready(function(){
   })
   */
 });
-$(".close_btn").on("click",function(e){
+$(".delete_btn").on("click",function(e){
   e.stopPropagation();
   var work_id = $(this).parent().parent().attr('data-id');
   $.get("/api/work/"+work_id + "/delete", {"user_id": userID, "work_id": work_id})
