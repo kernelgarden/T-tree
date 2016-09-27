@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-
 //= require_tree .
+//= require jquery.typeahead.min
 //= require jquery.zoomooz.min
+//= require snap.svg.js
 
 /*main/pages*/
-

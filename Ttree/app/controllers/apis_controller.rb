@@ -193,6 +193,11 @@ class ApisController < ApplicationController
 		@user.staring(Work.find(params[:starlists][:work_id]))
 	end
 
+	def unstaring
+		@user = User.find(params[:starlists][:user_id])
+		@user.unstaring(Work.find(params[:starlists][:work_id]))
+	end
+
 	def setStar
 		Starlist.create(starlist_params)
 	end

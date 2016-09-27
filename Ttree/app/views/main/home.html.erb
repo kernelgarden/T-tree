@@ -76,7 +76,7 @@ var makePersonalWorkBox=function(){
     if($(".personal_work_group").empty(0)){
       $.each(response, function (i,work) {
         if(work.team_id==null){
-          $(".personal_work_group").append("<div class='userWork personal_work_content personal_work_content"+cnt+"''></div>").show('slow')
+          $(".personal_work_group").append("<div class='userWork personal_work_content personal_work_content"+cnt+"''></div>").show()
           if($(".personal_work_content").eq(cnt).empty(0)){
             $(".personal_work_content"+cnt).append('<div class="personal_work_name">'+work.name+'</div>')
             //$(".personal_work_content"+cnt).append('<img class="close_btn closebtn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/>')
@@ -93,10 +93,10 @@ var makePersonalWorkBox=function(){
             })
             if (flag == true) { // 즐겨찾기 되있음
               $(".personal_work_content"+cnt)
-              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="close_btn close_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+cnt+'" src="/assets/edit.png" height="15px" width="15px";/></span>')
+              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="delete_btn delete_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+cnt+'" src="/assets/edit.png" height="15px" width="15px";/></span>')
             } else {
               $(".personal_work_content"+cnt)
-              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="close_btn close_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+cnt+'" src="/assets/edit.png" height="15px" width="15px";/></span>')
+              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="delete_btn delete_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+cnt+'" src="/assets/edit.png" height="15px" width="15px";/></span>')
             }
             flag = false;
           }
@@ -119,7 +119,7 @@ var makeTeamWorkBox=function(){
           $(".personal_team" + i).append("<div class='wrap_team_content wrap_team_content" + i + "'></div>").show('slow')
           $(".personal_team_header" + i).append("<img src='/assets/team3.png' style='float:left ;'>").show('slow')
           $(".personal_team_header" + i).append("<div class='team_more team_more" + i + "'>").show('slow')
-          $(".team_more" + i).append("<img src='/assets/more.png' style='width:15px; height:15px; margin-top:7px; margin-left:7px;'> More").show('slow')
+          $(".team_more" + i).append("<img src='/assets/more.png' style='width:15px; height:15px; margin-top:7px; margin-left:7px;'> More").show()
         }
       }
       $(".personal_team_header").eq(i).append('<h3 style=" float:left; margin-left:5px;">' + team.name + '</h3>')
@@ -138,27 +138,29 @@ var makeTeamWorkBox=function(){
           });
           if (flag == true) {
             $(".personal_team_content" + response.team_id + "_" + j)
-            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="close_btn close_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+j+'" src="/assets/edit.png" height="15px" width="15px";/></span></span>')
+            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="delete_btn delete_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+j+'" src="/assets/edit.png" height="15px" width="15px";/></span></span>')
           } else {
             $(".personal_team_content" + response.team_id + "_" + j)
-            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="close_btn close_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+j+'" src="/assets/edit.png" height="15px" width="15px";/></span></span>')
+            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="delete_btn delete_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+j+'" src="/assets/edit.png" height="15px" width="15px";/></span></span>')
           }
           flag = false;
         })
       })
       $(".wrap_team_content" + i).append("<div class='create_personal_team create_personal_team" + (i + 1) + "'></div>").show('slow')
-      $(".create_personal_team" + (i + 1)).append('<div class="create_personal_team_content">Create Team Work</div>')
+      $(".create_personal_team" + (i + 1)).append('<div class="create_personal_team_content"></div>')
       $(".create_personal_team" + (i + 1)).attr("data-team_id", team.id)
     })
   });
-  $(".addWork").append('<div class="add_work_name">Create Personal Work</div>')
+//  $(".addWork").append('<div class="add_work_name personal_work_name">Create Personal Work</div>')
 }
+
 /************************************************************/
 /////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function(){
   $.ajaxSetup({ //Json 비동기>>>동기
     async:false
   });
+
   //getInfo();
   makePersonalWorkBox();
   makeTeamWorkBox();
@@ -190,7 +192,7 @@ $(document).ready(function(){
   })
   */
 });
-$(".close_btn").on("click",function(e){
+$(".delete_btn").on("click",function(e){
   e.stopPropagation();
   var work_id = $(this).parent().parent().attr('data-id');
   $.get("/api/work/"+work_id + "/delete", {"user_id": userID, "work_id": work_id})
@@ -226,7 +228,7 @@ $(document).on("click", ".addWork", function(e) {
     var x = e.pageX;
     var y = e.pageY;
     $("#create_personal_work_form").css({top:y, left:x});
-    $("#create_personal_work_form").show();
+    $("#create_personal_work_form").fadeIn(200);
     nCount5 = 1;
   } else {
     $("#create_personal_work_form").hide();
@@ -237,6 +239,15 @@ $(document).on("click", ".addWork", function(e) {
     nCount5=0;
   })
 })
+
+$('body').click(function(e){
+  if ( !$(e.target).is('.create_personal_work_form') ) {
+  	//alert()
+    $("#create_personal_work_form").hide();
+    nCount5=0;
+  }
+});
+
 var work_countForm = 0;
 $(document).on("click", ".personal_work_form_button", function(e) {
   e.preventDefault();
@@ -333,7 +344,7 @@ $(document).on("click", ".create_personal_team", function(e) {
     var x = e.pageX;
     var y = e.pageY;
     $("#create_team_work_form").css({top:y, left:x});
-    $("#create_team_work_form").show();
+    $("#create_team_work_form").fadeIn(200);
     nCount6 = 1;
     $("select#team_work_form_selectTeam").val($(this).attr('class').match(/\d/)[0]);
   } else {
@@ -345,6 +356,14 @@ $(document).on("click", ".create_personal_team", function(e) {
     nCount6=0;
   })
 })
+
+$('body').click(function(e){
+  if ( !$(e.target).is('#create_team_work_form') ) {
+    $("#create_team_work_form").hide();
+    nCount6 = 0;
+  }
+});
+
 var nCount4 = 0;
 $('#create_team').click(function(e){
   e.stopPropagation();
@@ -352,7 +371,7 @@ $('#create_team').click(function(e){
     var x = e.pageX;
     var y = e.pageY;
     $("#create_team_form").css({top:y-180, left:x});
-    $("#create_team_form").show();
+    $("#create_team_form").fadeIn(200);
     nCount4=1;
   }
   else{
@@ -364,6 +383,14 @@ $('#create_team').click(function(e){
     nCount4=0;
   })
 })
+
+$('body').click(function(e){
+  if ( !$(e.target).is('#create_team_form') ) {
+    $("#create_team_form").hide();
+    nCount4=0;
+  }
+});
+
 //워크 이름 수정
 var nCount7=0;
 $('.edit_work_btn').click(function(e){
@@ -373,7 +400,7 @@ $('.edit_work_btn').click(function(e){
     var x = e.pageX;
     var y = e.pageY;
     $(".edit_work_name").css({top:y, left:x});
-    $(".edit_work_name").show();
+    $(".edit_work_name").fadeIn(200);
     nCount7=1;
   }
   else{
@@ -423,6 +450,14 @@ $('.edit_work_btn').click(function(e){
     }
   })
 })
+
+$('body').click(function(e){
+  if ( !$(e.target).is('.edit_work_name') ) {
+    $(".edit_work_name").hide();
+    nCount7=0;
+  }
+});
+
 //  $('#create_team_form,#team_name').click(function(e){
 //e.stopImmediatePropagation();
 //  })

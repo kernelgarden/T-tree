@@ -1,0 +1,1 @@
+ENV["ELASTICSEARCH_URL"] = "http://52.78.74.63:9200/"

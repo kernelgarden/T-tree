@@ -35,8 +35,8 @@ var setSize=function(){ //사이즈 세팅해주는 함수
   var heightPosition =window.innerHeight||document.body.clientHeigh;
   $('#side_bar').width(width*15/100)
   $('#side_bar').height(height*2/3)
-  $('#side_bar').offset({right:width*4/100});
-
+  $('#side_bar').offset({left:width*85/100});
+  $('#side_bar').offset({top:height*5/100-7});
   //사이드바 원 높이를 가로와 맞게
   $('#page_alert').height($('#page_alert').width())
   $('#page_alert_num').height($('#page_alert_num').width()*4/5)
@@ -90,29 +90,37 @@ var pagesInform=function(){
 }
 
 var showPages=function(){  //페이지 화면 띄워즈는 함수
+  var flag=100;
   $(document).on("click", "#page_alert", function() {
     if ($('#unPageBox').empty()) {
       var unPages = $('<div class="unPages"></div>').appendTo('#unPageBox');
       var openAllPageBtn = $('<input type="button" id="unpages_open_all_btn" value="Open All Pages" />').appendTo('.unPages');
       var unPage = $('<ol class="unPage"></ol>').appendTo('.unPages');
       //$('.unPages').transition({ x:+(widthPosition*2.5/5)+'px',y:0+'px',duration: 0, scale: 1.0});
-      pageWidth=$('.unPages').width(width * 1.69 / 5)
-      pageHeight=$('.unPages').height(height * 5.5 / 10)
+      pageWidth=$('.unPages').width(width * 0.6 / 5)
+      pageHeight=$('.unPages').height(height * 10 / 10)
       $('.unPages').css({
-        top: height * 1.8 / 10
+        top: height * 0.5 / 10
       })
-      $('.unPages').css({
-        right: 5 + $('#side_bar').width()
-      })
-      $('.unPages').hide();
-      //console.log(flag)
+      //$('.unPages').hide();
+      console.log(flag)
       if (flag == 100) {
+        $('.unPages').css({
+          right:-(width * 0.6 / 5)
+          //right: 5 + $('#side_bar').width()
+        })
         $('.unPages').attr("data-id", 0)
         flag = $('.unPages').data("id");
       } else if (flag == 0) {
+        $('.unPages').css({
+          right:0
+        })
         $('.unPages').attr("data-id", 1)
         flag = $('.unPages').data("id");
       } else if (flag == 1) {
+        $('.unPages').css({
+          right:-(width * 0.6 / 5)
+        })
         $('.unPages').attr("data-id", 0)
         flag = $('.unPages').data("id");
       }
@@ -121,7 +129,8 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
 
     //console.log($('.unPages').data("id"))
     if ($('.unPages').data("id") == 0) {
-      $('.unPages').show();
+      //$('.unPages').show();
+      $('.unPages').transition({ x:-(width * 0.6 / 5)});
       $('.unPages').attr("data-id", 1)
 
       /////////////////////////////Json/////////////////////////////
@@ -135,7 +144,7 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
 
             else {
               $('<li class="pageli-2 pageli2_' + i + '"></li>').appendTo('.unPage');
-              $('.pageli2_'+i).append('<img id="loadingImg" class="img'+i+'" src="/assets/loading3.svg" />');
+              $('.pageli2_'+i).append('<img id="loadingImg" class="img'+i+'" src="/assets/loading3.svg" height="60%" width="60%" />');
               $('<img id="closeImg'+i+'" class="closeImg" src="/assets/closeMini.png" onmouseover="closeHover(this);"" onmouseout="closeUnhover(this);" height="15px" width="15px"/>').appendTo('.unPage');
             }
           } //for
@@ -162,14 +171,40 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
       //////////////////////////////////////////////////////////////
     
     } else {
-      $('.unPages').hide();
+      //console.log("hide")
+      $('.unPages').transition({ x: (width * 0.6 / 5)});
+      //$('.unPages').hide();
       $('.unPages').attr("data-id", 0)
     }
   })//click
 
+
+  $('body').click(function(e){
+    if ( !$(e.target).is('#page_alert, .unPages') ) {
+      if (flag == 0) {
+        $('.unPages').css({
+          right:-(width * 0.6 / 5)
+        })
+        flag=1;
+      } 
+      //console.log(flag)
+
+      //console.log($('.unPages').data("id"))
+      if (flag== 1) {
+        //alert(1)
+        //console.log("hide")
+        $('.unPages').transition({ x: 1});
+        //$('.unPages').hide();
+        $('.unPages').attr("data-id", 0)
+      }
+    }
+  });
+
+
   $('div:not(#page_alert)').click(function(){
 
   })
+
   $(document).on("click",".pageli-2",function() {
       popup = window.open($(this).data("url"),'_blank');
       window.focus();
@@ -242,6 +277,7 @@ $(document).ready(function(){
   //branch에 포함되지 않은 페이지들의 개수를 체크해 할당
   refreshIntervalId=setInterval( checkPageAlerNum, 1000 );
   //pagesInform();
+  
   showPages();
 });
 

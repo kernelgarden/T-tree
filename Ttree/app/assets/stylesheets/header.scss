@@ -213,7 +213,7 @@ $backgorundColor:#E2E4E6;
       }
       .right_icon{
         float:right;
-        padding:2%;
+        //padding:2%;
         margin-bottom:4.5%;
         border-radius: 4px;
          &:hover{
@@ -241,7 +241,7 @@ $backgorundColor:#E2E4E6;
         }
         .team_right_icon{
           float:right;
-          padding:2%;
+          //padding:2%;
           margin-bottom:4.5%;
           border-radius: 4px;
            &:hover{
@@ -297,7 +297,7 @@ $backgorundColor:#E2E4E6;
 
 /*//////////////#dropDown5/////////////*/
 #dropDown5{
-  height: 240px;
+  height: 250px;
   width: 220px;
   position: fixed;
   display: none;
@@ -482,3 +482,8 @@ $backgorundColor:#E2E4E6;
     }
   }/*#userList*/
 }/*#dropDown6*/
+
+.typeahead__container {
+  top: 4px;
+  width: 140%;
+}

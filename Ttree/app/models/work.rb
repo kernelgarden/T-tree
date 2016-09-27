@@ -12,6 +12,8 @@ class Work < ApplicationRecord
 	has_many :starlists, :dependent => :destroy, :foreign_key => "work_id"
 	has_many :stared_users, :through => :starlists, class_name: "User"
 
+	searchkick text_start: [:name]
+
 	#settings index: { number_of_shards: 1 } do
 	#  mappings dynamic: 'false' do
 	#    indexes :name, analyzer: 'english'

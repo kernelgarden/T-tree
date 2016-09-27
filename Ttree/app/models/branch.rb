@@ -7,6 +7,8 @@ class Branch < ApplicationRecord
 
   has_many :pages, :dependent => :destroy
 
+  searchkick text_start: [:name]
+
   def self.json_tree(nodes)
    	nodes.map do |node, sub_nodes|
       	{:name => node.name, :id => node.id, :work_id => node.work_id, :pages => node.pages.as_json(only:[:id, :name]), :children => Branch.json_tree(sub_nodes).compact}

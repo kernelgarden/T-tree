@@ -646,6 +646,7 @@ function renderCircle(){
         /////////////////////////////Json/////////////////////////////
         setTimeout(function(){
 					if (backButtonFlag == 0) {
+						//alert(checkParentId)
 					  $.getJSON("/api/branch/" + checkParentId + "/pages", function(response) {
 					    for (var i = 0; i < response.length; i++) {
 					      //한번만 박스 그려주도록
@@ -816,9 +817,15 @@ $(document).ready(function(){
 	  width = 1366;
 	  height = 768;
 	}
+	$('#side_bar').height(height*2/3)
+	$('#side_bar').offset({left:width*85/100});
+	$('#side_bar').offset({top:height*5/100});
+
 	renderCircle();
 	pagesInform();
   
+  
+
   /*
 	$(document).on("mouseenter", ".child", function() {
 	  if (movingChild == false) {
