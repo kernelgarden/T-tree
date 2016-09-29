@@ -9,7 +9,8 @@ window.userName ="<%= current_user.name %>";
       <img src="/assets/personal2.png" style="float:left">
       <h3 id="homeTitle" style="float:left; margin-left:3px;">Personal Works</h3>
     </div>
-    <div class='personal_work_group'  style="text-align:left;"></div>
+    <div class='personal_work_group'  style="text-align:left;">
+    </div>
   </div>
   <div class="personal_team_group">
   </div>
@@ -92,10 +93,10 @@ var makePersonalWorkBox=function(){
             })
             if (flag == true) { // 즐겨찾기 되있음
               $(".personal_work_content"+cnt)
-              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="close_btn close_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+cnt+'" src="/assets/edit.png" height="15px" width="15px";/></span>')
+              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="delete_btn delete_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+cnt+'" src="/assets/edit.png" height="15px" width="15px";/></span>')
             } else {
               $(".personal_work_content"+cnt)
-              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="close_btn close_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+cnt+'" src="/assets/edit.png" height="15px" width="15px";/></span>')
+              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="delete_btn delete_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+cnt+'" src="/assets/edit.png" height="15px" width="15px";/></span>')
             }
             flag = false;
           }
@@ -137,20 +138,20 @@ var makeTeamWorkBox=function(){
           });
           if (flag == true) {
             $(".personal_team_content" + response.team_id + "_" + j)
-            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="close_btn close_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+j+'" src="/assets/edit.png" height="15px" width="15px";/></span></span>')
+            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="delete_btn delete_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+j+'" src="/assets/edit.png" height="15px" width="15px";/></span></span>')
           } else {
             $(".personal_team_content" + response.team_id + "_" + j)
-            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="close_btn close_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+j+'" src="/assets/edit.png" height="15px" width="15px";/></span></span>')
+            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="delete_btn delete_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+j+'" src="/assets/edit.png" height="15px" width="15px";/></span></span>')
           }
           flag = false;
         })
       })
       $(".wrap_team_content" + i).append("<div class='create_personal_team create_personal_team" + (i + 1) + "'></div>").show('slow')
-      $(".create_personal_team" + (i + 1)).append('<div class="create_personal_team_content">Create Team Work</div>')
+      $(".create_personal_team" + (i + 1)).append('<div class="create_personal_team_content"></div>')
       $(".create_personal_team" + (i + 1)).attr("data-team_id", team.id)
     })
   });
-  $(".addWork").append('<div class="add_work_name">Create Personal Work</div>')
+//  $(".addWork").append('<div class="add_work_name personal_work_name">Create Personal Work</div>')
 }
 
 /************************************************************/
@@ -191,7 +192,7 @@ $(document).ready(function(){
   })
   */
 });
-$(".close_btn").on("click",function(e){
+$(".delete_btn").on("click",function(e){
   e.stopPropagation();
   var work_id = $(this).parent().parent().attr('data-id');
   $.get("/api/work/"+work_id + "/delete", {"user_id": userID, "work_id": work_id})
@@ -227,7 +228,7 @@ $(document).on("click", ".addWork", function(e) {
     var x = e.pageX;
     var y = e.pageY;
     $("#create_personal_work_form").css({top:y, left:x});
-    $("#create_personal_work_form").fadeIn(200);
+    $("#create_personal_work_form").show();
     nCount5 = 1;
   } else {
     $("#create_personal_work_form").hide();
@@ -239,8 +240,8 @@ $(document).on("click", ".addWork", function(e) {
   })
 })
 
-$('body').click(function(e){
-  if ( !$(e.target).is('.create_personal_work_form') ) {
+$(document).click(function(e){
+  if ( !$(e.target).is('.create_personal_work_form, #personal_work_form_main, .form_btn, #personal_work_form, #personal_work_form_title, .personal_input, #personal_work_form_team_name, #personal_work_form_selectTeam, .personal_work_form_button') ) {
   	//alert()
     $("#create_personal_work_form").hide();
     nCount5=0;
@@ -343,7 +344,7 @@ $(document).on("click", ".create_personal_team", function(e) {
     var x = e.pageX;
     var y = e.pageY;
     $("#create_team_work_form").css({top:y, left:x});
-    $("#create_team_work_form").fadeIn(200);
+    $("#create_team_work_form").show();
     nCount6 = 1;
     $("select#team_work_form_selectTeam").val($(this).attr('class').match(/\d/)[0]);
   } else {
@@ -356,8 +357,8 @@ $(document).on("click", ".create_personal_team", function(e) {
   })
 })
 
-$('body').click(function(e){
-  if ( !$(e.target).is('#create_team_work_form') ) {
+$(document).click(function(e){
+  if ( !$(e.target).is('.create_personal_team, #create_team_work_form, #team_work_form_main, .form_btn, .form_team_work_btn, .team_input, #team_work_form, #team_work_form_title, #team_work_form_team_name, #team_work_form_selectTeam, .team_work_form_button') ) {
     $("#create_team_work_form").hide();
     nCount6 = 0;
   }
@@ -370,7 +371,7 @@ $('#create_team').click(function(e){
     var x = e.pageX;
     var y = e.pageY;
     $("#create_team_form").css({top:y-180, left:x});
-    $("#create_team_form").fadeIn(200);
+    $("#create_team_form").show();
     nCount4=1;
   }
   else{
@@ -383,8 +384,8 @@ $('#create_team').click(function(e){
   })
 })
 
-$('body').click(function(e){
-  if ( !$(e.target).is('#create_team_form') ) {
+$(document).click(function(e){
+  if ( !$(e.target).is('#create_team_form, #team_form, #team_name, .team_input, .team_button') ) {
     $("#create_team_form").hide();
     nCount4=0;
   }
@@ -399,7 +400,7 @@ $('.edit_work_btn').click(function(e){
     var x = e.pageX;
     var y = e.pageY;
     $(".edit_work_name").css({top:y, left:x});
-    $(".edit_work_name").fadeIn(200);
+    $(".edit_work_name").show();
     nCount7=1;
   }
   else{
@@ -450,8 +451,8 @@ $('.edit_work_btn').click(function(e){
   })
 })
 
-$('body').click(function(e){
-  if ( !$(e.target).is('.edit_work_name') ) {
+$(document).click(function(e){
+  if ( !$(e.target).is('.edit_work_name, #edit_work_name, #edit_work_form, #team_name, .work_name, .edit_work_button') ) {
     $(".edit_work_name").hide();
     nCount7=0;
   }

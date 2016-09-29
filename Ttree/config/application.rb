@@ -11,3 +11,5 @@ module Ttree
 
   end
 end
+config.time_zone = 'Seoul'
+config.active_record.default_timezone = :local

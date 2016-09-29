@@ -1,11 +1,11 @@
 <script>
 var widthFix = window.innerWidth||document.body.clientWidth;
 var heightFix =window.innerHeight||document.body.clientHeigh;
+var height =window.screen.availHeight||document.body.clientHeigh;
 $(document).ready(function(){
-	$(document).on(function(){
-		$('#contents').width(String(widthFix));
-		$('#contents').height(String(heightFix));
-	})
+	$('#contents').width(String(widthFix));
+	$('#contents').height(String(heightFix));
+	//$('body').height(String(height));
 })
 
 </script>
@@ -26,7 +26,7 @@ $(document).ready(function(){
 	<script src="http://code.jquery.com/color/jquery.color-2.1.0.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/zoomooz/1.1.6/jquery.zoomooz.min.js"></script>
 	<script src="//cdn.jsdelivr.net/jquery.shadow-animation/1/mainfile"></script>
-	
+
 
 	<!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -35,6 +35,10 @@ $(document).ready(function(){
 
 	<script src="http://autocompletejs.com/releases/0.3.0/autocomplete-0.3.0.min.js"></script>
 <!-- JS file
+	<link rel="stylesheet" href="path/to/easy-autocomplete.min.css">
+
+	<script src="http://autocompletejs.com/releases/0.3.0/autocomplete-0.3.0.min.js"></script>
+
 	<link rel="stylesheet" href="path/to/easy-autocomplete.min.css">
 
 	<link rel="stylesheet" href="path/to/easy-autocomplete.themes.min.css"> -->

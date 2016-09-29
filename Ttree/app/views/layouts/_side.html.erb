@@ -35,7 +35,7 @@ var setSize=function(){ //사이즈 세팅해주는 함수
   var heightPosition =window.innerHeight||document.body.clientHeigh;
   $('#side_bar').width(width*15/100)
   $('#side_bar').height(height*2/3)
-  $('#side_bar').offset({left:width*85/100});
+  $('#side_bar').offset({right:width*10/100});
   $('#side_bar').offset({top:height*5/100-7});
   //사이드바 원 높이를 가로와 맞게
   $('#page_alert').height($('#page_alert').width())
@@ -89,21 +89,142 @@ var pagesInform=function(){
         $('.unPages').attr("data-id",0)
 }
 
+
+var showPageCntBox=function(){  //페이지 추가할때마다 시간 순으로 나눔 
+  var pluginClickCnt=0;   //플러그인을 클릭한 횟수 
+  var beforeTime=0;       //이전 페이지의 created_at
+  var colorArray=["#b1e0f8", "#a8cfc3", "#eb9980", "#f1cdcf", "#f1e8b2"];
+  setTimeout(function() {
+    $.getJSON("/api/user/" + userID + "/unclassifiedpages", function(response) {
+      $.each(response, function(i, page) {
+        //이전페이지의 created_at과 다르면 플러그인 클릭 횟수 증가 
+        if(page.created_at!=beforeTime){
+          $('<div class="pageCntBox pageCntBox'+pluginClickCnt+'" id="pageCntBox"></div>').prependTo('.unPages');
+          $('.pageCntBox').width($('.unPages').width()*9.7/10);
+          $('.pageCntBox').height($('.unPages').width()*2/10);
+          $('.pageCntBox'+pluginClickCnt).attr("data-time", page.created_at);
+          $('.pageCntBox'+pluginClickCnt).attr("data-cnt", pluginClickCnt);
+          $('.pageCntBox'+pluginClickCnt).attr("data-click", 0);
+          $('.pageCntBox'+pluginClickCnt).empty().append('<span class="pageBoxTime">'+page.time+'</span><div class="pageBoxContent"></div>');
+          $('.pageCntBox'+pluginClickCnt).css("background-color",colorArray[pluginClickCnt%5]);
+          pluginClickCnt++;
+          beforeTime=page.created_at;
+        }
+      }); 
+    }, 0).complete(function() {
+      var clickCntArray=new Array(pluginClickCnt);
+      clickCntArray=[0];
+      $(document).on("click", ".pageCntBox", function() {
+        var thisCreatedAt=$(this).data("time");       //클릭한 박스의 생성 시간 
+        var thisPluginClickCnt=$(this).data("cnt");  //클릭한 박스가 몇번째의 플러그인 클릭으로 생성되었는지 카운트 
+        var thisBox=$('.pageCntBox'+thisPluginClickCnt);
+        //클릭한 박스의 컨텐츠 
+        var thisPageBox=$('.pageCntBox'+thisPluginClickCnt +' .pageBoxContent'); 
+        var plusHeight=$('.pageCntBox').width()*6/10;  //증가시켜야하는 높이 
+        var pagecnt=0;  //해당 박스에 들어갈 페이지 개수 
+        if(clickCntArray[thisPluginClickCnt-1]==0){
+          clickCntArray[thisPluginClickCnt-1]=1
+          thisPageBox.empty();
+          thisBox.height($('.unPages').width()*2/10);
+        }else {
+          clickCntArray[thisPluginClickCnt-1]=0
+          $.getJSON("/api/user/" + userID + "/unclassifiedpages", function(response) {
+            thisPageBox.empty();
+            $.each(response, function(i, page) {
+              //클릭한 박스의 생성시간과 페이지들의 시간이 같으면 
+              if(thisCreatedAt==page.created_at){
+                pagecnt++;
+                thisPageBox.append('<div class="pageli-2 pageli_'+ thisPluginClickCnt +'_'+ i + '"></div>');
+                $('.pageli-2').height($('.pageli-2').width());
+                $('.pageli_'+ thisPluginClickCnt +'_'+i).append('<img id="loadingImg" class="img'+i+'" src="/assets/loading3.svg" height="60%" width="60%" />');
+                //thisPageBox.append('<img id="closeImg'+i+'" class="closeImg" src="/assets/closeMini.png" onmouseover="closeHover(this);"" onmouseout="closeUnhover(this);" height="15px" width="15px"/>');
+                var img = $('<img class="img" src="http://ryugarden.org/api/thumb?url=' + page.url + '" />')
+                img.load(function() {
+                  $('.img' + i).replaceWith(img);
+                });
+                //$('#closeImg' + i).attr("data-id", page.id)
+                $('.pageli_'+ thisPluginClickCnt +'_'+i).append('<div class="page_url_div"><a class="page_url">' + page.title + '</a></div>');
+                $('.pageli_'+ thisPluginClickCnt +'_'+i).attr("data-url", page.url)
+              }
+            });
+            thisBox.height($('.unPages').width()*2/10 + ($('.pageli-2').height()*1.15)*parseInt((pagecnt+1)/2));
+            $('.pageli-2').draggable({
+              //containment: "window",
+              //cursor: "crosshair",
+              cancel: false,
+              appendTo: 'body',
+              helper:'clone',
+              revert: false,
+              start: function(event, ui) {
+                ui.helper.data('droppedAt', -1); // 원에 드랍시 0 > 의 상수 기타 <= 0
+                ui.helper.data('draggablePos', $(this).position());
+                ui.helper.transition({
+                  rotate: '-15deg', 
+                  duration: 0
+                });
+                ui.helper.addClass("clonePage");
+                ui.helper.height( $('.pageli-2').height());
+                ui.helper.width( $('.pageli-2').width());
+              },
+              stop: function(event, ui) {
+               
+              }
+            });  
+          })
+        }//else
+      });//click
+       
+      
+      $('.pageCntBox').draggable({
+        //containment: "window",
+        //cursor: "crosshair",
+        appendTo: 'body',
+        helper:'clone',
+        revert: false,
+        start: function(event, ui) {
+          ui.helper.data('droppedAt', -1); // 원에 드랍시 0 > 의 상수 기타 <= 0
+          ui.helper.data('draggablePos', $(this).position());
+          ui.helper.transition({
+            rotate: '-15deg', 
+            duration: 0
+          });
+          ui.helper.addClass("clone");
+          $('.clone .pageBoxContent').empty();
+          ui.helper.height($('.unPages').width()*2/10);
+        },
+        stop: function(event, ui) {
+          $('#page_alert').transition({
+            scale: 1,
+            duration: 0
+          });
+          //alert(ui.helper.data('droppedAt'));
+          if (ui.helper.data('droppedAt') != -1)
+            $(this).css({
+              left: ui.helper.data('draggablePos').left,
+              top: ui.helper.data('draggablePos').top
+            });
+          // Check value of ui.helper.data('dropped') and handle accordingly...
+        },
+    
+      });//draggable
+      
+    })//complete
+  }); //setTimeout
+}
 var showPages=function(){  //페이지 화면 띄워즈는 함수
   var flag=100;
   $(document).on("click", "#page_alert", function() {
     if ($('#unPageBox').empty()) {
       var unPages = $('<div class="unPages"></div>').appendTo('#unPageBox');
-      var openAllPageBtn = $('<input type="button" id="unpages_open_all_btn" value="Open All Pages" />').appendTo('.unPages');
+
+      //var openAllPageBtn = $('<input type="button" id="unpages_open_all_btn" value="Open All Pages" />').appendTo('.unPages');
       var unPage = $('<ol class="unPage"></ol>').appendTo('.unPages');
       //$('.unPages').transition({ x:+(widthPosition*2.5/5)+'px',y:0+'px',duration: 0, scale: 1.0});
-      pageWidth=$('.unPages').width(width * 0.6 / 5)
-      pageHeight=$('.unPages').height(height * 10 / 10)
-      $('.unPages').css({
-        top: height * 0.5 / 10
-      })
+      pageWidth=$('.unPages').width(width * 0.8/ 5)
+      pageHeight=$('.unPages').height(height * 8.5/ 10)
+      
       //$('.unPages').hide();
-      console.log(flag)
+      //console.log(flag)
       if (flag == 100) {
         $('.unPages').css({
           right:-(width * 0.6 / 5)
@@ -111,6 +232,7 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
         })
         $('.unPages').attr("data-id", 0)
         flag = $('.unPages').data("id");
+        $('#page_alert').fadeOut(100);
       } else if (flag == 0) {
         $('.unPages').css({
           right:0
@@ -123,53 +245,15 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
         })
         $('.unPages').attr("data-id", 0)
         flag = $('.unPages').data("id");
+        $('#page_alert').fadeOut(300);
       }
-      //$('.unPages').show();
+      //시간순으로 나눠주기 
+      showPageCntBox();
     }
-
-    //console.log($('.unPages').data("id"))
     if ($('.unPages').data("id") == 0) {
       //$('.unPages').show();
       $('.unPages').transition({ x:-(width * 0.6 / 5)});
       $('.unPages').attr("data-id", 1)
-
-      /////////////////////////////Json/////////////////////////////
-      setTimeout(function() {
-        $.getJSON("/api/user/" + userID + "/unclassifiedpages", function(response) {
-          //$('.unPage').append('<img id="loadingImg" src="/assets/loading2.gif" />');
-
-          for (var i = 0; i < response.length; i++) {
-            //한번만 박스 그려주도록
-            if ($('.pageli-2').eq(i).hasClass('pageli2_' + i)) break;
-
-            else {
-              $('<li class="pageli-2 pageli2_' + i + '"></li>').appendTo('.unPage');
-              $('.pageli2_'+i).append('<img id="loadingImg" class="img'+i+'" src="/assets/loading3.svg" height="60%" width="60%" />');
-              $('<img id="closeImg'+i+'" class="closeImg" src="/assets/closeMini.png" onmouseover="closeHover(this);"" onmouseout="closeUnhover(this);" height="15px" width="15px"/>').appendTo('.unPage');
-            }
-          } //for
-
-          $.each(response, function(i, page) {
-            //$('.pageli-2').eq(i).append('<img class="img'+i+'" src="/assets/loading.gif" />');
-            //$('.img'+i).after('<img class="img" src="http://ryugarden.org/api/thumb?url=' + page.url + '" />').hide().load(function(){});
-            var img=$('<img class="img" src="http://ryugarden.org/api/thumb?url=' + page.url + '" />')
-            img.load(function(){
-              $('.img'+i).replaceWith(img);
-            });
-            $('#closeImg'+i).attr("data-id", page.id)
-            //$('.pageli-2').eq(i).append('<img class="img" src="/' + page.url + '" />');
-            $('.pageli-2').eq(i).append('<div class="page_url_div"><a class="page_url">' + page.title + '</a></div>');
-            $('.pageli-2').eq(i).attr("data-url", page.url)
-          })
-          //$('.pageli-2 ').hide();
-        }, 0).complete(function(){
-          //alert(1)
-          //$('#loadingImg').hide();
-          //$('.pageli-2 ').show();
-        })
-      }); //setTimeout
-      //////////////////////////////////////////////////////////////
-    
     } else {
       //console.log("hide")
       $('.unPages').transition({ x: (width * 0.6 / 5)});
@@ -178,37 +262,28 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
     }
   })//click
 
-
-  $('body').click(function(e){
-    if ( !$(e.target).is('#page_alert, .unPages') ) {
+  $(document).click(function(e){
+    if ( !$(e.target).is('#page_alert, #page_alert_num, .unPages, .pageCntBox, .unPage, .pageli-2, img, .page_url_div, .page_url, .pageBoxTime, .pageBoxContent') ) {
       if (flag == 0) {
         $('.unPages').css({
-          right:-(width * 0.6 / 5)
+          right:-(width * 0.8/ 5)
         })
         flag=1;
-      } 
-      //console.log(flag)
-
-      //console.log($('.unPages').data("id"))
-      if (flag== 1) {
         //alert(1)
         //console.log("hide")
         $('.unPages').transition({ x: 1});
         //$('.unPages').hide();
         $('.unPages').attr("data-id", 0)
+        $('#page_alert').fadeIn(300);
+        //$('.pageCntBox .pageBoxContent').empty();
       }
     }
   });
 
-
-  $('div:not(#page_alert)').click(function(){
-
-  })
-
   $(document).on("click",".pageli-2",function() {
       popup = window.open($(this).data("url"),'_blank');
-      window.focus();
-    })
+      //.window.focus();
+  })
   $(document).on("click", "#unpages_open_all_btn", function(e) {
     $(".unPage").children().each(function(idx, item) {
       window.open($(item).attr("data-url"), "_blank");
