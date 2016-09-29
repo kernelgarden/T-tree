@@ -23,9 +23,9 @@ var childBranchArr=new Array(8)   //child 가지 저장 배열
 var fixedHeight=40;         //헤더를 고정하면서 내려가야하는 높이
 var backButtonFlag=0;
 var currentWorkId;
-var checkMakeId;	//방금 만든 가지를 인식하도록 
-var checkParentId;	//parent ID 체크 
-var creating;			//추가중임을 나타냄 
+var checkMakeId;	//방금 만든 가지를 인식하도록
+var checkParentId;	//parent ID 체크
+var creating;			//추가중임을 나타냄
 
 function pencilHover(element) {
   element.setAttribute('src', '/assets/modify2.png');
@@ -40,7 +40,7 @@ function closeUnhover(element) {
   element.setAttribute('src', '/assets/closeMini.png');
 }
 
-var firstWorkBranchSetting=function(flag){	
+var firstWorkBranchSetting=function(flag){
 	if (checkFirst == true) {
 		//alert(8)
 	  $(".parent").empty();
@@ -52,10 +52,10 @@ var firstWorkBranchSetting=function(flag){
 	    	if(branch.parent_id==null){
 		    	$(".child" + position).empty().append(branch.id);
 		      $(".child" + position).append(branch.name);
-		      $(".child" + position).attr("data-id", branch.id)	
+		      $(".child" + position).attr("data-id", branch.id)
 	    	}
 	    });
-	  }).complete(function() { 
+	  }).complete(function() {
 	  	checkParentId=null;
 	  	if(typeof flag!=="undefined") {
 		    	//clearInterval(refreshIntervalId);
@@ -68,9 +68,9 @@ var firstWorkBranchSetting=function(flag){
 			    $(".parent").empty().append(response.id);
 			    $(".parent").append(response.name);
 			  });
-			}  
+			}
 	  });
-	  
+
 	}//if
 
 }//firstWorkBranchSetting();
@@ -261,7 +261,7 @@ function renderCircle(){
 	});
 	$('.back').fadeOut(0);
   /************************************************************/
-  
+
 	/**************************리스트*****************************/
 	/*
 	$(".child").mouseenter(function() {
@@ -314,7 +314,7 @@ function renderCircle(){
 	}
 	//////////////////////////////////////////////////////////////
   */
-  /***********************branch 누르면*************************/  
+  /***********************branch 누르면*************************/
   $('.child').click(function(){
   	//alert(3)
 		backButtonFlag = 0;
@@ -366,7 +366,7 @@ function renderCircle(){
 		//alert(checkParentId)
 		//alert(checkId)
 		//if(checkId==0) checkId=checkMakeId;
-		//console.log(checkId)	
+		//console.log(checkId)
 		//alert(checkId)
 		for (var i = 0; i < noOfServ; i++) {
 		  if ($('.child').eq(i).hasClass('child8')) {
@@ -436,7 +436,7 @@ function renderCircle(){
 		setTimeout(function() {
 			$.getJSON("/api/work/" + currentWorkId + "/branches/"+checkParentId+"/position/"+checkThis, function(response) {
 				var branch=response[0]
-				//브렌치추가중이 아닐때만 
+				//브렌치추가중이 아닐때만
 				if(creating!=1){
 					$(".parent").empty().append(branch.id);
 			    $(".parent").append(branch.name);
@@ -454,7 +454,7 @@ function renderCircle(){
 					});
 			  }).complete(function(){
 			  	if(creating==1){
-			  		//이름 정하는 폼 나타내는 함수 
+			  		//이름 정하는 폼 나타내는 함수
 			  		setNameFormFunction();
 			      creating=0;
 			  	}//if
@@ -463,7 +463,7 @@ function renderCircle(){
 		  })//complete
 		}, 1400);
     ///////////////////////////////////////////////////////////////////
-    
+
     //전 parent값 저장하는 과정
     checkBefore3=checkBefore2;
     checkBefore2=checkId;
@@ -511,7 +511,7 @@ function renderCircle(){
 		$('.child').not('.child8').delay(500).animate({
 		    backgroundColor: "#ECA812",
 		}, 50)
-		
+
 		//child8과 이전 가지의 교환
 		$('.child' + checkThis).addClass('child9')
 		$('.child9').removeClass('child' + checkThis);
@@ -642,7 +642,7 @@ function renderCircle(){
 				  duration: 900,
 				  scale: 1.0
 				});
-        
+
         /////////////////////////////Json/////////////////////////////
         setTimeout(function(){
 					if (backButtonFlag == 0) {
@@ -733,7 +733,7 @@ function renderCircle(){
   /************************************************************/
 
   $(document).on("click", ".closeImg", function() {
-    inputData=inputData = {"id":$(this).data("id")} 
+    inputData=inputData = {"id":$(this).data("id")}
     //alert(inputData)
     $.ajax({
 		  type: "POST",
@@ -801,7 +801,7 @@ function renderCircle(){
   });//click
 }//renderCircle()
 
-//페이지 정보 출력 바탕 
+//페이지 정보 출력 바탕
 function pagesInform(){
    var pages = $('<div class="pages"></div>').appendTo('#wrapDiv');
    var page=$('<ol class="page"></ol>').appendTo('.pages');
@@ -813,18 +813,26 @@ $(document).ready(function(){
 	checkDocument = true;
 	var width = window.innerWidth || document.body.clientWidth;
 	var height = window.innerHeight || document.body.clientHeigh;
+  var heightPosition =window.innerHeight||document.body.clientHeigh;
 	if (height < 500) {
 	  width = 1366;
 	  height = 768;
 	}
+
 	$('#side_bar').height(height*2/3)
 	$('#side_bar').offset({left:width*85/100});
 	$('#side_bar').offset({top:height*5/100});
 
 	renderCircle();
 	pagesInform();
-  
-  
+
+  $('.branch').click(function(){
+   $(this).children().toggleClass('fa-folder-open-o');
+   $(this).next().slideToggle();
+  });
+
+  $('.treeView').height(heightPosition - 40);
+
 
   /*
 	$(document).on("mouseenter", ".child", function() {
@@ -862,14 +870,14 @@ $(document).ready(function(){
 	  //$(this).zoomTo({targetsize:0.75, duration:600});
 	  //e.stopPropagation();
 	});
-    
+
   /*
   $(document).on("click",".pageli",function() {
     $(this).zoomTo({targetsize:0.75, duration:600});
     e.stopPropagation();
   });
   */
-    
+
   //루트가 아닐 때
   $(document).on("click", function(){
 
@@ -976,19 +984,19 @@ $(document).ready(function(){
 	      // awesome code that works and handles successful drops...
 	      $(this).class
 	      ui.helper.data('droppedAt', $(this).attr('class').match(/\d/)[0]);
-	      
+
 	      var position=$(this).attr('class').match(/\d/)[0]
-	      var createFlag=true	//branch를 추가할수 있는지 여부 
+	      var createFlag=true	//branch를 추가할수 있는지 여부
 	      $.getJSON("/api/work/" + currentWorkId + "/branches/" + checkParentId, function(response) {
 				  $.each(response, function(i, branch) {
-				    //현재 position에 이미 branch가 존재하면 
+				    //현재 position에 이미 branch가 존재하면
 				    if (position == branch.position)
 				      createFlag = false;
 				  });
 				}).complete(function() {
 				  if (createFlag==false) {
 				    alert("이 위치에는 이미 branch가 존재합니다!")
-				  } 
+				  }
 				  if (createFlag) {
 			      var formData1 = "unsettled";
 						//alert(formData1)
@@ -1097,6 +1105,88 @@ $('.child').each(function(idx) {
 </script>
 
 <div id="wrapDiv">
+  <div class="treeView">
+    <div class="treeViewInner">
+    	<ul class="tree root">
+    		<li><span class="branch"><i class="fa fa-folder-o"></i> Project-1</span>
+    			<ul class="tree">
+    				<li>
+    					<span class="branch"><i class="fa fa-folder-o"></i> Sub-Project</span>
+    					<ul class="tree">
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-3</span></li>
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-4</span></li>
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-5</span></li>
+    					</ul>
+    				</li>
+    				<li>
+    					<span class="branch"><i class="fa fa-folder-o"></i> Sub-Project2</span>
+    					<ul class="tree">
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-3</span></li>
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-4</span></li>
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-5</span></li>
+    					</ul>
+    				</li>
+    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
+    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
+    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-3</span></li>
+    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-4</span></li>
+    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-5</span></li>
+    			</ul>
+    		</li>
+    		<li>
+    			<span class="branch"><i class="fa fa-folder-o"></i> Project-2</span>
+    			<ul class="tree">
+    				<li><span class="branch"><i class="fa fa-folder-o"></i> Project</span>
+    					<ul class="tree">
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-3</span></li>
+    					</ul>
+    				</li>
+    				<li>
+    					<span class="branch"><i class="fa fa-folder-o"></i> Project</span>
+    					<ul class="tree">
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
+    					</ul>
+    				</li>
+    				<li><span class="branch"><i class="fa fa-folder-o"></i> Project</span>
+    					<ul class="tree">
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
+    					</ul>
+    				</li>
+    			</ul>
+    		</li>
+    		<li>
+    			<span class="branch"><i class="fa fa-folder-o"></i> Project-3</span>
+    					<ul class="tree">
+    						<li><span class="Leaf"><i class="fa fa-file-o"></i> File-1</span></li>
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-3</span></li>
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-4</span></li>
+    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-5</span></li>
+    					</ul>
+    		</li>
+    		<li>
+    			<span class="branch"><i class="fa fa-folder-o"></i> Project-4</span>
+    			<ul class="tree">
+    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
+    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
+    			</ul>
+    		</li>
+    		<li>
+    			<span class="branch"><i class="fa fa-folder-o"></i> Project-5</span>
+    			<ul class="tree">
+    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
+    			</ul>
+    		</li>
+    	</ul>
+    </div>
+  </div>
    <div id="parent" class="parent"></div>
    <div class="childGroup"> </div>
     <div class="branch_list">

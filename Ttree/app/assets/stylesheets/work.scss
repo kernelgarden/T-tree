@@ -1,0 +1,42 @@
+.treeView{
+  background:#87C540;
+  font-family: arial;
+  color:#fff;
+  width: 150px;
+  position:absolute;
+  top: 40px;
+  overflow-y: scroll;
+}
+.tree{
+	list-style: none;
+	padding-left: 20px;
+	position: relative;
+	color: #fff;
+}
+.tree:before{
+	content: '';
+	width: 1px;
+	background: #fff;
+	top: 0;
+	bottom:7px;
+	left:0;
+	position: absolute;
+}
+.tree li{
+	position: relative;
+	margin-top:10px;
+}
+.tree li:hover, .tree li:focus{
+	color: #FFD000;
+	cursor: pointer;
+}
+.tree li:before{
+	content: '';
+	width: 20px;
+	height: 1px;
+	background: #fff;
+	top: 12px;
+	left:-20px;
+	position: absolute;
+}
+.tree .tree{display: none;}
