@@ -178,20 +178,39 @@ class ApisController < ApplicationController
 	def branchName
 		@name=branch_params
 		@branch=Branch.create(branch_params)
-		@pages=User.find(params[:user_id]).unclassifiedpage_ids
-		Unclassifiedpage.transaction do
-			@pages.each do |page|
-				@page=Unclassifiedpage.find(page)
-				@branch.transaction do
-					@branch.pages.create(title: @page.title, url:@page.url)
-				end
-			end  
-		end
 		
-		Unclassifiedpage.transaction do
-			Unclassifiedpage.where(:user_id=>params[:user_id]).delete_all
-		end
-		#debugger
+
+		#동그라미를 드롭다운했으면 저장된 전체 페이지들을 다 브렌치에 넣고 모두 삭제 
+		if params[:timenum]=="0" 
+			@pages=User.find(params[:user_id]).unclassifiedpage_ids
+			Unclassifiedpage.transaction do
+				@pages.each do |page|
+					@page=Unclassifiedpage.find(page)
+					@branch.transaction do
+						@branch.pages.create(title: @page.title, url:@page.url)
+					end
+				end  
+			end
+			Unclassifiedpage.transaction do
+				Unclassifiedpage.where(:user_id=>params[:user_id]).delete_all
+			end
+		
+		#pageCntBox를 드롭다운했으면 해당 회차의 페이지들만 브렌치에 넣고 해당페이지만 삭제 
+		else
+			Unclassifiedpage.transaction do
+				@pages=Unclassifiedpage.where(:user_id=>params[:user_id], :timenum=>params[:timenum])
+				@pages.each do |page|
+					@page=Unclassifiedpage.find(page)
+					@branch.transaction do
+						@branch.pages.create(title: @page.title, url:@page.url)
+					end
+				end  
+			end
+			Unclassifiedpage.transaction do
+				Unclassifiedpage.where(:user_id=>params[:user_id], :timenum=>params[:timenum]).delete_all
+			end
+		end #if-else
+
 	end
 
 	def branchName2

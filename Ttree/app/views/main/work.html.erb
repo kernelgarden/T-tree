@@ -977,9 +977,12 @@ $(document).ready(function(){
 	      // awesome code that works and handles successful drops...
 	      $(this).class
 	      ui.helper.data('droppedAt', $(this).attr('class').match(/\d/)[0]);
-	      alert(ui.helper.data("type"))
+
+	      var dataType=ui.helper.data("type")
+	      var dataTimeNum=ui.helper.data("time")
 	      var position=$(this).attr('class').match(/\d/)[0]
 	      var createFlag=true	//branch를 추가할수 있는지 여부 
+	      
 	      $.getJSON("/api/work/" + currentWorkId + "/branches/" + checkParentId, function(response) {
 				  $.each(response, function(i, branch) {
 				    //현재 position에 이미 branch가 존재하면 
@@ -992,25 +995,53 @@ $(document).ready(function(){
 				  } 
 				  if (createFlag) {
 			      var formData1 = "unsettled";
-
-						if (checkParentId == null)
-						  var inputData = {
-						    "branch": {
-						      "name": formData1,
-						      "work_id": workId,
-						      "position": position
-						    },
-						    "user_id":userID
-						  }
-						else var inputData = {
-						  "branch": {
-						    "name": formData1,
-						    "work_id": workId,
-						    "parent_id": checkParentId,
-						    "position": position
-						  },
-						  "user_id":userID
-						}
+			      //드롭다운 div의 타입이 pageCntBox이면 
+			      //alert(dataType)
+			      if (dataType=="pageCntBox"){
+			      	if (checkParentId == null)
+							  var inputData = {
+							    "branch": {
+							      "name": formData1,
+							      "work_id": workId,
+							      "position": position
+							    },
+							    "user_id":userID,
+							    "timenum":dataTimeNum
+							  }
+							else var inputData = {
+							  "branch": {
+							    "name": formData1,
+							    "work_id": workId,
+							    "parent_id": checkParentId,
+							    "position": position
+							  },
+							  "user_id":userID,
+							  "timenum":dataTimeNum
+							}	
+			      }//if
+			      else{//드롭다운 div의 타입이 동그라미이면 
+				      if (checkParentId == null)
+							  var inputData = {
+							    "branch": {
+							      "name": formData1,
+							      "work_id": workId,
+							      "position": position
+							    },
+							    "user_id":userID,
+							    "timenum":0
+							  }
+							else var inputData = {
+							  "branch": {
+							    "name": formData1,
+							    "work_id": workId,
+							    "parent_id": checkParentId,
+							    "position": position
+							  },
+							  "user_id":userID,
+							  "timenum":0
+							}	
+			      }
+						
 						$.ajax({
 						  type: "POST",
 						  url: "/api/post/branchName",
