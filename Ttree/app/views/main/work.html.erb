@@ -977,7 +977,7 @@ $(document).ready(function(){
 	      // awesome code that works and handles successful drops...
 	      $(this).class
 	      ui.helper.data('droppedAt', $(this).attr('class').match(/\d/)[0]);
-	      //alert(ui.helper.data("type"))
+	      alert(ui.helper.data("type"))
 	      var position=$(this).attr('class').match(/\d/)[0]
 	      var createFlag=true	//branch를 추가할수 있는지 여부 
 	      $.getJSON("/api/work/" + currentWorkId + "/branches/" + checkParentId, function(response) {
