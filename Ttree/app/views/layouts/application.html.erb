@@ -1,14 +1,4 @@
-<script>
-var widthFix = window.innerWidth||document.body.clientWidth;
-var heightFix =window.innerHeight||document.body.clientHeigh;
-var height =window.screen.availHeight||document.body.clientHeigh;
-$(document).ready(function(){
-	$('#contents').width(String(widthFix));
-	$('#contents').height(String(heightFix));
-	//$('body').height(String(height));
-})
 
-</script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +32,17 @@ $(document).ready(function(){
 	<link rel="stylesheet" href="path/to/easy-autocomplete.min.css">
 
 	<link rel="stylesheet" href="path/to/easy-autocomplete.themes.min.css"> -->
+	<script>
+		var widthFix = window.innerWidth||document.body.clientWidth;
+		var heightFix =window.innerHeight||document.body.clientHeigh;
+		var height =window.screen.availHeight||document.body.clientHeigh;
+		$(document).ready(function(){
+			$('#contents').width(String(widthFix));
+			$('#contents').height(String(heightFix));
+			//$('body').height(String(height));
+		})
 
+	</script>
 </head>
 <body>
 	<% if user_signed_in? %>

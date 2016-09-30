@@ -96,13 +96,8 @@ class ApisController < ApplicationController
 
 	def tree
 		@work=Work.find(params[:id])
-		#@branches=Branch.all
-		#mappings = {"name" => "title"}
-
 		@branches=@work.branches.arrange_serializable
-		#@branches=@work.branches
-		#render :json =>  Branch.json_search(@branches)
-
+		#render :json =>  Branch.json_tree(@branches)
 		render :json => @branches
 	end
 
@@ -150,12 +145,9 @@ class ApisController < ApplicationController
 	def getPages
 		@json= JSON.parse(request.raw_post)
 		@user= User.find_by_email(@json["user_email"])
-		@time=Time.now
 		@json["pages"].each do |page|
-			@thisPage=Unclassifiedpage.create(:user_id=>@user.id, :title=>page["title"], :url=>page["url"], :timenum=>@time)
-			#@thisPage.update_attributes(:timenum => @time)
+			Unclassifiedpage.create(:user_id=>@user.id, :title=>page["title"], :url=>page["url"])
 		end
-		#debugger
 	end
 
 	def getMember
@@ -178,39 +170,13 @@ class ApisController < ApplicationController
 	def branchName
 		@name=branch_params
 		@branch=Branch.create(branch_params)
-
-
-		#동그라미를 드롭다운했으면 저장된 전체 페이지들을 다 브렌치에 넣고 모두 삭제
-		if params[:timenum]=="0"
-			@pages=User.find(params[:user_id]).unclassifiedpage_ids
-			Unclassifiedpage.transaction do
-				@pages.each do |page|
-					@page=Unclassifiedpage.find(page)
-					@branch.transaction do
-						@branch.pages.create(title: @page.title, url:@page.url)
-					end
-				end
-			end
-			Unclassifiedpage.transaction do
-				Unclassifiedpage.where(:user_id=>params[:user_id]).delete_all
-			end
-
-		#pageCntBox를 드롭다운했으면 해당 회차의 페이지들만 브렌치에 넣고 해당페이지만 삭제
-		else
-			Unclassifiedpage.transaction do
-				@pages=Unclassifiedpage.where(:user_id=>params[:user_id], :timenum=>params[:timenum])
-				@pages.each do |page|
-					@page=Unclassifiedpage.find(page)
-					@branch.transaction do
-						@branch.pages.create(title: @page.title, url:@page.url)
-					end
-				end
-			end
-			Unclassifiedpage.transaction do
-				Unclassifiedpage.where(:user_id=>params[:user_id], :timenum=>params[:timenum]).delete_all
-			end
-		end #if-else
-
+		@pages=User.current.unclassifiedpage_ids
+		@pages.each do |page|
+			@page=Unclassifiedpage.find(page)
+			@branch.pages.create(title: @page.title, url:@page.url)
+		end
+		Unclassifiedpage.delete_all
+		#debugger
 	end
 
 	def branchName2
@@ -251,11 +217,6 @@ class ApisController < ApplicationController
 		#debugger
 		Branch.create(folder_params)
 	end
-
-	def treeSideBar
-		render :json => '[{ "id" : "ajson1", "parent" : "#", "text" : "Simple root node" },{ "id" : "ajson2", "parent" : "#", "text" : "Root node 2" },{ "id" : "ajson3", "parent" : "ajson2", "text" : "Child 1" },{ "id" : "ajson4", "parent" : "ajson2", "text" : "Child 2" }]'
-	end
-
 
 	private
 	def work_params

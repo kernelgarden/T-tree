@@ -153,14 +153,12 @@ var makeTeamWorkBox=function(){
   });
 //  $(".addWork").append('<div class="add_work_name personal_work_name">Create Personal Work</div>')
 }
-
 /************************************************************/
 /////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function(){
   $.ajaxSetup({ //Json 비동기>>>동기
     async:false
   });
-
   //getInfo();
   makePersonalWorkBox();
   makeTeamWorkBox();
@@ -242,7 +240,6 @@ $(document).on("click", ".addWork", function(e) {
     nCount5=0;
   })
 })
-
 $(document).click(function(e){
   if ( !$(e.target).is('.create_personal_work_form, #personal_work_form_main, .form_btn, #personal_work_form, #personal_work_form_title, .personal_input, #personal_work_form_team_name, #personal_work_form_selectTeam, .personal_work_form_button') ) {
   	//alert()
@@ -250,7 +247,6 @@ $(document).click(function(e){
     nCount5=0;
   }
 });
-
 var work_countForm = 0;
 $(document).on("click", ".personal_work_form_button", function(e) {
   e.preventDefault();
@@ -367,14 +363,12 @@ $(document).on("click", ".create_personal_team", function(e) {
     nCount6=0;
   })
 })
-
 $(document).click(function(e){
   if ( !$(e.target).is('.create_personal_team, #create_team_work_form, #team_work_form_main, .form_btn, .form_team_work_btn, .team_input, #team_work_form, #team_work_form_title, #team_work_form_team_name, #team_work_form_selectTeam, .team_work_form_button') ) {
     $("#create_team_work_form").hide();
     nCount6 = 0;
   }
 });
-
 var nCount4 = 0;
 $('#create_team').click(function(e){
   e.stopPropagation();
@@ -394,14 +388,12 @@ $('#create_team').click(function(e){
     nCount4=0;
   })
 })
-
 $(document).click(function(e){
   if ( !$(e.target).is('#create_team_form, #team_form, #team_name, .team_input, .team_button') ) {
     $("#create_team_form").hide();
     nCount4=0;
   }
 });
-
 //워크 이름 수정
 var nCount7=0;
 $('.edit_work_btn').click(function(e){
@@ -461,14 +453,12 @@ $('.edit_work_btn').click(function(e){
     }
   })
 })
-
 $(document).click(function(e){
   if ( !$(e.target).is('.edit_work_name, #edit_work_name, #edit_work_form, #team_name, .work_name, .edit_work_button') ) {
     $(".edit_work_name").hide();
     nCount7=0;
   }
 });
-
 //  $('#create_team_form,#team_name').click(function(e){
 //e.stopImmediatePropagation();
 //  })
