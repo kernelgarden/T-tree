@@ -103,7 +103,7 @@ $(document).ready(function(){
   getWorkFromTeam();
   $(document).on("click", '.team_work' , function(){
     wId=$(this).data("work_id");
-    window.location='/main/work/'+wId;
+    window.location='/main/work/folder/'+wId;
   })
   var team_search = {
     url: "/search",

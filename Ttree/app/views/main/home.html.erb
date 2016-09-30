@@ -207,11 +207,14 @@ $(document).on("click", '.team_more' , function(){
 })
 $(document).on("click",".userWork",function(){
   var sId = $(this).data("id")
-  window.location='/main/work/'+ sId;
+  //window.location='/main/work/'+ sId;
+  window.location='/main/work/folder/' + sId;
 })
 $(document).on("click",".personal_team_content",function(){
   var twId = $(this).data("id")
-  window.location='/main/work/'+ twId;
+  //window.location='/main/work/'+ twId;
+  //alert(twId);
+  window.location='/main/work/folder/' + twId;
 })
 var nCount5 = 0;
 $.getJSON("/api/user/"+userID, function(response) {
@@ -290,7 +293,8 @@ $(document).on("click", ".personal_work_form_button", function(e) {
     }).complete(function(){
     	$.getJSON("/api/user/" + userID+"/work_ids", function(response) {
 	      //alert(response.length)
-	      window.location='/main/work/'+ response[response.length-1];
+	      //window.location='/main/work/'+ response[response.length-1];
+        window.location='/main/work/folder/' + response[response.length-1];
 	    });
     })
   }
@@ -334,6 +338,13 @@ $(document).on("click", ".team_work_form_button", function(e) {
       error:function(error){
         //alert(error);
       }
+    }).complete(function(){
+    	$.getJSON("/api/user/" + userID+"/work_ids", function(response) {
+        //alert(response);
+	      //alert(response.length)
+	      //window.location='/main/work/'+ response[response.length-1];
+        window.location='/main/work/folder/' + response[response.length-1];
+	    });
     })
   }
 })

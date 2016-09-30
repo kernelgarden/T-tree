@@ -55,11 +55,15 @@ Rails.application.routes.draw do
   post '/api/post/branchName2', to: 'apis#branchName2'         #해당 work의 정보
   get '/api/work/:id/delete', to:'apis#workDelete' #해당 work 삭제
 
+  get '/main/work/folder/*uri', to: 'main#folderView'
+
   post '/api/post/team', to:'apis#getTeam'
   post '/api/page/new', to: 'apis#getPages'
   post '/api/post/team_member', to:'apis#getMember'
-  post '/api/post/deleteunclassifiedpages', to:'apis#deleteunclassifiedpages'	#해당 임시페이지 삭제 
-  post '/api/post/deletePages', to:'apis#deletePages'	#해당 페이지 삭제 
+  post '/api/post/deleteunclassifiedpages', to:'apis#deleteunclassifiedpages'	#해당 임시페이지 삭제
+  post '/api/post/deletePages', to:'apis#deletePages'	#해당 페이지 삭제
+
+  post '/api/post/folder', to: 'apis#addFolder'
 
   get '/api/team/:id/withdraw', to:'apis#teamWithdraw'
 

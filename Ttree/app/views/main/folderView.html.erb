@@ -1,0 +1,152 @@
+<%= stylesheet_link_tag    'application', home: 'all', 'data-turbolinks-track': 'reload' %>
+<%= render "layouts/probe" %>
+
+<script>
+  var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
+  var addFolderCount = 0;
+  $(document).ready(function() {
+    $('.work_container').width(widthPosition - 150);
+    $(document).on("click", "._page", function() {
+      popup = window.open($(this).data("url"),'_blank');
+    });
+    $(document).on("click", "._folder_exist", function() {
+      popup = window.open(window.location.href + "/" + $(this).data("id"), '_self');
+    })
+    $(document).on("click", "._add_folder", function(e) {
+      e.stopPropagation();
+      if (addFolderCount == 0) {
+        if (e.pageX > 150 + widthPosition / 2) {
+          var x = e.pageX - 220;
+        } else {
+          var x = e.pageX;
+        }
+        var y = e.pageY;
+        $("#create_folder_form").css({top:y, left:x});
+        $("#create_folder_form").show();
+        addFolderCount = 1;
+      } else {
+        $("#create_folder_form").hide();
+        addFolderCount = 0;
+      }
+      $(".form_folder_btn").click(function() {
+        $("create_folder_form").hide();
+        addFolderCount = 0;
+      })
+    })
+    $(document).click(function(e) {
+      if (!$(e.target).is('#create_folder_form, #folder_form_main, #folder_form, .folder_form_element')) {
+        $("#create_folder_form").hide();
+        addFolderCount = 0;
+      }
+    })
+    var folderFormCount = 0;
+    $(document).on("click", ".folder_form_button", function(e) {
+      e.preventDefault();
+      $.fn.myFolderSerialize = function() {
+        var returning = '';
+          $('input', this).each(function() {
+            if (this.value !== "")
+              returning += '&' + this.value;
+          })
+        return returning.substring(1);
+      }
+      var formData = $("#folder_form").myFolderSerialize().split('&');
+      //console.log(formData);
+      if (formData.length != 1) {
+        return;
+      } else {
+        <% if @branch.empty? %>
+          var inputData = {"folder": {"name":formData[0], "work_id": <%= @work %>}}
+        <% else %>
+          var inputData = {"folder": {"name":formData[0], "work_id": <%= @work %>, "ancestry": '<%= @ancestry %>'}}
+        <% end %>
+        //alert(inputData);
+      }
+      folderFormCount++;
+      if (folderFormCount == 1) {
+        $.ajax({
+          type:"POST",
+          url:"/api/post/folder",
+          contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+          cache: false,
+          data: inputData,
+          success:function(data) {
+            //alert(error);
+          },
+          error:function(error) {
+          }
+        }).complete(function() {
+          window.location = window.location.href;
+        })
+      }
+    })
+  })
+
+  $(window).resize(function() {
+    $('.work_container').width(widthPosition - 150);
+  })
+</script>
+<div class="work_container" >
+  <div class="branch_group">
+    <p class="line_desc">폴더</p>
+    <hr class="line"/>
+    <% if !@child_branches.nil? %>
+      <% @child_branches.each do |branch| %>
+        <div class="_folder _folder_exist folder_layout" data-id="<%= branch.id %>">
+          <div class="_foldername folder_layout_name">
+            <%= branch.name %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="_folder _add_folder folder_layout">
+      <div class="_foldername folder_layout_name">
+
+      </div>
+    </div>
+  </div>
+
+  <div class="page_group">
+    <p class="line_desc">페이지</p>
+    <hr class="line"/>
+    <% if !@child_pages.nil? %>
+      <% @child_pages.each do |page| %>
+        <div class="_page page_layout" data-url="<%= page.url %>">
+          <img class="_page_img" src="http://ryugarden.org/api/thumb?url=<%= page.url %>"/>
+          <div class="_page_url_div">
+            <a class="_page_url"><%= page.title %></a>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <p>
+    uri: <%= @uri %>
+  </p>
+  <p>
+    child_branches:
+    <% if !@child_branches.nil? %>
+      <% @child_branches.each do |branch| %>
+        <%= branch.id %>
+      <% end %>
+    <% end %>
+  </p>
+  <p>
+    child_pages:
+    <% if !@child_pages.nil? %>
+      <% @child_pages.each do |page| %>
+        <%= page.title %>
+      <% end %>
+    <% end %>
+  </p>
+</div>
+
+<div class="create_folder_form" id="create_folder_form">
+  <div id="folder_form_main" class="folder_form_element">Create Folder</div>
+  <img class="form_folder_btn form_btn" src="/assets/close1.png" />
+  <form id="folder_form">
+    <div id="folder_form_title" class="folder_form_element">Title</div>
+    <input type="text" name="title" class="folder_input folder_form_element" />
+  </form>
+  <input type="button" class="folder_form_button" value="Create" />
+</div>

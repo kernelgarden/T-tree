@@ -213,6 +213,11 @@ class ApisController < ApplicationController
 		Page.find(params[:id]).destroy
 	end
 
+	def addFolder
+		#debugger
+		Branch.create(folder_params)
+	end
+
 	private
 	def work_params
 		params.require(:work).permit(:name, :user_id, :team_id, :branch_ids)
@@ -222,6 +227,9 @@ class ApisController < ApplicationController
 	end
 	def branch_params
 		params.require(:branch).permit(:name, :work_id, :parent_id, :position)
+	end
+	def folder_params
+		params.require(:folder).permit(:name, :work_id, :ancestry)
 	end
 	def starlist_params
 		params.require(:starlists).permit(:work_id, :user_id)

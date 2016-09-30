@@ -3,6 +3,7 @@
 window.workId = "<%= @work_id%>";
 window.pageIds = "<%= @page_ids%>";
 <% end %>
+<%= render "layouts/probe" %>
 <script>
 var translateArr=new Array(2);   //translate 정보를 저장한 배열
 var parentWidth;            //중심 원 가로 길이
@@ -826,14 +827,6 @@ $(document).ready(function(){
 	renderCircle();
 	pagesInform();
 
-  $('.branch').click(function(){
-   $(this).children().toggleClass('fa-folder-open-o');
-   $(this).next().slideToggle();
-  });
-
-  $('.treeView').height(heightPosition - 40);
-
-
   /*
 	$(document).on("mouseenter", ".child", function() {
 	  if (movingChild == false) {
@@ -1105,88 +1098,6 @@ $('.child').each(function(idx) {
 </script>
 
 <div id="wrapDiv">
-  <div class="treeView">
-    <div class="treeViewInner">
-    	<ul class="tree root">
-    		<li><span class="branch"><i class="fa fa-folder-o"></i> Project-1</span>
-    			<ul class="tree">
-    				<li>
-    					<span class="branch"><i class="fa fa-folder-o"></i> Sub-Project</span>
-    					<ul class="tree">
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-3</span></li>
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-4</span></li>
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-5</span></li>
-    					</ul>
-    				</li>
-    				<li>
-    					<span class="branch"><i class="fa fa-folder-o"></i> Sub-Project2</span>
-    					<ul class="tree">
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-3</span></li>
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-4</span></li>
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-5</span></li>
-    					</ul>
-    				</li>
-    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
-    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-3</span></li>
-    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-4</span></li>
-    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-5</span></li>
-    			</ul>
-    		</li>
-    		<li>
-    			<span class="branch"><i class="fa fa-folder-o"></i> Project-2</span>
-    			<ul class="tree">
-    				<li><span class="branch"><i class="fa fa-folder-o"></i> Project</span>
-    					<ul class="tree">
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-3</span></li>
-    					</ul>
-    				</li>
-    				<li>
-    					<span class="branch"><i class="fa fa-folder-o"></i> Project</span>
-    					<ul class="tree">
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
-    					</ul>
-    				</li>
-    				<li><span class="branch"><i class="fa fa-folder-o"></i> Project</span>
-    					<ul class="tree">
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-    					</ul>
-    				</li>
-    			</ul>
-    		</li>
-    		<li>
-    			<span class="branch"><i class="fa fa-folder-o"></i> Project-3</span>
-    					<ul class="tree">
-    						<li><span class="Leaf"><i class="fa fa-file-o"></i> File-1</span></li>
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-3</span></li>
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-4</span></li>
-    						<li><span class="Leaf"><i class="fa fa-file-o "></i> File-5</span></li>
-    					</ul>
-    		</li>
-    		<li>
-    			<span class="branch"><i class="fa fa-folder-o"></i> Project-4</span>
-    			<ul class="tree">
-    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
-    			</ul>
-    		</li>
-    		<li>
-    			<span class="branch"><i class="fa fa-folder-o"></i> Project-5</span>
-    			<ul class="tree">
-    				<li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-    			</ul>
-    		</li>
-    	</ul>
-    </div>
-  </div>
    <div id="parent" class="parent"></div>
    <div class="childGroup"> </div>
     <div class="branch_list">
@@ -1194,3 +1105,11 @@ $('.child').each(function(idx) {
     <div class="branch_content"></div>
   </div>
 </div>
+<!--
+<li>
+  <span class="branch"><i class="fa fa-folder-o"></i>"test"</span>
+  <ul class="tree" style="display: none;">
+    <li><span class="Leaf"><i class="fa fa-file-o"></i>" sample File"</span></li>
+  </ul>
+</li>
+-->
