@@ -39,7 +39,7 @@ var pageHeight=height * 9/ 10;  //  사이드바 height
 var clickCntArray       //  회차박스를 클릭한 횟수를 저장(0:닫혀있을때 1: 열려있을 때 )
 var pluginClickCnt=0;   //  플러그인을 클릭한 횟수(회차) 
 //  #page_alert(동그라미) 클릭 체크 (100: 초기 0:사이드바 열렸을 때 1:사이드바 닫혔을 때)
-var flag=100;  
+var flag=100; 
 
 var setSize=function(){ //사이즈 세팅해주는 함수
   var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
@@ -176,7 +176,7 @@ var showPageCntBox=function(status){  //회차 순으로 페이지 정렬하는 
           $('.unPages').css({
             right: -250
           })
-          flag = 1;
+          //flag = 1;
           //alert(1)
           //console.log("hide")
           $('.unPages').transition({
@@ -220,7 +220,7 @@ var showPageCntBox=function(status){  //회차 순으로 페이지 정렬하는 
 //    showPageCntBox()호출 , 이벤트 모아놓음 
 // └────────────────────────────────────────────────────────────┘ \\
 
-var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수                  
+var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수                   
 
   //  UnPages(오른쪽 사이드바 내부)를 생성하고 크기 세팅하는 함수 
   var SetUnPages=function(pageWidth, pageHeight){
@@ -237,6 +237,7 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
 
   //  flag 변수를 이용해 클릭할때마다 사이드바 show, hide하고 flag값 리턴 
   var ShowHideSidebar=function(flag){
+    //flag=flag||100
     switch(flag){
       // #page_alert(동그라미)를 처음 클릭했을 때 (사이드바 닫혀있을 때)
       case 100:
@@ -281,6 +282,15 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
         })
         $('#page_alert').fadeOut(300);  // #page_alert(동그라미) 사라지게함 
         $('.unPages').transition({ x:-pageWidth});  //  원래위치로 transition(사이드바 나타남)  
+        break;
+      default:
+        //  원래 위치에서 pageWidth(사이드바 width)만큼 오른쪽에 배치 
+        $('.unPages').css({
+          right: -pageWidth
+        })
+        $('#page_alert').fadeOut(100);  // #page_alert(동그라미) 사라지게함 
+        $('.unPages').transition({ x:-pageWidth});  //  원래위치로 transition(사이드바 나타남)
+        flag = 0; //  flag값 변경 
         break;
     }//switch
 
