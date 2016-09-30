@@ -246,6 +246,7 @@ var showPageCntBox=function(status){  //페이지 추가할때마다 시간 순�
               $('.clonePage .closeImg').remove();
 
               //-------------------------드래그 하는 동안 사이드 바 숨기기 
+              
               $('.unPages').css({
                 right: -250
               })
@@ -259,7 +260,7 @@ var showPageCntBox=function(status){  //페이지 추가할때마다 시간 순�
               $('.unPages').attr("data-id", 0)
               $('#page_alert').show();
               //--------------------------------------------------------
-              
+
             },
             stop: function(event, ui) {
 
@@ -394,9 +395,9 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
       //////////////////////////////////////////////////////////////
     })
   });
-
+  
   //드롭 했을 때 페이지 사이드바 다시 보이게 
-  $('body').droppable({
+  $('html').droppable({
     accept: '.pageCntBox, .pageli-2',
     drop: function(event, ui) {
       flag=1;
