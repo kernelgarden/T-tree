@@ -8,8 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Ttree
   class Application < Rails::Application
-
-  end
-end
 config.time_zone = 'Seoul'
 config.active_record.default_timezone = :local
+  end
+end

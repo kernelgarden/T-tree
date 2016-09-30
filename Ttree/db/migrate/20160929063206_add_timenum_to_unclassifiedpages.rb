@@ -1,0 +1,5 @@
+class AddTimenumToUnclassifiedpages < ActiveRecord::Migration[5.0]
+  def change
+    add_column :unclassifiedpages, :timenum, :string
+  end
+end

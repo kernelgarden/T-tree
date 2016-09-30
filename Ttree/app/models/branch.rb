@@ -10,15 +10,27 @@ class Branch < ApplicationRecord
   searchkick text_start: [:name]
 
   def self.json_tree(nodes)
-   	nodes.map do |node, sub_nodes|
-      	{:name => node.name, :id => node.id, :work_id => node.work_id, :pages => node.pages.as_json(only:[:id, :name]), :children => Branch.json_tree(sub_nodes).compact}
+   	nodes.map do |parent, children|
+      	{:name => parent.name, :id => parent.id, :work_id => parent.work_id, :pages => parent.pages.as_json(only:[:id, :name]), :children => Branch.json_tree(children).compact}
+      	#{:text => node.name, :children => Branch.json_tree(sub_nodes).compact}
     end
   end
 
+  def self.json_tree2(nodes)
+	  nodes.map do |parent|
+      	{:name => parent.name}
+    end
+	end
+
   def self.json_search(nodes)
     nodes.map do |node|
-        {:name => node.name, :id => node.id, :attr =>"Branch", :description => Work.find(node.work_id).name}
+    	if node.parent_id!=node.root_id
+        {:id => node.name, :parent => "#", :text => node.name}
+      else
+      	{:id => node.name, :parent => Branch.find(node.ancestry).name, :text => node.name}
+      end
     end
   end
+
 
 end

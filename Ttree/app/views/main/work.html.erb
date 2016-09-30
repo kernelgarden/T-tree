@@ -1,6 +1,7 @@
 <%= stylesheet_link_tag    'application', home: 'all', 'data-turbolinks-track': 'reload' %>
 <%= javascript_tag do %>
 window.workId = "<%= @work_id%>";
+window.userID = "<%= current_user.id%>";
 window.pageIds = "<%= @page_ids%>";
 <% end %>
 <script>
@@ -971,12 +972,12 @@ $(document).ready(function(){
 
 	$('.child').each(function(idx) {
 	  $(this).droppable({
-	    accept: '#page_alert',
+	    accept: '#page_alert, .pageCntBox',
 	    drop: function(event, ui) {
 	      // awesome code that works and handles successful drops...
 	      $(this).class
 	      ui.helper.data('droppedAt', $(this).attr('class').match(/\d/)[0]);
-	      
+	      //alert(ui.helper.data("type"))
 	      var position=$(this).attr('class').match(/\d/)[0]
 	      var createFlag=true	//branch를 추가할수 있는지 여부 
 	      $.getJSON("/api/work/" + currentWorkId + "/branches/" + checkParentId, function(response) {
@@ -991,8 +992,6 @@ $(document).ready(function(){
 				  } 
 				  if (createFlag) {
 			      var formData1 = "unsettled";
-						//alert(formData1)
-						//alert(parentId)
 
 						if (checkParentId == null)
 						  var inputData = {
@@ -1000,7 +999,8 @@ $(document).ready(function(){
 						      "name": formData1,
 						      "work_id": workId,
 						      "position": position
-						    }
+						    },
+						    "user_id":userID
 						  }
 						else var inputData = {
 						  "branch": {
@@ -1008,7 +1008,8 @@ $(document).ready(function(){
 						    "work_id": workId,
 						    "parent_id": checkParentId,
 						    "position": position
-						  }
+						  },
+						  "user_id":userID
 						}
 						$.ajax({
 						  type: "POST",
