@@ -151,6 +151,21 @@ var showPageCntBox=function(status){  //페이지 추가할때마다 시간 순�
           ui.helper.addClass("clone");
           $('.clone .pageBoxContent').empty();
           ui.helper.height($('.unPages').width() * 1.5 / 10);
+
+          //-------------------------드래그 하는 동안 사이드 바 숨기기 
+          $('.unPages').css({
+            right: -250
+          })
+          flag = 1;
+          //alert(1)
+          //console.log("hide")
+          $('.unPages').transition({
+            x: 1
+          });
+          //$('.unPages').hide();
+          $('.unPages').attr("data-id", 0)
+          $('#page_alert').show();
+          //--------------------------------------------------------
         },
         stop: function(event, ui) {
           $('.pageCntBox').transition({
@@ -166,6 +181,7 @@ var showPageCntBox=function(status){  //페이지 추가할때마다 시간 순�
           // Check value of ui.helper.data('dropped') and handle accordingly...
         },
       }); //draggable
+
     })//complete
   }); //setTimeout
 
@@ -190,6 +206,7 @@ var showPageCntBox=function(status){  //페이지 추가할때마다 시간 순�
         clickCntArray[thisPluginClickCnt - 1] = 0
         $.getJSON("/api/user/" + userID + "/unclassifiedpages", function(response) {
           thisPageBox.empty();
+
           $.each(response, function(i, page) {
             //클릭한 박스의 생성시간과 페이지들의 시간이 같으면 
             if (thisCreatedAt == page.timenum) {
@@ -208,6 +225,7 @@ var showPageCntBox=function(status){  //페이지 추가할때마다 시간 순�
             }
           });
           thisBox.height($('.unPages').width() * 2 / 10 + ($('.pageli-2').height() * 1.15) * parseInt((pagecnt + 1) / 2));
+          
           $('.pageli-2').draggable({
             //containment: "window",
             //cursor: "crosshair",
@@ -226,12 +244,29 @@ var showPageCntBox=function(status){  //페이지 추가할때마다 시간 순�
               ui.helper.height($('.pageli-2').height());
               ui.helper.width($('.pageli-2').width());
               $('.clonePage .closeImg').remove();
+
+              //-------------------------드래그 하는 동안 사이드 바 숨기기 
+              $('.unPages').css({
+                right: -250
+              })
+              flag = 1;
+              //alert(1)
+              //console.log("hide")
+              $('.unPages').transition({
+                x: 1
+              });
+              //$('.unPages').hide();
+              $('.unPages').attr("data-id", 0)
+              $('#page_alert').show();
+              //--------------------------------------------------------
+              
             },
             stop: function(event, ui) {
 
             }
-          });
-        })
+          });//draggable
+
+        })//json
       } //else
     }); //click
   } 
@@ -249,7 +284,6 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
       pageHeight=$('.unPages').height(height * 9/ 10)
       
       //$('.unPages').hide();
-      //console.log(flag)
       if (flag == 100) {
         $('.unPages').css({
           right:-(width * 0.6 / 5)
@@ -359,6 +393,15 @@ var showPages=function(){  //페이지 화면 띄워즈는 함수
         })
       //////////////////////////////////////////////////////////////
     })
+  });
+
+  //드롭 했을 때 페이지 사이드바 다시 보이게 
+  $('body').droppable({
+    accept: '.pageCntBox, .pageli-2',
+    drop: function(event, ui) {
+      flag=1;
+      $('#page_alert').trigger('click');
+    }
   });
 }
 
