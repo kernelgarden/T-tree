@@ -1,45 +1,15 @@
+<div id="temp">
+	<div id="using_json">
+
+	</div>
+</div>
 <script>
-function toDegrees (angle) {
-  return angle * (180 / Math.PI);
-}
-$(document).ready(function(){
-	var f=150;
-	var sin=f*Math.sin(toDegrees(45))
-	var x=500;
-	var y=230;
-	var b=50;
-	var s=30;
 
-	var s=Snap("#svg");
-	var bigCircle = s.circle(x, y, 60);
-	var smallCircle1=s.circle(x, y-f, 40);
-	var smallCircle2=s.circle(x-f, y, 40);
-	var smallCircle3=s.circle(x+f, y, 40);
-	var smallCircle4=s.circle(x, y+f, 40);
-	var smallCircle5=s.circle(x-sin, y-sin, 40);
-	var smallCircle6=s.circle(x+sin, y+sin, 40);
-	var smallCircle7=s.circle(x+sin, y-sin, 40);
-	var smallCircle8=s.circle(x-sin, y+sin, 40);
-
-	var p = s.path("M10-5-10,15M15,0,0,15M0-5-20,15").attr({
-        fill: "none",
-        stroke: "#bada55",
-        strokeWidth: 5
-    });
-	// To create pattern,
-	// just specify dimensions in pattern method:
-	p = p.pattern(0, 0, 10, 10)
-	// Then use it as a fill on big circle
-	bigCircle.attr({
-	    fill: p
+	$(document).ready(function(){
+		$('#using_json').jstree({ 'core' : {
+		    'data' : {
+            'url' : '/api/work/1/tree'
+        }
+		} });
 	});
-	smallCircle1.click(function(){
-		x:30;
-	})
-	
-	//alert(3)
-});
-
 </script>
-
-<svg id="svg"></svg>
