@@ -1,6 +1,7 @@
 class ApisController < ApplicationController
 	skip_before_action :verify_authenticity_token
 	before_action :getWork, :only => [:getWork1]
+	#before_action :treeViewStatus, :only => [:tree]
 
 	def users
 		@users=User.all
@@ -94,6 +95,14 @@ class ApisController < ApplicationController
 		render :json => @branch
 	end
 
+	def treeViewStatus
+		if(params[:state]=="true")
+			Branch.find(params[:id]).update_attributes(:viewstate=>true)
+		elsif (params[:state]=="false")
+			Branch.find(params[:id]).update_attributes(:viewstate=>false)
+		end
+	end
+
 	def tree
 		@work=Work.find(params[:id])
 		#@branches=Branch.all
@@ -101,7 +110,7 @@ class ApisController < ApplicationController
 
 		#@branches=@work.branches.arrange_serializable
 		@branches=@work.branches
-		render :json =>  Branch.json_search(@branches)
+		render :json =>Branch.json_search(@branches)
 
 		#render :json => @branches
 	end
@@ -249,7 +258,8 @@ class ApisController < ApplicationController
 
 	def addFolder
 		#debugger
-		Branch.create(folder_params)
+		@branch=Branch.create(folder_params)
+		@branch.update_attributes(:viewstate=>false)
 	end
 
 	def treeSideBar

@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   post '/api/post/deletePages', to:'apis#deletePages'	#해당 페이지 삭제
 
   post '/api/post/folder', to: 'apis#addFolder'
+  post '/api/post/treeViewStatus', to: 'apis#treeViewStatus'
 
   get '/api/team/:id/withdraw', to:'apis#teamWithdraw'
 

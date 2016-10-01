@@ -5,13 +5,13 @@ var marginSize=20;
 
 $(document).ready(function(){
   $('.treeView').height(heightPosition - headerSize-marginSize);
-    $('#using_json').jstree({ 'core' : {
+  $('#using_json').jstree({ 'core' : {
         'data' : {
             'url' : '/api/work/<%= @work %>/tree'
         }
     } 
   }); 
-
+  //브렌치 선택했을 때 
   $('#using_json').on("select_node.jstree", function (e, data) { 
     if(data.node.data.ancestry=="null")
       window.open("/main/work/folder/"+<%= @work %>+ "/"+ data.node.id, '_self')
@@ -19,6 +19,35 @@ $(document).ready(function(){
     else
       window.open("/main/work/folder/"+<%= @work %>+ "/"+ data.node.data.ancestry + "/"+ data.node.id, '_self')
       //alert("/main/work/folder/"+<%= @work %>+ "/"+ data.node.data.ancestry + "/"+ data.node.id)
+  });
+  //트리열었을 때 
+  $('#using_json').on("open_node.jstree", function (e, data) { 
+  
+    //alert(data.node.state.opened)
+    inputData={"id":data.node.id, "state":true}
+    //alert(inputData)
+    
+    $.ajax({
+      type: "POST",
+      url: "/api/post/treeViewStatus",
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      cache: false,
+      data: inputData
+    })
+    
+  });
+  //트리 닫았을 때 
+  $('#using_json').on("close_node.jstree", function (e, data) { 
+   
+    inputData={"id":data.node.id, "state":false}
+    //alert(inputData)
+    $.ajax({
+      type: "POST",
+      url: "/api/post/treeViewStatus",
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      cache: false,
+      data: inputData
+    })
   });
 
   $('.treeView').resizable({
@@ -28,6 +57,7 @@ $(document).ready(function(){
         $('.work_container').width(widthPosition - outerWidth);
     }
   });
+
 
 });
 

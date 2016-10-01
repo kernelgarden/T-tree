@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929063206) do
+ActiveRecord::Schema.define(version: 20161001163033) do
 
   create_table "branches", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160929063206) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "ancestry"
+    t.boolean  "viewstate"
     t.index ["ancestry"], name: "index_branches_on_ancestry"
     t.index ["work_id", "created_at"], name: "index_branches_on_work_id_and_created_at"
     t.index ["work_id"], name: "index_branches_on_work_id"
