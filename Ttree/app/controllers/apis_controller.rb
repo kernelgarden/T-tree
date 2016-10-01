@@ -99,11 +99,11 @@ class ApisController < ApplicationController
 		#@branches=Branch.all
 		#mappings = {"name" => "title"}
 
-		@branches=@work.branches.arrange_serializable
-		#@branches=@work.branches
-		#render :json =>  Branch.json_search(@branches)
+		#@branches=@work.branches.arrange_serializable
+		@branches=@work.branches
+		render :json =>  Branch.json_search(@branches)
 
-		render :json => @branches
+		#render :json => @branches
 	end
 
 	def branchChilds

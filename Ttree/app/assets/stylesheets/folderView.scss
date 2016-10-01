@@ -1,12 +1,11 @@
 .work_container {
   position: absolute;
+  float:right;
   //top: 60px;
   //left: 180px;
   top: 40px;
-  left: 150px;
+  right: 0px;
   padding-top: 20px;
-  //padding-left: 30px;
-  overflow-y: scroll;
 }
 
 .folder_layout{

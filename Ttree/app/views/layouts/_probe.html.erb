@@ -1,13 +1,34 @@
 <script>
 var heightPosition =window.innerHeight||document.body.clientHeigh;
+var headerSize=40;
+var marginSize=20;
 
 $(document).ready(function(){
-  $('.branch').click(function(){
-   $(this).children().toggleClass('fa-folder-open-o');
-   $(this).next().slideToggle();
+  $('.treeView').height(heightPosition - headerSize-marginSize);
+    $('#using_json').jstree({ 'core' : {
+        'data' : {
+            'url' : '/api/work/<%= @work %>/tree'
+        }
+    } 
+  }); 
+
+  $('#using_json').on("select_node.jstree", function (e, data) { 
+    if(data.node.data.ancestry=="null")
+      window.open("/main/work/folder/"+<%= @work %>+ "/"+ data.node.id, '_self')
+      //alert("/main/work/folder/"+<%= @work %>+ "/"+ data.node.id)
+    else
+      window.open("/main/work/folder/"+<%= @work %>+ "/"+ data.node.data.ancestry + "/"+ data.node.id, '_self')
+      //alert("/main/work/folder/"+<%= @work %>+ "/"+ data.node.data.ancestry + "/"+ data.node.id)
   });
 
-  $('.treeView').height(heightPosition - 40);
+  $('.treeView').resizable({
+     resize: function(event,ui) {
+        console.log([$(this).outerWidth(),$(this).outerHeight()]);
+        var outerWidth=$(this).outerWidth()
+        $('.work_container').width(widthPosition - outerWidth);
+    }
+  });
+
 });
 
 $(window).resize(function() {
@@ -16,89 +37,16 @@ $(window).resize(function() {
    $(this).next().slideToggle();
   });
 
-  $('.treeView').height(heightPosition - 40);
+  $('.treeView').height(heightPosition - headerSize-marginSize);
 })
 </script>
 
-<div class="treeView">
-  <div class="treeViewInner">
-    <ul class="tree root">
-      <li><span class="branch"><i class="fa fa-folder-o"></i> Project-1</span>
-        <ul class="tree">
-          <li>
-            <span class="branch"><i class="fa fa-folder-o"></i> Sub-Project</span>
-            <ul class="tree">
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-3</span></li>
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-4</span></li>
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-5</span></li>
-            </ul>
-          </li>
-          <li>
-            <span class="branch"><i class="fa fa-folder-o"></i> Sub-Project2</span>
-            <ul class="tree">
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-3</span></li>
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-4</span></li>
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-5</span></li>
-            </ul>
-          </li>
-          <li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-          <li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
-          <li><span class="Leaf"><i class="fa fa-file-o "></i> File-3</span></li>
-          <li><span class="Leaf"><i class="fa fa-file-o "></i> File-4</span></li>
-          <li><span class="Leaf"><i class="fa fa-file-o "></i> File-5</span></li>
-        </ul>
-      </li>
-      <li>
-        <span class="branch"><i class="fa fa-folder-o"></i> Project-2</span>
-        <ul class="tree">
-          <li><span class="branch"><i class="fa fa-folder-o"></i> Project</span>
-            <ul class="tree">
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-3</span></li>
-            </ul>
-          </li>
-          <li>
-            <span class="branch"><i class="fa fa-folder-o"></i> Project</span>
-            <ul class="tree">
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
-            </ul>
-          </li>
-          <li><span class="branch"><i class="fa fa-folder-o"></i> Project</span>
-            <ul class="tree">
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <span class="branch"><i class="fa fa-folder-o"></i> Project-3</span>
-            <ul class="tree">
-              <li><span class="Leaf"><i class="fa fa-file-o"></i> File-1</span></li>
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-3</span></li>
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-4</span></li>
-              <li><span class="Leaf"><i class="fa fa-file-o "></i> File-5</span></li>
-            </ul>
-      </li>
-      <li>
-        <span class="branch"><i class="fa fa-folder-o"></i> Project-4</span>
-        <ul class="tree">
-          <li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-          <li><span class="Leaf"><i class="fa fa-file-o "></i> File-2</span></li>
-        </ul>
-      </li>
-      <li>
-        <span class="branch"><i class="fa fa-folder-o"></i> Project-5</span>
-        <ul class="tree">
-          <li><span class="Leaf"><i class="fa fa-file-o "></i> File-1</span></li>
-        </ul>
-      </li>
-    </ul>
+
+<div class="treeView ">
+  <div id=workName>
+    <%= @work +" / "+@workname %>
+  </div>
+  <div id="using_json">
+
   </div>
 </div>

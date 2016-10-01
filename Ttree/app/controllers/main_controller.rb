@@ -34,6 +34,7 @@ class MainController < ApplicationController
 	def folderView
 		@uri = params[:uri]
 		@work = @uri.split("/").first
+		@workname=Work.find(@work).name
 		#@work_obj = Work.find(@work)
 		#@isTeam = Work.find(@work).team_id != nil
 		#@type = (@work_obj.team_id != nil)? "team" : "personal"

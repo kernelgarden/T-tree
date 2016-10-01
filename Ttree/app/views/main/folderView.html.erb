@@ -5,7 +5,7 @@
   var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
   var addFolderCount = 0;
   $(document).ready(function() {
-    $('.work_container').width(widthPosition - 150);
+    $('.work_container').width(widthPosition - $('.treeView').outerWidth());
     $(document).on("click", "._page", function() {
       popup = window.open($(this).data("url"),'_blank');
     });

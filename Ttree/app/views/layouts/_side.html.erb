@@ -495,7 +495,7 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
   }); //click
 
   //드롭 했을 때 페이지 사이드바 다시 보이게 
-  $('html').droppable({
+  $('.member_work, .work_container, #header, .treeView').droppable({
     accept: '.pageCntBox, .pageli-2',
     drop: function(event, ui) {
       flag=ShowHideSidebar(1000); 
