@@ -65,7 +65,8 @@ Rails.application.routes.draw do
 
   post '/api/post/folder', to: 'apis#addFolder'
   post '/api/post/treeViewStatus', to: 'apis#treeViewStatus'
-
+  post '/api/post/treeViewWidth', to: 'apis#treeViewWidth'
+  
   get '/api/team/:id/withdraw', to:'apis#teamWithdraw'
 
   get '/search', to:'search#getResult'

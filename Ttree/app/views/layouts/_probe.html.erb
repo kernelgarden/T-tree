@@ -4,6 +4,7 @@ var headerSize=40;
 var marginSize=20;
 
 $(document).ready(function(){
+  $('.treeView').width(<%=@treeViewWidth%>);
   $('.treeView').height(heightPosition - headerSize-marginSize);
   $('#using_json').jstree({ 'core' : {
         'data' : {
@@ -49,15 +50,29 @@ $(document).ready(function(){
       data: inputData
     })
   });
-
+  //트리뷰 리사이즈 
   $('.treeView').resizable({
      resize: function(event,ui) {
-        console.log([$(this).outerWidth(),$(this).outerHeight()]);
-        var outerWidth=$(this).outerWidth()
-        $('.work_container').width(widthPosition - outerWidth);
-    }
-  });
-
+      //alert(inputData)
+      outerWidth=$(this).outerWidth();
+      outerHeight=$(this).outerHeight();
+      console.log([outerWidth,outerHeight]);
+      $('.work_container').width(widthPosition - outerWidth);
+    },
+    stop : function(event,ui) {
+      inputData={"id":<%= @work %>, "viewwidth":$(this).width()}
+      $.ajax({
+        type: "POST",
+        url: "/api/post/treeViewWidth",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        cache: false,
+        data: inputData
+      }).complete(function(){
+        
+      })    
+    }//stop
+    
+  });//resizable
 
 });
 

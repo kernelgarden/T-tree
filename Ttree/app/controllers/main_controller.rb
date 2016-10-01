@@ -35,6 +35,7 @@ class MainController < ApplicationController
 		@uri = params[:uri]
 		@work = @uri.split("/").first
 		@workname=Work.find(@work).name
+		@treeViewWidth=Work.find(@work).viewwidth
 		#@work_obj = Work.find(@work)
 		#@isTeam = Work.find(@work).team_id != nil
 		#@type = (@work_obj.team_id != nil)? "team" : "personal"

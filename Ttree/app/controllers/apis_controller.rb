@@ -95,6 +95,11 @@ class ApisController < ApplicationController
 		render :json => @branch
 	end
 
+	def treeViewWidth
+		Work.find(params[:id]).update_attributes(:viewwidth=>params[:viewwidth])
+		#debugger
+	end 
+
 	def treeViewStatus
 		if(params[:state]=="true")
 			Branch.find(params[:id]).update_attributes(:viewstate=>true)
@@ -148,7 +153,8 @@ class ApisController < ApplicationController
 
 	def getWork
 		#@work=(params[:work])
-		Work.create(work_params)
+		@work=Work.create(work_params)
+		@work.update_attributes(:viewwidth=>140)
 		#render :json => @work
 	end
 	def getTeam
