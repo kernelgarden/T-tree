@@ -74,6 +74,11 @@ $(document).ready(function(){
     
   });//resizable
 
+  $('#workName').click(function(){
+     window.open("/main/work/folder/"+<%= @work %>, '_self')
+  })
+
+
 });
 
 $(window).resize(function() {

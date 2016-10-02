@@ -186,6 +186,7 @@ var showPageCntBox=function(status){  //회차 순으로 페이지 정렬하는 
           $('.unPages').attr("data-id", 0)
           $('#page_alert').show();
           //--------------------------------------------------------
+          
         },
         stop: function(event, ui) {
           $('.pageCntBox').transition({
@@ -321,6 +322,7 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
       
       //  flag 변수를 이용해 클릭할때마다 사이드바 show, hide하고 flag값 리턴 
       //  flag값이 0일것이므로 사이드바 닫힘 
+      console.log(flag)
       if(flag==0) 
         flag=ShowHideSidebar(flag);
       //  회차 박스 드롭한 경우 
@@ -544,6 +546,8 @@ $(window).resize(function(){
  	}//if
 
   setSize();
+
+  createSideBar();
   //pagesInform();
 });
 </script>

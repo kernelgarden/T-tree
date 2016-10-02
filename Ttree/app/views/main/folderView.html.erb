@@ -80,7 +80,22 @@
         })
       }
     })
-  })
+
+    $('.folder_outline').droppable({
+      accept: '#page_alert, .pageCntBox',
+      drop: function(event, ui) {
+        
+      }, //drop
+      over: function(event, ui) {
+        console.log(1)
+        $(this).addClass('folder_outline_color');
+      },
+      out: function(event, ui) {
+        console.log(0)
+        $(this).removeClass('folder_outline_color');
+      }
+    }) //droppable
+  })//ready
 
   $(window).resize(function() {
     $('.work_container').width(widthPosition - 150);
@@ -92,9 +107,11 @@
     <hr class="line"/>
     <% if !@child_branches.nil? %>
       <% @child_branches.each do |branch| %>
-        <div class="_folder _folder_exist folder_layout" data-id="<%= branch.id %>">
-          <div class="_foldername folder_layout_name">
-            <%= branch.name %>
+        <div class=folder_outline>
+          <div class="_folder _folder_exist folder_layout" data-id="<%= branch.id %>">
+            <div class="_foldername folder_layout_name">
+              <%= branch.name %>
+            </div>
           </div>
         </div>
       <% end %>

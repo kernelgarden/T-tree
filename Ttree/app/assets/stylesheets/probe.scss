@@ -30,12 +30,17 @@
   font-size:97%;
   z-index: 80;
   .ui-resizable-e{
-  	width:20px;
+  	width:10px;
   	right:0;
   }
   #workName{
   	text-align: center;
   	margin-bottom:10px;
+  	width:auto;
+  	&:hover{
+  		cursor: pointer;
+  		color:#C0C0C0;
+  	}
   }
 }
 
