@@ -194,7 +194,8 @@ window.branchIdInFolder = "<%=@ancestry%>";
             cache: false,
             data: inputData
           }).complete(function() {
-            window.location = window.location.href;
+            if($('#page_alert_num').text()!=0)
+              window.location = window.location.href;
           })
         }
       },
