@@ -59,11 +59,18 @@ var setSize=function(){ //사이즈 세팅해주는 함수
 
 $('#page_alert').draggable({
 	revert: false,
+  appendTo: 'body',
+  helper: 'clone',
 	start: function(event, ui) {
 		ui.helper.data('droppedAt', -1); // 원에 드랍시 0 > 의 상수 기타 <= 0
 		ui.helper.data('draggablePos', $(this).position());
-    $('#page_alert').transition({
-      scale: 0.65,
+    ui.helper.attr("data-type", "page_alert")
+    ui.helper.addClass("page_alert_clone");
+    ui.helper.width($('#page_alert').width())
+    ui.helper.height($('#page_alert').height())
+    ui.helper.transition({
+      rotate: '-15deg',
+      //scale: 0.7,
       duration: 0
     });
 	},
@@ -322,6 +329,8 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
       
       //  flag 변수를 이용해 클릭할때마다 사이드바 show, hide하고 flag값 리턴 
       //  flag값이 0일것이므로 사이드바 닫힘 
+      
+      //if(flag==false) flag=100;
       console.log(flag)
       if(flag==0) 
         flag=ShowHideSidebar(flag);
@@ -429,6 +438,7 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
             $('.pageli-2').height($('.pageli-2').width());
             //  페이지에 로딩 이미지 삽입 
             $('.pageli_' + thisPluginClickCnt + '_' + i).append('<img id="loadingImg" class="img' + i + '" src="/assets/loading3.svg" height="60%" width="60%" />');
+            $('.pageli_' + thisPluginClickCnt + '_' + i).attr("data-id", page.id)
             //  페이지의 이미지
             var img = $('<img class="img" src="http://ryugarden.org/api/thumb?url=' + page.url + '" />')
               //  페이지의 이미지가 로드되면 로딩이미지를 페이지 이미지로 대체 
@@ -466,6 +476,7 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
               rotate: '-15deg',
               duration: 0
             });
+            ui.helper.attr("data-type", "pageli-2")
             ui.helper.addClass("clonePage");
             ui.helper.height($('.pageli-2').height());
             ui.helper.width($('.pageli-2').width());
@@ -516,6 +527,7 @@ $(document).ready(function(){
   }//if
   var alertNumGap; //페이지 담긴 수 변화 
   //사이즈 세팅
+  flag=100;
   setSize();
 
   createSideBar();
@@ -544,7 +556,7 @@ $(window).resize(function(){
     width=1366;
     height=768;
  	}//if
-
+  flag=100;
   setSize();
 
   createSideBar();

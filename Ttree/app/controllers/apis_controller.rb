@@ -190,6 +190,48 @@ class ApisController < ApplicationController
 		Work.find(@work_id).destroy
 	end
 
+	def addPage
+		@dataType=params[:dataType]
+		Branch.transaction do
+			@branch=Branch.find(params[:branch_id])
+		end
+		#동그라미를 드롭다운 했으면 페이지 전체를 해당 브렌치에 추가하고 회차 스택 비움 
+		if(@dataType=="page_alert")
+			@pages=User.find(params[:user_id]).unclassifiedpage_ids
+			Unclassifiedpage.transaction do
+				@pages.each do |page|
+					@page=Unclassifiedpage.find(page)
+					@branch.transaction do
+						@branch.pages.create(title: @page.title, url:@page.url)
+					end
+				end
+				Unclassifiedpage.where(:user_id=>params[:user_id]).delete_all
+			end
+		elsif (@dataType=="pageCntBox")
+			#timenum
+			Unclassifiedpage.transaction do
+				@pages=Unclassifiedpage.where(:user_id=>params[:user_id], :timenum=>params[:timenum])
+				@pages.each do |page|
+					@page=Unclassifiedpage.find(page)
+					@branch.transaction do
+						@branch.pages.create(title: @page.title, url:@page.url)
+					end
+				end
+				Unclassifiedpage.where(:user_id=>params[:user_id], :timenum=>params[:timenum]).delete_all
+			end
+		elsif (@dataType=="pageli-2")
+			#page_id
+			Unclassifiedpage.transaction do
+				@page=Unclassifiedpage.find(params[:page_id])
+				@branch.transaction do
+					@branch.pages.create(title: @page.title, url:@page.url)
+				end
+				Unclassifiedpage.find(params[:page_id]).delete
+			end
+		end
+		
+	end
+
 	def branchName
 		@name=branch_params
 		@branch=Branch.create(branch_params)
