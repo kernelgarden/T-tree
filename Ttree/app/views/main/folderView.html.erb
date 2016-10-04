@@ -1,11 +1,15 @@
 <%= stylesheet_link_tag    'application', home: 'all', 'data-turbolinks-track': 'reload' %>
 <%= render "layouts/probe" %>
-
+<%= javascript_tag do %>
+window.branchIdInFolder = "<%=@ancestry%>";
+<% end %>
 <script>
   var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
   var addFolderCount = 0;
+  var dropPosition=0; //바탕(0)인지 폴더(1)인지 
+
   $(document).ready(function() {
-    $('.work_container').width(widthPosition - 150);
+    $('.work_container').width(widthPosition - $('.treeView').outerWidth());
     $(document).on("click", "._page", function() {
       popup = window.open($(this).data("url"),'_blank');
     });
@@ -80,7 +84,144 @@
         })
       }
     })
-  })
+
+    $('.folder_outline').droppable({
+      accept: '#page_alert, .pageCntBox, .pageli-2',
+      drop: function(event, ui) {
+        $(this).removeClass('folder_outline_color');
+        var dataType=ui.helper.data("type");
+        var branchID=$(this).children("._folder").data("id");
+        //dataType에 따라 전달하는 데이터 다르게
+        if(dataType=="page_alert"){
+          alert(1)
+          var inputData = 
+            {
+              "branch_id": branchID,
+              "user_id": userID,
+              "dataType": "page_alert"
+            };
+        }
+        else if(dataType=="pageCntBox"){
+          var dataTimeNum=ui.helper.data("time");
+          var inputData = 
+            {
+              "branch_id": branchID,
+              "user_id": userID,
+              "dataType": "pageCntBox",
+              "timenum": dataTimeNum
+            };
+        }
+        else if(dataType=="pageli-2"){
+          var pageId=ui.helper.data("id");
+          //alert(pageId)
+          var inputData = 
+            {
+              "branch_id": branchID,
+              "user_id": userID,
+              "dataType": "pageli-2",
+              "page_id": pageId
+            };
+        }
+        
+        $.ajax({
+          type: "POST",
+          url: "/api/post/addPage",
+          contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+          cache: false,
+          data: inputData
+        }).complete(function() {
+          
+        })
+        
+      }, //drop
+      over: function(event, ui) {
+        console.log(1)
+        $(this).addClass('folder_outline_color');
+        $('.work_container').removeClass('work_container_color');
+        dropPosition=1;
+      },
+      out: function(event, ui) {
+        console.log(0)
+        $(this).removeClass('folder_outline_color');
+        $('.work_container').addClass('work_container_color');
+        dropPosition=0;
+      }
+    }) //droppable
+    $('.work_container').droppable({
+      accept: '#page_alert, .pageCntBox, .pageli-2',
+      drop: function(event, ui) {
+        if(dropPosition==0){
+          $(this).removeClass('work_container_color'); 
+          var dataType=ui.helper.data("type");
+          var branchID=branchIdInFolder;
+          //dataType에 따라 전달하는 데이터 다르게
+          if(dataType=="page_alert"){
+            //alert(1)
+            var inputData = 
+            {
+              "branch_id": branchID,
+              "user_id": userID,
+              "dataType": "page_alert"
+            };
+          }
+          else if(dataType=="pageCntBox"){
+            //alert(2)
+            var dataTimeNum=ui.helper.data("time");
+            var inputData = 
+            {
+              "branch_id": branchID,
+              "user_id": userID,
+              "dataType": "pageCntBox",
+              "timenum": dataTimeNum
+            };
+          }
+          else if(dataType=="pageli-2"){
+            //alert(3)
+            var pageId=ui.helper.data("id");
+            //alert(pageId)
+            var inputData = 
+            {
+              "branch_id": branchID,
+              "user_id": userID,
+              "dataType": "pageli-2",
+              "page_id": pageId
+            };
+          } 
+          $.ajax({
+            type: "POST",
+            url: "/api/post/addPage",
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            cache: false,
+            data: inputData
+          }).complete(function() {
+            if($('#page_alert_num').text()!=0)
+              window.location = window.location.href;
+          })
+        }
+      },
+      over: function(event, ui) {
+        $(this).addClass('work_container_color'); 
+        dropPosition=0;
+      },
+      out: function(event, ui) {
+        $(this).removeClass('work_container_color'); 
+        dropPosition=1;
+      }
+    }) //droppable
+
+    $('#page_alert').droppable({
+      accept: '#page_alert, .pageCntBox, .pageli-2',
+      drop: function(event, ui) {
+        console.log("drop")
+      },
+      over: function(event, ui) {
+        console.log("in")
+      },
+      out: function(event, ui) {
+        console.log("out")
+      }
+    }) //droppable
+  })//ready
 
   $(window).resize(function() {
     $('.work_container').width(widthPosition - 150);
@@ -92,9 +233,11 @@
     <hr class="line"/>
     <% if !@child_branches.nil? %>
       <% @child_branches.each do |branch| %>
-        <div class="_folder _folder_exist folder_layout" data-id="<%= branch.id %>">
-          <div class="_foldername folder_layout_name">
-            <%= branch.name %>
+        <div class=folder_outline>
+          <div class="_folder _folder_exist folder_layout" data-id="<%= branch.id %>">
+            <div class="_foldername folder_layout_name">
+              <%= branch.name %>
+            </div>
           </div>
         </div>
       <% end %>

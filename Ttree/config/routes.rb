@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :search_suggestions
   devise_for :users, :controllers =>{:omniauth_callbacks =>"users/omniauth_callbacks" }
   root 'main#home'
   get 'users/new'
@@ -29,9 +30,9 @@ Rails.application.routes.draw do
   get '/api/team/:id/member_ids', to: 'apis#member_ids'   #해당 team의 user id들
   get '/api/work/:id', to: 'apis#work'         #해당 work의 정보
   get '/api/work/:id/branches', to: 'apis#branches' #해당 work의 branch들의 정보
-  get '/api/work/:id/branches/:id2', 
+  get '/api/work/:id/branches/:id2',
   			to: 'apis#branchesByParent' #해당 work의 parent_id에 따른 branch들의 정보
-  get '/api/work/:id/branches/:id2/position/:id3', 
+  get '/api/work/:id/branches/:id2/position/:id3',
   			to: 'apis#branchesByParentandPosition' #해당 work의 parent_id에 따른 branch들의 정보들중 해당 position
   get '/api/work/:id/branche_ids', to: 'apis#branche_ids' #해당 work의 branch id들
   get '/api/work/:id/tree', to: 'apis#tree'      #해당 work의 tree
@@ -49,6 +50,7 @@ Rails.application.routes.draw do
 
   post '/api/post/work', to: 'apis#getWork'         #해당 work의 정보
   get '/api/post/work', to: 'apis#getWork1'         #해당 work의 정보
+  post '/api/post/workName', to: 'apis#workName'
   post '/api/post/branchName', to: 'apis#branchName'         #해당 work의 정보
   post '/api/post/branchName2', to: 'apis#branchName2'         #해당 work의 정보
   get '/api/work/:id/delete', to:'apis#workDelete' #해당 work 삭제
@@ -62,12 +64,14 @@ Rails.application.routes.draw do
   post '/api/post/deletePages', to:'apis#deletePages'	#해당 페이지 삭제
 
   post '/api/post/folder', to: 'apis#addFolder'
+  post '/api/post/addPage', to: 'apis#addPage'
 
+  post '/api/post/treeViewStatus', to: 'apis#treeViewStatus'
+  post '/api/post/treeViewWidth', to: 'apis#treeViewWidth'
 
   get '/api/team/:id/withdraw', to:'apis#teamWithdraw'
-  get '/api/treeSideBar', to:'apis#treeSideBar'
-
 
   get '/search', to:'search#getResult'
+  get '/search/autocomplete', to: 'search#autocomplete'
   # For details on the DSL available within this file, see http://guides.ruonrails.org/routing.html
 end

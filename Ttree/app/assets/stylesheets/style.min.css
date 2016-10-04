@@ -16,8 +16,9 @@
     white-space: nowrap;
     padding: 0 4px 0 1px;
     margin: 0;
-    vertical-align: top
-}
+    vertical-align: top;
+    padding-right: 20px;
+}		
 .jstree-anchor:focus {
     outline: 0
 }
