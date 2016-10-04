@@ -1,17 +1,17 @@
 <%= javascript_tag do %>
-  window.userID = "<%= current_user.id%>";
-  window.userName ="<%= current_user.name %>";
-  window.workLength ="<%= current_user.work_ids.length %>";
-  window.createWork ='<%=  link_to "<div class='+'create_personal_work'+'></div>".html_safe%>';
-  window.addWork ='<%=  link_to "<div class='+'personal_work_content'+'></div>".html_safe%>';
+window.userID = "<%= current_user.id%>";
+window.userName ="<%= current_user.name %>";
+window.workLength ="<%= current_user.work_ids.length %>";
+window.createWork ='<%=  link_to "<div class='+'create_personal_work'+'></div>".html_safe%>';
+window.addWork ='<%=  link_to "<div class='+'personal_work_content'+'></div>".html_safe%>';
 <% end %>
 
 <div id='side_bar'>
-	<div id='page_alert'>
-		<div id='page_alert_num'>
-
+  <div>
+    <img id="page_alert" src="/assets/bookmark.png">
+    <div id='page_alert_num'>
     </div>
-	</div>
+  </div>
 
 </div>
 <div id='unPageBox'>
@@ -32,14 +32,14 @@ var heightPosition =window.innerHeight||document.body.clientHeigh;
 
 var pagesClickCnt=0;
 //var flag=100;
-var beforeAlertNum=0;  //저장된 이전 페이지 수 
+var beforeAlertNum=0;  //저장된 이전 페이지 수
 
 var pageWidth=250;              //  사이드바 width
 var pageHeight=height * 9/ 10;  //  사이드바 height
 var clickCntArray       //  회차박스를 클릭한 횟수를 저장(0:닫혀있을때 1: 열려있을 때 )
-var pluginClickCnt=0;   //  플러그인을 클릭한 횟수(회차) 
+var pluginClickCnt=0;   //  플러그인을 클릭한 횟수(회차)
 //  #page_alert(동그라미) 클릭 체크 (100: 초기 0:사이드바 열렸을 때 1:사이드바 닫혔을 때)
-var flag=100; 
+var flag=100;
 
 var setSize=function(){ //사이즈 세팅해주는 함수
   var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
@@ -51,40 +51,37 @@ var setSize=function(){ //사이즈 세팅해주는 함수
   $('#side_bar').offset({right:width*10/100});
   $('#side_bar').offset({top:height*5/100-7});
   //사이드바 원 높이를 가로와 맞게
-  $('#page_alert').height($('#page_alert').width())
-  $('#page_alert_num').height($('#page_alert_num').width()*4/5)
-
   $('#page_alert').show();
 }
 
 $('#page_alert').draggable({
-	revert: false,
-	start: function(event, ui) {
-		ui.helper.data('droppedAt', -1); // 원에 드랍시 0 > 의 상수 기타 <= 0
-		ui.helper.data('draggablePos', $(this).position());
+  revert: false,
+  start: function(event, ui) {
+    ui.helper.data('droppedAt', -1); // 원에 드랍시 0 > 의 상수 기타 <= 0
+    ui.helper.data('draggablePos', $(this).position());
     $('#page_alert').transition({
       scale: 0.65,
       duration: 0
     });
-	},
-	stop: function(event, ui) {
-      $('#page_alert').transition({
-        scale: 1,
-        duration: 0
-      });
-      //alert(ui.helper.data('droppedAt'));
-			if (ui.helper.data('droppedAt') != -1)
-				$(this).css({
-					left: ui.helper.data('draggablePos').left,
-					top: ui.helper.data('draggablePos').top
-				});
-      // Check value of ui.helper.data('dropped') and handle accordingly...
+  },
+  stop: function(event, ui) {
+    $('#page_alert').transition({
+      scale: 1,
+      duration: 0
+    });
+    //alert(ui.helper.data('droppedAt'));
+    if (ui.helper.data('droppedAt') != -1)
+    $(this).css({
+      left: ui.helper.data('draggablePos').left,
+      top: ui.helper.data('draggablePos').top
+    });
+    // Check value of ui.helper.data('dropped') and handle accordingly...
   }
 });
 
 var checkPageAlerNum=function(){  //branch에 포함되지 않은 페이지들의 개수를 체크해 할당
-  var currentAlertNum;//현재 페이지들의 개수 
-  var alertNumGap2;    //현재 페이지들의 개수와 이전 페이지들의 개수의 차이 
+  var currentAlertNum;//현재 페이지들의 개수
+  var alertNumGap2;    //현재 페이지들의 개수와 이전 페이지들의 개수의 차이
   $.getJSON("/api/user/"+userID, function(response) {
     currentAlertNum=response.unclassifiedpage_ids.length;
     $('#page_alert_num').empty().append(response.unclassifiedpage_ids.length)
@@ -99,26 +96,26 @@ var checkPageAlerNum=function(){  //branch에 포함되지 않은 페이지들�
 }
 
 // ┌────────────────────────────────────────────────────────────┐ \\
-//       showPageCntBox() 회차 순으로 페이지 정렬하는 함수                                  
+//       showPageCntBox() 회차 순으로 페이지 정렬하는 함수
 // ├────────────────────────────────────────────────────────────┤ \\
-//          
+//
 // └────────────────────────────────────────────────────────────┘ \\
 
 var showPageCntBox=function(status){  //회차 순으로 페이지 정렬하는 함수
   console.log("호출")
-  var beforeTime=0;       //  이전 회차 생성시간 
+  var beforeTime=0;       //  이전 회차 생성시간
   var samePageTimeCnt=1;  //  생성시간이 같은 페이지 개수
   var colorArray=["#b1e0f8", "#f1e8b2", "#eb9980", "#f1cdcf", "#a8cfc3"];
 
   //////////////////////////////JSON//////////////////////////////
   setTimeout(function() {
     $.getJSON("/api/user/" + userID + "/unclassifiedpages", function(response) {
-      //총 회차 초기화 
+      //총 회차 초기화
       pluginClickCnt=0;
       $.each(response, function(i, page) {
-        //  이전 회차의 생성시간과 다르면 회차 증가 
+        //  이전 회차의 생성시간과 다르면 회차 증가
         if(page.timenum!=beforeTime){
-          //  같은 회차 페이지수 초기화 
+          //  같은 회차 페이지수 초기화
           samePageTimeCnt=1;
 
           //  0번째 회차이면 empty()하고 prepend()
@@ -126,31 +123,31 @@ var showPageCntBox=function(status){  //회차 순으로 페이지 정렬하는 
           //  0번째 회차가 아니면 바로 prepend()
           else $('.unPages').prepend('<div class="pageCntBox pageCntBox'+pluginClickCnt+'" id="pageCntBox"></div>')
 
-          //  pageCntBox 크기 세팅 
+          //  pageCntBox 크기 세팅
           $('.pageCntBox').width(pageWidth);
           $('.pageCntBox').height(pageWidth*1.5/10);
 
-          //  pageCntBox 속성  세팅 
+          //  pageCntBox 속성  세팅
           $('.pageCntBox'+pluginClickCnt).attr("data-time", page.timenum);  //생성시간
-          $('.pageCntBox'+pluginClickCnt).attr("data-cnt", pluginClickCnt); //회차 
+          $('.pageCntBox'+pluginClickCnt).attr("data-cnt", pluginClickCnt); //회차
           $('.pageCntBox'+pluginClickCnt).attr("data-click", 0);
 
-          //  회차 생성시간 출력 
+          //  회차 생성시간 출력
           $('.pageCntBox'+pluginClickCnt).empty().append('<span class="pageBoxTime">'+page.time+'</span><span class="pageNum">'+samePageTimeCnt+'</span><div class="pageBoxContent"></div>');
-          //  회차별로 색깔 지정 
+          //  회차별로 색깔 지정
           $('.pageCntBox'+pluginClickCnt).css("background-color",colorArray[pluginClickCnt%5]);
 
           pluginClickCnt++;         //회차 증가
-          beforeTime=page.timenum;  //생성시간을 이전 회차 생성시간에 저장 
+          beforeTime=page.timenum;  //생성시간을 이전 회차 생성시간에 저장
 
         }
-        //  이전회차의 생성시간과 같으면 
+        //  이전회차의 생성시간과 같으면
         else{
           samePageTimeCnt++;  //같은 회차 페이지수 증가
-          //페이지 개수 출력 
+          //페이지 개수 출력
           $('.pageCntBox'+(pluginClickCnt-1)+' .pageNum').empty().append(samePageTimeCnt);
         }
-      });//each 
+      });//each
     }, 0).complete(function() {
       //  .pageCntBox이 생성된 이후에 draggable함수가 실행되어야함 => ajax complete
       $('.pageCntBox').draggable({
@@ -172,7 +169,7 @@ var showPageCntBox=function(status){  //회차 순으로 페이지 정렬하는 
           $('.clone .pageBoxContent').empty();
           ui.helper.height($('.unPages').width() * 1.5 / 10);
 
-          //-------------------------드래그 하는 동안 사이드 바 숨기기 
+          //-------------------------드래그 하는 동안 사이드 바 숨기기
           $('.unPages').css({
             right: -250
           })
@@ -194,15 +191,15 @@ var showPageCntBox=function(status){  //회차 순으로 페이지 정렬하는 
           });
           //alert(ui.helper.data('droppedAt'));
           if (ui.helper.data('droppedAt') != -1)
-            $(this).css({
-              left: ui.helper.data('draggablePos').left,
-              top: ui.helper.data('draggablePos').top
-            });
+          $(this).css({
+            left: ui.helper.data('draggablePos').left,
+            top: ui.helper.data('draggablePos').top
+          });
           // Check value of ui.helper.data('dropped') and handle accordingly...
         },
       }); //draggable
 
-      //전체 회차수 크기의 배열 생성 
+      //전체 회차수 크기의 배열 생성
       clickCntArray = new Array(pluginClickCnt);
       //모두 0으로 초기화
       for(var i=0; i<pluginClickCnt; i++){
@@ -211,128 +208,128 @@ var showPageCntBox=function(status){  //회차 순으로 페이지 정렬하는 
     })//complete
   }); //setTimeout
 
-  
+
 }
 
 // ┌────────────────────────────────────────────────────────────┐ \\
-//    createSideBar() 오른쪽 사이드바를 생성하는 함수                                 
+//    createSideBar() 오른쪽 사이드바를 생성하는 함수
 // ├────────────────────────────────────────────────────────────┤ \\
-//    showPageCntBox()호출 , 이벤트 모아놓음 
+//    showPageCntBox()호출 , 이벤트 모아놓음
 // └────────────────────────────────────────────────────────────┘ \\
 
-var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수                   
+var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
 
-  //  UnPages(오른쪽 사이드바 내부)를 생성하고 크기 세팅하는 함수 
+  //  UnPages(오른쪽 사이드바 내부)를 생성하고 크기 세팅하는 함수
   var SetUnPages=function(pageWidth, pageHeight){
 
     //  unPages =>  오른쪽 사이드바 내부
     $('<div class="unPages"></div>').appendTo('#unPageBox');
-    //  unPage  =>  뭔지 기억안남 
+    //  unPage  =>  뭔지 기억안남
     $('<ol class="unPage"></ol>').appendTo('.unPages');
 
-    // 오른쪽 사이드바 크기 세팅 
-    $('.unPages').width(pageWidth);    //고정 
+    // 오른쪽 사이드바 크기 세팅
+    $('.unPages').width(pageWidth);    //고정
     $('.unPages').height(pageHeight)   //가능한 높이의 9/10
   }// SetUnPages()
 
-  //  flag 변수를 이용해 클릭할때마다 사이드바 show, hide하고 flag값 리턴 
+  //  flag 변수를 이용해 클릭할때마다 사이드바 show, hide하고 flag값 리턴
   var ShowHideSidebar=function(flag){
     //flag=flag||100
     switch(flag){
       // #page_alert(동그라미)를 처음 클릭했을 때 (사이드바 닫혀있을 때)
       case 100:
-        //  원래 위치에서 pageWidth(사이드바 width)만큼 오른쪽에 배치 
-        $('.unPages').css({
-          right: -pageWidth
-        })
-        $('#page_alert').fadeOut(100);  // #page_alert(동그라미) 사라지게함 
-        $('.unPages').transition({ x:-pageWidth});  //  원래위치로 transition(사이드바 나타남)
-        flag = 0; //  flag값 변경 
-        break;
+      //  원래 위치에서 pageWidth(사이드바 width)만큼 오른쪽에 배치
+      $('.unPages').css({
+        right: -pageWidth
+      })
+      $('#page_alert').fadeOut(100);  // #page_alert(동그라미) 사라지게함
+      $('.unPages').transition({ x:-pageWidth});  //  원래위치로 transition(사이드바 나타남)
+      flag = 0; //  flag값 변경
+      break;
 
       //  사이드바 닫혀있으면
-      case 1: 
-        console.log("열림")
-        //  원래 위치에서 pageWidth(사이드바 width)만큼 오른쪽에 배치 
-        $('.unPages').css({
-          right: -pageWidth
-        })
-        $('#page_alert').fadeOut(300);  // #page_alert(동그라미) 사라지게함 
-        $('.unPages').transition({ x:-pageWidth});  //  원래위치로 transition(사이드바 나타남)
-        flag = 0; //  flag값 변경   
-        break;
+      case 1:
+      console.log("열림")
+      //  원래 위치에서 pageWidth(사이드바 width)만큼 오른쪽에 배치
+      $('.unPages').css({
+        right: -pageWidth
+      })
+      $('#page_alert').fadeOut(300);  // #page_alert(동그라미) 사라지게함
+      $('.unPages').transition({ x:-pageWidth});  //  원래위치로 transition(사이드바 나타남)
+      flag = 0; //  flag값 변경
+      break;
 
-      //  사이드바 열려있으면 
+      //  사이드바 열려있으면
       case 0:
-        //  원래 위치에서 pageWidth(사이드바 width)만큼 오른쪽에 배치 
-        $('.unPages').css({
-          right:-pageWidth
-        })
-        $('.unPages').transition({ x: 0});    // 원래위치로 이동  
-        $('#page_alert').fadeIn(300);         // #page_alert(동그라미) 나타나게 함  
-        flag = 1; //  flag값 변경 
-        break;
+      //  원래 위치에서 pageWidth(사이드바 width)만큼 오른쪽에 배치
+      $('.unPages').css({
+        right:-pageWidth
+      })
+      $('.unPages').transition({ x: 0});    // 원래위치로 이동
+      $('#page_alert').fadeIn(300);         // #page_alert(동그라미) 나타나게 함
+      flag = 1; //  flag값 변경
+      break;
 
-      //  회차 박스 드롭한 경우 
+      //  회차 박스 드롭한 경우
       case 1000:
-        console.log("열림")
-        //  원래 위치에서 pageWidth(사이드바 width)만큼 오른쪽에 배치 
-        $('.unPages').css({
-          right: -pageWidth
-        })
-        $('#page_alert').fadeOut(300);  // #page_alert(동그라미) 사라지게함 
-        $('.unPages').transition({ x:-pageWidth});  //  원래위치로 transition(사이드바 나타남)  
-        break;
+      console.log("열림")
+      //  원래 위치에서 pageWidth(사이드바 width)만큼 오른쪽에 배치
+      $('.unPages').css({
+        right: -pageWidth
+      })
+      $('#page_alert').fadeOut(300);  // #page_alert(동그라미) 사라지게함
+      $('.unPages').transition({ x:-pageWidth});  //  원래위치로 transition(사이드바 나타남)
+      break;
       default:
-        //  원래 위치에서 pageWidth(사이드바 width)만큼 오른쪽에 배치 
-        $('.unPages').css({
-          right: -pageWidth
-        })
-        $('#page_alert').fadeOut(100);  // #page_alert(동그라미) 사라지게함 
-        $('.unPages').transition({ x:-pageWidth});  //  원래위치로 transition(사이드바 나타남)
-        flag = 0; //  flag값 변경 
-        break;
+      //  원래 위치에서 pageWidth(사이드바 width)만큼 오른쪽에 배치
+      $('.unPages').css({
+        right: -pageWidth
+      })
+      $('#page_alert').fadeOut(100);  // #page_alert(동그라미) 사라지게함
+      $('.unPages').transition({ x:-pageWidth});  //  원래위치로 transition(사이드바 나타남)
+      flag = 0; //  flag값 변경
+      break;
     }//switch
 
     return flag;
   }
 
-  //  #page_alert(동그라미) 클릭 이벤트  
+  //  #page_alert(동그라미) 클릭 이벤트
   $(document).on("click", "#page_alert", function() {
 
     //  동그라미를 클릭할때마다 오른쪽 사이드바를 비어주고 새로 생성할것임
     $('#unPageBox').empty()
 
-    //  UnPages(오른쪽 사이드바 내부)를 생성하고 크기 세팅하는 함수 
+    //  UnPages(오른쪽 사이드바 내부)를 생성하고 크기 세팅하는 함수
     SetUnPages(pageWidth, pageHeight);
-    
-    //  flag 변수를 이용해 클릭할때마다 사이드바 show, hide하고 flag값 리턴 
+
+    //  flag 변수를 이용해 클릭할때마다 사이드바 show, hide하고 flag값 리턴
     flag=ShowHideSidebar(flag);
 
-    //  시간순으로 나눠주기 
+    //  시간순으로 나눠주기
     showPageCntBox();
 
   })//  #page_alert.click
 
-  //  바탕 누르면 사이드바 닫히게 하기 
+  //  바탕 누르면 사이드바 닫히게 하기
   $(document).click(function(e){
-    //  아래 항목들을 누른게 아닐때 
+    //  아래 항목들을 누른게 아닐때
     if ( !$(e.target).is('#page_alert, #page_alert_num, .unPages, .pageCntBox, .unPage, .pageli-2, img, .page_url_div, .page_url, .pageBoxTime, .pageBoxContent') ) {
-      
-      //  flag 변수를 이용해 클릭할때마다 사이드바 show, hide하고 flag값 리턴 
-      //  flag값이 0일것이므로 사이드바 닫힘 
-      if(flag==0) 
-        flag=ShowHideSidebar(flag);
-      //  회차 박스 드롭한 경우 
+
+      //  flag 변수를 이용해 클릭할때마다 사이드바 show, hide하고 flag값 리턴
+      //  flag값이 0일것이므로 사이드바 닫힘
+      if(flag==0)
+      flag=ShowHideSidebar(flag);
+      //  회차 박스 드롭한 경우
       else if(flag==1000)
-        flag=0;
+      flag=0;
     }
   });// document.click
 
-  //  클릭한 페이지 열기 
+  //  클릭한 페이지 열기
   $(document).on("click",".pageli-2",function() {
-      popup = window.open($(this).data("url"),'_blank');
-      //.window.focus();
+    popup = window.open($(this).data("url"),'_blank');
+    //.window.focus();
   })
 
 
@@ -342,9 +339,9 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
     })
   });
 
-  //보류 
+  //보류
   $(document).on("click", ".closeImg", function() {
-    inputData=inputData = {"id":$(this).data("id")} 
+    inputData=inputData = {"id":$(this).data("id")}
     //alert(inputData)
     $.ajax({
       type: "POST",
@@ -353,100 +350,100 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
       cache: false,
       data: inputData
     }).complete(function(){
-        $.getJSON("/api/user/" + userID + "/unclassifiedpages", function(response) {
-          $('.unPage').empty();
-          //$('.unPage').append('<img id="loadingImg" src="/assets/loading2.gif" />');
+      $.getJSON("/api/user/" + userID + "/unclassifiedpages", function(response) {
+        $('.unPage').empty();
+        //$('.unPage').append('<img id="loadingImg" src="/assets/loading2.gif" />');
 
-          for (var i = 0; i < response.length; i++) {
-            //한번만 박스 그려주도록
-            if ($('.pageli-2').eq(i).hasClass('pageli2_' + i)) break;
+        for (var i = 0; i < response.length; i++) {
+          //한번만 박스 그려주도록
+          if ($('.pageli-2').eq(i).hasClass('pageli2_' + i)) break;
 
-            else {
-              $('<li class="pageli-2 pageli2_' + i + '"></li>').appendTo('.unPage');
-              $('.pageli2_'+i).append('<img id="loadingImg" class="img'+i+'" src="/assets/loading3.svg" />');
-              $('<img id="closeImg'+i+'" class="closeImg" src="/assets/closeMini.png" onmouseover="closeHover(this);"" onmouseout="closeUnhover(this);" height="15px" width="15px"/>').appendTo('.unPage');
-            }
-          } //for
+          else {
+            $('<li class="pageli-2 pageli2_' + i + '"></li>').appendTo('.unPage');
+            $('.pageli2_'+i).append('<img id="loadingImg" class="img'+i+'" src="/assets/loading3.svg" />');
+            $('<img id="closeImg'+i+'" class="closeImg" src="/assets/closeMini.png" onmouseover="closeHover(this);"" onmouseout="closeUnhover(this);" height="15px" width="15px"/>').appendTo('.unPage');
+          }
+        } //for
 
-          $.each(response, function(i, page) {
-            //$('.pageli-2').eq(i).append('<img class="img'+i+'" src="/assets/loading.gif" />');
-            //$('.img'+i).after('<img class="img" src="http://ryugarden.org/api/thumb?url=' + page.url + '" />').hide().load(function(){});
-            var img=$('<img class="img" src="http://ryugarden.org/api/thumb?url=' + page.url + '" />')
-            img.load(function(){
-              $('.img'+i).replaceWith(img);
-            });
-            $('#closeImg'+i).attr("data-id", page.id)
-            //$('.pageli-2').eq(i).append('<img class="img" src="/' + page.url + '" />');
-            $('.pageli-2').eq(i).append('<div class="page_url_div"><a class="page_url">' + page.title + '</a></div>');
-            $('.pageli-2').eq(i).attr("data-url", page.url)
-          })
-          //$('.pageli-2 ').hide();
-        }, 0).complete(function(){
-          //alert(1)
-          //$('#loadingImg').hide();
-          //$('.pageli-2 ').show();
+        $.each(response, function(i, page) {
+          //$('.pageli-2').eq(i).append('<img class="img'+i+'" src="/assets/loading.gif" />');
+          //$('.img'+i).after('<img class="img" src="http://ryugarden.org/api/thumb?url=' + page.url + '" />').hide().load(function(){});
+          var img=$('<img class="img" src="http://ryugarden.org/api/thumb?url=' + page.url + '" />')
+          img.load(function(){
+            $('.img'+i).replaceWith(img);
+          });
+          $('#closeImg'+i).attr("data-id", page.id)
+          //$('.pageli-2').eq(i).append('<img class="img" src="/' + page.url + '" />');
+          $('.pageli-2').eq(i).append('<div class="page_url_div"><a class="page_url">' + page.title + '</a></div>');
+          $('.pageli-2').eq(i).attr("data-url", page.url)
         })
+        //$('.pageli-2 ').hide();
+      }, 0).complete(function(){
+        //alert(1)
+        //$('#loadingImg').hide();
+        //$('.pageli-2 ').show();
+      })
       //////////////////////////////////////////////////////////////
     })
   });
 
-  //  회차박스를 클릭했을 때 
+  //  회차박스를 클릭했을 때
   $(document).on("click", ".pageCntBox", function() {
     console.log("클릭")
-    var thisCreatedAt = $(this).data("time"); //  클릭한 박스의 생성 시간 
-    var thisPluginClickCnt = $(this).data("cnt"); //  클릭한 박스의 회차 
-    var thisBox = $('.pageCntBox' + thisPluginClickCnt); //클릭한 박스 
-    //클릭한 박스의 컨텐츠 
-    //var thisPageTimeBox=$('.pageCntBox'+thisPluginClickCnt +' .pageBoxTime'); 
-    //  클릭한 박스의 내용물 
+    var thisCreatedAt = $(this).data("time"); //  클릭한 박스의 생성 시간
+    var thisPluginClickCnt = $(this).data("cnt"); //  클릭한 박스의 회차
+    var thisBox = $('.pageCntBox' + thisPluginClickCnt); //클릭한 박스
+    //클릭한 박스의 컨텐츠
+    //var thisPageTimeBox=$('.pageCntBox'+thisPluginClickCnt +' .pageBoxTime');
+    //  클릭한 박스의 내용물
     var thisPageBox = $('.pageCntBox' + thisPluginClickCnt + ' .pageBoxContent');
-    //  페이지수/2번만큼 증가시켜야하는 높이  
+    //  페이지수/2번만큼 증가시켜야하는 높이
     var plusHeight = $('.pageCntBox').width() * 6 / 10;
-    var pagecnt = 0; // 해당 박스에 들어갈 페이지 개수 
+    var pagecnt = 0; // 해당 박스에 들어갈 페이지 개수
     console.log(clickCntArray[thisPluginClickCnt - 1])
-      //  해당 회차박스가 열려있을 때 
+    //  해당 회차박스가 열려있을 때
     if (clickCntArray[thisPluginClickCnt - 1] == 1) {
       //console.log(clickCntArray[thisPluginClickCnt-1])
       clickCntArray[thisPluginClickCnt - 1] = 0;
       thisPageBox.empty();
       thisBox.height($('.unPages').width() * 1.5 / 10);
     }
-    //  해당 회차박스가 닫혀있을 때 
+    //  해당 회차박스가 닫혀있을 때
     else {
       $.getJSON("/api/user/" + userID + "/unclassifiedpages", function(response) {
         thisPageBox.empty();
 
         $.each(response, function(i, page) {
-          //  클릭한 박스의 생성시간과 페이지들의 생성 시간이 같으면 
+          //  클릭한 박스의 생성시간과 페이지들의 생성 시간이 같으면
           if (thisCreatedAt == page.timenum) {
-            //  해당 박스에 들어갈 페이지 개수 증가 
+            //  해당 박스에 들어갈 페이지 개수 증가
             pagecnt++;
-            //  클릭한 박스의 내용물에 페이지 삽입 
+            //  클릭한 박스의 내용물에 페이지 삽입
             thisPageBox.append('<div class="pageli-2 pageli_' + thisPluginClickCnt + '_' + i + '"></div>');
             //  페이지 높이 설정 (넓이와 같게)
             $('.pageli-2').height($('.pageli-2').width());
-            //  페이지에 로딩 이미지 삽입 
+            //  페이지에 로딩 이미지 삽입
             $('.pageli_' + thisPluginClickCnt + '_' + i).append('<img id="loadingImg" class="img' + i + '" src="/assets/loading3.svg" height="60%" width="60%" />');
             //  페이지의 이미지
             var img = $('<img class="img" src="http://ryugarden.org/api/thumb?url=' + page.url + '" />')
-              //  페이지의 이미지가 로드되면 로딩이미지를 페이지 이미지로 대체 
+            //  페이지의 이미지가 로드되면 로딩이미지를 페이지 이미지로 대체
             img.load(function() {
               $('.img' + i).replaceWith(img);
               //$('.pageli_' + thisPluginClickCnt + '_' + i).append('<img id="closeImg' + i + '" class="closeImg" src="/assets/closeMini.png" onmouseover="closeHover(this);"" onmouseout="closeUnhover(this);" height="15px" width="15px"/>');
             });
             //$('#closeImg' + i).attr("data-id", page.id)
 
-            // 페이지에 title삽입하고 속성에 url 추가 
+            // 페이지에 title삽입하고 속성에 url 추가
             $('.pageli_' + thisPluginClickCnt + '_' + i).append('<div class="page_url_div"><a class="page_url">' + page.title + '</a></div>');
             $('.pageli_' + thisPluginClickCnt + '_' + i).attr("data-url", page.url)
           }
         });
       }).complete(function() {
 
-        //  해당 회차 박스가 열려있음으로 상태 변경 
+        //  해당 회차 박스가 열려있음으로 상태 변경
         clickCntArray[thisPluginClickCnt - 1] = 1;
 
-        //  해당 회차 박스 높이 설정 
+        //  해당 회차 박스 높이 설정
         thisBox.height($('.unPages').width() * 2 / 10 + ($('.pageli-2').height() * 1.15) * parseInt((pagecnt + 1) / 2));
 
         //  페이지가 다 로드된 후에 draggable함수를 작성해야함 => ajax complete
@@ -469,7 +466,7 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
             ui.helper.width($('.pageli-2').width());
             $('.clonePage .closeImg').remove();
 
-            //-------------------------드래그 하는 동안 사이드 바 숨기기 
+            //-------------------------드래그 하는 동안 사이드 바 숨기기
 
             $('.unPages').css({
               right: -250
@@ -494,25 +491,25 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
     } //else
   }); //click
 
-  //드롭 했을 때 페이지 사이드바 다시 보이게 
+  //드롭 했을 때 페이지 사이드바 다시 보이게
   $('html').droppable({
     accept: '.pageCntBox, .pageli-2',
     drop: function(event, ui) {
-      flag=ShowHideSidebar(1000); 
+      flag=ShowHideSidebar(1000);
     }
   });
 }
 
 $(document).ready(function(){
-	var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
+  var width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
   var height =window.screen.availHeight||document.body.clientHeigh;
   var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
   var heightPosition =window.innerHeight||document.body.clientHeigh;
   if(height<500){
-	   width=1366;
-	   height=768;
+    width=1366;
+    height=768;
   }//if
-  var alertNumGap; //페이지 담긴 수 변화 
+  var alertNumGap; //페이지 담긴 수 변화
   //사이즈 세팅
   setSize();
 
@@ -520,28 +517,28 @@ $(document).ready(function(){
 
   //branch에 포함되지 않은 페이지들의 개수를 체크해 할당
   refreshIntervalId=setInterval( function(){
-    //저장된 페이지의 수에 변화를 체크 
-    checkPageAlerNum();    
+    //저장된 페이지의 수에 변화를 체크
+    checkPageAlerNum();
     //console.log(alertNumGap)
     //저장된 페이지의 수에 변화가 생길때만 함수를 호출
     //if(alertNumGap!=0) showPageCntBox(1);
   }, 1000 );
-  
+
   //pagesInform();
-  
-  
+
+
 });
 
 
 $(window).resize(function(){
-	width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
-	height =window.screen.availHeight||document.body.clientHeigh;
- 	widthPosition =window.innerWㄴidth||window.innerWidth||document.body.clientWidth;
- 	heightPosition =window.innerHeight||document.body.clientHeigh;
- 	if(height<500){
+  width =window.screen.availWidth||window.innerWidth||document.body.clientWidth;
+  height =window.screen.availHeight||document.body.clientHeigh;
+  widthPosition =window.innerWㄴidth||window.innerWidth||document.body.clientWidth;
+  heightPosition =window.innerHeight||document.body.clientHeigh;
+  if(height<500){
     width=1366;
     height=768;
- 	}//if
+  }//if
 
   setSize();
   //pagesInform();

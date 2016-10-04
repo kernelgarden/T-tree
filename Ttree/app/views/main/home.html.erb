@@ -4,60 +4,77 @@ window.userID = "<%= current_user.id%>";
 window.userName ="<%= current_user.name %>";
 <% end %>
 <div class="member_work">
-  <div class="personal_work">
-    <div id="personal_work_header">
-      <img src="/assets/personal2.png" style="float:left">
-      <h3 id="homeTitle" style="float:left; margin-left:3px;">Personal Works</h3>
-    </div>
-    <div class='personal_work_group'  style="text-align:left;">
-    </div>
+  <!--<div class="starred_work">
+  <div id="starred_work_header">
+  <img src="/assets/star.png" style="float:left; width:30px; height:30px;">
+  <h3 style="float:left; margin-left:3px;">Starred Works</h3>
+</div>
+<div class="starred_work_group" style="text-align:left"><div class="personal_work_content">
+<div class="personal_Work_name"></div>
+</div></div>
+</div>-->
+<div class="personal_work">
+  <div id="personal_work_header">
+    <div class="p_w_title">Personal Works</div>
+    <div class="purple_line"></div>
+    <div class="gray_line"></div>
   </div>
-  <div class="personal_team_group">
+  <div class='personal_work_group'  style="text-align:left;">
   </div>
-  <div class="create_personal_work_form" id="create_personal_work_form">
-    <div id="personal_work_form_main" class="personal_work_form_element">Create Personal Work</div>
-    <img class="form_personal_work_btn form_btn" src="/assets/close1.png">
-    <form id="personal_work_form">
-      <div id="personal_work_form_title" class="personal_work_form_element">Title</div>
-      <input type="text" name="title" class="personal_input personal_work_form_element" />
-      <div id="personal_work_form_team_name" class="personal_work_form_element">Team</div>
-      <select id="personal_work_form_selectTeam" name="team_name" class="personal_work_form_element">
-        <option value="null">(none)</option>
-      </select>
-    </form>
-    <input type="button" class="personal_work_form_button" value="Create" />
+</div>
+<div id="team_header">
+  <div style="height=34px;">
+    <div class="p_w_title" id="t_w_title">Team Works</div>
+    <img src="/assets/create_team.png" class="create_team" id="create_team">
   </div>
-  <div class="create_team_work_form" id="create_team_work_form">
-    <div id="team_work_form_main" class="team_work_form_element">Create Team Work</div>
-    <img class="form_team_work_btn form_btn" src="/assets/close1.png">
-    <form id="team_work_form">
-      <div id="team_work_form_title" class="team_work_form_element">Title</div>
-      <input type="text" name="title" class="team_input team_work_form_element" />
-      <div id="team_work_form_team_name" class="team_work_form_element">Team</div>
-      <select id="team_work_form_selectTeam" name="team_name" class="team_work_form_element">
-        <option value="null">(none)</option>
-      </select>
-    </form>
-    <input type="button" class="team_work_form_button" value="Create" />
-  </div>
-  <div class="create_team" id="create_team">Create Team</div>
-  <div class="create_team_form" id="create_team_form">
-    <img class="form_create_team_btn form_btn" src="/assets/close1.png">
-    <form id="team_form">
-      <div id="team_name">Team Name</div>
-      <input type="text" name="name" class="team_input">
-    </form>
-    <input type="button" class="team_button" value="Create">
-  </div>
+  <div class="purple_line"></div>
+  <div class="gray_line"></div>
+</div>
+<div class="personal_team_group">
+</div>
+<div class="create_personal_work_form" id="create_personal_work_form">
+  <div id="personal_work_form_main" class="personal_work_form_element">Create Personal Work</div>
+  <img class="form_personal_work_btn form_btn" src="/assets/close1.png">
+  <form id="personal_work_form">
+    <div id="personal_work_form_title" class="personal_work_form_element">Title</div>
+    <input type="text" name="title" class="personal_input personal_work_form_element" />
+    <div id="personal_work_form_team_name" class="personal_work_form_element">Team</div>
+    <select id="personal_work_form_selectTeam" name="team_name" class="personal_work_form_element">
+      <option value="null">(none)</option>
+    </select>
+  </form>
+  <input type="button" class="personal_work_form_button" value="Create" />
+</div>
+<div class="create_team_work_form" id="create_team_work_form">
+  <div id="team_work_form_main" class="team_work_form_element">Create Team Work</div>
+  <img class="form_team_work_btn form_btn" src="/assets/close1.png">
+  <form id="team_work_form">
+    <div id="team_work_form_title" class="team_work_form_element">Title</div>
+    <input type="text" name="title" class="team_input team_work_form_element" />
+    <div id="team_work_form_team_name" class="team_work_form_element">Team</div>
+    <select id="team_work_form_selectTeam" name="team_name" class="team_work_form_element">
+      <option value="null">(none)</option>
+    </select>
+  </form>
+  <input type="button" class="team_work_form_button" value="Create" />
+</div>
+<div class="create_team_form" id="create_team_form">
+  <img class="form_create_team_btn form_btn" src="/assets/close1.png">
+  <form id="team_form">
+    <div id="team_name">Team Name</div>
+    <input type="text" name="name" class="team_input">
+  </form>
+  <input type="button" class="team_button" value="Create">
+</div>
 
-  <div class="edit_work_name" id="edit_work_name">
-    <img class="edit_close_btn form_btn" src="/assets/close1.png">
-    <form id="edit_work_form">
-      <div id="team_name">Edit Work Name</div>
-      <input type="text" name="name" class="work_name">
-    </form>
-    <input type="button" class="edit_work_button" value="Edit">
-  </div>
+<div class="edit_work_name" id="edit_work_name">
+  <img class="edit_close_btn form_btn" src="/assets/close1.png">
+  <form id="edit_work_form">
+    <div id="team_name">Edit Work Name</div>
+    <input type="text" name="name" class="work_name">
+  </form>
+  <input type="button" class="edit_work_button" value="Edit">
+</div>
 </div>
 <script>
 var tId;
@@ -105,7 +122,8 @@ var makePersonalWorkBox=function(){
       });
     }
   })
-  $(".personal_work_group").append('<div class="addWork personal_work_content"></div>').show('slow')
+  $(".personal_work_group").append('<div class="addWork"></div>').show('slow')
+  $(".addWork").append('<img class=create_work_btn src="/assets/create_work.png"> ').show('slow')
 }
 /************************************************************/
 /***********************Team work Box************************/
@@ -117,12 +135,11 @@ var makeTeamWorkBox=function(){
           $(".personal_team_group").append("<div class='personal_team personal_team" + i + "'></div>").show('slow')
           $(".personal_team" + i).append("<div class='personal_team_header personal_team_header" + i + "'></div>").show('slow')
           $(".personal_team" + i).append("<div class='wrap_team_content wrap_team_content" + i + "'></div>").show('slow')
-          $(".personal_team_header" + i).append("<img src='/assets/team3.png' style='float:left ;'>").show('slow')
           $(".personal_team_header" + i).append("<div class='team_more team_more" + i + "'>").show('slow')
-          $(".team_more" + i).append("<img src='/assets/more.png' style='width:15px; height:15px; margin-top:7px; margin-left:7px;'> More").show()
+          $(".team_more" + i).append("<img class='more_btn' src='/assets/more.png'>").show()
         }
       }
-      $(".personal_team_header").eq(i).append('<h3 style=" float:left; margin-left:5px;">' + team.name + '</h3>')
+      $(".personal_team_header").eq(i).append('<div class="home_team_name">' + team.name + '</div>')
       $(".personal_team_name").eq(i).addClass('' + team.id)
       $(".team_more" + i).attr("data-team_id", team.id)
       $.each(team.work_ids, function(j, id) {
@@ -148,10 +165,11 @@ var makeTeamWorkBox=function(){
       })
       $(".wrap_team_content" + i).append("<div class='create_personal_team create_personal_team" + (i + 1) + "'></div>").show('slow')
       $(".create_personal_team" + (i + 1)).append('<div class="create_personal_team_content"></div>')
+      $(".create_personal_team"+ (i + 1)).append('<img class=create_work_btn src="/assets/create_work.png"> ').show('slow')
       $(".create_personal_team" + (i + 1)).attr("data-team_id", team.id)
     })
   });
-//  $(".addWork").append('<div class="add_work_name personal_work_name">Create Personal Work</div>')
+  //  $(".addWork").append('<div class="add_work_name personal_work_name">Create Personal Work</div>')
 }
 /************************************************************/
 /////////////////////////////////////////////////////////////////////////////////
@@ -242,7 +260,7 @@ $(document).on("click", ".addWork", function(e) {
 })
 $(document).click(function(e){
   if ( !$(e.target).is('.create_personal_work_form, #personal_work_form_main, .form_btn, #personal_work_form, #personal_work_form_title, .personal_input, #personal_work_form_team_name, #personal_work_form_selectTeam, .personal_work_form_button') ) {
-  	//alert()
+    //alert()
     $("#create_personal_work_form").hide();
     nCount5=0;
   }
@@ -287,11 +305,11 @@ $(document).on("click", ".personal_work_form_button", function(e) {
         //alert(error);
       }
     }).complete(function(){
-    	$.getJSON("/api/user/" + userID+"/work_ids", function(response) {
-	      //alert(response.length)
-	      //window.location='/main/work/'+ response[response.length-1];
+      $.getJSON("/api/user/" + userID+"/work_ids", function(response) {
+        //alert(response.length)
+        //window.location='/main/work/'+ response[response.length-1];
         window.location='/main/work/folder/' + response[response.length-1];
-	    });
+      });
     })
   }
 })
@@ -335,12 +353,12 @@ $(document).on("click", ".team_work_form_button", function(e) {
         //alert(error);
       }
     }).complete(function(){
-    	$.getJSON("/api/user/" + userID+"/work_ids", function(response) {
+      $.getJSON("/api/user/" + userID+"/work_ids", function(response) {
         //alert(response);
-	      //alert(response.length)
-	      //window.location='/main/work/'+ response[response.length-1];
+        //alert(response.length)
+        //window.location='/main/work/'+ response[response.length-1];
         window.location='/main/work/folder/' + response[response.length-1];
-	    });
+      });
     })
   }
 })
@@ -447,7 +465,7 @@ $('.edit_work_btn').click(function(e){
         data: inputData,
         success:function(data){
           alert("수정완료");
-            window.location = '/'
+          window.location = '/'
         },
       })
     }
