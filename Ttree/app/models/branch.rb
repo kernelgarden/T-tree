@@ -24,10 +24,12 @@ class Branch < ApplicationRecord
 
   def self.json_search(nodes)
     nodes.map do |node|
-    	if node.parent_id!=node.root_id
-        {:id => node.name, :parent => "#", :text => node.name}
+    	if node.id==node.root_id
+        {:id => node.id, :parent => "#", :name => node.name, :data => {:ancestry => "null"},
+      		:state => {:opened => node.viewstate}}
       else
-      	{:id => node.name, :parent => Branch.find(node.ancestry).name, :text => node.name}
+      	{:id => node.id, :parent => Branch.find(node.parent_id).id, :name => node.name, :data => {:ancestry => node.ancestry},
+      		:state => {:opened => node.viewstate}}
       end
     end
   end

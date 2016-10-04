@@ -110,7 +110,10 @@ function processTabs(windows) {
 			//alert("email: " + jsonObj["user_email"]);
 
 			for (var i = 0; i < numWindows; i++) {
-				var win = windows[i];
+        var win = windows[i];
+
+        if (targetWindow.id != win.id)
+          continue;
 
 				var numTabs = win.tabs.length;
 

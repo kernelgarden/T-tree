@@ -1,6 +1,7 @@
 class ApisController < ApplicationController
 	skip_before_action :verify_authenticity_token
 	before_action :getWork, :only => [:getWork1]
+	#before_action :treeViewStatus, :only => [:tree]
 
 	def users
 		@users=User.all
@@ -94,11 +95,29 @@ class ApisController < ApplicationController
 		render :json => @branch
 	end
 
+	def treeViewWidth
+		Work.find(params[:id]).update_attributes(:viewwidth=>params[:viewwidth])
+		#debugger
+	end 
+
+	def treeViewStatus
+		if(params[:state]=="true")
+			Branch.find(params[:id]).update_attributes(:viewstate=>true)
+		elsif (params[:state]=="false")
+			Branch.find(params[:id]).update_attributes(:viewstate=>false)
+		end
+	end
+
 	def tree
 		@work=Work.find(params[:id])
-		@branches=@work.branches.arrange_serializable
-		#render :json =>  Branch.json_tree(@branches)
-		render :json => @branches
+		#@branches=Branch.all
+		#mappings = {"name" => "title"}
+
+		#@branches=@work.branches.arrange_serializable
+		@branches=@work.branches
+		render :json =>Branch.json_search(@branches)
+
+		#render :json => @branches
 	end
 
 	def branchChilds
@@ -134,7 +153,8 @@ class ApisController < ApplicationController
 
 	def getWork
 		#@work=(params[:work])
-		Work.create(work_params)
+		@work=Work.create(work_params)
+		@work.update_attributes(:viewwidth=>140)
 		#render :json => @work
 	end
 	def getTeam
@@ -145,9 +165,12 @@ class ApisController < ApplicationController
 	def getPages
 		@json= JSON.parse(request.raw_post)
 		@user= User.find_by_email(@json["user_email"])
+		@time=Time.now
 		@json["pages"].each do |page|
-			Unclassifiedpage.create(:user_id=>@user.id, :title=>page["title"], :url=>page["url"])
+			@thisPage=Unclassifiedpage.create(:user_id=>@user.id, :title=>page["title"], :url=>page["url"], :timenum=>@time)
+			#@thisPage.update_attributes(:timenum => @time)
 		end
+		#debugger
 	end
 
 	def getMember
@@ -167,16 +190,84 @@ class ApisController < ApplicationController
 		Work.find(@work_id).destroy
 	end
 
+	def addPage
+		@dataType=params[:dataType]
+		Branch.transaction do
+			@branch=Branch.find(params[:branch_id])
+		end
+		#동그라미를 드롭다운 했으면 페이지 전체를 해당 브렌치에 추가하고 회차 스택 비움 
+		if(@dataType=="page_alert")
+			@pages=User.find(params[:user_id]).unclassifiedpage_ids
+			Unclassifiedpage.transaction do
+				@pages.each do |page|
+					@page=Unclassifiedpage.find(page)
+					@branch.transaction do
+						@branch.pages.create(title: @page.title, url:@page.url)
+					end
+				end
+				Unclassifiedpage.where(:user_id=>params[:user_id]).delete_all
+			end
+		elsif (@dataType=="pageCntBox")
+			#timenum
+			Unclassifiedpage.transaction do
+				@pages=Unclassifiedpage.where(:user_id=>params[:user_id], :timenum=>params[:timenum])
+				@pages.each do |page|
+					@page=Unclassifiedpage.find(page)
+					@branch.transaction do
+						@branch.pages.create(title: @page.title, url:@page.url)
+					end
+				end
+				Unclassifiedpage.where(:user_id=>params[:user_id], :timenum=>params[:timenum]).delete_all
+			end
+		elsif (@dataType=="pageli-2")
+			#page_id
+			Unclassifiedpage.transaction do
+				@page=Unclassifiedpage.find(params[:page_id])
+				@branch.transaction do
+					@branch.pages.create(title: @page.title, url:@page.url)
+				end
+				Unclassifiedpage.find(params[:page_id]).delete
+			end
+		end
+		
+	end
+
 	def branchName
 		@name=branch_params
 		@branch=Branch.create(branch_params)
-		@pages=User.current.unclassifiedpage_ids
-		@pages.each do |page|
-			@page=Unclassifiedpage.find(page)
-			@branch.pages.create(title: @page.title, url:@page.url)
-		end
-		Unclassifiedpage.delete_all
-		#debugger
+
+
+		#동그라미를 드롭다운했으면 저장된 전체 페이지들을 다 브렌치에 넣고 모두 삭제
+		if params[:timenum]=="0"
+			@pages=User.find(params[:user_id]).unclassifiedpage_ids
+			Unclassifiedpage.transaction do
+				@pages.each do |page|
+					@page=Unclassifiedpage.find(page)
+					@branch.transaction do
+						@branch.pages.create(title: @page.title, url:@page.url)
+					end
+				end
+			end
+			Unclassifiedpage.transaction do
+				Unclassifiedpage.where(:user_id=>params[:user_id]).delete_all
+			end
+
+		#pageCntBox를 드롭다운했으면 해당 회차의 페이지들만 브렌치에 넣고 해당페이지만 삭제
+		else
+			Unclassifiedpage.transaction do
+				@pages=Unclassifiedpage.where(:user_id=>params[:user_id], :timenum=>params[:timenum])
+				@pages.each do |page|
+					@page=Unclassifiedpage.find(page)
+					@branch.transaction do
+						@branch.pages.create(title: @page.title, url:@page.url)
+					end
+				end
+			end
+			Unclassifiedpage.transaction do
+				Unclassifiedpage.where(:user_id=>params[:user_id], :timenum=>params[:timenum]).delete_all
+			end
+		end #if-else
+
 	end
 
 	def branchName2
@@ -215,8 +306,14 @@ class ApisController < ApplicationController
 
 	def addFolder
 		#debugger
-		Branch.create(folder_params)
+		@branch=Branch.create(folder_params)
+		@branch.update_attributes(:viewstate=>false)
 	end
+
+	def treeSideBar
+		render :json => '[{ "id" : "ajson1", "parent" : "#", "text" : "Simple root node" },{ "id" : "ajson2", "parent" : "#", "text" : "Root node 2" },{ "id" : "ajson3", "parent" : "ajson2", "text" : "Child 1" },{ "id" : "ajson4", "parent" : "ajson2", "text" : "Child 2" }]'
+	end
+
 
 	private
 	def work_params
