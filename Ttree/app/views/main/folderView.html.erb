@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag    'application', home: 'all', 'data-turbolinks-track': 'reload' %>
 <%= render "layouts/probe" %>
 <%= javascript_tag do %>
-window.branchIdInFolder = "<%=@ancestry%>";
+window.branchIdInFolder = "<%=@branch.last%>";
 <% end %>
 <script>
   var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
@@ -93,7 +93,6 @@ window.branchIdInFolder = "<%=@ancestry%>";
         var branchID=$(this).children("._folder").data("id");
         //dataType에 따라 전달하는 데이터 다르게
         if(dataType=="page_alert"){
-          alert(1)
           var inputData = 
             {
               "branch_id": branchID,
