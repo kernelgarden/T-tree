@@ -3,6 +3,8 @@ class MainController < ApplicationController
     before_action :logged_in_user, only: [:home]
 		before_action :check_authenticity, only: [:folderView]
 
+		include MainHelper
+
   def home
 		#@star_lists = current_user.starlists.pluck(:work_id)
   end
@@ -57,7 +59,15 @@ class MainController < ApplicationController
   end
 
 	def check_authenticity
-		work_id = params[:uri].split("/").first
+		uri = params[:uri].split("/")
+
+		if uri.length == 1
+			return render_404 if !Work.exists?(uri.first)
+		elsif uri.length > 1
+			return render_404 if !Branch.exists?(uri.last)
+		end
+
+		work_id = uri.first
 		root = Work.find(work_id)
 		teams = UtRelationship.where("member_id = ?", current_user).map(&:team_id)
 		if root.user_id && current_user.id != root.user_id
