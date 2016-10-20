@@ -1,37 +1,39 @@
 class MainController < ApplicationController
-		skip_before_action :verify_authenticity_token
-    before_action :logged_in_user, only: [:home]
-		before_action :check_authenticity, only: [:folderView]
+	skip_before_action :verify_authenticity_token
+	before_action :logged_in_user, only: [:home]
+	before_action :logged_in_user, only: [:login]
+	before_action :check_login, only: [:home]
+	before_action :check_authenticity, only: [:folderView]
 
-		include MainHelper
+	include MainHelper
 
-  def home
+	def home
 		#@star_lists = current_user.starlists.pluck(:work_id)
-  end
+	end
 
-  def pages
-  end
+	def pages
+	end
 
-  def work
-  	@work_id=params[:id]
-  	@page_ids=User.current.unclassifiedpage_ids
-  end
+	def work
+		@work_id=params[:id]
+		@page_ids=User.current.unclassifiedpage_ids
+	end
 
 
-  def login
-  end
+	def login
+	end
 
-  def branchPages
-  end
+	def branchPages
+	end
 
-  def team
+	def team
 		@team_id=params[:id]
 		@team=Team.find(@team_id)
-  end
+	end
 
-  def temp
+	def temp
 
-  end
+	end
 
 	def folderView
 		@uri = params[:uri]
@@ -51,13 +53,17 @@ class MainController < ApplicationController
 		end
 	end
 
-  private
-  def logged_in_user
-    unless user_signed_in?
-      redirect_to main_login_url
-    end
-  end
-
+	private
+	def logged_in_user
+		if current_user
+			redirect_to root_url
+		end
+	end
+	def check_login
+		if current_user==nil
+			redirect_to main_login_url
+		end
+	end
 	def check_authenticity
 		uri = params[:uri].split("/")
 
