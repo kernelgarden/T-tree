@@ -75,7 +75,7 @@ $(document).ready(function(){
   });//resizable
 
   $('#workName').click(function(){
-     window.open("/main/work/folder/"+<%= @work %>, '_self')
+     window.open("/main/work/folder/"+<%= @work %>+"/"+<%=@firstBranch %>, '_self')
   })
 
 
