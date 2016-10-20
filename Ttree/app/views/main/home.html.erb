@@ -103,6 +103,7 @@ var makePersonalWorkBox=function(){
             //$(".personal_work_content"+cnt)
             //.append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
             $(".personal_work_content").eq(cnt).attr("data-id",work.id)
+            $(".personal_work_content").eq(cnt).attr("data-firstBranch",work.first_branch)
             //console.log(work.starlists);
             $.each(work.starlists, function (i, relation) {
               if (relation.user_id == userID)
@@ -150,6 +151,7 @@ var makeTeamWorkBox=function(){
           $(".wrap_team_content" + i).append('<div class="personal_team_content personal_team_content' + response.team_id + '_' + j + '"></div>').show('slow')
           $(".personal_team_content" + response.team_id + "_" + j).append('<div class="personal_team_name">' + response.name + '</div>').show('slow')
           $(".personal_team_content" + response.team_id + "_" + j).attr("data-id", id)
+          $(".personal_team_content" + response.team_id + "_" + j).attr("data-firstbranch", response.first_branch)
           $.each(response.starlists, function (i, relation) {
             //$(".personal_team_content" + response.team_id + "_" + j)
             //.append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
@@ -288,14 +290,16 @@ $(document).on("click", '.team_more' , function(){
 })
 $(document).on("click",".userWork",function(){
   var sId = $(this).data("id")
+  var firstBranchId=$(this).data("firstbranch")
   //window.location='/main/work/'+ sId;
-  window.location='/main/work/folder/' + sId;
+  window.location='/main/work/folder/' + sId+'/'+firstBranchId;
 })
 $(document).on("click",".personal_team_content",function(){
   var twId = $(this).data("id")
+  var firstBranchId=$(this).data("firstbranch")
   //window.location='/main/work/'+ twId;
   //alert(twId);
-  window.location='/main/work/folder/' + twId;
+  window.location='/main/work/folder/' + twId+'/'+firstBranchId;
 })
 var nCount5 = 0;
 $.getJSON("/api/user/"+userID, function(response) {
@@ -370,10 +374,10 @@ $(document).on("click", ".personal_work_form_button", function(e) {
         //alert(error);
       }
     }).complete(function(){
-      $.getJSON("/api/user/" + userID+"/work_ids", function(response) {
+      $.getJSON("/api/user/" + userID+"/works", function(response) {
         //alert(response.length)
         //window.location='/main/work/'+ response[response.length-1];
-        window.location='/main/work/folder/' + response[response.length-1];
+        window.location='/main/work/folder/' + response[response.length-1].id +'/'+response[response.length-1].first_branch;
       });
     })
   }
@@ -418,11 +422,11 @@ $(document).on("click", ".team_work_form_button", function(e) {
         //alert(error);
       }
     }).complete(function(){
-      $.getJSON("/api/user/" + userID+"/work_ids", function(response) {
+      $.getJSON("/api/user/" + userID+"/works", function(response) {
         //alert(response);
         //alert(response.length)
         //window.location='/main/work/'+ response[response.length-1];
-        window.location='/main/work/folder/' + response[response.length-1];
+        window.location='/main/work/folder/' + response[response.length-1].id +'/'+response[response.length-1].first_branch;
       });
     })
   }
