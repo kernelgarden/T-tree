@@ -110,7 +110,7 @@
   height: 80px;
   position: absolute;
   background: #fff;
-  top: 20px;
+  top: 15px;
   left: 10px;
   box-shadow: 0 0 5px 5px fade(#000, 5%);
   -webkit-transform: rotate(-1deg);
@@ -258,7 +258,6 @@
 }
 .page_wrap{
   margin-top: 30px;
-  margin-bottom: 30px;
 }
 .create_folder_form {
   text-align: left;
@@ -276,6 +275,16 @@
   font-family:'Raleway', sans-serif;
   position: absolute;
   display: none;
+  .form_folder_btn{
+      position: absolute;
+      width: 15px;
+      height:15px;
+      right: 5px;
+      top:5px;
+      &:hover{
+        cursor: pointer;
+      }
+  }
   .folder_form_element {
     padding-top:3%;
     padding-bottom:5%;
@@ -329,7 +338,7 @@
     }
   }
   .folder_form_button {
-    margin-left:7%;
+    margin-left:60px;
     margin-top:7%;
     margin-bottom:5%;
     text-align:center;
