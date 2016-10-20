@@ -10,6 +10,15 @@ window.branchIdInFolder = "<%=@ancestry%>";
   var makeWorkFolderContext = function() {
     $(".custom_menu").append("<li data-action='add_favorate'><img class='star_btn_context' src='/assets/star3.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Add favorate</li>");
     $(".custom_menu").append("<li data-action='change_name'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Change name</li>");
+    $(".custom_menu").append("<li data-action='change_color'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Change color</li>");
+
+    $(".custom_menu").append("<hr class='context_hr'/>");
+    $(".custom_menu").append("<li data-action='copy'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Copy</li>");
+    $(".custom_menu").append("<li data-action='paste'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Paste</li>");
+    $(".custom_menu").append("<li data-action='move'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Move</li>");
+    $(".custom_menu").append("<li data-action='share_link'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Share link</li>");
+
+    $(".custom_menu").append("<hr class='context_hr'/>");
     $(".custom_menu").append("<li data-action='delete'><img class='delete_btn_context' src='/assets/close1.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Delete</li>");
   }
   $(document).ready(function() {

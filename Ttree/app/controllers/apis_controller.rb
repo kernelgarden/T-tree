@@ -153,8 +153,14 @@ class ApisController < ApplicationController
 
 	def getWork
 		#@work=(params[:work])
-		@work=Work.create(work_params)
-		@work.update_attributes(:viewwidth=>140)
+		Unclassifiedpage.transaction do
+			@work=Work.create(work_params)
+			@work.update_attributes(:viewwidth=>140)
+			Branch.transaction do
+				@firstBranch=Branch.create(:name=>@work.name, :work_id=>@work.id)
+			end
+			@work.update_attributes(:first_branch=>@firstBranch.id)
+		end 
 		#render :json => @work
 	end
 	def getTeam
