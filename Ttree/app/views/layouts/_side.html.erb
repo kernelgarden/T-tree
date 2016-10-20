@@ -35,7 +35,7 @@ var pagesClickCnt=0;
 var beforeAlertNum=0;  //저장된 이전 페이지 수
 
 var pageWidth=250;              //  사이드바 width
-var pageHeight=height * 9/ 10;  //  사이드바 height
+var pageHeight=height-60;  //  사이드바 height
 var clickCntArray       //  회차박스를 클릭한 횟수를 저장(0:닫혀있을때 1: 열려있을 때 )
 var pluginClickCnt=0;   //  플러그인을 클릭한 횟수(회차)
 //  #page_alert(동그라미) 클릭 체크 (100: 초기 0:사이드바 열렸을 때 1:사이드바 닫혔을 때)
@@ -252,7 +252,7 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
       })
       $('#page_alert').fadeOut(100);  // #page_alert(동그라미) 사라지게함
       $('.unPages').transition({ x:-pageWidth});  //  원래위치로 transition(사이드바 나타남)
-      flag = 0; //  flag값 변경
+      flag = 10; //  flag값 변경
       break;
 
       //  사이드바 닫혀있으면
@@ -264,11 +264,11 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
       })
       $('#page_alert').fadeOut(300);  // #page_alert(동그라미) 사라지게함
       $('.unPages').transition({ x:-pageWidth});  //  원래위치로 transition(사이드바 나타남)
-      flag = 0; //  flag값 변경
+      flag = 10; //  flag값 변경
       break;
 
       //  사이드바 열려있으면
-      case 0:
+      case 10:
       //  원래 위치에서 pageWidth(사이드바 width)만큼 오른쪽에 배치
       $('.unPages').css({
         right:-pageWidth
@@ -295,7 +295,7 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
       })
       $('#page_alert').fadeOut(100);  // #page_alert(동그라미) 사라지게함
       $('.unPages').transition({ x:-pageWidth});  //  원래위치로 transition(사이드바 나타남)
-      flag = 0; //  flag값 변경
+      flag = 10; //  flag값 변경
       break;
     }//switch
 
@@ -326,13 +326,13 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
 
       //  flag 변수를 이용해 클릭할때마다 사이드바 show, hide하고 flag값 리턴
       //  flag값이 0일것이므로 사이드바 닫힘
-
+      //alert(flag)
       //if(flag==false) flag=100;
-      if(flag==0)
+      if(flag==10&&flag!=false)
         flag=ShowHideSidebar(flag);
       //  회차 박스 드롭한 경우
       else if(flag==1000)
-      flag=0;
+      flag=10;
     }
   });// document.click
 

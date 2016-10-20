@@ -21,10 +21,8 @@ window.branchIdInFolder = "<%=@ancestry%>";
     $(".custom_menu").append("<hr class='context_hr'/>");
     $(".custom_menu").append("<li data-action='delete'><img class='delete_btn_context' src='/assets/close1.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Delete</li>");
   }
-
   $(document).ready(function() {
     $('.work_container').width(widthPosition - $('.treeView').outerWidth());
-
     makeWorkFolderContext();
     /* 커스텀 context menu */
     // 해당 리스트와 겹치는 요소가 하나라도 있는지 체크하는 루틴
@@ -49,7 +47,6 @@ window.branchIdInFolder = "<%=@ancestry%>";
       if (checkIntersection(bind_list, target_class) === true) {
       //if (bind_list.include("userWork")) {
         e.preventDefault();
-
         $(".custom_menu").finish().toggle().
         css({
           top: e.pageY,
@@ -57,17 +54,14 @@ window.branchIdInFolder = "<%=@ancestry%>";
         });
       }
     });
-
     // context menu 밖을 눌렀을 경우
     $(document).bind("mousedown", function(e) {
       if (!($(e.target).parents(".custom_menu").length > 0)) {
         $(".custom_menu").hide();
       }
     })
-
     // context menu 안의 요소를 클릭한 경우
     $(".custom_menu li").click(function() {
-
       switch ($(this).attr("data-action")) {
         case "add_favorate": alert("add"); break;
         case "change_name": alert("change"); break;
@@ -76,7 +70,6 @@ window.branchIdInFolder = "<%=@ancestry%>";
         case "second": alert("second"); break;
         case "third": alert("third"); break;
       }
-
       $(".custom_menu").hide();
     })
     /* */
@@ -86,7 +79,7 @@ window.branchIdInFolder = "<%=@ancestry%>";
     $(document).on("click", "._folder_exist", function() {
       popup = window.open(window.location.href + "/" + $(this).data("id"), '_self');
     })
-    $(document).on("click", "._add_folder", function(e) {
+    $(document).on("click", ".add_folder", function(e) {
       e.stopPropagation();
       if (addFolderCount == 0) {
         if (e.pageX > 150 + widthPosition / 2) {
@@ -154,7 +147,6 @@ window.branchIdInFolder = "<%=@ancestry%>";
         })
       }
     })
-
     $('.folder_outline').droppable({
       accept: '#page_alert, .pageCntBox, .pageli-2',
       drop: function(event, ui) {
@@ -192,7 +184,6 @@ window.branchIdInFolder = "<%=@ancestry%>";
               "page_id": pageId
             };
         }
-
         $.ajax({
           type: "POST",
           url: "/api/post/addPage",
@@ -200,9 +191,7 @@ window.branchIdInFolder = "<%=@ancestry%>";
           cache: false,
           data: inputData
         }).complete(function() {
-
         })
-
       }, //drop
       over: function(event, ui) {
         console.log(1)
@@ -278,7 +267,6 @@ window.branchIdInFolder = "<%=@ancestry%>";
         dropPosition=1;
       }
     }) //droppable
-
     $('#page_alert').droppable({
       accept: '#page_alert, .pageCntBox, .pageli-2',
       drop: function(event, ui) {
@@ -292,15 +280,18 @@ window.branchIdInFolder = "<%=@ancestry%>";
       }
     }) //droppable
   })//ready
-
   $(window).resize(function() {
     $('.work_container').width(widthPosition - 150);
   })
 </script>
 <div class="work_container" >
-  <div class="branch_group">
-    <p class="line_desc">폴더</p>
-    <hr class="line"/>
+  <div class="branch_group group">
+    <div class="folder_header">
+      <div class="folder_title">Folders</div>
+      <div class="purple_line"></div>
+      <div class="gray_line"></div>
+    </div>
+    <div class="folder_group">
     <% if !@child_branches.nil? %>
       <% @child_branches.each do |branch| %>
         <div class=folder_outline>
@@ -312,16 +303,18 @@ window.branchIdInFolder = "<%=@ancestry%>";
         </div>
       <% end %>
     <% end %>
-    <div class="_folder _add_folder folder_layout">
-      <div class="_foldername folder_layout_name">
-
-      </div>
+    <div class="add_folder _folder">
+      <img class=create_work_btn src="/assets/create_work.png">
     </div>
   </div>
-
-  <div class="page_group">
-    <p class="line_desc">페이지</p>
-    <hr class="line"/>
+  </div>
+  <div class="page_group group">
+    <div class="folder_header">
+      <div class="folder_title">Pages</div>
+      <div class="purple_line"></div>
+      <div class="gray_line"></div>
+    </div>
+    <div class="page_wrap">
     <% if !@child_pages.nil? %>
       <% @child_pages.each do |page| %>
         <div class="_page page_layout" data-url="<%= page.url %>">
@@ -332,6 +325,7 @@ window.branchIdInFolder = "<%=@ancestry%>";
         </div>
       <% end %>
     <% end %>
+    </div>
   </div>
   <p>
     uri: <%= @uri %>
@@ -353,16 +347,14 @@ window.branchIdInFolder = "<%=@ancestry%>";
     <% end %>
   </p>
 </div>
-
 <div class="create_folder_form" id="create_folder_form">
   <div id="folder_form_main" class="folder_form_element">Create Folder</div>
-  <img class="form_folder_btn form_btn" src="/assets/close1.png" />
+  <img class="form_folder_btn" src="/assets/close1.png" />
   <form id="folder_form">
     <div id="folder_form_title" class="folder_form_element">Title</div>
     <input type="text" name="title" class="folder_input folder_form_element" />
   </form>
   <input type="button" class="folder_form_button" value="Create" />
 </div>
-
 <ul class="custom_menu">
 </ul>
