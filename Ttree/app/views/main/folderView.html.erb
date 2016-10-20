@@ -77,7 +77,7 @@ window.branchIdInFolder = "<%=@ancestry%>";
     $(document).on("click", "._folder_exist", function() {
       popup = window.open(window.location.href + "/" + $(this).data("id"), '_self');
     })
-    $(document).on("click", "._add_folder", function(e) {
+    $(document).on("click", ".add_folder", function(e) {
       e.stopPropagation();
       if (addFolderCount == 0) {
         if (e.pageX > 150 + widthPosition / 2) {
@@ -289,9 +289,13 @@ window.branchIdInFolder = "<%=@ancestry%>";
   })
 </script>
 <div class="work_container" >
-  <div class="branch_group">
-    <p class="line_desc">폴더</p>
-    <hr class="line"/>
+  <div class="branch_group group">
+    <div class="folder_header">
+      <div class="folder_title">Folders</div>
+      <div class="purple_line"></div>
+      <div class="gray_line"></div>
+    </div>
+    <div class="folder_group">
     <% if !@child_branches.nil? %>
       <% @child_branches.each do |branch| %>
         <div class=folder_outline>
@@ -303,16 +307,18 @@ window.branchIdInFolder = "<%=@ancestry%>";
         </div>
       <% end %>
     <% end %>
-    <div class="_folder _add_folder folder_layout">
-      <div class="_foldername folder_layout_name">
-
-      </div>
+    <div class="add_folder _folder">
+      <img class=create_work_btn src="/assets/create_work.png">
     </div>
   </div>
+  </div>
 
-  <div class="page_group">
-    <p class="line_desc">페이지</p>
-    <hr class="line"/>
+  <div class="page_group group">
+    <div class="folder_header">
+      <div class="folder_title">Pages</div>
+      <div class="purple_line"></div>
+      <div class="gray_line"></div>
+    </div>
     <% if !@child_pages.nil? %>
       <% @child_pages.each do |page| %>
         <div class="_page page_layout" data-url="<%= page.url %>">
