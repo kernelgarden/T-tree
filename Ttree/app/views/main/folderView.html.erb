@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag    'application', home: 'all', 'data-turbolinks-track': 'reload' %>
 <%= render "layouts/probe" %>
 <%= javascript_tag do %>
-window.branchIdInFolder = "<%=@branch.last%>";
+window.branchIdInFolder = "<%=@ancestry%>";
 <% end %>
 <script>
   var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
@@ -12,10 +12,8 @@ window.branchIdInFolder = "<%=@branch.last%>";
     $(".custom_menu").append("<li data-action='change_name'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Change name</li>");
     $(".custom_menu").append("<li data-action='delete'><img class='delete_btn_context' src='/assets/close1.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Delete</li>");
   }
-
   $(document).ready(function() {
     $('.work_container').width(widthPosition - $('.treeView').outerWidth());
-
     makeWorkFolderContext();
     /* 커스텀 context menu */
     // 해당 리스트와 겹치는 요소가 하나라도 있는지 체크하는 루틴
@@ -40,7 +38,6 @@ window.branchIdInFolder = "<%=@branch.last%>";
       if (checkIntersection(bind_list, target_class) === true) {
       //if (bind_list.include("userWork")) {
         e.preventDefault();
-
         $(".custom_menu").finish().toggle().
         css({
           top: e.pageY,
@@ -48,17 +45,14 @@ window.branchIdInFolder = "<%=@branch.last%>";
         });
       }
     });
-
     // context menu 밖을 눌렀을 경우
     $(document).bind("mousedown", function(e) {
       if (!($(e.target).parents(".custom_menu").length > 0)) {
         $(".custom_menu").hide();
       }
     })
-
     // context menu 안의 요소를 클릭한 경우
     $(".custom_menu li").click(function() {
-
       switch ($(this).attr("data-action")) {
         case "add_favorate": alert("add"); break;
         case "change_name": alert("change"); break;
@@ -67,7 +61,6 @@ window.branchIdInFolder = "<%=@branch.last%>";
         case "second": alert("second"); break;
         case "third": alert("third"); break;
       }
-
       $(".custom_menu").hide();
     })
     /* */
@@ -145,7 +138,6 @@ window.branchIdInFolder = "<%=@branch.last%>";
         })
       }
     })
-
     $('.folder_outline').droppable({
       accept: '#page_alert, .pageCntBox, .pageli-2',
       drop: function(event, ui) {
@@ -154,12 +146,8 @@ window.branchIdInFolder = "<%=@branch.last%>";
         var branchID=$(this).children("._folder").data("id");
         //dataType에 따라 전달하는 데이터 다르게
         if(dataType=="page_alert"){
-<<<<<<< HEAD
-          var inputData = 
-=======
           alert(1)
           var inputData =
->>>>>>> 213225743a153c490276f96d8f0ea6a57942500c
             {
               "branch_id": branchID,
               "user_id": userID,
@@ -187,7 +175,6 @@ window.branchIdInFolder = "<%=@branch.last%>";
               "page_id": pageId
             };
         }
-
         $.ajax({
           type: "POST",
           url: "/api/post/addPage",
@@ -195,9 +182,7 @@ window.branchIdInFolder = "<%=@branch.last%>";
           cache: false,
           data: inputData
         }).complete(function() {
-
         })
-
       }, //drop
       over: function(event, ui) {
         console.log(1)
@@ -273,7 +258,6 @@ window.branchIdInFolder = "<%=@branch.last%>";
         dropPosition=1;
       }
     }) //droppable
-
     $('#page_alert').droppable({
       accept: '#page_alert, .pageCntBox, .pageli-2',
       drop: function(event, ui) {
@@ -287,7 +271,6 @@ window.branchIdInFolder = "<%=@branch.last%>";
       }
     }) //droppable
   })//ready
-
   $(window).resize(function() {
     $('.work_container').width(widthPosition - 150);
   })
@@ -316,13 +299,13 @@ window.branchIdInFolder = "<%=@branch.last%>";
     </div>
   </div>
   </div>
-
   <div class="page_group group">
     <div class="folder_header">
       <div class="folder_title">Pages</div>
       <div class="purple_line"></div>
       <div class="gray_line"></div>
     </div>
+    <div class="page_wrap">
     <% if !@child_pages.nil? %>
       <% @child_pages.each do |page| %>
         <div class="_page page_layout" data-url="<%= page.url %>">
@@ -333,6 +316,7 @@ window.branchIdInFolder = "<%=@branch.last%>";
         </div>
       <% end %>
     <% end %>
+    </div>
   </div>
   <p>
     uri: <%= @uri %>
@@ -354,7 +338,6 @@ window.branchIdInFolder = "<%=@branch.last%>";
     <% end %>
   </p>
 </div>
-
 <div class="create_folder_form" id="create_folder_form">
   <div id="folder_form_main" class="folder_form_element">Create Folder</div>
   <img class="form_folder_btn form_btn" src="/assets/close1.png" />
@@ -364,6 +347,5 @@ window.branchIdInFolder = "<%=@branch.last%>";
   </form>
   <input type="button" class="folder_form_button" value="Create" />
 </div>
-
 <ul class="custom_menu">
 </ul>
