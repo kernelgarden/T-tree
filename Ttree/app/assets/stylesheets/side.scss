@@ -1,13 +1,13 @@
 #side_bar{
-	position: fixed;
+	position: absolute;
 	width:15%;
 	height:140%;
 	right: 4px;
 	z-index:87;
 
 	#page_alert{
-		position: absolute;
-		top: 0px;
+		position: fixed;
+		top: 30px;
 		right: 50px;
 		z-index:89;
 		&:hover{
@@ -23,8 +23,8 @@
 		font-size:26px;
 		font-weight: bold;
 		color:white;
-		position: absolute;
-		top: 30px;
+		position: fixed;
+		top: 70px;
 		right: 65px;
 		border-radius: 50%;
 		background-color:#d2d2d2;
@@ -70,10 +70,12 @@
 		background-color: #999999;
 		border-radius:5px;
 	}
+	
+
 	position: fixed;
 	overflow:auto;
 	top:60px;
-	right:50px;
+	right:0px;
 	height:70%;
 	//padding-top:2%;
 	background-color:#E8E8E8;

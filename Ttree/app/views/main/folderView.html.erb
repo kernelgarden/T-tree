@@ -309,7 +309,7 @@ window.branchIdInFolder = "<%=@ancestry%>";
     <% if !@child_pages.nil? %>
       <% @child_pages.each do |page| %>
         <div class="_page page_layout" data-url="<%= page.url %>">
-          <img class="_page_img" src="http://ryugarden.org/api/thumb?url=<%= page.url %>"/>
+          <img class="_page_img" src="/assets/loading3.svg"/>
           <div class="_page_url_div">
             <a class="_page_url"><%= page.title %></a>
           </div>
@@ -318,29 +318,10 @@ window.branchIdInFolder = "<%=@ancestry%>";
     <% end %>
     </div>
   </div>
-  <p>
-    uri: <%= @uri %>
-  </p>
-  <p>
-    child_branches:
-    <% if !@child_branches.nil? %>
-      <% @child_branches.each do |branch| %>
-        <%= branch.id %>
-      <% end %>
-    <% end %>
-  </p>
-  <p>
-    child_pages:
-    <% if !@child_pages.nil? %>
-      <% @child_pages.each do |page| %>
-        <%= page.title %>
-      <% end %>
-    <% end %>
-  </p>
-</div>
+ 
 <div class="create_folder_form" id="create_folder_form">
   <div id="folder_form_main" class="folder_form_element">Create Folder</div>
-  <img class="form_folder_btn" src="/assets/close1.png" />
+  <img class="form_folder_btn form_btn" src="/assets/close1.png" />
   <form id="folder_form">
     <div id="folder_form_title" class="folder_form_element">Title</div>
     <input type="text" name="title" class="folder_input folder_form_element" />

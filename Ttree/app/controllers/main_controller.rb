@@ -38,6 +38,7 @@ class MainController < ApplicationController
 	def folderView
 		@uri = params[:uri]
 		@work = @uri.split("/").first
+		@firstBranch=Work.find(@work).first_branch
 		@workname=Work.find(@work).name
 		@treeViewWidth=Work.find(@work).viewwidth
 		#@work_obj = Work.find(@work)
