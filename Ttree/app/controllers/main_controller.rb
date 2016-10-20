@@ -12,6 +12,8 @@ class MainController < ApplicationController
 	end
 
 	def pages
+		@user=current_user
+		@user_id=@user.id
 	end
 
 	def work
