@@ -7,29 +7,10 @@ $addMainColor:#99d8dd;
   left:0px;
   top:-15px;
 }
-.edit_work_btn{
-  display: none;
-  top: 0px;
-  margin: 2.5px 4px;
-}
-.delete_btn{
-  display: none;
-  top: 0px;
-  margin: 2.5px 4px;
-}
 .star_btn{
   display:none;
   top: 0px;
   margin: 2.5px 4px;
-}
-.form_btn{
-  width: 15px;
-  height: 15px;
-  float: right;
-  margin:5px;
-}
-.form_btn:hover{
-  cursor: pointer;
 }
 .member_work{
   margin: 100 auto;
@@ -711,76 +692,92 @@ $addMainColor:#99d8dd;
   text-align: left;
 }
 .edit_work_name{
+  padding-top: 15px;
   font-size: 20px;
   box-shadow: 2px 1px 10px #888888;
   width: 300px;
-  height: 150px;
+  height: 140px;
   background-color: #F8F8F8;
   position: absolute;
   display: none;
   border-radius: 5px;
+  top:0;
   bottom: 0;
-  z-index: 2;
-}
-.edit_work_button{
-  margin-top: 25px;
-  text-align:center;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: #5cb3c1;
-  border: none;
-  color: white;
-  padding: 7px 25px;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.4s ease 0s;
-  &:hover{
-    cursor: pointer;
-    background-color: #44A1B0;
+  z-index: 2;
+  .work_name{
+    margin: 15px 0;
+    padding-bottom:2%;
+    padding-top:2%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width:90%;
+    height: 30px;
+    background-color: #EFEFEF;
+    transition: all 0.4s ease 0s;
+    &:focus {
+      background-color: #FFFFFF;
+    }
+  }
+  .edit_work_button{
+    margin-top: 0px;
+    text-align:center;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #5cb3c1;
+    border: none;
+    color: white;
+    padding: 7px 25px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.4s ease 0s;
+    &:hover{
+      cursor: pointer;
+      background-color: #44A1B0;
+    }
+  }
+  .form_btn{
+    position: absolute;
+    right: 0px;
+    top:5px;
+    width: 15px;
+    height: 15px;
+    float: right;
+    margin:5px;
+    &:hover{
+      cursor: pointer;
+    }
   }
 }
-.work_name{
-  margin-left:2%;
-  margin-right:2%;
-  padding-bottom:2%;
-  padding-top:2%;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  width:90%;
-  background-color: #EFEFEF;
-  transition: all 0.4s ease 0s;
-  &:focus {
-    background-color: #FFFFFF;
-  }
-}
+
+
 
 .custom_menu {
   display: none;
-    z-index: 1000;
-    position: absolute;
-    overflow: hidden;
-    border: 1px solid #CCC;
-    white-space: nowrap;
-    font-family: sans-serif;
-    background: #FFF;
-    color: #333;
-    border-radius: 5px;
-    padding: 0;
-    text-align: left;
+  z-index: 1000;
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid #CCC;
+  white-space: nowrap;
+  font-family: sans-serif;
+  background: #FFF;
+  color: #333;
+  border-radius: 5px;
+  padding: 0;
+  text-align: left;
 
-    li {
-      padding: 8px 12px;
-      cursor: pointer;
-      list-style-type: none;
-      transition: all .3s ease;
+  li {
+    padding: 8px 12px;
+    cursor: pointer;
+    list-style-type: none;
+    transition: all .3s ease;
 
-      &:hover {
-        background-color: #DEF;
-      }
+    &:hover {
+      background-color: #DEF;
     }
+  }
 }
 
 .context_hr {
