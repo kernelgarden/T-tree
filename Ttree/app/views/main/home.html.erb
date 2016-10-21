@@ -114,10 +114,10 @@ var makePersonalWorkBox=function(){
             })
             if (flag == true) { // 즐겨찾기 되있음
               $(".personal_work_content"+cnt)
-              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="delete_btn delete_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+cnt+'" src="/assets/edit.png" height="15px" width="15px";/></span>')
+              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /></span>')
             } else {
               $(".personal_work_content"+cnt)
-              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="delete_btn delete_btn'+cnt+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+cnt+'" src="/assets/edit.png" height="15px" width="15px";/></span>')
+              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
             }
             flag = false;
           }
@@ -160,10 +160,10 @@ var makeTeamWorkBox=function(){
           });
           if (flag == true) {
             $(".personal_team_content" + response.team_id + "_" + j)
-            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /><img class="delete_btn delete_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+j+'" src="/assets/edit.png" height="15px" width="15px";/></span></span>')
+            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /></span>')
           } else {
             $(".personal_team_content" + response.team_id + "_" + j)
-            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /><img class="delete_btn delete_btn'+j+'" src="/assets/close1.png" height="15px" width="15px";/><img class="edit_work_btn edit_work_btn'+j+'" src="/assets/edit.png" height="15px" width="15px";/></span></span>')
+            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
           }
           flag = false;
         })
@@ -185,7 +185,6 @@ $(document).ready(function(){
   //getInfo();
   makePersonalWorkBox();
   makeTeamWorkBox();
-
   var nCount7=0
   $(document).click(function(e){
     if ( !$(e.target).is('.edit_work_name, #edit_work_name, #edit_work_form, #team_name, .work_name, .edit_work_button, .custom_menu_li, .custom_menu') ) {
@@ -226,18 +225,15 @@ var makeHomeFolderContext = function() {
   //$(".custom_menu").append("<li class='custom_menu_li custom_menu_li_add_favorate' data-action='add_favorate'><img class='star_btn_context' src='/assets/star3.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Add favorate</li>");
   $(".custom_menu").append("<li class='custom_menu_li' data-action='change_name'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Rename</li>");
   $(".custom_menu").append("<li class='custom_menu_li' data-action='change_color'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Change color</li>");
-
   $(".custom_menu").append("<hr class='context_hr'/>");
   $(".custom_menu").append("<li class='custom_menu_li' data-action='copy'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Copy</li>");
   $(".custom_menu").append("<li class='custom_menu_li' data-action='paste'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Paste</li>");
   $(".custom_menu").append("<li class='custom_menu_li' data-action='move'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Move</li>");
   $(".custom_menu").append("<li class='custom_menu_li' data-action='share_link'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Share link</li>");
-
   $(".custom_menu").append("<hr class='context_hr'/>");
   $(".custom_menu").append("<li class='custom_menu_li' data-action='delete'><img class='delete_btn_context' src='/assets/close1.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Delete</li>");
 };
 makeHomeFolderContext();
-
 /* 커스텀 context menu */
 // 해당 리스트와 겹치는 요소가 하나라도 있는지 체크하는 루틴
 var checkIntersection = function(target_list, obj_list) {
@@ -261,7 +257,6 @@ $(document).bind("contextmenu", function(e) {
   if (checkIntersection(bind_list, target_class) === true) {
   //if (bind_list.include("userWork")) {
     e.preventDefault();
-
     //console.log($($(e.target)[0]).data("id"));
     if (target_class.includes("personal_work_name") ||
       target_class.includes("personal_team_name")) {
@@ -273,7 +268,6 @@ $(document).bind("contextmenu", function(e) {
       //$(".custom_menu").data("target-class-name", target_class[target_class.length - 1]);
       $(".custom_menu").data("target-id", $($(e.target)[0]).data("id"));
     }
-
     $(".custom_menu").finish().toggle().
     css({
       top: e.pageY,
@@ -281,21 +275,18 @@ $(document).bind("contextmenu", function(e) {
     });
   }
 });
-
 // context menu 밖을 눌렀을 경우
 $(document).bind("mousedown", function(e) {
   if (!($(e.target).parents(".custom_menu").length > 0)) {
     $(".custom_menu").hide();
   }
 })
-
 // context menu 안의 요소를 클릭한 경우
 $(".custom_menu li").click(function(e) {
   var target = $($($(this)[0]).parent()[0]).data("target-id");
   //var target_type = (target.includes("team") == true)? "team" : "personal";
   var target_id;
   var target_team_id;
-
 /*
   if (target_type === "team") {
     target_team_id = target.match(/\d+_\d+/)[0].split("_")[0];
@@ -305,7 +296,6 @@ $(".custom_menu li").click(function(e) {
   }
 */
   e.stopPropagation();
-
   switch ($(this).attr("data-action")) {
     case "add_favorate": alert("add"); break;
     case "change_name":
@@ -381,19 +371,10 @@ $(".custom_menu li").click(function(e) {
     case "second": alert("second"); break;
     case "third": alert("third"); break;
   }
-
   $(".custom_menu").hide();
 })
 /* */
-$(".delete_btn").on("click",function(e){
-  e.stopPropagation();
-  var work_id = $(this).parent().parent().attr('data-id');
-  $.get("/api/work/"+work_id + "/delete", {"user_id": userID, "work_id": work_id})
-  .done(function(data){
-    alert("삭제완료.");
-    window.location = '/';
-  })
-})
+
 $(document).on("click", '.team_more' , function(){
   tId=$(this).data("team_id");
   window.location='/main/team/'+tId;
@@ -592,64 +573,7 @@ $(document).click(function(e){
   }
 });
 //워크 이름 수정
-var nCount7=0;
-$('.edit_work_btn').click(function(e){
-  e.stopPropagation();
-  var work_id = $(this).parent().parent().attr('data-id');
-  if(nCount7==0){
-    var x = e.pageX;
-    var y = e.pageY;
-    $(".edit_work_name").css({top:y, left:x});
-    $(".edit_work_name").show();
-    nCount7=1;
-  }
-  else{
-    $(".edit_work_name").hide();
-    nCount7=0;
-  }
-  $('.edit_close_btn').click(function(){
-    $(".edit_work_name").hide();
-    nCount7=0;
-  })
-  var countForm1=0;
-  $(document).on("click",".edit_work_button", function(e){
-    e.preventDefault();
-    jQuery.fn.mySerialize = function(){
-      var returning = '';
-      $('input, select, textarea',this).each(function(){
-        if (this.value!=="") // check this to avoid && in returning string
-        returning +='&'+this.value;
-      })
-      return returning.substring(1);
-    }
-    var work_name=$("#edit_work_form").mySerialize();
-    //값이 하나라도 안들어오면 알림창을 표시하고 리턴하여 함수빠져나감
-    if(work_name==' '){
-      alert("빈칸입니다");
-      //window.location = '/'
-      return;
-    }
-    else{
-      var inputData={"work_id":work_id,"name":work_name}
-    }
-    //gvar json=$.parseJSON(formData);
-    //alert(json.id)
-    countForm1++;
-    if(countForm1==1){
-      $.ajax({
-        type:"POST",
-        url:"/api/post/workName",
-        contentType:"application/x-www-form-urlencoded; charset=UTF-8",
-        cache:false,
-        data: inputData,
-        success:function(data){
-          alert("수정완료");
-          window.location = '/'
-        },
-      })
-    }
-  })
-})
+
 $(document).click(function(e){
   if ( !$(e.target).is('.edit_work_name, #edit_work_name, #edit_work_form, #team_name, .work_name, .edit_work_button, .custom_menu_li, .custom_menu') ) {
     $(".edit_work_name").hide();
