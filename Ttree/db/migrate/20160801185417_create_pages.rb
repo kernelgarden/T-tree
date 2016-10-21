@@ -3,7 +3,7 @@ class CreatePages < ActiveRecord::Migration[5.0]
     create_table :pages do |t|
       t.string :title
       t.text :url
-      t.references :branch, foreign_key: true
+      t.references :branch
 
       t.timestamps null: false
     end
