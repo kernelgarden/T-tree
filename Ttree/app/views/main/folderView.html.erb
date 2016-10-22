@@ -2,6 +2,7 @@
 <%= render "layouts/probe" %>
 <%= javascript_tag do %>
 window.branchIdInFolder = "<%=@ancestry%>";
+window.currentBranchId="<%=@branch_id%>";
 <% end %>
 <script>
   var widthPosition =window.innerWidth||window.innerWidth||document.body.clientWidth;
@@ -145,15 +146,61 @@ window.branchIdInFolder = "<%=@ancestry%>";
         })
       }
     })
+
+    //현재 폴더의 페이지를 다른 페이지로 이동할 때 페이지 드래그 
+    $('._page').draggable({
+      //containment: "window",
+      //cursor: "crosshair",
+      cancel: false,
+      appendTo: 'body',
+      helper: 'clone',
+      revert: false,
+      start: function(event, ui) {
+        ui.helper.data('droppedAt', -1); // 원에 드랍시 0 > 의 상수 기타 <= 0
+        ui.helper.data('draggablePos', $(this).position());
+        ui.helper.transition({
+          rotate: '-15deg',
+          duration: 0
+        });
+        ui.helper.attr("data-type", "_page");
+      },
+      stop: function(event, ui) {
+
+      }
+    }); //draggable
+
+    //현재 폴더를 다른 폴더로 
+    $('.folder_outline').draggable({
+      //containment: "window",
+      //cursor: "crosshair",
+      cancel: false,
+      appendTo: 'body',
+      helper: 'clone',
+      revert: false,
+      start: function(event, ui) {
+        ui.helper.data('droppedAt', -1); // 원에 드랍시 0 > 의 상수 기타 <= 0
+        ui.helper.data('draggablePos', $(this).position());
+        ui.helper.transition({
+          rotate: '-15deg',
+          duration: 0
+        });
+        ui.helper.attr("data-type", "folder_outline");
+      },
+      stop: function(event, ui) {
+
+      }
+    }); //draggable
+
     $('.folder_outline').droppable({
-      accept: '#page_alert, .pageCntBox, .pageli-2',
+      accept: '#page_alert, .pageCntBox, .pageli-2, ._page, .folder_outline',
       drop: function(event, ui) {
         $(this).removeClass('folder_outline_color');
+        $('.work_container').removeClass('work_container_color');
         var dataType=ui.helper.data("type");
         var branchID=$(this).children("._folder").data("id");
         //dataType에 따라 전달하는 데이터 다르게
         if(dataType=="page_alert"){
-          alert(1)
+          //alert(1)
           var inputData =
             {
               "branch_id": branchID,
@@ -182,6 +229,30 @@ window.branchIdInFolder = "<%=@ancestry%>";
               "page_id": pageId
             };
         }
+        else if(dataType=="_page"){
+            //alert(3)
+            var pageId=ui.helper.data("id");
+            //alert(pageId)
+            var inputData =
+            {
+              "branch_id": branchID,
+              "user_id": userID,
+              "dataType": "_page",
+              "page_id": pageId
+            };
+        }
+        else if(dataType=="folder_outline"){
+            //alert(3)
+            var dragBranchID=ui.helper.data("id");
+            //alert(dragBranchID)
+            var inputData =
+            {
+              "dragBranch_id":dragBranchID,
+              "branch_id": branchID,
+              "user_id": userID,
+              "dataType": "folder_outline"
+            };
+        }
         $.ajax({
           type: "POST",
           url: "/api/post/addPage",
@@ -189,6 +260,13 @@ window.branchIdInFolder = "<%=@ancestry%>";
           cache: false,
           data: inputData
         }).complete(function() {
+          if(dataType=="_page"){
+           
+            $('.page'+pageId).hide();
+          }
+          else if(dataType=="folder_outline"){
+            $('.folder_outline'+dragBranchID).hide();
+          }
         })
       }, //drop
       over: function(event, ui) {
@@ -200,7 +278,7 @@ window.branchIdInFolder = "<%=@ancestry%>";
       out: function(event, ui) {
         console.log(0)
         $(this).removeClass('folder_outline_color');
-        $('.work_container').addClass('work_container_color');
+        //$('.work_container').addClass('work_container_color');
         dropPosition=0;
       }
     }) //droppable
@@ -213,10 +291,10 @@ window.branchIdInFolder = "<%=@ancestry%>";
           var branchID=branchIdInFolder;
           //dataType에 따라 전달하는 데이터 다르게
           if(dataType=="page_alert"){
-            //alert(1)
+            //alert(1+"."+branchID)
             var inputData =
             {
-              "branch_id": branchID,
+              "branch_id": currentBranchId,
               "user_id": userID,
               "dataType": "page_alert"
             };
@@ -226,7 +304,7 @@ window.branchIdInFolder = "<%=@ancestry%>";
             var dataTimeNum=ui.helper.data("time");
             var inputData =
             {
-              "branch_id": branchID,
+              "branch_id": currentBranchId,
               "user_id": userID,
               "dataType": "pageCntBox",
               "timenum": dataTimeNum
@@ -238,7 +316,7 @@ window.branchIdInFolder = "<%=@ancestry%>";
             //alert(pageId)
             var inputData =
             {
-              "branch_id": branchID,
+              "branch_id": currentBranchId,
               "user_id": userID,
               "dataType": "pageli-2",
               "page_id": pageId
@@ -254,14 +332,17 @@ window.branchIdInFolder = "<%=@ancestry%>";
             if($('#page_alert_num').text()!=0)
               window.location = window.location.href;
           })
+          
         }
       },
       over: function(event, ui) {
         $(this).addClass('work_container_color');
-        dropPosition=0;
+        $('.folder_outline').removeClass('folder_outline_color');
+        dropPosition=0; 
       },
       out: function(event, ui) {
         $(this).removeClass('work_container_color');
+        $('.folder_outline').addClass('folder_outline_color');
         dropPosition=1;
       }
     }) //droppable
@@ -277,7 +358,35 @@ window.branchIdInFolder = "<%=@ancestry%>";
         console.log("out")
       }
     }) //droppable
-  })//ready
+    
+    //alert(branchID)
+    /*
+    $.getJSON("/api/branch/" + branchID + "/pages", function(response) {
+      //alert(branchID)
+      $.each(response, function(i, page) {
+        //alert(page.url)
+          var img = $('<img class="_page_img" src="http://ryugarden.org/api/thumb?url=' + page.url + '" />')
+          img.load(function() {
+            $('._page_img').eq(i).replaceWith(img);
+          });
+          //$('#closeImg' + i).attr("data-id", page.id)
+            //$('.pageli-2').eq(i).append('<img class="img" src="/' + page.url + '" />');
+          //$('.pageli-2').eq(i).append('<div class="page_url_div"><a class="page_url">' + page.title + '</a></div>');
+          //$('.pageli-2').eq(i).attr("data-url", page.url)
+      })
+      //$('.pageli-2 ').hide();
+    }, 0).complete(function() {
+      //alert(1)
+      //$('#loadingImg').hide();
+      //$('.pageli-2 ').show();
+    })
+    */
+    $(document).on("click", "#open_all_btn", function(e) {
+      $(".page_wrap").children().each(function(idx, item) {
+        window.open($(item).attr("data-url"), "_blank");
+      })
+    });
+  }) //ready
   $(window).resize(function() {
     $('.work_container').width(widthPosition - 150);
   })
@@ -292,7 +401,7 @@ window.branchIdInFolder = "<%=@ancestry%>";
     <div class="folder_group">
     <% if !@child_branches.nil? %>
       <% @child_branches.each do |branch| %>
-        <div class=folder_outline>
+        <div class="folder_outline folder_outline<%= branch.id %>" data-id="<%= branch.id %>">
           <div class="_folder _folder_exist folder_layout" data-id="<%= branch.id %>">
             <div class="_foldername folder_layout_name">
               <%= branch.name %>
@@ -311,12 +420,13 @@ window.branchIdInFolder = "<%=@ancestry%>";
       <div class="folder_title">Pages</div>
       <div class="purple_line"></div>
       <div class="gray_line"></div>
+      <button id="open_all_btn">Open All Pages</button>
     </div>
     <div class="page_wrap">
     <% if !@child_pages.nil? %>
       <% @child_pages.each do |page| %>
-        <div class="_page page_layout" data-url="<%= page.url %>">
-          <img class="_page_img" src="/assets/loading3.svg"/>
+        <div class="_page page<%=page.id%> page_layout" data-url="<%= page.url %>" data-id="<%=page.id%>">
+          <img class="_page_img" src="http://ryugarden.org/api/thumb?url=<%= page.url %>"/>
           <div class="_page_url_div">
             <a class="_page_url"><%= page.title %></a>
           </div>

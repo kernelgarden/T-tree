@@ -234,8 +234,20 @@ class ApisController < ApplicationController
 				end
 				Unclassifiedpage.find(params[:page_id]).delete
 			end
+		elsif (@dataType=="_page")
+			#page_id
+			Page.transaction do
+				@page=Page.find(params[:page_id])
+				@page.update_attributes(:branch_id => @branch.id)
+			end
+		elsif (@dataType=="folder_outline")
+			#page_id
+			Branch.transaction do
+				@dragBranch=Branch.find(params[:dragBranch_id])
+				@dragBranch.update_attributes(:parent_id => @branch.id)
+			end
 		end
-		
+		debugger
 	end
 
 	def branchName

@@ -48,10 +48,12 @@ class MainController < ApplicationController
 		if @branch.empty? # work인 경우
 			@child_branches = Branch.where(work_id: @work, ancestry: nil)
 		else # branch인 경우
+			@branch_id=@branch.last;
 			@child_branches = Branch.where("ancestry = ?", @branch.join("/"))
 			@child_pages = Page.where("branch_id = ?", @branch.last)
 			@ancestry = @branch.join("/")
 		end
+
 	end
 
 	private

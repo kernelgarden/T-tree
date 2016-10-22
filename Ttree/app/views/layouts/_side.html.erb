@@ -197,6 +197,7 @@ var showPageCntBox=function(status){  //회차 순으로 페이지 정렬하는 
             scale: 1,
             duration: 0
           });
+
           //alert(ui.helper.data('droppedAt'));
           if (ui.helper.data('droppedAt') != -1)
           $(this).css({
@@ -499,9 +500,9 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
 
           },
           stop: function(event, ui) {
-
           }
         }); //draggable
+
       }) //ajax complete
     } //else
   }); //click
@@ -511,7 +512,8 @@ var createSideBar=function(){  // 오른쪽 사이드바를 생성하는 함수
   $('.member_work, .work_container, #header, .treeView').droppable({
     accept: '.pageCntBox, .pageli-2',
     drop: function(event, ui) {
-      flag=ShowHideSidebar(1000);
+      //alert(1)
+      //$( ".unPages" ).toggle();
     }
   });
 }
