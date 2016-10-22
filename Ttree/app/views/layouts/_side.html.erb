@@ -112,9 +112,9 @@ var showPageCntBox=function(status){  //회차 순으로 페이지 정렬하는 
   console.log("호출")
   var beforeTime=0;       //  이전 회차 생성시간
   var samePageTimeCnt=1;  //  생성시간이 같은 페이지 개수
-  var colorArray=["#b1e0f8", "#f1e8b2", "#eb9980", "#f1cdcf", "#a8cfc3"];
-
-  //////////////////////////////JSON//////////////////////////////
+  var colorArray=["#e4f0cd" ,"#f1cdcf" ,"#bee3f2" ,"#f1e8b2" ,"#dfd7ef"];
+  
+    ///////////////////////////"///JSON//////////////////////////////
   setTimeout(function() {
     $.getJSON("/api/user/" + userID + "/unclassifiedpages", function(response) {
       //총 회차 초기화

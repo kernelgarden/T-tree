@@ -337,12 +337,10 @@ window.currentBranchId="<%=@branch_id%>";
       },
       over: function(event, ui) {
         $(this).addClass('work_container_color');
-        $('.folder_outline').removeClass('folder_outline_color');
         dropPosition=0; 
       },
       out: function(event, ui) {
         $(this).removeClass('work_container_color');
-        $('.folder_outline').addClass('folder_outline_color');
         dropPosition=1;
       }
     }) //droppable
