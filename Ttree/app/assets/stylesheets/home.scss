@@ -386,9 +386,9 @@ $addMainColor:#99d8dd;
   width: 220px;
   top: 50px;
   right: 10px;
-  background-color: #f8f8f8;
+  background-color: #FFFFFF;
   border-radius: 8px;
-  box-shadow: 2px 1px 10px #888888;
+  box-shadow: 2px 1px 6px #888888;
   z-index: 100;
   font-family:'Raleway', sans-serif;
   position: absolute;
@@ -484,7 +484,7 @@ $addMainColor:#99d8dd;
     text-align:center;
     border-radius: 4px;
     font-size: 16px;
-    background-color: #5cb3c1;
+    background-color: #96D0E8;
     border: none;
     color: white;
     padding: 7px 25px;
@@ -494,7 +494,7 @@ $addMainColor:#99d8dd;
     transition: all 0.4s ease 0s;
     &:hover{
       cursor: pointer;
-      background-color: #44A1B0;
+      background-color: #B3DEEE;
     }
   }
 }
@@ -697,7 +697,7 @@ $addMainColor:#99d8dd;
   box-shadow: 2px 1px 10px #888888;
   width: 300px;
   height: 140px;
-  background-color: #F8F8F8;
+  background-color: #ffffff;
   position: absolute;
   display: none;
   border-radius: 5px;
@@ -726,7 +726,7 @@ $addMainColor:#99d8dd;
     text-align:center;
     border-radius: 4px;
     font-size: 16px;
-    background-color: #5cb3c1;
+    background-color: #96D0E8;
     border: none;
     color: white;
     padding: 7px 25px;
@@ -735,7 +735,7 @@ $addMainColor:#99d8dd;
     transition: all 0.4s ease 0s;
     &:hover{
       cursor: pointer;
-      background-color: #44A1B0;
+      background-color: #B3DEEE;
     }
   }
   .form_btn{

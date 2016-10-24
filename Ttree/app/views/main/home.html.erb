@@ -240,8 +240,8 @@ $(document).ready(function(){
 var makeHomeFolderContext = function() {
   //$(".custom_menu").append("<li class='custom_menu_li custom_menu_li_add_favorate' data-action='add_favorate'><img class='star_btn_context' src='/assets/star3.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Add favorate</li>");
   $(".custom_menu").append("<li class='custom_menu_li' data-action='change_name'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Rename</li>");
-//  $(".custom_menu").append("<li class='custom_menu_li' data-action='change_color'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Change color</li>");
-//  $(".custom_menu").append("<hr class='context_hr'/>");
+  //$(".custom_menu").append("<li class='custom_menu_li' data-action='change_color'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Change color</li>");
+  //$(".custom_menu").append("<hr class='context_hr'/>");
   //$(".custom_menu").append("<li class='custom_menu_li' data-action='copy'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Copy</li>");
   //$(".custom_menu").append("<li class='custom_menu_li' data-action='paste'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Paste</li>");
   //$(".custom_menu").append("<li class='custom_menu_li' data-action='move'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Move</li>");
@@ -366,8 +366,11 @@ $(".custom_menu li").click(function(e) {
                 cache:false,
                 data: inputData,
                 success:function(data){
-                  alert("수정완료");
-                  window.location = '/'
+                  //alert("수정완료");
+                  //window.location = '/'
+                  $(".edit_work_name").hide();
+                  $('.userWork'+work_id+' .personal_work_name').empty().append(work_name)
+
                 },
               })
             }
@@ -378,8 +381,8 @@ $(".custom_menu li").click(function(e) {
       {
         $.get("/api/work/" + target + "/delete", {"user_id": userID, "work_id": target})
         .complete(function(data){
-          alert("삭제 완료");
-          $('.userwork'+target).hide();
+          //alert("삭제 완료");
+          $('.userWork'+target).hide();
         })
         //window.location = window.location.href;
       }
@@ -393,6 +396,7 @@ $(".custom_menu li").click(function(e) {
           $(".modal-body").empty().append('<input id="shareLink" value="'+data.responseText+'">')
           $(".modal-body").append('<span class="copyBtn"><button class="btn" data-clipboard-target="#shareLink"><img src="assets/clippy.svg" alt="Copy to clipboard" height="20px" width="20px"></button></span> ')
           $(".modal-body").append('<div class="share_icon">  <img src="/assets/facebook.png" class="facebook_icon icon"><img src="/assets/twitter.png" class="twitter_icon icon"><img src="/assets/google.png" class="google_icon icon"></div>')
+
           modal.style.display = "block";
           //window.location = window.location.href;
         })
