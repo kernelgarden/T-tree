@@ -386,9 +386,9 @@ $addMainColor:#99d8dd;
   width: 220px;
   top: 50px;
   right: 10px;
-  background-color: #f8f8f8;
+  background-color: #FFFFFF;
   border-radius: 8px;
-  box-shadow: 2px 1px 10px #888888;
+  box-shadow: 2px 1px 6px #888888;
   z-index: 100;
   font-family:'Raleway', sans-serif;
   position: absolute;
@@ -484,7 +484,7 @@ $addMainColor:#99d8dd;
     text-align:center;
     border-radius: 4px;
     font-size: 16px;
-    background-color: #5cb3c1;
+    background-color: #96D0E8;
     border: none;
     color: white;
     padding: 7px 25px;
@@ -494,7 +494,7 @@ $addMainColor:#99d8dd;
     transition: all 0.4s ease 0s;
     &:hover{
       cursor: pointer;
-      background-color: #44A1B0;
+      background-color: #B3DEEE;
     }
   }
 }
@@ -697,7 +697,7 @@ $addMainColor:#99d8dd;
   box-shadow: 2px 1px 10px #888888;
   width: 300px;
   height: 140px;
-  background-color: #F8F8F8;
+  background-color: #ffffff;
   position: absolute;
   display: none;
   border-radius: 5px;
@@ -726,7 +726,7 @@ $addMainColor:#99d8dd;
     text-align:center;
     border-radius: 4px;
     font-size: 16px;
-    background-color: #5cb3c1;
+    background-color: #96D0E8;
     border: none;
     color: white;
     padding: 7px 25px;
@@ -735,7 +735,7 @@ $addMainColor:#99d8dd;
     transition: all 0.4s ease 0s;
     &:hover{
       cursor: pointer;
-      background-color: #44A1B0;
+      background-color: #B3DEEE;
     }
   }
   .form_btn{
@@ -789,6 +789,7 @@ $addMainColor:#99d8dd;
 
 /* The Modal (background) */
 .modal {
+    z-index:1000;
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -800,10 +801,12 @@ $addMainColor:#99d8dd;
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    border-radius: 8px;
 }
 
 /* Modal Content */
 .modal-content {
+    z-index:1000;
     position: relative;
     background-color: #fefefe;
     margin: auto;
@@ -814,7 +817,8 @@ $addMainColor:#99d8dd;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
+    border-radius: 8px;
 }
 
 /* Add Animation */
@@ -844,17 +848,21 @@ $addMainColor:#99d8dd;
 }
 
 .modal-header {
-    padding: 2px 16px;
+  z-index:1000;
+    padding: 6px 16px;
     background-color: #BABABA;
     color: white;
+    border-radius: 8px;
 }
 .modal-body {
+  z-index:1000;
   padding: 2px 16px;
   height:150px;
   padding-top:80px;
 }
 
 .modal-footer {
+  z-index:1000;
     padding: 2px 16px;
     background-color: #B2DFFF;
     color: white;
@@ -862,7 +870,18 @@ $addMainColor:#99d8dd;
 
 #shareLink{
   height : 30px;
+  margin-top: 5px;
   width:60%;
+      padding:5px;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      background-color: #EFEFEF;
+
+      &:focus {
+        background-color: #FFFFFF;
+      }
 }
 .copyBtn{
   .btn{
@@ -883,3 +902,39 @@ $addMainColor:#99d8dd;
     -webkit-user-select: none;
   }
 } 
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 80px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 150%;
+    left: 100%;
+    margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
