@@ -99,7 +99,7 @@ class ApisController < ApplicationController
 	def treeViewWidth
 		Work.find(params[:id]).update_attributes(:viewwidth=>params[:viewwidth])
 		#debugger
-	end 
+	end
 
 	def treeViewStatus
 		if(params[:state]=="true")
@@ -161,8 +161,7 @@ class ApisController < ApplicationController
 				@firstBranch=Branch.create(:name=>@work.name, :work_id=>@work.id)
 			end
 			@work.update_attributes(:first_branch=>@firstBranch.id)
-		end 
-		@shorten
+		end
 		#render :json => @work
 	end
 	def getTeam
@@ -202,7 +201,7 @@ class ApisController < ApplicationController
 		@work_id=params[:id]
 	 	@firstBranch=Work.find(@work_id).first_branch
 	 	@shortenURL=Bitly.client.shorten('http://develop.tab-storage.com/share/work/folder/'+@work_id.to_s+'/'+@firstBranch.to_s)
-	 	
+
 		render :json => @shortenURL.short_url
 	end
 
@@ -211,7 +210,7 @@ class ApisController < ApplicationController
 		Branch.transaction do
 			@branch=Branch.find(params[:branch_id])
 		end
-		#동그라미를 드롭다운 했으면 페이지 전체를 해당 브렌치에 추가하고 회차 스택 비움 
+		#동그라미를 드롭다운 했으면 페이지 전체를 해당 브렌치에 추가하고 회차 스택 비움
 		if(@dataType=="page_alert")
 			@pages=User.find(params[:user_id]).unclassifiedpage_ids
 			Unclassifiedpage.transaction do
@@ -325,6 +324,10 @@ class ApisController < ApplicationController
 		#debugger
 		Unclassifiedpage.find(params[:id]).destroy
 		#debugger
+	end
+
+	def deleteBranch
+		Branch.find(params[:id]).destroy
 	end
 
 	def deletePages

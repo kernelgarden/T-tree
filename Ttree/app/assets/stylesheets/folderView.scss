@@ -363,6 +363,67 @@
     }
   }
 }
+.edit_branch_name{
+  padding-top: 15px;
+  font-size: 20px;
+  box-shadow: 2px 1px 10px #888888;
+  width: 300px;
+  height: 140px;
+  background-color: #F8F8F8;
+  position: absolute;
+  display: none;
+  border-radius: 5px;
+  top:0;
+  right:0;
+  bottom: 0;
+  text-align: center;
+  z-index: 2;
+  .branch_name{
+    margin: 15px 0;
+    padding-bottom:2%;
+    padding-top:2%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width:90%;
+    height: 30px;
+    background-color: #EFEFEF;
+    transition: all 0.4s ease 0s;
+    &:focus {
+      background-color: #FFFFFF;
+    }
+  }
+  .edit_branch_button{
+    margin-top: 0px;
+    text-align:center;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #5cb3c1;
+    border: none;
+    color: white;
+    padding: 7px 25px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.4s ease 0s;
+    &:hover{
+      cursor: pointer;
+      background-color: #44A1B0;
+    }
+  }
+  .form_btn{
+    position: absolute;
+    right: 0px;
+    top:5px;
+    width: 15px;
+    height: 15px;
+    float: right;
+    margin:5px;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
 
 .custom_menu {
   display: none;
@@ -377,19 +438,16 @@
     border-radius: 5px;
     padding: 0;
     text-align: left;
-
     li {
       padding: 8px 12px;
       cursor: pointer;
       list-style-type: none;
       transition: all .3s ease;
-
       &:hover {
         background-color: #DEF;
       }
     }
 }
-
 
 #open_all_btn{
   margin-left: 30px;

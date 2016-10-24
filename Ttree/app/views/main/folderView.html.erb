@@ -9,13 +9,13 @@ window.currentBranchId="<%=@branch_id%>";
   var addFolderCount = 0;
   var dropPosition=0; //바탕(0)인지 폴더(1)인지
   var makeWorkFolderContext = function() {
-    $(".custom_menu").append("<li data-action='add_favorate'><img class='star_btn_context' src='/assets/star3.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Add favorate</li>");
+    //$(".custom_menu").append("<li data-action='add_favorate'><img class='star_btn_context' src='/assets/star3.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Add favorate</li>");
     $(".custom_menu").append("<li data-action='change_name'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Change name</li>");
-    $(".custom_menu").append("<li data-action='change_color'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Change color</li>");
-    $(".custom_menu").append("<hr class='context_hr'/>");
-    $(".custom_menu").append("<li data-action='copy'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Copy</li>");
-    $(".custom_menu").append("<li data-action='paste'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Paste</li>");
-    $(".custom_menu").append("<li data-action='move'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Move</li>");
+    //$(".custom_menu").append("<li data-action='change_color'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Change color</li>");
+    //$(".custom_menu").append("<hr class='context_hr'/>");
+    //$(".custom_menu").append("<li data-action='copy'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Copy</li>");
+    //$(".custom_menu").append("<li data-action='paste'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Paste</li>");
+    //$(".custom_menu").append("<li data-action='move'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Move</li>");
     $(".custom_menu").append("<li data-action='share_link'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Share link</li>");
     $(".custom_menu").append("<hr class='context_hr'/>");
     $(".custom_menu").append("<li data-action='delete'><img class='delete_btn_context' src='/assets/close1.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Delete</li>");
@@ -46,6 +46,7 @@ window.currentBranchId="<%=@branch_id%>";
       if (checkIntersection(bind_list, target_class) === true) {
       //if (bind_list.include("userWork")) {
         e.preventDefault();
+        $(".custom_menu").data("target-id", $($(e.target)[0]).data("id"));
         $(".custom_menu").finish().toggle().
         css({
           top: e.pageY,
@@ -60,11 +61,82 @@ window.currentBranchId="<%=@branch_id%>";
       }
     })
     // context menu 안의 요소를 클릭한 경우
-    $(".custom_menu li").click(function() {
+    $(".custom_menu li").click(function(e) {
+      var target = $($($(this)[0]).parent()[0]).data("target-id");
+      //var target_type = (target.includes("team") == true)? "team" : "personal";
+      var target_id;
+      var target_team_id;
+      var nCount7=0;
+        e.stopPropagation();
       switch ($(this).attr("data-action")) {
         case "add_favorate": alert("add"); break;
-        case "change_name": alert("change"); break;
-        case "delete": alert("delete"); break;
+        case "change_name":
+        {
+            var branch_id=target;
+            console.log(branch_id);
+            if(nCount7==0){
+              var x = e.pageX;
+              var y = e.pageY;
+              $(".edit_branch_name").css({top:y, left:x, display: "block"});
+              $(".edit_branch_name").show();
+              //console.log($(".edit_work_name"))
+              nCount7=1;
+            }
+            else{
+              $(".edit_branch_name").hide();
+              nCount7=0;
+            }
+            $('.edit_close_btn').click(function(){
+              $(".edit_branch_name").hide();
+              nCount7=0;
+            })
+            var countForm1=0;
+            $(document).on("click",".edit_branch_button", function(e){
+              jQuery.fn.mySerialize = function(){
+                var returning = '';
+                $('input, select, textarea',this).each(function(){
+                  if (this.value!=="") // check this to avoid && in returning string
+                  returning +='&'+this.value;
+                })
+                return returning.substring(1);
+              }
+              var branch_name=$("#edit_branch_form").mySerialize();
+              //값이 하나라도 안들어오면 알림창을 표시하고 리턴하여 함수빠져나감
+              if(branch_name==' '){
+                alert("빈칸입니다");
+                //window.location = '/'
+                return;
+              }
+              else{
+                var inputData={"branch_id":branch_id,"name":branch_name}
+              }
+              //gvar json=$.parseJSON(formData);
+              //alert(json.id)
+              countForm1++;
+              if(countForm1==1){
+                $.ajax({
+                  type:"POST",
+                  url:"/api/post/branchName2",
+                  contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+                  cache:false,
+                  data: inputData,
+                  success:function(data){
+                    alert("수정완료");
+                    window.location = window.location.href;
+                  },
+                })
+              }
+            })
+        }break;
+        case "delete":
+          {
+            $.get("/api/branch/" + target + "/delete", {"branch_id": target})
+            .done(function(data){
+              alert("삭제 완료");
+              $('.folder_outline'+target).hide();
+            })
+          }
+          break;
         case "first": alert("first"); break;
         case "second": alert("second"); break;
         case "third": alert("third"); break;
@@ -147,7 +219,7 @@ window.currentBranchId="<%=@branch_id%>";
       }
     })
 
-    //현재 폴더의 페이지를 다른 페이지로 이동할 때 페이지 드래그 
+    //현재 폴더의 페이지를 다른 페이지로 이동할 때 페이지 드래그
     $('._page').draggable({
       //containment: "window",
       //cursor: "crosshair",
@@ -169,7 +241,7 @@ window.currentBranchId="<%=@branch_id%>";
       }
     }); //draggable
 
-    //현재 폴더를 다른 폴더로 
+    //현재 폴더를 다른 폴더로
     $('.folder_outline').draggable({
       //containment: "window",
       //cursor: "crosshair",
@@ -261,7 +333,7 @@ window.currentBranchId="<%=@branch_id%>";
           data: inputData
         }).complete(function() {
           if(dataType=="_page"){
-           
+
             $('.page'+pageId).hide();
           }
           else if(dataType=="folder_outline"){
@@ -332,12 +404,12 @@ window.currentBranchId="<%=@branch_id%>";
             if($('#page_alert_num').text()!=0)
               window.location = window.location.href;
           })
-          
+
         }
       },
       over: function(event, ui) {
         $(this).addClass('work_container_color');
-        dropPosition=0; 
+        dropPosition=0;
       },
       out: function(event, ui) {
         $(this).removeClass('work_container_color');
@@ -356,7 +428,7 @@ window.currentBranchId="<%=@branch_id%>";
         console.log("out")
       }
     }) //droppable
-    
+
     //alert(branchID)
     /*
     $.getJSON("/api/branch/" + branchID + "/pages", function(response) {
@@ -444,6 +516,15 @@ window.currentBranchId="<%=@branch_id%>";
     <input type="text" name="title" class="folder_input folder_form_element" />
   </form>
   <input type="button" class="folder_form_button" value="Create" />
+</div>
+
+<div class="edit_branch_name" id="edit_branch_name">
+  <img class="edit_close_btn form_btn" src="/assets/close1.png">
+  <form id="edit_branch_form">
+    <div id="title">Edit Folder Name</div>
+    <input type="text" name="name" class="branch_name">
+  </form>
+  <input type="button" class="edit_branch_button" value="Edit">
 </div>
 <ul class="custom_menu">
 </ul>
