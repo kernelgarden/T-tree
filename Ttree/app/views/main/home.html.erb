@@ -22,7 +22,7 @@ window.userName ="<%= current_user.name %>";
       <h2>Share Link</h2>
     </div>
     <div class="modal-body">
-        
+
     </div>
     <!--<div class="modal-footer">
       <h3>Modal Footer</h3>
@@ -164,7 +164,7 @@ var makeTeamWorkBox=function(){
       $(".team_more" + i).attr("data-team_id", team.id)
       $.each(team.work_ids, function(j, id) {
         $.getJSON("/api/work/" + id, function(response) {
-          $(".wrap_team_content" + i).append('<div class="personal_team_content personal_team_content' + response.team_id + '_' + j + '"></div>').show('slow')
+          $(".wrap_team_content" + i).append('<div class="personal_team_content userWork'+id+'  personal_team_content' + response.team_id + '_' + j + '"></div>').show('slow')
           $(".personal_team_content" + response.team_id + "_" + j).append('<div class="personal_team_name">' + response.name + '</div>').show('slow')
           $(".personal_team_content" + response.team_id + "_" + j).attr("data-id", id)
           $(".personal_team_content" + response.team_id + "_" + j).attr("data-firstbranch", response.first_branch)
@@ -240,8 +240,8 @@ $(document).ready(function(){
 var makeHomeFolderContext = function() {
   //$(".custom_menu").append("<li class='custom_menu_li custom_menu_li_add_favorate' data-action='add_favorate'><img class='star_btn_context' src='/assets/star3.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Add favorate</li>");
   $(".custom_menu").append("<li class='custom_menu_li' data-action='change_name'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Rename</li>");
-  $(".custom_menu").append("<li class='custom_menu_li' data-action='change_color'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Change color</li>");
-  $(".custom_menu").append("<hr class='context_hr'/>");
+//  $(".custom_menu").append("<li class='custom_menu_li' data-action='change_color'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Change color</li>");
+//  $(".custom_menu").append("<hr class='context_hr'/>");
   //$(".custom_menu").append("<li class='custom_menu_li' data-action='copy'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Copy</li>");
   //$(".custom_menu").append("<li class='custom_menu_li' data-action='paste'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Paste</li>");
   //$(".custom_menu").append("<li class='custom_menu_li' data-action='move'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Move</li>");
@@ -379,7 +379,7 @@ $(".custom_menu li").click(function(e) {
         $.get("/api/work/" + target + "/delete", {"user_id": userID, "work_id": target})
         .complete(function(data){
           alert("삭제 완료");
-          
+          $('.userwork'+target).hide();
         })
         //window.location = window.location.href;
       }
@@ -396,7 +396,7 @@ $(".custom_menu li").click(function(e) {
           //window.location = window.location.href;
         })
         //window.location = window.location.href;
-      } 
+      }
       break;
     case "first": alert("first"); break;
     case "second": alert("second"); break;

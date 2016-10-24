@@ -84,7 +84,7 @@ window.userName ="<%= current_user.name %>";
     <li class="user_li" id="user_li2">Profile</li>
     <li class="user_li" id="user_li3">Works</li>
     <li class="user_li" id="user_li4">Teams</li>
-    <%=  link_to '<li class="user_li" id="user_li5">All-pages</li>'.html_safe, (show_pages_path)%>
+    <li class="user_li" id="user_li5">All-pages</li>
     <li class="user_li" id="user_li6">Help</li>
     <%=  link_to '<li class="user_li_logout" id="user_li7">로그아웃</li>'.html_safe, destroy_user_session_path,
     method: :delete, data: {confirm: "로그아웃?" }%>
@@ -157,6 +157,7 @@ var getPersonalWork=function(){ //persoanl work 가져오는 json
       if(work.team_id==null&&$(".work_detail_li").eq(i).empty(0)){
         $(".work_detail_li").eq(cnt).append(work.name);
         $(".work_detail_li").eq(cnt).attr("data-id",work.id);
+        $(".work_detail_li").eq(cnt).attr("data-firstbranch",work.first_branch);
         //일정 크기를 넘어가면 높이를 고정
         if(($('#dropDown1').height()+(heightPosition-60)/10)<=heightPosition){
           var height=$('#dropDown1').height()+35;
@@ -448,7 +449,9 @@ $(document).ready(function(){
   })
 
   $(document).on("click",".work_detail_li",function(){
-    window.location='/main/work/'+ $(this).data("id");
+    var sId = $(this).data("id")
+    var firstBranchId=$(this).data("firstbranch")
+    window.location='/main/work/folder/' + sId+'/'+firstBranchId;
   })
 
   /*************************************#dropdown2*************************************/
