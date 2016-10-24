@@ -70,7 +70,7 @@ window.userName ="<%= current_user.name %>";
   <div class="edit_work_name" id="edit_work_name">
     <img class="edit_close_btn form_btn" src="/assets/close1.png">
     <form id="edit_work_form">
-      <div id="team_name">Edit Work Name</div>
+      <div id="team_name">Edit Folder Name</div>
       <input type="text" name="name" class="work_name">
     </form>
     <input type="button" class="edit_work_button" value="Edit">
@@ -306,19 +306,17 @@ $(".custom_menu li").click(function(e) {
             var y = e.pageY;
             $(".edit_work_name").css({top:y, left:x, display: "block"});
             $(".edit_work_name").show();
-            console.log($(".edit_work_name"))
+            //console.log($(".edit_work_name"))
             nCount7=1;
           }
           else{
             $(".edit_work_name").hide();
-            console.log("test2");
             nCount7=0;
           }
           $('.edit_close_btn').click(function(){
             $(".edit_work_name").hide();
             nCount7=0;
           })
-          console.log("test");
           var countForm1=0;
           $(document).on("click",".edit_work_button", function(e){
             jQuery.fn.mySerialize = function(){
