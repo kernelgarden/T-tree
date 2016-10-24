@@ -4,7 +4,7 @@ class Page < ApplicationRecord
 
   #순서 최근 순으로
   #default_scope  { order(:created_at => :desc) }
-  validates:title, presence:true, length:{maximum:50}
+  validates:title, presence:true
   validates:branch_id, presence:true
 
   searchkick text_start: [:title, :url], suggest: ["title"]

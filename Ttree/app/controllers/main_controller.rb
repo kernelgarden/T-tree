@@ -58,6 +58,26 @@ class MainController < ApplicationController
 
 	end
 
+	def sharefolder
+		@uri = params[:uri]
+		@work = @uri.split("/").first
+		@firstBranch=Work.find(@work).first_branch
+		@workname=Work.find(@work).name
+		@treeViewWidth=Work.find(@work).viewwidth
+		#@work_obj = Work.find(@work)
+		#@isTeam = Work.find(@work).team_id != nil
+		#@type = (@work_obj.team_id != nil)? "team" : "personal"
+		@branch = @uri.split("/")[1..-1]
+		if @branch.empty? # work인 경우
+			@child_branches = Branch.where(work_id: @work, ancestry: nil)
+		else # branch인 경우
+			@branch_id=@branch.last;
+			@child_branches = Branch.where("ancestry = ?", @branch.join("/"))
+			@child_pages = Page.where("branch_id = ?", @branch.last)
+			@ancestry = @branch.join("/")
+		end
+	end
+	
 	private
 	def logged_in_user
 		if current_user

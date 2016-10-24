@@ -54,8 +54,10 @@ Rails.application.routes.draw do
   post '/api/post/branchName', to: 'apis#branchName'         #해당 work의 정보
   post '/api/post/branchName2', to: 'apis#branchName2'         #해당 work의 정보
   get '/api/work/:id/delete', to:'apis#workDelete' #해당 work 삭제
+  get '/api/work/:id/share', to:'apis#shareWork' #해당 work 공유 
 
   get '/main/work/folder/*uri', to: 'main#folderView'
+  get '/share/work/folder/*uri', to: 'main#sharefolder'
 
   post '/api/post/team', to:'apis#getTeam'
   post '/api/page/new', to: 'apis#getPages'
