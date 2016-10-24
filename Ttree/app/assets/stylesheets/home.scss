@@ -779,14 +779,11 @@ $addMainColor:#99d8dd;
     }
   }
 }
-
 .context_hr {
   border: 0;
   border-bottom: 1px solid #ccc;
   background: #999;
 }
-
-
 /* The Modal (background) */
 .modal {
     z-index:1000;
@@ -859,6 +856,16 @@ $addMainColor:#99d8dd;
   padding: 2px 16px;
   height:150px;
   padding-top:80px;
+  .share_icon{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    .icon{
+      width: 30px;
+      height: 30px;
+      margin: 0 5px;
+    }
+  }
 }
 
 .modal-footer {
@@ -901,7 +908,7 @@ $addMainColor:#99d8dd;
     border-radius: 3px;
     -webkit-user-select: none;
   }
-} 
+}
 
 .tooltip {
     position: relative;
