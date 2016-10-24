@@ -1,6 +1,4 @@
-.tooltip{
-  display:none;
-}
+
 .work_container {
   position: absolute;
   float:right;
@@ -449,4 +447,12 @@
         background-color: #DEF;
       }
     }
+}
+
+#open_all_btn{
+  margin-left: 30px;
+  &:hover{
+    cursor: pointer;
+
+  }
 }

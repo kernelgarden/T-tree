@@ -1,0 +1,102 @@
+<script>
+var heightPosition =window.innerHeight||document.body.clientHeigh;
+var headerSize=60;
+var marginSize=20;
+
+$(document).ready(function(){
+  $('.treeView').width(<%=@treeViewWidth%>);
+  $('.treeView').height(heightPosition - headerSize-marginSize);
+  $('#using_json').jstree({ 'core' : {
+        'data' : {
+            'url' : '/api/work/<%= @work %>/tree'
+        }
+    } 
+  }); 
+  //브렌치 선택했을 때 
+  $('#using_json').on("select_node.jstree", function (e, data) { 
+    if(data.node.data.ancestry=="null")
+      window.open("/share/work/folder/"+<%= @work %>+ "/"+ data.node.id, '_self')
+      //alert("/main/work/folder/"+<%= @work %>+ "/"+ data.node.id)
+    else
+      window.open("/share/work/folder/"+<%= @work %>+ "/"+ data.node.data.ancestry + "/"+ data.node.id, '_self')
+      //alert("/main/work/folder/"+<%= @work %>+ "/"+ data.node.data.ancestry + "/"+ data.node.id)
+  });
+  //트리열었을 때 
+  $('#using_json').on("open_node.jstree", function (e, data) { 
+  
+    //alert(data.node.state.opened)
+    inputData={"id":data.node.id, "state":true}
+    //alert(inputData)
+    
+    $.ajax({
+      type: "POST",
+      url: "/api/post/treeViewStatus",
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      cache: false,
+      data: inputData
+    })
+    
+  });
+  //트리 닫았을 때 
+  $('#using_json').on("close_node.jstree", function (e, data) { 
+   
+    inputData={"id":data.node.id, "state":false}
+    //alert(inputData)
+    $.ajax({
+      type: "POST",
+      url: "/api/post/treeViewStatus",
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      cache: false,
+      data: inputData
+    })
+  });
+  //트리뷰 리사이즈 
+  $('.treeView').resizable({
+     resize: function(event,ui) {
+      //alert(inputData)
+      outerWidth=$(this).outerWidth();
+      outerHeight=$(this).outerHeight();
+      console.log([outerWidth,outerHeight]);
+      $('.work_container').width(widthPosition - outerWidth);
+    },
+    stop : function(event,ui) {
+      inputData={"id":<%= @work %>, "viewwidth":$(this).width()}
+      $.ajax({
+        type: "POST",
+        url: "/api/post/treeViewWidth",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        cache: false,
+        data: inputData
+      }).complete(function(){
+        
+      })    
+    }//stop
+    
+  });//resizable
+
+  $('#workName').click(function(){
+     window.open("/share/work/folder/"+<%= @work %>+"/"+<%=@firstBranch %>, '_self')
+  })
+
+
+});
+
+$(window).resize(function() {
+  $('.branch').click(function(){
+   $(this).children().toggleClass('fa-folder-open-o');
+   $(this).next().slideToggle();
+  });
+
+  $('.treeView').height(heightPosition - headerSize-marginSize);
+})
+</script>
+
+
+<div class="treeView ">
+  <div id=workName>
+    <%= @work +" / "+@workname %>
+  </div>
+  <div id="using_json">
+
+  </div>
+</div>

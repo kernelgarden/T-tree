@@ -480,7 +480,7 @@ window.currentBranchId="<%=@branch_id%>";
         </div>
       <% end %>
     <% end %>
-    <div class="add_folder _folder">
+    <div class="add_folder _folder ">
       <img class=create_work_btn src="/assets/create_work.png">
     </div>
   </div>
@@ -490,7 +490,9 @@ window.currentBranchId="<%=@branch_id%>";
       <div class="folder_title">Pages</div>
       <div class="purple_line"></div>
       <div class="gray_line"></div>
-      <button id="open_all_btn">Open All Pages</button>
+      <span id="open_all_btn" class="tooltip">
+        <img src="/assets/all_pages.png">
+      </span>
     </div>
     <div class="page_wrap">
     <% if !@child_pages.nil? %>

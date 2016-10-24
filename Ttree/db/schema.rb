@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020081138) do
+ActiveRecord::Schema.define(version: 20161022090040) do
 
   create_table "branches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20161020081138) do
   end
 
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title"
+    t.text     "title",      limit: 65535
     t.text     "url",        limit: 65535
     t.integer  "branch_id"
     t.datetime "created_at",               null: false
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20161020081138) do
   end
 
   create_table "unclassifiedpages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title"
+    t.text     "title",      limit: 65535
     t.text     "url",        limit: 65535
     t.integer  "user_id"
     t.datetime "created_at",               null: false

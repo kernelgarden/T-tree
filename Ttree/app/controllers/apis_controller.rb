@@ -2,6 +2,7 @@ class ApisController < ApplicationController
 	skip_before_action :verify_authenticity_token
 	before_action :getWork, :only => [:getWork1]
 	#before_action :treeViewStatus, :only => [:tree]
+	Bitly.use_api_version_3
 
 	def users
 		@users=User.all
@@ -196,6 +197,14 @@ class ApisController < ApplicationController
 		Work.find(@work_id).destroy
 	end
 
+	def shareWork
+		@work_id=params[:id]
+	 	@firstBranch=Work.find(@work_id).first_branch
+	 	@shortenURL=Bitly.client.shorten('http://develop.tab-storage.com/share/work/folder/'+@work_id.to_s+'/'+@firstBranch.to_s)
+
+		render :json => @shortenURL.short_url
+	end
+
 	def addPage
 		@dataType=params[:dataType]
 		Branch.transaction do
@@ -335,6 +344,9 @@ class ApisController < ApplicationController
 		render :json => '[{ "id" : "ajson1", "parent" : "#", "text" : "Simple root node" },{ "id" : "ajson2", "parent" : "#", "text" : "Root node 2" },{ "id" : "ajson3", "parent" : "ajson2", "text" : "Child 1" },{ "id" : "ajson4", "parent" : "ajson2", "text" : "Child 2" }]'
 	end
 
+	def bitly
+		Bitly.client
+	end
 
 	private
 	def work_params
