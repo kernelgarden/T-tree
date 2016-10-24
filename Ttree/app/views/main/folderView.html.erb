@@ -10,7 +10,7 @@ window.currentBranchId="<%=@branch_id%>";
   var dropPosition=0; //바탕(0)인지 폴더(1)인지
   var makeWorkFolderContext = function() {
     //$(".custom_menu").append("<li data-action='add_favorate'><img class='star_btn_context' src='/assets/star3.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Add favorate</li>");
-    $(".custom_menu").append("<li data-action='change_name'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Change name</li>");
+    $(".custom_menu").append("<li data-action='change_name'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Rename</li>");
     //$(".custom_menu").append("<li data-action='change_color'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Change color</li>");
     //$(".custom_menu").append("<hr class='context_hr'/>");
     //$(".custom_menu").append("<li data-action='copy'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Copy</li>");
@@ -78,6 +78,7 @@ window.currentBranchId="<%=@branch_id%>";
               var x = e.pageX;
               var y = e.pageY;
               $(".edit_branch_name").css({top:y, left:x, display: "block"});
+              $(".edit_branch_name #edit_branch_form input").val("");
               $(".edit_branch_name").show();
               //console.log($(".edit_work_name"))
               nCount7=1;
@@ -121,18 +122,20 @@ window.currentBranchId="<%=@branch_id%>";
                   cache:false,
                   data: inputData,
                   success:function(data){
-                    alert("수정완료");
-                    window.location = window.location.href;
+                    
                   },
-                })
+                }).complete(function(){
+                  $(".edit_branch_name").hide();
+                  $('.folder_outline'+branch_id+' ._folder ._foldername').empty().append(branch_name)
+                });
               }
             })
         }break;
         case "delete":
           {
             $.get("/api/branch/" + target + "/delete", {"branch_id": target})
-            .done(function(data){
-              alert("삭제 완료");
+            .complete(function(data){
+              //alert("삭제 완료");
               $('.folder_outline'+target).hide();
             })
           }
