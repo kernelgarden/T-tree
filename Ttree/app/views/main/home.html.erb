@@ -366,12 +366,12 @@ $(".custom_menu li").click(function(e) {
                 cache:false,
                 data: inputData,
                 success:function(data){
-                  //alert("수정완료");
-                  //window.location = '/'
-                  $(".edit_work_name").hide();
-                  $('.userWork'+work_id+' .personal_work_name').empty().append(work_name)
 
                 },
+              }).complete(function(){
+                //alert("수정완료");
+                $(".edit_work_name").hide();
+                $('.userWork'+work_id+' .personal_work_name').empty().append(work_name)
               })
             }
           })
