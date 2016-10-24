@@ -1,7 +1,7 @@
 class MainController < ApplicationController
 	skip_before_action :verify_authenticity_token
-	before_action :logged_in_user, only: [:home]
-	before_action :logged_in_user, only: [:login]
+	#before_action :logged_in_user, only: [:home]
+	#before_action :logged_in_user, only: [:login]
 	before_action :check_login, only: [:home]
 	before_action :check_authenticity, only: [:folderView]
 
@@ -77,7 +77,7 @@ class MainController < ApplicationController
 			@ancestry = @branch.join("/")
 		end
 	end
-	
+
 	private
 	def logged_in_user
 		if current_user

@@ -2,6 +2,7 @@
 window.userID = "<%= current_user.id%>";
 window.userName ="<%= current_user.name %>";
 <% end %>
+<%if current_user!=nil%>
 <ul id="header">
   <%=link_to image_tag("logo4.png", alt:"home",id:"home" ),root_path %>
   <li class="menu" id="menu_1">
@@ -40,6 +41,11 @@ window.userName ="<%= current_user.name %>";
   </div>
 </li>
 </ul>
+<%else%>
+<div id="login_header">
+  <%=link_to image_tag("logo4.png", alt:"home",id:"logo" ),root_path %>
+  <div>
+<%end%>
 
 <div id="dropDown1">
   <ul id="WorkList">
