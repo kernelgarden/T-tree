@@ -203,6 +203,7 @@ var getTeamWork=function(team_id){ //Team work 가져오는 json
       $("#TeamWorks_"+team_id).append("<li class='work_detail_li' id='TeamWorks_li"+work.id+"'>"+work.name+"</li>");
 
       $(".work_detail_li").eq(i).attr("data-id",work.id);
+      $(".work_detail_li").eq(i).attr("data-firstbranch",work.first_branch);
       //일정 크기를 넘어가면 높이를 고정
       if(($('#dropDown1').height()+(heightPosition-60)/10)<=heightPosition){
         var height=$('#dropDown1').height()+35;
