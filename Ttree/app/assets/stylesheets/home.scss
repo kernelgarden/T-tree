@@ -506,7 +506,7 @@ $addMainColor:#99d8dd;
   width: 220px;
   top: 50px;
   right: 10px;
-  background-color: #f8f8f8;
+  background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 2px 1px 10px #888888;
   z-index: 100;
@@ -581,7 +581,7 @@ $addMainColor:#99d8dd;
       border-radius: 4px;
       box-sizing: border-box;
       width:96%;
-      background-color: #EFEFEF;
+      background-color: #ffffff;
       &:focus {
         background-color: #FFFFFF;
       }
@@ -592,7 +592,7 @@ $addMainColor:#99d8dd;
     text-align:center;
     border-radius: 4px;
     font-size: 16px;
-    background-color: #5cb3c1;
+    background-color: #96D0E8;
     border: none;
     color: white;
     padding: 7px 25px;
@@ -602,7 +602,7 @@ $addMainColor:#99d8dd;
     transition: all 0.4s ease 0s;
     &:hover{
       cursor: pointer;
-      background-color: #44A1B0;
+      background-color: #B3DEEE;
     }
   }
 }
@@ -625,7 +625,7 @@ $addMainColor:#99d8dd;
   box-shadow: 2px 1px 10px #888888;
   width: 300px;
   height: 140px;
-  background-color: #F8F8F8;
+  background-color: #ffffff;
   position: absolute;
   display: none;
   border-radius: 5px;
@@ -666,7 +666,7 @@ $addMainColor:#99d8dd;
     text-align:center;
     border-radius: 4px;
     font-size: 16px;
-    background-color: #5cb3c1;
+    background-color: #96D0E8;
     border: none;
     color: white;
     padding: 7px 25px;
@@ -675,7 +675,7 @@ $addMainColor:#99d8dd;
     transition: all 0.4s ease 0s;
     &:hover{
       cursor: pointer;
-      background-color: #44A1B0;
+      background-color: #B3DEEE;
     }
   }
 }
@@ -786,6 +786,7 @@ $addMainColor:#99d8dd;
 }
 /* The Modal (background) */
 .modal {
+    font-family:'Raleway', sans-serif;
     z-index:1000;
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -845,25 +846,31 @@ $addMainColor:#99d8dd;
 }
 
 .modal-header {
+
   z-index:1000;
     padding: 6px 16px;
     background-color: #BABABA;
     color: white;
     border-radius: 8px;
+    font-weight: bold;
 }
 .modal-body {
   z-index:1000;
   padding: 2px 16px;
-  height:150px;
-  padding-top:80px;
+  height:80px;
+  padding-top:40px;
+  padding-bottom:20px;
   .share_icon{
     position: absolute;
-    bottom: 10px;
+    bottom: 15px;
     right: 10px;
     .icon{
       width: 30px;
       height: 30px;
       margin: 0 5px;
+      &:hover{
+        cursor: pointer;
+      }
     }
   }
 }
