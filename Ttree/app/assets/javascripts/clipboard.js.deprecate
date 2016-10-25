@@ -1,4 +1,4 @@
-import ClipboardAction from './clipboard-action';
+import ClipboardAction from 'clipboard-action';
 import Emitter from 'tiny-emitter';
 import listen from 'good-listener';
 

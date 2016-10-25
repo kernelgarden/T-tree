@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag    'application', login: 'all', 'data-turbolinks-track': 'reload' %>
+<!--<%= stylesheet_link_tag    'application', login: 'all', 'data-turbolinks-track': 'reload' %> -->
 <div id="login_1">
   <div id="login_header">
     <%=link_to image_tag("logo4.png", alt:"home",id:"logo" ),root_path %>
@@ -32,22 +32,22 @@
     <div>
       <div id="profileWrap">
         <div class="profile" id="sihoon">
-          <div class="profile_img"><img src="/assets/kim.jpg"> </div>
+          <div class="profile_img"><%= image_tag "kim.jpg" %></div>
           <div class="profile_name">Kim SiHoon</div>
           <div class="profile_role">Developer</div>
         </div>
         <div class="profile" id="jiwon">
-          <div class="profile_img"><img src="/assets/jiwon.jpg"> </div>
+          <div class="profile_img"><%= image_tag "jiwon.jpg" %></div>
           <div class="profile_name">Oh Jiwon</div>
           <div class="profile_role">Developer</div>
         </div>
         <div class="profile" id="jeongwon">
-          <div class="profile_img"><img src="/assets/ryu.jpg"> </div>
+          <div class="profile_img"><%= image_tag "ryu.jpg" %></div>
           <div class="profile_name">Ryu Jeongwon</div>
           <div class="profile_role">Developer</div>
         </div>
         <div class="profile" id="sumin">
-          <div class="profile_img"><img src="/assets/sumin.jpg"></div>
+          <div class="profile_img"><%= image_tag "sumin.jpg" %></div>
           <div class="profile_name">Ji Sumin</div>
           <div class="profile_role">Designer</div>
         </div>
