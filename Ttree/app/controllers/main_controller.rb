@@ -101,9 +101,9 @@ class MainController < ApplicationController
 		work_id = uri.first
 		root = Work.find(work_id)
 		teams = UtRelationship.where("member_id = ?", current_user).map(&:team_id)
-		if root.user_id && current_user.id != root.user_id
+		if !root.team_id && root.user_id && current_user.id != root.user_id
 			redirect_to root_url
-		elsif root.team_id && !teams.include?(root.team_id)
+		elsif root.team_id && root.team_id && !teams.include?(root.team_id)
 			redirect_to root_url
 		end
 	end
