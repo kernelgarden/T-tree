@@ -31,9 +31,9 @@ Rails.application.routes.draw do
   get '/api/work/:id', to: 'apis#work'         #해당 work의 정보
   get '/api/work/:id/branches', to: 'apis#branches' #해당 work의 branch들의 정보
   get '/api/work/:id/branches/:id2',
-  			to: 'apis#branchesByParent' #해당 work의 parent_id에 따른 branch들의 정보
+        to: 'apis#branchesByParent' #해당 work의 parent_id에 따른 branch들의 정보
   get '/api/work/:id/branches/:id2/position/:id3',
-  			to: 'apis#branchesByParentandPosition' #해당 work의 parent_id에 따른 branch들의 정보들중 해당 position
+        to: 'apis#branchesByParentandPosition' #해당 work의 parent_id에 따른 branch들의 정보들중 해당 position
   get '/api/work/:id/branche_ids', to: 'apis#branche_ids' #해당 work의 branch id들
   get '/api/work/:id/tree', to: 'apis#tree'      #해당 work의 tree
 
@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   get '/api/branch/:id/childs', to: 'apis#branchChilds'      #해당 branch의 정보
   get '/api/branch/:id/pages', to: 'apis#pages' #해당 branch의 page들의 정보
   get '/api/branch/:id/page_ids', to: 'apis#page_ids' #해당 branch의 page id들
+  get '/api/branch/:id/delete', to:'apis#deleteBranch' #해당 branch 삭제
 
   get '/api/page/:id', to: 'apis#page'         #해당 page의 정보
 
@@ -58,12 +59,13 @@ Rails.application.routes.draw do
 
   get '/main/work/folder/*uri', to: 'main#folderView'
   get '/share/work/folder/*uri', to: 'main#sharefolder'
-
+  get '/api/page/:id/delete', to:'apis#deletePages' #해당 페이지 삭제
+  
   post '/api/post/team', to:'apis#getTeam'
   post '/api/page/new', to: 'apis#getPages'
   post '/api/post/team_member', to:'apis#getMember'
-  post '/api/post/deleteunclassifiedpages', to:'apis#deleteunclassifiedpages'	#해당 임시페이지 삭제
-  get '/api/page/:id/delete', to:'apis#deletePages'	#해당 페이지 삭제
+  post '/api/post/deleteunclassifiedpages', to:'apis#deleteunclassifiedpages' #해당 임시페이지 삭제
+  post '/api/post/deletePages', to:'apis#deletePages' #해당 페이지 삭제
 
   post '/api/post/folder', to: 'apis#addFolder'
   post '/api/post/addPage', to: 'apis#addPage'

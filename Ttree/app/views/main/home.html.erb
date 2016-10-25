@@ -98,10 +98,10 @@ window.userName ="<%= current_user.name %>";
 <script>
 var tId;
 function hover(element) {
-  element.setAttribute('src', '<%= asset_path('star2.png')%>');
+  element.setAttribute('src', '/assets/star2.png');
 }
 function unhover(element) {
-  element.setAttribute('src', '<%= asset_path('star3.png')%>');
+  element.setAttribute('src', '/assets/star3.png');
 }
 /***********************Personal work Box********************/
 var makePersonalWorkBox=function(){
@@ -221,14 +221,14 @@ $(document).ready(function(){
       $(this).removeAttr("onmouseover");
       $(this).attr("onmouseout", "hover(this)");
       $(this).attr("onmouseover", "unhover(this)");
-      $(this).attr("src", "<%= asset_path('star2.png')%>");
+      $(this).attr("src", "/assets/star2.png");
     } else {
       $.get("/api/user/" + userID + "/unstaring", {"starlists": {"work_id": work_id, "user_id": userID}})
       $(this).removeAttr("onmouseout");
       $(this).removeAttr("onmouseover");
       $(this).attr("onmouseout", "unhover(this)");
       $(this).attr("onmouseover", "hover(this)");
-      $(this).attr("src", "<%= asset_path('star3.png')%>");
+      $(this).attr("src", "/assets/star3.png");
     }
     /*
     $.get("/api/user/" + userID + "/setStar?" + "work_id=" + work_id, function(data, status) {
@@ -601,7 +601,8 @@ $(document).on("click", ".create_personal_team", function(e) {
     $("#create_team_work_form").css({top:y, left:x});
     $("#create_team_work_form").show();
     nCount6 = 1;
-    $("select#team_work_form_selectTeam").val($(this).attr('class').match(/\d/)[0]);
+    //console.log($(this).data("team_id"))
+    $("select#team_work_form_selectTeam").val($(this).data("team_id"));
   } else {
     $("#create_team_work_form").hide();
     nCount6 = 0;

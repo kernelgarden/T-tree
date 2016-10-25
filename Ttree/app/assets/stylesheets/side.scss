@@ -29,6 +29,9 @@
 		border-radius: 50%;
 		background-color:#d2d2d2;
 		z-index:90;
+		&:hover{
+			cursor: pointer;
+		}
 	}
 }
 .page_alert_clone{
@@ -54,6 +57,9 @@
 		border-radius: 50%;
 		background-color:#d2d2d2;
 		z-index:90;
+		&:hover{
+			cursor: pointer;
+		}
 	}
 }
 .unPages{
