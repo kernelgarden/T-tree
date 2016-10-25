@@ -41,7 +41,7 @@ window.userName ="<%= current_user.name %>";
 <div id="team_header">
   <div style="height=34px;">
     <div class="p_w_title" id="t_w_title">Team Works</div>
-    <img src="/assets/create_team.png" class="create_team" id="create_team">
+    <%= image_tag "create_team.png", class: :create_team, id: :create_team %>
   </div>
   <div class="purple_line"></div>
   <div class="gray_line"></div>
@@ -50,7 +50,7 @@ window.userName ="<%= current_user.name %>";
 </div>
 <div class="create_personal_work_form" id="create_personal_work_form">
   <div id="personal_work_form_main" class="personal_work_form_element">Create Personal Work</div>
-  <img class="form_personal_work_btn form_btn" src="/assets/close1.png">
+  <%= image_tag "close1.png", class: "form_personal_work_btn form_btn"%>
   <form id="personal_work_form">
     <div id="personal_work_form_title" class="personal_work_form_element">Title</div>
     <input type="text" name="title" class="personal_input personal_work_form_element" />
@@ -63,7 +63,7 @@ window.userName ="<%= current_user.name %>";
 </div>
 <div class="create_team_work_form" id="create_team_work_form">
   <div id="team_work_form_main" class="team_work_form_element">Create Team Work</div>
-  <img class="form_team_work_btn form_btn" src="/assets/close1.png">
+  <%= image_tag "close1.png", class:"form_team_work_btn form_btn"%>
   <form id="team_work_form">
     <div id="team_work_form_title" class="team_work_form_element">Title</div>
     <input type="text" name="title" class="team_input team_work_form_element" />
@@ -75,7 +75,7 @@ window.userName ="<%= current_user.name %>";
   <input type="button" class="team_work_form_button" value="Create" />
 </div>
 <div class="create_team_form" id="create_team_form">
-  <img class="form_create_team_btn form_btn" src="/assets/close1.png">
+  <%= image_tag "close1.png", class:"form_create_team_btn form_btn"%>
   <form id="team_form">
     <div id="team_name">Team Name</div>
     <input type="text" name="name" class="team_input">
@@ -84,7 +84,7 @@ window.userName ="<%= current_user.name %>";
 </div>
 
   <div class="edit_work_name" id="edit_work_name">
-    <img class="edit_close_btn form_btn" src="/assets/close1.png">
+    <%= image_tag "close1.png", class:"edit_close_btn form_btn"%>
     <form id="edit_work_form">
       <div id="team_name">Edit Folder Name</div>
       <input type="text" name="name" class="work_name">
@@ -130,10 +130,10 @@ var makePersonalWorkBox=function(){
             })
             if (flag == true) { // 즐겨찾기 되있음
               $(".personal_work_content"+cnt)
-              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /></span>')
+              .append('<span class="boxIcon"><img class="star_btn" src="<%= asset_path("star2.png")%>" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /></span>')
             } else {
               $(".personal_work_content"+cnt)
-              .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
+              .append('<span class="boxIcon"><img class="star_btn" src="<%= asset_path("star3.png")%>" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
             }
             flag = false;
           }
@@ -143,7 +143,7 @@ var makePersonalWorkBox=function(){
     }
   })
   $(".personal_work_group").append('<div class="addWork"></div>').show('slow')
-  $(".addWork").append('<img class=create_work_btn src="/assets/create_work.png"> ').show('slow')
+  $(".addWork").append('<img class=create_work_btn src="<%= asset_path("create_work.png")%>"> ').show('slow')
 }
 /************************************************************/
 /***********************Team work Box************************/
@@ -156,7 +156,7 @@ var makeTeamWorkBox=function(){
           $(".personal_team" + i).append("<div class='personal_team_header personal_team_header" + i + "'></div>").show('slow')
           $(".personal_team" + i).append("<div class='wrap_team_content wrap_team_content" + i + "'></div>").show('slow')
           $(".personal_team_header" + i).append("<div class='team_more team_more" + i + "'>").show('slow')
-          $(".team_more" + i).append("<img class='more_btn' src='/assets/more.png'>").show()
+          $(".team_more" + i).append("<img class='more_btn' src='<%= asset_path("more.png")%>'>").show()
         }
       }
       $(".personal_team_header").eq(i).append('<div class="home_team_name">' + team.name + '</div>')
@@ -176,17 +176,17 @@ var makeTeamWorkBox=function(){
           });
           if (flag == true) {
             $(".personal_team_content" + response.team_id + "_" + j)
-            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star2.png" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /></span>')
+            .append('<span class="boxIcon"><img class="star_btn" src="<%= asset_path("star2.png")%>" height="15px" width="15px" onmouseout="hover(this);" onmouseover="unhover(this);" /></span>')
           } else {
             $(".personal_team_content" + response.team_id + "_" + j)
-            .append('<span class="boxIcon"><img class="star_btn" src="/assets/star3.png" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
+            .append('<span class="boxIcon"><img class="star_btn" src="<%= asset_path("star3.png")%>" height="15px" width="15px" onmouseover="hover(this);" onmouseout="unhover(this);" /></span>')
           }
           flag = false;
         })
       })
       $(".wrap_team_content" + i).append("<div class='create_personal_team create_personal_team" + (i + 1) + "'></div>").show('slow')
       $(".create_personal_team" + (i + 1)).append('<div class="create_personal_team_content"></div>')
-      $(".create_personal_team"+ (i + 1)).append('<img class=create_work_btn src="/assets/create_work.png"> ').show('slow')
+      $(".create_personal_team"+ (i + 1)).append('<img class=create_work_btn src="<%= asset_path("create_work.png")%>"> ').show('slow')
       $(".create_personal_team" + (i + 1)).attr("data-team_id", team.id)
     })
   });
@@ -239,15 +239,15 @@ $(document).ready(function(){
 // 해당 페이지에 list 요소들을 바인딩 함
 var makeHomeFolderContext = function() {
   //$(".custom_menu").append("<li class='custom_menu_li custom_menu_li_add_favorate' data-action='add_favorate'><img class='star_btn_context' src='/assets/star3.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Add favorate</li>");
-  $(".custom_menu").append("<li class='custom_menu_li' data-action='change_name'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Rename</li>");
+  $(".custom_menu").append("<li class='custom_menu_li' data-action='change_name'><img class='edit_btn_context' src='<%= asset_path("edit.png")%>' style='height:18px;width:18px;' />&nbsp;&nbsp;Rename</li>");
   //$(".custom_menu").append("<li class='custom_menu_li' data-action='change_color'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Change color</li>");
   //$(".custom_menu").append("<hr class='context_hr'/>");
   //$(".custom_menu").append("<li class='custom_menu_li' data-action='copy'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Copy</li>");
   //$(".custom_menu").append("<li class='custom_menu_li' data-action='paste'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Paste</li>");
   //$(".custom_menu").append("<li class='custom_menu_li' data-action='move'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Move</li>");
-  $(".custom_menu").append("<li class='custom_menu_li' data-action='share_link'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Share link</li>");
+  $(".custom_menu").append("<li class='custom_menu_li' data-action='share_link'><img class='edit_btn_context' src='<%= asset_path("edit.png")%>' style='height:18px;width:18px;'/>&nbsp;&nbsp;Share link</li>");
   $(".custom_menu").append("<hr class='context_hr'/>");
-  $(".custom_menu").append("<li class='custom_menu_li' data-action='delete'><img class='delete_btn_context' src='/assets/close1.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Delete</li>");
+  $(".custom_menu").append("<li class='custom_menu_li' data-action='delete'><img class='delete_btn_context' src='<%= asset_path("close1.png")%>' style='height:18px;width:18px;' />&nbsp;&nbsp;Delete</li>");
 };
 makeHomeFolderContext();
 /* 커스텀 context menu */
@@ -394,8 +394,8 @@ $(".custom_menu li").click(function(e) {
           //alert(data.responseText)
           //alert("클립보드에 url이 복사되었습니다! ");
           $(".modal-body").empty().append('<input id="shareLink" value="'+data.responseText+'">')
-          $(".modal-body").append('<span class="copyBtn"><button class="btn tooltip" data-clipboard-target="#shareLink"><img src="assets/clippy.svg" alt="Copy to clipboard" height="20px" width="20px"><span class="tooltiptext">Copy</span></button></span>')
-          $(".modal-body").append('<div class="share_icon">  <img src="/assets/facebook.png" class="facebook_icon icon"><img src="/assets/twitter.png" class="twitter_icon icon"><img src="/assets/google.png" class="google_icon icon"></div>')
+          $(".modal-body").append('<span class="copyBtn"><button class="btn tooltip" data-clipboard-target="#shareLink"><img src="<%= asset_path("clippy.svg")%>" alt="Copy to clipboard" height="20px" width="20px"><span class="tooltiptext">Copy</span></button></span>')
+          $(".modal-body").append('<div class="share_icon">  <img src="<%= asset_path("facebook.png")%>" class="facebook_icon icon"><img src="<%= asset_path("twitter.png")%>" class="twitter_icon icon"><img src="<%= asset_path("google.png")%>" class="google_icon icon"></div>')
 
           modal.style.display = "block";
           //window.location = window.location.href;

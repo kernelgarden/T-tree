@@ -9,16 +9,16 @@ window.currentBranchId="<%=@branch_id%>";
   var addFolderCount = 0;
   var dropPosition=0; //바탕(0)인지 폴더(1)인지
   var makeWorkFolderContext = function() {
-    $(".custom_menu").append("<li data-action='add_favorate'><img class='star_btn_context' src='/assets/star3.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Add favorate</li>");
-    $(".custom_menu").append("<li data-action='change_name'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Change name</li>");
-    $(".custom_menu").append("<li data-action='change_color'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Change color</li>");
+    $(".custom_menu").append("<li data-action='add_favorate'><img class='star_btn_context' src='<%= asset_path("star3.png")%>' style='height:18px;width:18px;'/>&nbsp;&nbsp;Add favorate</li>");
+    $(".custom_menu").append("<li data-action='change_name'><img class='edit_btn_context' src='<%= asset_path("edit.png")%>' style='height:18px;width:18px;' />&nbsp;&nbsp;Change name</li>");
+    $(".custom_menu").append("<li data-action='change_color'><img class='edit_btn_context' src='<%= asset_path("edit.png")%>' style='height:18px;width:18px;'/>&nbsp;&nbsp;Change color</li>");
     $(".custom_menu").append("<hr class='context_hr'/>");
-    $(".custom_menu").append("<li data-action='copy'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Copy</li>");
-    $(".custom_menu").append("<li data-action='paste'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Paste</li>");
-    $(".custom_menu").append("<li data-action='move'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Move</li>");
-    $(".custom_menu").append("<li data-action='share_link'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Share link</li>");
+    $(".custom_menu").append("<li data-action='copy'><img class='edit_btn_context' src='<%= asset_path("edit.png")%>' style='height:18px;width:18px;'/>&nbsp;&nbsp;Copy</li>");
+    $(".custom_menu").append("<li data-action='paste'><img class='edit_btn_context' src='<%= asset_path("edit.png")%>' style='height:18px;width:18px;'/>&nbsp;&nbsp;Paste</li>");
+    $(".custom_menu").append("<li data-action='move'><img class='edit_btn_context' src='<%= asset_path("edit.png")%>' style='height:18px;width:18px;'/>&nbsp;&nbsp;Move</li>");
+    $(".custom_menu").append("<li data-action='share_link'><img class='edit_btn_context' src='<%= asset_path("edit.png")%>' style='height:18px;width:18px;'/>&nbsp;&nbsp;Share link</li>");
     $(".custom_menu").append("<hr class='context_hr'/>");
-    $(".custom_menu").append("<li data-action='delete'><img class='delete_btn_context' src='/assets/close1.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Delete</li>");
+    $(".custom_menu").append("<li data-action='delete'><img class='delete_btn_context' src='<%= asset_path("close1.png")%>' style='height:18px;width:18px;' />&nbsp;&nbsp;Delete</li>");
   }
   $(document).ready(function() {
     $('.work_container').width(widthPosition - $('.treeView2').outerWidth());
@@ -39,7 +39,7 @@ window.currentBranchId="<%=@branch_id%>";
         return true;
       return false;
     }
-   
+
     $(document).on("click", "._page", function() {
       popup = window.open($(this).data("url"),'_blank');
     });
@@ -75,7 +75,7 @@ window.currentBranchId="<%=@branch_id%>";
     })
     var folderFormCount = 0;
 
-    
+
     //alert(branchID)
     /*
     $.getJSON("/api/branch/" + branchID + "/pages", function(response) {
@@ -135,7 +135,7 @@ window.currentBranchId="<%=@branch_id%>";
       <div class="purple_line"></div>
       <div class="gray_line"></div>
       <span id="open_all_btn" class="tooltip">
-        <img src="/assets/all_pages.png">
+        <img src="<%= asset_path("all_pages.png")%>">
       </span>
     </div>
     <div class="page_wrap">
@@ -154,7 +154,7 @@ window.currentBranchId="<%=@branch_id%>";
 </div>
 <div class="create_folder_form" id="create_folder_form">
   <div id="folder_form_main" class="folder_form_element">Create Folder</div>
-  <img class="form_folder_btn" src="/assets/close1.png" />
+  <img class="form_folder_btn" src="<%= asset_path('close1.png')%>" />
   <form id="folder_form">
     <div id="folder_form_title" class="folder_form_element">Title</div>
     <input type="text" name="title" class="folder_input folder_form_element" />

@@ -10,12 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require_tree .
 //= require jquery.typeahead.min
-//= require jquery.zoomooz.min
 //= require snap.svg.js
 //= require jstree.min.js
-
 /*main/pages*/

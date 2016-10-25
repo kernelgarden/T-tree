@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 #gem 'elasticsearch-model'
 #gem 'elasticsearch-rails'
 #gem 'tire'
@@ -8,8 +8,10 @@ gem 'compass'
 gem 'devise'
 gem 'rolify'
 gem 'authority'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
+gem 'ancestry'
 
 gem 'searchkick'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -54,6 +56,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+gem 'rails_serve_static_assets'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

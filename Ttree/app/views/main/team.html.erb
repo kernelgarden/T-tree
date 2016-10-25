@@ -41,7 +41,7 @@ window.userID = "<%= current_user.id%>";
 </div>
 <div class="create_team_work_form" id="create_team_work_form">
   <div id="team_work_form_main" class="team_work_form_element">Create Team Work</div>
-  <img class="close_team_work_btn form_btn" src="/assets/close1.png">
+  <img class="close_team_work_btn form_btn" src="<%= asset_path('close1.png')%>">
   <form id="team_work_form">
     <div id="team_work_form_title" class="team_work_form_element">Title</div>
     <input type="text" name="title" class="team_input team_work_form_element" />
@@ -62,7 +62,7 @@ var getWorkFromTeam=function(){
       }
       $.getJSON("/api/work/"+id, function(response){
         $(".team_work"+i).append('<div class="team_work_name team_work_name'+i+'">'+response.name+'</div>').show('slow');
-        $(".team_work"+i).append('<span id="teamBoxIcon"class="boxIcon"><img class="close_btn closebtn'+i+'" src="/assets/close1.png" height="15px" width="15px";/></span>')
+        $(".team_work"+i).append('<span id="teamBoxIcon"class="boxIcon"><img class="close_btn closebtn'+i+'" src="<%= asset_path('close1.png')%>" height="15px" width="15px";/></span>')
         $(".team_work"+i).attr("data-work_id",response.id)
       })
     })
@@ -72,7 +72,7 @@ var getWorkFromTeam=function(){
         $(".member"+i).append('<div class="content_name content_name'+i+'"></div>').show('slow');
         $(".member"+i).append('<div class="content_email content_email'+i+'"></div>').show('slow');
         if(userID==id){
-          $(".member"+i).append('<img id="withdraw" src="/assets/close1.png" class="content_close">').show('slow');
+          $(".member"+i).append('<img id="withdraw" src="<%= asset_path('close1.png')%>" class="content_close">').show('slow');
         }
         $(".member"+i).append('<div class="line"></div>').show('slow');
         $(".content_name"+i).append('<div class="member_name member_name'+i+'">'+response.name+'</div>').show('slow');
