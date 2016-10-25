@@ -32,12 +32,12 @@ window.userName ="<%= current_user.name %>";
 </form>
 </li>
 <li class="menu" id="menu_5">
-  <div id="menuDiv5"><img src="/assets/header_plus.png" id="plus"></div>
+  <div id="menuDiv5"><img src="<%= asset_path('header_plus.png')%>" id="plus"></div>
 </li>
 <li class="menu" id="menu_6">
   <div id="menuDiv6">
     <div id="user_name"><%= current_user.name %></div>
-    <img src="/assets/user_arrow.png" id="user_arrow">
+    <img src="<%= asset_path('user_arrow.png')%>" id="user_arrow">
   </div>
 </li>
 </ul>
@@ -51,27 +51,27 @@ window.userName ="<%= current_user.name %>";
   <ul id="WorkList">
     <form class="work_searchContain" name="work_searchForm" id="work_searchForm" action="" method="post"><input type="text" name="workSearchData" value="Find works by name.." ></form>
     <li class="work_li" id="work_li1">
-      <span class='left_icon'><img src="/assets/star.png" height="15px" width="15px"></span>
+      <span class='left_icon'><img src="<%= asset_path('star.png')%>" height="15px" width="15px"></span>
       Starred Works
-      <span class='right_icon plus_icon starred'><img src="/assets/plus.png" height="15px" width="15px"></span>
+      <span class='right_icon plus_icon starred'><img src="<%= asset_path('plus.png')%>" height="15px" width="15px"></span>
     </li>
     <ul id="StarredWorks"></ul>
     <li class="work_li" id="work_li2">
-      <span class='left_icon'><img src="/assets/clock.png" height="15px" width="15px"></span>
+      <span class='left_icon'><img src="<%= asset_path('clock.png')%>" height="15px" width="15px"></span>
       Recent Works
-      <span class='right_icon plus_icon recent'><img src="/assets/plus.png" height="15px" width="15px"></span>
+      <span class='right_icon plus_icon recent'><img src="<%= asset_path('plus.png')%>" height="15px" width="15px"></span>
     </li>
     <ul id="RecentWorks"></ul>
     <li class="work_li" id="work_li3">
-      <span class='left_icon'><img src="/assets/personal.png" height="15px" width="15px"></span>
+      <span class='left_icon'><img src="<%= asset_path('personal.png')%>" height="15px" width="15px"></span>
       Personal Works
-      <span class='right_icon plus_icon personal'><img src="/assets/plus.png" height="15px" width="15px"></span>
+      <span class='right_icon plus_icon personal'><img src="<%= asset_path('plus.png')%>" height="15px" width="15px"></span>
     </li>
     <ul id="PersonalWorks"></ul>
     <li class="work_li" id="work_li4">
-      <span class='left_icon'><img src="/assets/team2.png" height="15px" width="15px"></span>Team
+      <span class='left_icon'><img src="<%= asset_path('team2.png')%>" height="15px" width="15px"></span>Team
       Works
-      <span class='right_icon plus_icon team'><img src="/assets/plus.png" height="15px" width="15px"></span>
+      <span class='right_icon plus_icon team'><img src="<%= asset_path('plus.png')%>" height="15px" width="15px"></span>
     </li>
     <ul id="TeamWorks"></ul>
   </ul>

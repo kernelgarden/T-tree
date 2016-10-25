@@ -94,7 +94,7 @@ var childBranchSetting=function(flag){
 	      $(".parent").empty().append(response.id);
 	      $(".parent").append(response.name);
 	      $(".parent").attr("data-id", response.id)
-	      $(".parent").append('<img src="/assets/modify.png" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
+	      $(".parent").append('<img src="<%= asset_path('modify.png')%>" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
 	    });
 	  }
 	}); //complete
@@ -102,7 +102,7 @@ var childBranchSetting=function(flag){
 
 var setNameFormFunction=function(){
 	$('#parent').empty();
-	$('#parent').append("<span class='name_formContain' ><img id='closeButton' src='/assets/closeMini.png' onmouseover='closeHover(this);' onmouseout='closeUnhover(this);'  height='15px' width='15px'></span>")
+	$('#parent').append("<span class='name_formContain' ><img id='closeButton' src='<%= asset_path("closeMini.png")%>' onmouseover='closeHover(this);' onmouseout='closeUnhover(this);'  height='15px' width='15px'></span>")
 	$('#parent').append('<form class=\"name_formContain\" name=\"BranchNameForm\" id=\"BranchNameForm\" action=\"\" method=\"post\"><input id=\"BranchName\" type=\"text\" name=\"BranchName\" value=\"\"></form>')
 	  //submit button
 	$('#parent').append('<input type=\"button\" class=\"name_formContain\" id=\"saveNameBtn\" name=\"saveNameBtn\" value=\"Save\">')
@@ -151,7 +151,7 @@ var setNameFormFunction=function(){
 			  $(".parent").append(branch.name);
 		    $(".parent").attr("data-id", branch.id);
 		    checkParentId=branch.id;
-		    $(".parent").append('<img src="/assets/modify.png" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
+		    $(".parent").append('<img src="<%= asset_path('modify.png')%>" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
 		  })
     })//complete
   }) //click
@@ -164,7 +164,7 @@ var setNameFormFunction=function(){
 			$(".parent").append(branch.name);
 		  $(".parent").attr("data-id", branch.id);
 		  checkParentId=branch.id;
-		  $(".parent").append('<img src="/assets/modify.png" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
+		  $(".parent").append('<img src="<%= asset_path('modify.png')%>" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
 		})
   });
 }
@@ -442,7 +442,7 @@ function renderCircle(){
 				if(creating!=1){
 					$(".parent").empty().append(branch.id);
 			    $(".parent").append(branch.name);
-			    $(".parent").append('<img src="/assets/modify.png" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
+			    $(".parent").append('<img src="<%= asset_path('modify.png')%>" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
 				}
 		    $(".parent").attr("data-id", branch.id);
 		    checkParentId=branch.id;
@@ -583,7 +583,7 @@ function renderCircle(){
 		        $(".parent").empty().append(response.id);
 		        $(".parent").append(response.name);
 		        $(".parent").attr("data-id", response.id)
-		        $(".parent").append('<img src="/assets/modify.png" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
+		        $(".parent").append('<img src="<%= asset_path('modify.png')%>" id="modifyBranchName" onmouseover="pencilHover(this);" onmouseout="pencilUnhover(this);" height="15px" width="15px">')
 		        checkParentId=response.id
 		      });
 		      $.getJSON("/api/branch/" + checkBefore + "/childs", function(response) {
@@ -655,8 +655,8 @@ function renderCircle(){
 					      if ($('.pageli').eq(i).hasClass('pageli' + i)) break;
 					      else {
 		              $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
-		              $('.pageli'+i).append('<img id="loadingImg" class="img'+i+'" src="/assets/loading3.svg" />');
-		              $('<img id="closeImg'+i+'" class="closeImg" src="/assets/closeMini.png" onmouseover="closeHover(this);"" onmouseout="closeUnhover(this);" height="15px" width="15px"/>').appendTo('.page');
+		              $('.pageli'+i).append('<img id="loadingImg" class="img'+i+'" src="<%= asset_path('loading3.png')%>" />');
+		              $('<img id="closeImg'+i+'" class="closeImg" src="<%= asset_path('closeMini.png')%>" onmouseover="closeHover(this);"" onmouseout="closeUnhover(this);" height="15px" width="15px"/>').appendTo('.page');
 		            }
 					    } //for
 					    $.each(response, function(i, first) {
@@ -683,8 +683,8 @@ function renderCircle(){
 					      //else $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
 					      else {
 		              $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
-		              $('.pageli'+i).append('<img id="loadingImg" class="img'+i+'" src="/assets/loading3.svg" />');
-		              $('<img id="closeImg'+i+'" class="closeImg" src="/assets/closeMini.png" onmouseover="closeHover(this);"" onmouseout="closeUnhover(this);" height="15px" width="15px"/>').appendTo('.page');
+		              $('.pageli'+i).append('<img id="loadingImg" class="img'+i+'" src="<%= asset_path('loading3.svg')%>" />');
+		              $('<img id="closeImg'+i+'" class="closeImg" src="<%= asset_path('closeMini.png')%>" onmouseover="closeHover(this);"" onmouseout="closeUnhover(this);" height="15px" width="15px"/>').appendTo('.page');
 		            }
 					    } //for
 					    $.each(response, function(i, first) {
@@ -752,8 +752,8 @@ function renderCircle(){
 		        if ($('.pageli').eq(i).hasClass('pageli' + i)) break;
 		        else {
 		          $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
-		          $('.pageli' + i).append('<img id="loadingImg" class="img' + i + '" src="/assets/loading3.svg" />');
-		          $('<img id="closeImg' + i + '" class="closeImg" src="/assets/closeMini.png" onmouseover="closeHover(this);"" onmouseout="closeUnhover(this);" height="15px" width="15px"/>').appendTo('.page');
+		          $('.pageli' + i).append('<img id="loadingImg" class="img' + i + '" src="<%= asset_path('loading3.svg')%>" />');
+		          $('<img id="closeImg' + i + '" class="closeImg" src="<%= asset_path('closeMini.png')%>" onmouseover="closeHover(this);"" onmouseout="closeUnhover(this);" height="15px" width="15px"/>').appendTo('.page');
 		        }
 		      } //for
 		      $.each(response, function(i, first) {
@@ -780,8 +780,8 @@ function renderCircle(){
 		        //else $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
 		        else {
 		          $('<li class="pageli pageli' + i + '"></li>').appendTo('.page');
-		          $('.pageli' + i).append('<img id="loadingImg" class="img' + i + '" src="/assets/loading3.svg" />');
-		          $('<img id="closeImg' + i + '" class="closeImg" src="/assets/closeMini.png" onmouseover="closeHover(this);"" onmouseout="closeUnhover(this);" height="15px" width="15px"/>').appendTo('.page');
+		          $('.pageli' + i).append('<img id="loadingImg" class="img' + i + '" src="<%= asset_path('loading3.svg')%>" />');
+		          $('<img id="closeImg' + i + '" class="closeImg" src="<%= asset_path('closeMini.png')%>" onmouseover="closeHover(this);"" onmouseout="closeUnhover(this);" height="15px" width="15px"/>').appendTo('.page');
 		        }
 		      } //for
 		      $.each(response, function(i, first) {
