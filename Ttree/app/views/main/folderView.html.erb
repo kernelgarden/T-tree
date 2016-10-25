@@ -21,10 +21,10 @@ window.currentBranchId="<%=@branch_id%>";
     $(".custom_menu").append("<li data-action='delete'><img class='delete_btn_context' src='<%= asset_path("close1.png")%>' style='height:18px;width:18px;' />&nbsp;&nbsp;Delete</li>");
   }
   function closeHover(element) {
-    element.setAttribute('src', 'asset_path('closeMini2.png')');
+    element.setAttribute('src', '<%= asset_path('closeMini2.png')%>');
   }
   function closeUnhover(element) {
-    element.setAttribute('src', 'asset_path('closeMini1.png')');
+    element.setAttribute('src', '<%= asset_path('closeMini.png')%>');
   }
 
   $(document).ready(function() {
