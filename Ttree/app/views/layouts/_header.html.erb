@@ -16,7 +16,7 @@ window.userName ="<%= current_user.name %>";
     <input type="text" id="categories-basic" name="search" class="search blue" value="" placeholder="">
   </form>
 -->
-<form id="form-user_v1" name="form-user_v1">
+<!--<form id="form-user_v1" name="form-user_v1">
   <div class="typeahead__container">
     <div class="typeahead__field">
       <span class="typeahead__query">
@@ -29,7 +29,7 @@ window.userName ="<%= current_user.name %>";
       </span>
     </div>
   </div>
-</form>
+</form>-->
 </li>
 <li class="menu" id="menu_5">
   <div id="menuDiv5"><img src="<%= asset_path('header_plus.png')%>" id="plus"></div>
@@ -178,7 +178,8 @@ var getTeamName=function(){ //Team work 가져오는 json
   ///////////////////////////////////////JSON/////////////////////////////////////
   $.getJSON("/api/user/"+userID+"/teams", function(response) {
     $.each(response, function (i,team) {
-      $("#TeamWorks").append("<li class='team_li' id='team_li"+team.id+"'>"+team.name+"<span class='teamName team_right_icon team_plus_icon'><img src='<%= asset_path('plus.png')%>' height='15px' width='15px'></span></li><ul id='TeamWorks_"+team.id+"'></ul>");
+      //$("#TeamWorks").append("<li class='team_li' id='team_li"+team.id+"'>"+team.name+"<span class='teamName team_right_icon team_plus_icon'><img src='<%= asset_path('plus.png')%>' height='15px' width='15px'></span></li><ul id='TeamWorks_"+team.id+"'></ul>");
+      $("#TeamWorks").append("<li class='team_li' id='team_li"+team.id+"'>"+team.name+"</li><ul id='TeamWorks_"+team.id+"'></ul>");
       $(".team_li span").eq(i).attr("data-id",team.id);
       //일정 크기를 넘어가면 높이를 고정
       if(($('#dropDown1').height()+(heightPosition-60)/10)<=heightPosition){
@@ -240,7 +241,7 @@ $(document).ready(function(){
   var nCount3=0;
   //width가 변함에 따라 네비게이션바 메뉴 내용 변경
   //widthChangeReact();
-  $.typeahead({
+  /*$.typeahead({
     input: '.js-typeahead-user_v1',
     minLength: 1,
     maxItem: 0,
@@ -334,6 +335,7 @@ $(document).ready(function(){
       }
     }
   });
+  */
   $('#menuDiv1').click(function(){
     if(nCount1==0){
       $('#dropDown1').show();
