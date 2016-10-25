@@ -151,7 +151,7 @@ var getPersonalWork=function(){ //persoanl work 가져오는 json
     if(length==0){
       alert("work를 추가해주세요!")
       count=0;
-      $('.personal').empty(0).append("<img src='/assets/plus.png' height='15px' width='15px'>")
+      $('.personal').empty(0).append("<img src='<%= asset_path('plus.png')%> height='15px' width='15px'>")
       $('.personal').removeClass('minus_icon').addClass('plus_icon')
     }
     for(var i=0; i<length; i++){
@@ -186,7 +186,7 @@ var getTeamName=function(){ //Team work 가져오는 json
   ///////////////////////////////////////JSON/////////////////////////////////////
   $.getJSON("/api/user/"+userID+"/teams", function(response) {
     $.each(response, function (i,team) {
-      $("#TeamWorks").append("<li class='team_li' id='team_li"+team.id+"'>"+team.name+"<span class='teamName team_right_icon team_plus_icon'><img src='/assets/plus.png' height='15px' width='15px'></span></li><ul id='TeamWorks_"+team.id+"'></ul>");
+      $("#TeamWorks").append("<li class='team_li' id='team_li"+team.id+"'>"+team.name+"<span class='teamName team_right_icon team_plus_icon'><img src='<%= asset_path('plus.png')%>' height='15px' width='15px'></span></li><ul id='TeamWorks_"+team.id+"'></ul>");
 
       $(".team_li span").eq(i).attr("data-id",team.id);
       //일정 크기를 넘어가면 높이를 고정
@@ -365,7 +365,7 @@ $(document).ready(function(){
   $('div:not(#menuDiv1,#menuDiv5,#menuDiv6,#dropDown1, #dropDown5, #dropDown6)').click(function(){
     if(nCount1==1){
       $('#dropDown1').hide();
-      $('.minus_icon').empty(0).append("<img src='/assets/plus.png' height='15px' width='15px'>")
+      $('.minus_icon').empty(0).append("<img src='<%= asset_path('plus.png')%>' height='15px' width='15px'>")
       $('.minus_icon').removeClass('minus_icon').addClass('plus_icon')
       $("#PersonalWorks").empty(0);
       $("#TeamWorks").empty(0);
@@ -412,7 +412,7 @@ $(document).ready(function(){
 
   /*************************************#dropdown1*************************************/
   $(document).on("click",".plus_icon",function(){
-    $(this).empty(0).append("<img src='/assets/minus.png' height='15px' width='15px'>")
+    $(this).empty(0).append("<img src='<%= asset_path('minus.png')%>' height='15px' width='15px'>")
     $(this).removeClass('plus_icon').addClass('minus_icon')
 
     if($(this).hasClass('personal')){
@@ -432,7 +432,7 @@ $(document).ready(function(){
   })
 
   $(document).on("click",".teamName",function(){
-    $(this).empty(0).append("<img src='/assets/minus.png' height='15px' width='15px'>")
+    $(this).empty(0).append("<img src='<%= asset_path('minus.png')%>' height='15px' width='15px'>")
     $(this).removeClass('team_plus_icon').addClass('team_minus_icon')
     Change3=0;
     ///////////////////////////////////////JSON/////////////////////////////////////
@@ -442,7 +442,7 @@ $(document).ready(function(){
 
   $(document).on("click",".minus_icon",function(){
     count=0;
-    $(this).empty(0).append("<img src='/assets/plus.png' height='15px' width='15px'>")
+    $(this).empty(0).append("<img src='<%= asset_path('plus.png')%>' height='15px' width='15px'>")
     $(this).removeClass('minus_icon').addClass('plus_icon')
     if($(this).hasClass('personal')){
       $("#PersonalWorks").empty(0);
@@ -535,7 +535,7 @@ $(document).ready(function(){
   /*************************************#dropdown5*************************************/
   //Create Work
   $('#add_li2').click(function(){
-    $('#add_li1').empty().append('<span id=\'left_icon\'><img src="/assets/arrow-left.png" height="15px" width="15px"></span>Create Work')
+    $('#add_li1').empty().append('<span id=\'left_icon\'><img src="<%= asset_path('arrow-left.png')%>" height="15px" width="15px"></span>Create Work')
     $('.add_li').fadeOut(0);
     //form1
     $('#addList').append('<li class=\"add_form\" id=\"add_form1\">Title</li>')
