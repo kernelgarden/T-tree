@@ -20,6 +20,13 @@ window.currentBranchId="<%=@branch_id%>";
     $(".custom_menu").append("<hr class='context_hr'/>");
     $(".custom_menu").append("<li data-action='delete'><img class='delete_btn_context' src='<%= asset_path("close1.png")%>' style='height:18px;width:18px;' />&nbsp;&nbsp;Delete</li>");
   }
+  function closeHover(element) {
+    element.setAttribute('src', '<%= asset_path('closeMini2.png')%>');
+  }
+  function closeUnhover(element) {
+    element.setAttribute('src', '<%= asset_path('closeMini.png')%>');
+  }
+
   $(document).ready(function() {
     $('.work_container').width(widthPosition - $('.treeView').outerWidth());
     makeWorkFolderContext();
@@ -147,7 +154,7 @@ window.currentBranchId="<%=@branch_id%>";
       $(".custom_menu").hide();
     })
     /* */
-    $(document).on("click", "._page", function() {
+    $(document).on("click", ".pageClick", function() {
       popup = window.open($(this).data("url"),'_blank');
     });
     $(document).on("click", "._folder_exist", function() {
@@ -459,6 +466,14 @@ window.currentBranchId="<%=@branch_id%>";
         window.open($(item).attr("data-url"), "_blank");
       })
     });
+    $(document).on("click", ".closeImg", function(e) {
+      target=$(this).data("id")
+      $.get("/api/page/" + target + "/delete", {"page_id": target})
+      .complete(function(data){
+        //alert("삭제 완료");
+        $('.page'+target).hide();
+      })
+    });
   }) //ready
   $(window).resize(function() {
     $('.work_container').width(widthPosition - 150);
@@ -501,10 +516,12 @@ window.currentBranchId="<%=@branch_id%>";
     <% if !@child_pages.nil? %>
       <% @child_pages.each do |page| %>
         <div class="_page page<%=page.id%> page_layout" data-url="<%= page.url %>" data-id="<%=page.id%>">
-          <img class="closeImg" src="<%= asset_path('closeMini2.png')%>" height="15px"/>
-          <img class="_page_img" src="http://ryugarden.org/api/thumb?url=<%= page.url %>"/>
-          <div class="_page_url_div">
-            <a class="_page_url"><%= page.title %></a>
+          <img class="closeImg closeImg<%=page.id%>"  data-id="<%=page.id%>" src="<%= asset_path('closeMini2.png')%>" height="15px" onmouseover="closeHover(this);" onmouseout="closeUnhover(this);"/>
+          <div class="pageClick" data-url="<%= page.url %>">
+            <img class="_page_img" src="http://ryugarden.org/api/thumb?url=<%= page.url %>"/>
+            <div class="_page_url_div">
+              <a class="_page_url"><%= page.title %></a>
+            </div>
           </div>
         </div>
       <% end %>
