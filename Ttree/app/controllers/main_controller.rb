@@ -77,7 +77,7 @@ class MainController < ApplicationController
 			@ancestry = @branch.join("/")
 		end
 	end
-	
+
 	private
 	def logged_in_user
 		if current_user

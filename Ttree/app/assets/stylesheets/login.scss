@@ -24,10 +24,13 @@
 }
 #login_1{
   width: 100%;
-  height: 570px;
-  background-image: url(asset-path('loginBack.png'));
+  height: 600px;
+  //background-image: url(<%= asset_path 'loginBack.png' %>);
   background-size: cover;
   background-position: center center;
+}
+#login_1_content{
+  padding-top: 150px;
 }
 .login_content{
   text-align: center;
@@ -45,7 +48,7 @@
   font: 40px CenturyGothic;
   font-weight: bold;
   color: white;
-  margin-top: 150px;
+  margin-top: 0px;
   p{
     font:12px normal;
   }

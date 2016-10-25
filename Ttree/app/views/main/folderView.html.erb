@@ -10,15 +10,15 @@ window.currentBranchId="<%=@branch_id%>";
   var dropPosition=0; //바탕(0)인지 폴더(1)인지
   var makeWorkFolderContext = function() {
     //$(".custom_menu").append("<li data-action='add_favorate'><img class='star_btn_context' src='/assets/star3.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Add favorate</li>");
-    $(".custom_menu").append("<li data-action='change_name'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Rename</li>");
+    $(".custom_menu").append("<li data-action='change_name'><img class='edit_btn_context' src='<%= asset_path("edit.png")%>' style='height:18px;width:18px;' />&nbsp;&nbsp;Rename</li>");
     //$(".custom_menu").append("<li data-action='change_color'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Change color</li>");
     //$(".custom_menu").append("<hr class='context_hr'/>");
     //$(".custom_menu").append("<li data-action='copy'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Copy</li>");
     //$(".custom_menu").append("<li data-action='paste'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Paste</li>");
     //$(".custom_menu").append("<li data-action='move'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Move</li>");
-    $(".custom_menu").append("<li data-action='share_link'><img class='edit_btn_context' src='/assets/edit.png' style='height:18px;width:18px;'/>&nbsp;&nbsp;Share link</li>");
+    $(".custom_menu").append("<li data-action='share_link'><img class='edit_btn_context' src='<%= asset_path("edit.png")%>' style='height:18px;width:18px;'/>&nbsp;&nbsp;Share link</li>");
     $(".custom_menu").append("<hr class='context_hr'/>");
-    $(".custom_menu").append("<li data-action='delete'><img class='delete_btn_context' src='/assets/close1.png' style='height:18px;width:18px;' />&nbsp;&nbsp;Delete</li>");
+    $(".custom_menu").append("<li data-action='delete'><img class='delete_btn_context' src='<%= asset_path("close1.png")%>' style='height:18px;width:18px;' />&nbsp;&nbsp;Delete</li>");
   }
   $(document).ready(function() {
     $('.work_container').width(widthPosition - $('.treeView').outerWidth());
@@ -122,7 +122,7 @@ window.currentBranchId="<%=@branch_id%>";
                   cache:false,
                   data: inputData,
                   success:function(data){
-                    
+
                   },
                 }).complete(function(){
                   $(".edit_branch_name").hide();
@@ -484,7 +484,7 @@ window.currentBranchId="<%=@branch_id%>";
       <% end %>
     <% end %>
     <div class="add_folder _folder ">
-      <img class=create_work_btn src="/assets/create_work.png">
+      <img class=create_work_btn src="<%= asset_path("create_work.png")%>">
     </div>
   </div>
   </div>
@@ -494,14 +494,14 @@ window.currentBranchId="<%=@branch_id%>";
       <div class="purple_line"></div>
       <div class="gray_line"></div>
       <span id="open_all_btn" class="tooltip">
-        <img src="/assets/all_pages.png">
+        <img src="<%= asset_path('all_pages.png')%>">
       </span>
     </div>
     <div class="page_wrap">
     <% if !@child_pages.nil? %>
       <% @child_pages.each do |page| %>
         <div class="_page page<%=page.id%> page_layout" data-url="<%= page.url %>" data-id="<%=page.id%>">
-          <img class="closeImg" src="/assets/closeMini2.png" height="15px"/>
+          <img class="closeImg" src="<%= asset_path('closeMini2.png')%>" height="15px"/>
           <img class="_page_img" src="http://ryugarden.org/api/thumb?url=<%= page.url %>"/>
           <div class="_page_url_div">
             <a class="_page_url"><%= page.title %></a>
@@ -514,7 +514,7 @@ window.currentBranchId="<%=@branch_id%>";
 </div>
 <div class="create_folder_form" id="create_folder_form">
   <div id="folder_form_main" class="folder_form_element">Create Folder</div>
-  <img class="form_folder_btn" src="/assets/close1.png" />
+  <img class="form_folder_btn" src="<%= asset_path('close1.png')%>" />
   <form id="folder_form">
     <div id="folder_form_title" class="folder_form_element">Title</div>
     <input type="text" name="title" class="folder_input folder_form_element" />
@@ -523,7 +523,7 @@ window.currentBranchId="<%=@branch_id%>";
 </div>
 
 <div class="edit_branch_name" id="edit_branch_name">
-  <img class="edit_close_btn form_btn" src="/assets/close1.png">
+  <img class="edit_close_btn form_btn" src="<%= asset_path('close1.png')%>">
   <form id="edit_branch_form">
     <div id="title">Edit Folder Name</div>
     <input type="text" name="name" class="branch_name">
