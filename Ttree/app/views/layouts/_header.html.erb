@@ -1,8 +1,9 @@
+
+<%if current_user!=nil%>
 <%= javascript_tag do %>
 window.userID = "<%= current_user.id%>";
 window.userName ="<%= current_user.name %>";
 <% end %>
-<%if current_user!=nil%>
 <ul id="header">
   <%=link_to image_tag("logo4.png", alt:"home",id:"home" ),root_path %>
   <li class="menu" id="menu_1">
@@ -41,11 +42,7 @@ window.userName ="<%= current_user.name %>";
   </div>
 </li>
 </ul>
-<%else%>
-<div id="login_header">
-  <%=link_to image_tag("logo4.png", alt:"home",id:"logo" ),root_path %>
-  <div>
-<%end%>
+
 
 <div id="dropDown1">
   <ul id="WorkList">
@@ -96,6 +93,11 @@ window.userName ="<%= current_user.name %>";
     method: :delete, data: {confirm: "로그아웃?" }%>
   </ul>
 </div>
+<%else%>
+<div id="login_header">
+  <%=link_to image_tag("logo4.png", alt:"home",id:"logo" ),root_path %>
+  <div>
+<%end%>
 <script>
 
 /*
@@ -186,8 +188,8 @@ var getTeamName=function(){ //Team work 가져오는 json
   ///////////////////////////////////////JSON/////////////////////////////////////
   $.getJSON("/api/user/"+userID+"/teams", function(response) {
     $.each(response, function (i,team) {
-      $("#TeamWorks").append("<li class='team_li' id='team_li"+team.id+"'>"+team.name+"<span class='teamName team_right_icon team_plus_icon'><img src='/assets/plus.png' height='15px' width='15px'></span></li><ul id='TeamWorks_"+team.id+"'></ul>");
-
+      //$("#TeamWorks").append("<li class='team_li' id='team_li"+team.id+"'>"+team.name+"<span class='teamName team_right_icon team_plus_icon'><img src='/assets/plus.png' height='15px' width='15px'></span></li><ul id='TeamWorks_"+team.id+"'></ul>");
+      $("#TeamWorks").append("<li class='team_li' id='team_li"+team.id+"'>"+team.name+"</li><ul id='TeamWorks_"+team.id+"'></ul>");
       $(".team_li span").eq(i).attr("data-id",team.id);
       //일정 크기를 넘어가면 높이를 고정
       if(($('#dropDown1').height()+(heightPosition-60)/10)<=heightPosition){

@@ -4,8 +4,8 @@ var headerSize=60;
 var marginSize=20;
 
 $(document).ready(function(){
-  $('.treeView').width(<%=@treeViewWidth%>);
-  $('.treeView').height(heightPosition - headerSize-marginSize);
+  $('.treeView2').width(<%=@treeViewWidth%>);
+  $('.treeView2').height(heightPosition - headerSize-marginSize);
   $('#using_json').jstree({ 'core' : {
         'data' : {
             'url' : '/api/work/<%= @work %>/tree'
@@ -51,7 +51,7 @@ $(document).ready(function(){
     })
   });
   //트리뷰 리사이즈 
-  $('.treeView').resizable({
+  $('.treeView2').resizable({
      resize: function(event,ui) {
       //alert(inputData)
       outerWidth=$(this).outerWidth();
@@ -87,14 +87,14 @@ $(window).resize(function() {
    $(this).next().slideToggle();
   });
 
-  $('.treeView').height(heightPosition - headerSize-marginSize);
+  $('.treeView2').height(heightPosition - headerSize-marginSize);
 })
 </script>
 
 
-<div class="treeView ">
+<div class="treeView2 ">
   <div id=workName>
-    <%= @work +" / "+@workname %>
+    <%= @workname %>
   </div>
   <div id="using_json">
 

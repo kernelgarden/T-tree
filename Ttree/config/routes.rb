@@ -41,7 +41,6 @@ Rails.application.routes.draw do
   get '/api/branch/:id/childs', to: 'apis#branchChilds'      #해당 branch의 정보
   get '/api/branch/:id/pages', to: 'apis#pages' #해당 branch의 page들의 정보
   get '/api/branch/:id/page_ids', to: 'apis#page_ids' #해당 branch의 page id들
-  get '/api/branch/:id/delete', to:'apis#deleteBranch' #해당 branch 삭제
 
   get '/api/page/:id', to: 'apis#page'         #해당 page의 정보
 
@@ -64,7 +63,7 @@ Rails.application.routes.draw do
   post '/api/page/new', to: 'apis#getPages'
   post '/api/post/team_member', to:'apis#getMember'
   post '/api/post/deleteunclassifiedpages', to:'apis#deleteunclassifiedpages'	#해당 임시페이지 삭제
-  post '/api/post/deletePages', to:'apis#deletePages'	#해당 페이지 삭제
+  get '/api/page/:id/delete', to:'apis#deletePages'	#해당 페이지 삭제
 
   post '/api/post/folder', to: 'apis#addFolder'
   post '/api/post/addPage', to: 'apis#addPage'
