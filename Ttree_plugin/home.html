@@ -11,132 +11,247 @@
     margin: 0 auto;
     width: 100%;
     height: auto;
+    text-align: center;
   }
-    #login_header{
-      width: 100%;
-      height: 40px;
-      padding: 15px 0;
-      background-color: #F8F9F9;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 2;
-    }
-    #logo{
-      width:150px;
-      height: 40px;
-      margin-left: 15px;
-    }
-    #login_1{
-      width: 100%;
-      height: 200px;
-      margin-top:70px;
-      background-color: #FFFFFF;
-    }
-    .login_content{
-      text-align: center;
-      width: 100%;
-      height: 100%;
-    }
-    #login_form{
-      margin-top: 20px;
-    }
-    #login_2{
-      width: 100%;
-      height: 280px;
-      background-color: #BCD9EA;
-    }
-    #login_3{
-      width: 100%;
-      height: 200px;
-      background-color: #F5EA92;
-    }
-    .loginBtn {
-      box-sizing: border-box;
-      position: relative;
-      width: 215px;
-      height: 35px;
-      margin: 0.01em;
-      padding: 0 15px 0 46px;
-      border: none;
-      text-align: left;
-      line-height: 34px;
-      border-radius: 0.2em;
-      font-size: 16px;
-      color: #FFF;
-    }
-    .loginBtn:before {
-      content: "";
-      box-sizing: border-box;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 34px;
-      height: 100%;
-    }
-    .loginBtn:focus {
-      outline: none;
-    }
-    .loginBtn:active {
-      /box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
-    }
-    .loginBtn--facebook {
-      background: url('icon_facebook.png') 6px 6px no-repeat;
-      background-color: #4C69BA;
-      font-family: "Helvetica neue", Helvetica, Helvetica, Arial, sans-serif;
-      text-shadow: 0 -1px 0 #354C8C;
-    }
-    .loginBtn--facebook:hover{
-      background-color: #5B7BD5;
-      cursor: pointer;
-    }
-    /* Google */
-    .loginBtn--google {
-      background: url('icon_google.png') 6px 6px no-repeat;
-      background-color: #DD4B39;
-      font-family: "Roboto", Roboto, arial, sans-serif;
-      text-shadow: 0 -1px 0 #354C8C;
-    }
-    .loginBtn--google:hover{
-      background-color: #E74B37;
-      cursor: pointer;
-    }
-    #login_2_content{
-      margin-top: 20px;
-    }
-    .form{
-      margin-bottom: 10px;
-    }
-  </style>
+  #login_header{
+    width: 100%;
+    height: 40px;
+  }
+  #sideList{
+    list-style: none;
+    float: right;
+    margin-right: 20px;
+  }
+  #sideList li{
+    font-size: 12px;
+    color: white;
+    margin-top: 20px;
+    display: inline-block;
+    cursor: pointer;
+  }
+  #logo{
+    width:150px;
+    height: 40px;
+    margin-left: 15px;
+    margin-top: 20px;
+    float: left;
+    display: inline-block;
+  }
+  #login_1{
+    width: 100%;
+    height: 570px;
+    background-image: url('loginBack.png');
+    background-size: cover;
+    background-position: center center;
+  }
+  .login_content{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+  }
+  .content_header{
+    width: 100%;
+    font: 30px CenturyGothic;
+    font-weight: bold;
+    margin-top: 75px;
+    display: inline-block;
+  }
+  #login_1_header{
+    font: 40px CenturyGothic;
+    font-weight: bold;
+    color: white;
+    margin-top: 150px;
+  }
+  #login_1_header p{
+    font:12px normal;
+  }
+  #login_1_header #p1{
+    margin-top: 15px;
+  }
+  #login_1_header #p2{
+    margin-top: 5px;
+    margin-bottom: 25px;
+  }
+
+  #login_form{
+    height: 40px;
+    text-align: center;
+  }
+  .FacebookBtn{
+    margin-right: 10px;
+  }
+  .FacebookBtn:hover{
+    cursor: pointer;
+  }
+
+  .GoogleBtn{
+    margin-left: 10px;
+  }
+  .GoogleBtn:hover{
+    cursor:pointer;
+  }
+  #login_2{
+    width: 100%;
+    height: 500px;
+    background-color: #f0f0f0;
+  }
+  .underbar{
+    width: 70px;
+    height: 3px;
+    border-radius: 3px;
+    background-color: #bfbfbf;
+    display: inline-block;
+    margin-top: 8px;
+  }
+  #login_3{
+    width: 100%;
+    background-color: #f0f0f0;
+  }
+
+  #profileWrap{
+    width: 1027px;
+    display: inline-block;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+  .profile{
+    width: 216px;
+    display: inline-block;
+    box-shadow: 2px 1px 10px #888888;
+  }
+  .profile_img{
+    width: 120px;
+    height: 187px;
+    margin: 35px 48px 0 48px;
+    display: inline-block;
+  }
+  .profile_img img{
+    width: 120px;
+    height: 187px;
+  }
+  .profile_name{
+    margin-top: 15px;
+    padding-bottom: 7px;
+    display: inline-block;
+    border-bottom: solid 1px #bfbfbf;
+    font: 14px CenturyGothic;
+    font-weight: bold;
+  }
+  .profile_role{
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 40px;
+    display: inline-block;
+    font: 11px CenturyGothic;
+    color: #757575;
+  }
+  #jiwon{
+    margin-left: 48px;
+  }
+  #jeongwon{
+    margin-left: 48px;
+  }
+  #sumin{
+    margin-left: 48px;
+  }
+
+#login_footer{
+  height: 100px;
+  background-color: black;
+  color: white;
+}
+  #login_footer p{
+    font-size: 10px;
+    display: inline-block;
+    margin-top: 40px;
+    font-weight: utlra Regular;
+  }
+</style>
 </head>
 <body>
   <div id="content">
-  <div id="login_header">
-    <div id="logo"><img id="logo" src="./logo4.png" /></div>
-  </div>
   <div id="login_1">
-    <div id="login_1_content" class="login_content">
-      <h1>Thanks for using Tab-Storage</h1>
-      <p>로그인이 필요합니다ㅎ.ㅎ</p>
+    <div id="login_header">
+      <img src="logo4.png", alt="home", id="logo">
+      <ul id=sideList>
+        <li id="home">Home</li>
+        <li id="howtouse"style="margin-right:45px; margin-left:45px;">How To Use</li>
+        <li id="about">About</li>
+      </ul>
+    </div>
+    <div id="login_1_content">
+      <div id="login_1_header">Welcome To Our Tab-Storage
+        <p id="p1">Tab-storage helps your work by maintaining internet tabs</p>
+        <p id="p2">You also do teamwork in Tab-Storage. You can log in with facebook or google</p>
+      </div>
       <div id="login_form">
-        <form class="form">
-          <button id="facebook" class="loginBtn loginBtn--facebook">Login with Facebook</button>
-        </form>
-        <form class="form">
-        <button id="google" class="loginBtn loginBtn--google">Login with Google</button>
-        </form>
+        <img src="loginFacebook.png", alt="Facebook",class="FacebookBtn", id="facebook">
+        <img src="loginGoogle.png", alt="Google",class="GoogleBtn", id="google">
       </div>
     </div>
   </div>
   <div id="login_2">
-    <div id="login_2_content" class="login_content">
-      <h1>How To Using Tab-Storage?</h1>
+    <div id="login_2_content">
+      <div id="login_2_header" class="content_header">How To Using Tab-Storage?</div>
+      <div class="underbar"></div>
     </div>
   </div>
   <div id="login_3">
-    <div id="login_3_content" class="login_content">
-      <h1>김시훈</h1><h1>오지원</h1><h1>류정원</h1>
+    <div id="login_3_content">
+      <div id="login_3_header" class="content_header">Our Team</div>
+      <div class="underbar"></div>
+      <div>
+        <div id="profileWrap">
+          <div class="profile" id="sihoon">
+            <div class="profile_img"><img src="kim.jpg"> </div>
+            <div class="profile_name">Kim SiHoon</div>
+            <div class="profile_role">Developer</div>
+          </div>
+          <div class="profile" id="jiwon">
+            <div class="profile_img"><img src="jiwon.jpg"> </div>
+            <div class="profile_name">Oh Jiwon</div>
+            <div class="profile_role">Developer</div>
+          </div>
+          <div class="profile" id="jeongwon">
+            <div class="profile_img"><img src="ryu.jpg"> </div>
+            <div class="profile_name">Ryu Jeongwon</div>
+            <div class="profile_role">Developer</div>
+          </div>
+          <div class="profile" id="sumin">
+            <div class="profile_img"><img src="sumin.jpg"></div>
+            <div class="profile_name">Ji Sumin</div>
+            <div class="profile_role">Designer</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <footer id="login_footer">
+    <p>@2016 by OpenYearRound. Inc. All rights reserved</p>
+  </footer>
 </div>
+</body>
 </html>
+<script>
+$(document).ready(function (){
+  $('#logo').on('dragstart', function(event) { event.preventDefault(); });
+  $('#home').on('click', function(event) {
+    event.preventDefault();
+    $('html, body').stop().animate({
+      scrollTop: $("#login_1").offset().top
+    }, 1000);
+  });
+  $('#howtouse').on('click', function(event) {
+    event.preventDefault();
+    $('html, body').stop().animate({
+      scrollTop: $("#login_2").offset().top
+    }, 1000)
+  })
+  $('#about').on('click', function(event) {
+    event.preventDefault();
+    $('html, body').stop().animate({
+      scrollTop: $("#login_3").offset().top
+    }, 1000);
+  });
+})
+</script>
